@@ -1,136 +1,182 @@
-/* V8.39 — naturally varied overlapping ink stains; ring and cover unchanged. */
+/* V8.69 — Fixed visible hand-traced signature, inspired by the referenced handwriting tutorial.
+   Each visible ink stroke follows a real SVG path in natural pen order.
+   Paths use a small subset of the Hershey Script 1 vector alphabet;
+   attribution appears in README.txt. No font files are bundled.
+   The existing ring toss, spotlight, and countdown remain unchanged. */
 (() => {
-  const svg=document.querySelector('.ink-signature');
-  if(!svg)return;
+  'use strict';
+  const svg = document.querySelector('.ink-signature');
+  if (!svg) return;
   const NS='http://www.w3.org/2000/svg';
-  const make=(tag,attrs={})=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e;};
-  svg.setAttribute('viewBox','0 0 900 260');svg.replaceChildren();
-  const ink='#485a40', glyphs=[], splashes=[];
-  // Ink is confined to the handwritten note, not the invitation background.
-  // Organic blots are soft-edged, asymmetric liquid stains, not pointed polygons.
-  const random=(seed)=>{const x=Math.sin(seed*127.1+78.233)*43758.5453;return x-Math.floor(x);};
-  const note=document.querySelector('.handwritten-names');
-  const oldPaper=document.querySelector('.paper-ink-splashes');
-  if(oldPaper)oldPaper.remove();
-  const splashCanvas=make('svg',{'class':'signature-ink-splashes',viewBox:'0 0 900 260',preserveAspectRatio:'xMidYMid meet','aria-hidden':'true'});
-  if(note)note.appendChild(splashCanvas);
-  const defs=make('defs');
-  const soft=make('filter',{id:'signature-ink-soften',x:'-35%',y:'-35%',width:'170%',height:'170%'});
-  soft.appendChild(make('feGaussianBlur',{stdDeviation:'0.9'}));
-  defs.appendChild(soft);splashCanvas.appendChild(defs);
-  // Organic, asymmetrical clusters: a few broad absorbed pools, smaller stains,
-  // and occasional overlapping wet marks. No evenly spaced dot pattern.
-  const clusters=[
-    {x:597,y:112,r:17,line:0,position:.25,opacity:.35},
-    {x:616,y:119,r:9,line:0,position:.30,opacity:.27},
-    {x:842,y:123,r:5,line:0,position:.85,opacity:.29},
-    {x:167,y:168,r:6,line:1,position:.07,opacity:.32},
-    {x:279,y:230,r:21,line:1,position:.24,opacity:.39},
-    {x:293,y:235,r:10,line:1,position:.28,opacity:.30},
-    {x:468,y:241,r:4,line:1,position:.47,opacity:.26},
-    {x:665,y:226,r:15,line:1,position:.74,opacity:.38},
-    {x:678,y:234,r:7,line:1,position:.77,opacity:.29},
-    {x:861,y:164,r:11,line:1,position:.96,opacity:.34}
-  ];
-  clusters.forEach(({x:cx,y:cy,r:base,line,position,opacity},i)=>{
-    const x=cx+(random(i*41+3)-.5)*13;
-    const y=cy+(random(i*37+9)-.5)*13;
-    const r=base*(.82+random(i*19+7)*.39);
-    const g=make('g',{'class':'signature-ink-blot',transform:`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${Math.round(random(i*13+8)*360)})`});
-    g.style.setProperty('opacity','0','important');
-    const n=18,coords=[];
-    for(let j=0;j<n;j++){
-      const a=j*2*Math.PI/n;
-      const radius=r*(.79+random(i*137+j*23+11)*.40);
-      coords.push([Math.cos(a)*radius,Math.sin(a)*radius*(.75+random(i*31+j*7)*.45)]);
-    }
-    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
-    const first=mid(coords[n-1],coords[0]);
-    let d=`M ${first[0].toFixed(2)} ${first[1].toFixed(2)}`;
-    for(let j=0;j<n;j++){
-      const next=mid(coords[j],coords[(j+1)%n]);
-      d+=` Q ${coords[j][0].toFixed(2)} ${coords[j][1].toFixed(2)} ${next[0].toFixed(2)} ${next[1].toFixed(2)}`;
-    }
-    d+=' Z';
-    // A dark uneven center with a translucent bleed halo; overlapping shapes
-    // naturally become darker because they are rendered separately.
-    g.appendChild(make('path',{d,fill:ink,opacity:opacity.toFixed(3),filter:'url(#signature-ink-soften)'}));
-    g.appendChild(make('ellipse',{
-      cx:(r*.08).toFixed(2),cy:(r*.12).toFixed(2),
-      rx:(r*.72).toFixed(2),ry:(r*.55).toFixed(2),
-      fill:ink,opacity:(opacity*.25).toFixed(3),filter:'url(#signature-ink-soften)'
-    }));
-    // Only occasional tiny satellite droplets, never identical rings of dots.
-    const drops=base>=15?3:base>=9?2:1;
-    for(let j=0;j<drops;j++){
-      const a=random(i*83+j*17+1)*Math.PI*2;
-      const distance=r*(1.10+random(i*47+j*9+5)*.83);
-      const size=.55+random(i*19+j*31+8)*(base>=15?2.9:1.7);
-      g.appendChild(make('ellipse',{
-        cx:(Math.cos(a)*distance).toFixed(2),cy:(Math.sin(a)*distance).toFixed(2),
-        rx:size.toFixed(2),ry:(size*(.65+random(i*71+j+4)*.65)).toFixed(2),
-        fill:ink,opacity:(opacity*.68).toFixed(3),filter:'url(#signature-ink-soften)'
-      }));
-    }
-    splashCanvas.appendChild(g);
-    splashes.push({node:g,line,position,start:0,duration:.023+random(i*29+12)*.035});
-  });
-  const lines=[{content:'love lots,',y:88,fontSize:68,index:0},{content:'Kenneth & Catherine',y:193,fontSize:84,index:1}];
-  function build(){
-    glyphs.length=0;svg.querySelectorAll('.signature-line').forEach(e=>e.remove());
-    const ctx=document.createElement('canvas').getContext('2d');
-    lines.forEach(({content,y,fontSize,index})=>{
-      const group=make('g',{'class':'signature-line'});svg.appendChild(group);
-      ctx.font=`${fontSize}px Allura, "URW Chancery L", cursive`;
-      const letters=[...content],widths=letters.map(c=>ctx.measureText(c).width);
-      const advances=widths.map((w,i)=>w*(letters[i]===' '? .9:.94));
-      const total=advances.reduce((a,b)=>a+b,0),fit=Math.min(1,620/Math.max(total,1));
-      let x=0;group.setAttribute('transform',`translate(${(855-total*fit).toFixed(2)} 0) scale(${fit.toFixed(5)} 1)`);
-      letters.forEach((letter,i)=>{
-        const v=random(i*19+index*47+1),v2=random(i*31+index*59+3);
-        const rise=(v-.5)*3.1,angle=(v2-.5)*5.0;
-        const skew=(random(i*43+index*11+6)-.5)*3.4;
-        const node=make('text',{x:x.toFixed(2),y:(y+rise).toFixed(2),'class':'signature-glyph','font-size':fontSize,transform:`rotate(${angle.toFixed(2)} ${x.toFixed(2)} ${y.toFixed(2)}) skewX(${skew.toFixed(2)})`});
-        node.textContent=letter;group.appendChild(node);
-        if(letter.trim())glyphs.push({node,weight:Math.max(8,widths[i])});
-        x+=advances[i];
-      });
-    });
-  }
-  // Match the splash to the real handwriting progress (measured glyph widths),
-  // so changes in font loading also update the timing consistently.
-  function syncSplashTiming(){
-    const firstLineLetters=[...'love lots,'].filter(c=>c.trim()).length;
-    const firstWeight=glyphs.slice(0,firstLineLetters).reduce((a,g)=>a+g.weight,0);
-    const allWeight=glyphs.reduce((a,g)=>a+g.weight,0)||1;
-    const split=firstWeight/allWeight;
-    splashes.forEach((s,i)=>{
-      const within=s.line===0 ? split*s.position : split+(1-split)*s.position;
-      s.start=Math.max(.02,Math.min(.965,within+(random(i*59+23)-.5)*.027));
-    });
-  }
-  let currentProgress=0;
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.updateWeddingSignature=(progress)=>{
-    currentProgress=Math.max(0,Math.min(1,progress));
-    const t=reduced?1:currentProgress,total=glyphs.reduce((a,c)=>a+c.weight,0);
-    let previous=0;
-    glyphs.forEach(({node,weight})=>{
-      const f=Math.max(0,Math.min(1,(t*total-previous)/weight));
-      node.style.strokeDasharray='230 230';node.style.strokeDashoffset=String(230*(1-f));
-      node.style.strokeOpacity=String(Math.min(1,f*2.7));
-      node.style.fillOpacity=String(Math.max(0,Math.min(1,(f-.45)/.55)));
-      previous+=weight;
-    });
-    splashes.forEach(({node,start,duration})=>{
-      const f=Math.max(0,Math.min(1,(t-start)/duration));
-      // Preserve the SVG translate/rotate positioning. CSS transform here would
-      // collapse every ink mark toward the SVG origin on some browsers.
-      node.style.setProperty('opacity',f.toFixed(3),'important');
-    });
+  const create=(tag,attrs={})=>{
+    const node=document.createElementNS(NS,tag);
+    for(const [name,value] of Object.entries(attrs)) node.setAttribute(name,String(value));
+    return node;
   };
-  build();syncSplashTiming();window.updateWeddingSignature(0);
-  if(document.fonts?.load){document.fonts.load('84px Allura').then(()=>{build();syncSplashTiming();window.updateWeddingSignature(currentProgress);}).catch(()=>{});}
+  const clamp=n=>Math.max(0,Math.min(1,n));
+  const smooth=t=>{t=clamp(t);return t*t*(3-2*t);};
+  const glyphs={" ":{"advance":378,"d":""},"&":{"advance":819,"d":"M 756 410 L 724 378 L 756 346 L 788 378 L 788 410 L 756 441 L 724 441 L 662 410 L 598 346 L 441 94.5 L 378 31.5 L 315 0 L 220 0 L 126 31.5 L 94.5 94.5 L 94.5 158 L 126 220 L 158 252 L 220 284 L 378 346 L 441 378 L 504 441 L 536 504 L 536 567 L 504 630 L 441 662 L 378 630 L 346 567 L 346 472 L 378 284 L 410 189 L 472 94.5 L 536 31.5 L 598 0 L 662 0 L 693 63 L 693 94.5 M 220 0 L 158 31.5 L 126 94.5 L 126 158 L 158 220 L 189 252 L 378 346 M 346 472 L 378 315 L 410 220 L 472 126 L 536 63 L 598 31.5 L 662 31.5 L 693 63"},",":{"advance":346,"d":"M 126 0 L 94.5 31.5 L 126 63 L 158 31.5 L 158 0 L 126 -63 L 63 -126"},"C":{"advance":630,"d":"M 410 472 L 410 441 L 441 410 L 504 410 L 567 441 L 598 504 L 598 567 L 567 630 L 504 662 L 410 662 L 315 630 L 252 567 L 189 472 L 158 410 L 126 284 L 126 158 L 158 63 L 189 31.5 L 252 0 L 315 0 L 410 31.5 L 472 94.5 L 504 158"},"K":{"advance":756,"d":"M 252 441 L 189 472 L 158 536 L 158 567 L 189 630 L 252 662 L 284 662 L 346 630 L 378 567 L 378 504 L 346 378 L 284 189 L 220 63 L 158 0 L 94.5 0 L 63 31.5 L 63 94.5 M 788 567 L 788 630 L 756 662 L 724 662 L 662 630 L 598 567 L 536 472 L 472 410 L 410 378 L 346 378 M 410 378 L 441 315 L 441 94.5 L 472 31.5 L 504 0 L 536 0 L 598 31.5 L 630 63 L 693 158"},"a":{"advance":504,"d":"M 315 189 L 284 252 L 220 284 L 158 284 L 94.5 252 L 63 220 L 31.5 158 L 31.5 94.5 L 63 31.5 L 126 0 L 189 0 L 252 31.5 L 284 94.5 L 346 284 L 315 126 L 315 31.5 L 346 0 L 378 0 L 441 31.5 L 472 63 L 536 158"},"e":{"advance":315,"d":"M 63 63 L 126 94.5 L 158 126 L 189 189 L 189 252 L 158 284 L 126 284 L 63 252 L 31.5 189 L 31.5 94.5 L 63 31.5 L 126 0 L 189 0 L 252 31.5 L 284 63 L 346 158"},"h":{"advance":472,"d":"M 31.5 158 L 94.5 252 L 189 410 L 220 472 L 252 567 L 252 630 L 220 662 L 158 630 L 126 567 L 94.5 441 L 63 252 L 31.5 0 M 31.5 0 L 63 94.5 L 94.5 158 L 158 252 L 220 284 L 284 284 L 315 252 L 315 189 L 284 94.5 L 284 31.5 L 315 0 L 346 0 L 410 31.5 L 441 63 L 504 158"},"i":{"advance":220,"d":"M 126 441 L 126 410 L 158 410 L 158 441 L 126 441 M 31.5 158 L 94.5 284 L 31.5 94.5 L 31.5 31.5 L 63 0 L 94.5 0 L 158 31.5 L 189 63 L 252 158"},"l":{"advance":252,"d":"M 31.5 158 L 94.5 252 L 189 410 L 220 472 L 252 567 L 252 630 L 220 662 L 158 630 L 126 567 L 94.5 441 L 63 220 L 63 31.5 L 94.5 0 L 126 0 L 189 31.5 L 220 63 L 284 158"},"n":{"advance":567,"d":"M 31.5 158 L 94.5 252 L 158 284 L 189 252 L 189 220 L 158 94.5 L 126 0 M 158 94.5 L 189 158 L 252 252 L 315 284 L 378 284 L 410 252 L 410 189 L 378 94.5 L 378 31.5 L 410 0 L 441 0 L 504 31.5 L 536 63 L 598 158"},"o":{"advance":441,"d":"M 220 284 L 158 284 L 94.5 252 L 63 220 L 31.5 158 L 31.5 94.5 L 63 31.5 L 126 0 L 189 0 L 252 31.5 L 284 63 L 315 126 L 315 189 L 284 252 L 220 284 L 189 252 L 189 189 L 220 126 L 284 94.5 L 378 94.5 L 441 126 L 472 158"},"r":{"advance":410,"d":"M 31.5 158 L 94.5 252 L 126 315 L 126 252 L 220 252 L 252 220 L 252 158 L 220 63 L 220 31.5 L 252 0 L 284 0 L 346 31.5 L 378 63 L 441 158"},"s":{"advance":346,"d":"M 31.5 158 L 94.5 252 L 126 315 L 126 252 L 189 158 L 220 94.5 L 220 31.5 L 158 0 M 31.5 31.5 L 94.5 0 L 220 0 L 284 31.5 L 315 63 L 378 158"},"t":{"advance":284,"d":"M 31.5 158 L 94.5 252 L 158 378 M 252 662 L 63 94.5 L 63 31.5 L 94.5 0 L 158 0 L 220 31.5 L 252 63 L 315 158 M 63 410 L 284 410"},"v":{"advance":472,"d":"M 31.5 158 L 94.5 284 L 63 126 L 63 31.5 L 94.5 0 L 126 0 L 220 31.5 L 284 94.5 L 315 189 L 315 284 M 315 284 L 346 158 L 378 126 L 441 126 L 504 158"}};
+  const lines=[
+    {text:'love lots,',scale:.127,right:855,baseline:105,start:0,end:2350},
+    {text:'Kenneth & Catherine',scale:.087,right:855,baseline:213,start:2700,end:7450}
+  ];
+  const totalDuration=7450;
+  const strokes=[];
+  let lastProgress=0,hasStarted=false,animationFrame=0,startTime=0;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  svg.setAttribute('viewBox','0 0 900 260');
+  svg.replaceChildren();
+  svg.setAttribute('role','presentation');
+
+  // A little pigment travels beyond the main stroke into the paper fibers.
+  const defs=create('defs');
+  const bleedFilter=create('filter',{id:'signature-paper-bleed',x:'-35%',y:'-35%',width:'170%',height:'170%'});
+  bleedFilter.appendChild(create('feTurbulence',{
+    type:'fractalNoise',baseFrequency:'.032',numOctaves:'2',seed:'12',result:'paper-grain'
+  }));
+  bleedFilter.appendChild(create('feDisplacementMap',{
+    in:'SourceGraphic',in2:'paper-grain',scale:'6',
+    xChannelSelector:'R',yChannelSelector:'G'
+  }));
+  bleedFilter.appendChild(create('feGaussianBlur',{stdDeviation:'7'}));
+  defs.appendChild(bleedFilter);
+  svg.appendChild(defs);
+
+  function splitPenStrokes(d){
+    return d.match(/M\s*[^M]+/g)||[];
+  }
+
+  lines.forEach((line,lineIndex)=>{
+    const totalAdvance=[...line.text].reduce((sum,char)=>sum+(glyphs[char]?.advance||378),0);
+    const startX=line.right-totalAdvance*line.scale;
+    const group=create('g',{
+      class:'handwriting-line',
+      transform:`translate(${startX.toFixed(2)} ${line.baseline}) scale(${line.scale} ${-line.scale})`
+    });
+    svg.appendChild(group);
+    let x=0;
+    const lineStrokes=[];
+    for(let i=0;i<line.text.length;i++){
+      const letter=line.text[i],data=glyphs[letter];
+      if(!data){x+=378;continue;}
+      if(data.d){
+        const letterGroup=create('g',{transform:`translate(${x} 0)`});
+        group.appendChild(letterGroup);
+        const subpaths=splitPenStrokes(data.d);
+        subpaths.forEach((d,j)=>{
+          const seed=i*17+j*29+lineIndex*43;
+          const width=23+(Math.sin(seed*1.38)+1)*3.4;
+          const trace=create('g',{class:'handwriting-trace'});
+          const bleed=create('path',{
+            d,fill:'none',stroke:'#667a5c','stroke-width':(width*1.75).toFixed(2),
+            'stroke-linecap':'round','stroke-linejoin':'round',
+            opacity:'.22',filter:'url(#signature-paper-bleed)'
+          });
+          const ink=create('path',{
+            d,fill:'none',stroke:'#3d503e','stroke-width':width.toFixed(2),
+            'stroke-linecap':'round','stroke-linejoin':'round',opacity:'.96'
+          });
+          const dark=create('path',{
+            d,fill:'none',stroke:'#2f4636','stroke-width':(width*.43).toFixed(2),
+            'stroke-linecap':'round','stroke-linejoin':'round',opacity:'.18'
+          });
+          // Legacy V8.26 styles used `opacity:0` on all SVG paths.
+          // Set explicit visibility on the actual strokes, not just SVG attributes.
+          for (const path of [bleed, ink, dark]) {
+            path.style.setProperty('opacity', path === bleed ? '.25' : path === dark ? '.28' : '1', 'important');
+            path.style.setProperty('stroke-opacity', '1', 'important');
+            path.style.setProperty('visibility', 'visible', 'important');
+            path.style.setProperty('vector-effect', 'none', 'important');
+            // The older global SVG rule also forced stroke-width:2.15px;
+            // at our scaled glyph coordinates that becomes nearly invisible.
+            path.style.setProperty('stroke-width', path.getAttribute('stroke-width'), 'important');
+            path.style.setProperty('stroke', path.getAttribute('stroke'), 'important');
+          }
+          trace.append(bleed,ink,dark);
+          letterGroup.appendChild(trace);
+          lineStrokes.push({parts:[bleed,ink,dark],ink,letter,index:i});
+        });
+      }
+      x+=data.advance;
+    }
+    // Allocate time to actual traced stroke length. Small pauses represent
+    // the pen lifting, especially between words and before the second line.
+    let sum=0;
+    for(const stroke of lineStrokes){
+      let length=1;
+      try{length=stroke.ink.getTotalLength()||1;}catch(_error){}
+      stroke.length=length;
+      stroke.weight=Math.pow(Math.max(length,15),.70);
+      stroke.pause=stroke.letter==='&'?30:12;
+      sum+=stroke.weight;
+    }
+    const duration=line.end-line.start;
+    const pauses=lineStrokes.reduce((acc,stroke)=>acc+stroke.pause,0);
+    const drawingTime=Math.max(100,duration-pauses);
+    let time=line.start;
+    for(const stroke of lineStrokes){
+      stroke.from=time;
+      stroke.to=time+drawingTime*(stroke.weight/Math.max(1,sum));
+      time=stroke.to+stroke.pause;
+      for(const path of stroke.parts){
+        path.style.strokeDasharray=`${stroke.length+2} ${stroke.length+2}`;
+        path.style.strokeDashoffset=String(stroke.length+2);
+      }
+      strokes.push(stroke);
+    }
+  });
+
+  // Ink marks only appear as the pen reaches their place on the signature.
+  // Their softly irregular edges complement the subtle feathering above.
+  const spots=create('g',{'class':'handwriting-ink-pools','aria-hidden':'true'});
+  svg.appendChild(spots);
+  const poolData=[
+    [665,82,3.6,.24,1700],
+    [842,105,2.3,.18,2150],
+    [202,208,3.1,.18,3360],
+    [367,224,4.6,.20,4230],
+    [655,222,3.3,.18,6060],
+    [834,225,2.6,.17,7200]
+  ];
+  const pools=poolData.map(([x,y,r,opacity,time],i)=>{
+    const p=create('ellipse',{
+      cx:x,cy:y,rx:r,ry:(r*(.65+(i%3)*.14)).toFixed(2),
+      fill:'#42583d',opacity:'0',filter:'url(#signature-paper-bleed)'
+    });
+    spots.appendChild(p);
+    return {p,opacity,time};
+  });
+
+  window.updateWeddingSignature=(progress)=>{
+    lastProgress=reduced?1:clamp(progress);
+    const ms=lastProgress*totalDuration;
+    for(const stroke of strokes){
+      const f=smooth((ms-stroke.from)/Math.max(1,stroke.to-stroke.from));
+      const offset=(stroke.length+2)*(1-f);
+      for(const path of stroke.parts){path.style.strokeDashoffset=offset.toFixed(2);}
+    }
+    for(const {p,opacity,time} of pools){
+      p.setAttribute('opacity',(opacity*smooth((ms-time)/230)).toFixed(3));
+    }
+  };
+
+  function tick(now){
+    if(!hasStarted)return;
+    window.updateWeddingSignature((now-startTime)/totalDuration);
+    if(lastProgress<1)animationFrame=requestAnimationFrame(tick);
+    else animationFrame=0;
+  }
+  // Start once, as the spotlight reaches the signature. This is time-based,
+  // not tied to how quickly a guest scrolls: the writing moves naturally.
+  window.startWeddingSignature=()=>{
+    if(hasStarted)return;
+    hasStarted=true;
+    if(reduced){window.updateWeddingSignature(1);return;}
+    startTime=performance.now();
+    animationFrame=requestAnimationFrame(tick);
+  };
+  window.updateWeddingSignature(reduced?1:0);
 })();
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
@@ -534,7 +580,8 @@
     alpha(heading, phase(p, .873, .944));
     alpha(message, phase(p, .896, .966));
     alpha(signoff, phase(p, .929, .985));
-    drawSignature(phase(p, .941, .998));
+    // V8.68: trigger the independent pen-trace once the signoff is visible.
+    if (p >= .962) window.startWeddingSignature?.();
   }
 
   const request = () => {

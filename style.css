@@ -4168,3 +4168,46 @@ html {scroll-padding-top:76px;}
   margin:0!important;
   color:inherit!important;
 }
+
+
+/* V8.68 — Hand-traced SVG ink, animated stroke by stroke. */
+.spotlight-invitation-signature .ink-signature {
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+  shape-rendering:geometricPrecision;
+}
+.spotlight-invitation-signature .handwriting-trace path {
+  fill:none;
+  paint-order:stroke;
+}
+@media(prefers-reduced-motion:reduce){
+  .spotlight-invitation-signature .ink-signature {filter:none;}
+}
+
+
+/* V8.69 — CRITICAL FIX: V8.26 hid all SVG paths with opacity:0.
+   These are actual traced pen strokes; they MUST be paintable while
+   stroke-dashoffset progressively reveals them. */
+.spotlight-invitation-signature .ink-signature .handwriting-line,
+.spotlight-invitation-signature .ink-signature .handwriting-trace,
+.spotlight-invitation-signature .ink-signature .handwriting-trace path {
+  visibility:visible!important;
+  opacity:1!important;
+}
+.spotlight-invitation-signature .ink-signature .handwriting-trace path {
+  vector-effect:none!important;
+  fill:none!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+.spotlight-invitation-signature .ink-signature .handwriting-ink-pools ellipse {
+  visibility:visible!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .spotlight-invitation-signature .ink-signature .handwriting-trace path {
+    stroke-dasharray:none!important;
+    stroke-dashoffset:0!important;
+  }
+}
