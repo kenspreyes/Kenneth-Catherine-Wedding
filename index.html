@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="website-version" content="8.80.0">
+  <meta name="website-version" content="8.82.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263328">
@@ -13,15 +13,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=8.81.0">
+  <link rel="stylesheet" href="style.css?v=8.82.0">
 </head>
 <body>
-  <!-- V8.80: directional, one-line navigation; visible only after the video
-       while scrolling UP. Original monogram can be added later as PNG. -->
+  <!-- V8.82: slim navigation; fade on foreword, hide on downward scroll thereafter. -->
   <header class="site-header wedding-nav" id="site-header" aria-label="Wedding navigation" inert>
     <a class="site-brand" href="#film" aria-label="Kenneth and Catherine — Home">
       <span class="site-brand-fallback" aria-hidden="true">K<span class="site-brand-amp">&amp;</span>C</span>
-      <img class="site-monogram" src="assets/images/kc-monogram.png?v=8.81.0"
+      <img class="site-monogram" src="assets/images/kc-monogram.png?v=8.82.0"
            alt="" decoding="async" width="599" height="620" hidden>
     </a>
 
@@ -30,7 +29,7 @@
       <div class="nav-details-group" id="nav-details-group">
         <button class="nav-details-trigger" id="nav-details-trigger" type="button"
                 aria-haspopup="true" aria-expanded="false" aria-controls="nav-details-popover">
-          Details <span class="nav-chevron" aria-hidden="true">⌄</span>
+          Details 
         </button>
         <div class="nav-details-popover" id="nav-details-popover">
           <a href="#ceremony">Ceremony</a>
@@ -44,6 +43,8 @@
       <a href="#faq" data-nav="faq">FAQ</a>
     </nav>
 
+    <a class="mobile-rsvp-shortcut" href="#rsvp" aria-label="Go to RSVP">RSVP</a>
+
     <button class="site-menu-toggle" type="button" id="site-menu-toggle"
             aria-label="Open navigation" aria-controls="site-dropdown" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -51,7 +52,7 @@
     <nav class="site-dropdown" id="site-dropdown" aria-label="Mobile wedding navigation" inert>
       <a href="#film" data-nav="home">Home</a>
       <details class="mobile-details-menu">
-        <summary>Details <span aria-hidden="true">⌄</span></summary>
+        <summary>Details</summary>
         <div class="mobile-details-links">
           <a href="#ceremony">Ceremony</a>
           <a href="#reception">Reception</a>
@@ -162,29 +163,29 @@
               <div class="timeless-unit" data-timeless-unit="days"><strong id="days" class="timeless-value flip-number" aria-label="Days" data-last-value="000">
                   <span class="flip-card">
                     <span class="flip-display">000</span>
-                    <span class="flip-half flip-top" aria-hidden="true"><span>000</span></span>
-                    <span class="flip-half flip-bottom" aria-hidden="true"><span>000</span></span>
+                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">000</span>
+                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">000</span>
                   </span>
                 </strong><small>DAYS</small></div>
               <div class="timeless-unit" data-timeless-unit="hours"><strong id="hours" class="timeless-value flip-number" aria-label="Hours" data-last-value="00">
                   <span class="flip-card">
                     <span class="flip-display">00</span>
-                    <span class="flip-half flip-top" aria-hidden="true"><span>00</span></span>
-                    <span class="flip-half flip-bottom" aria-hidden="true"><span>00</span></span>
+                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
+                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
                   </span>
                 </strong><small>HOURS</small></div>
               <div class="timeless-unit" data-timeless-unit="minutes"><strong id="minutes" class="timeless-value flip-number" aria-label="Minutes" data-last-value="00">
                   <span class="flip-card">
                     <span class="flip-display">00</span>
-                    <span class="flip-half flip-top" aria-hidden="true"><span>00</span></span>
-                    <span class="flip-half flip-bottom" aria-hidden="true"><span>00</span></span>
+                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
+                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
                   </span>
                 </strong><small>MINUTES</small></div>
               <div class="timeless-unit" data-timeless-unit="seconds"><strong id="seconds" class="timeless-value flip-number" aria-label="Seconds" data-last-value="00">
                   <span class="flip-card">
                     <span class="flip-display">00</span>
-                    <span class="flip-half flip-top" aria-hidden="true"><span>00</span></span>
-                    <span class="flip-half flip-bottom" aria-hidden="true"><span>00</span></span>
+                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
+                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
                   </span>
                 </strong><small>SECONDS</small></div>
             </div>
@@ -330,6 +331,6 @@
        To use a local copy later, save the library to assets/js/three.min.js
        and change this script URL back to that local path. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <script src="script.js?v=8.81.0"></script>
+  <script src="script.js?v=8.82.0"></script>
 </body>
 </html>

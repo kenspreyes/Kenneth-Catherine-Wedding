@@ -211,65 +211,61 @@
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
 
-// V8.80 — Wedding countdown: a true split-flap flip only for the unit
-// whose value changed. The labels and the other numbers remain still.
+
+// V8.82 — downward-hinged 3D rotation, only on the changing number.
+// An old digit folds down, followed by the new digit rotating into place.
 (() => {
   'use strict';
-  const target = new Date('2027-03-03T15:00:00+08:00').getTime();
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const elements = ['days','hours','minutes','seconds'].map(id=>document.getElementById(id));
-  if (elements.some(el=>!el)) return;
-  const animationDuration=610;
+  const target=new Date('2027-03-03T15:00:00+08:00').getTime();
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const ids=['days','hours','minutes','seconds'];
+  const elements=ids.map(id=>document.getElementById(id));
+  if(elements.some(el=>!el))return;
+  const duration=560;
 
-  function setNumber(el, next) {
+  function setNumber(el,next){
     const card=el.querySelector('.flip-card');
     const display=el.querySelector('.flip-display');
-    const top=el.querySelector('.flip-top span');
-    const bottom=el.querySelector('.flip-bottom span');
-    if (!card || !display || !top || !bottom) return;
+    const old=el.querySelector('.flip-rotor-old');
+    const incoming=el.querySelector('.flip-rotor-new');
+    if(!card||!display||!old||!incoming)return;
     const previous=el.dataset.lastValue;
-    if (previous===next) return;
+    if(previous===next)return;
     el.dataset.lastValue=next;
-    if (!el.dataset.timerInitialized || reduced.matches) {
+    if(el._flipTimeout){clearTimeout(el._flipTimeout);el._flipTimeout=null;}
+    if(el._flipMidpoint){clearTimeout(el._flipMidpoint);el._flipMidpoint=null;}
+    card.classList.remove('is-flipping');
+    if(!el.dataset.timerInitialized||reduced.matches){
       display.textContent=next;
-      top.textContent=next;
-      bottom.textContent=next;
+      old.textContent=next;
+      incoming.textContent=next;
       el.dataset.timerInitialized='true';
-      card.classList.remove('is-flipping');
       return;
     }
-    // A fast tab-resume can skip several ticks; finish any previous flip
-    // before starting the next one, avoiding stale numbers or double flashes.
-    if (el._flipTimeout) clearTimeout(el._flipTimeout);
-    card.classList.remove('is-flipping');
-    display.textContent=next;
-    top.textContent=previous;
-    bottom.textContent=next;
+    display.textContent=previous;
+    old.textContent=previous;
+    incoming.textContent=next;
+    // Restart keyframes even after background-tab time corrections.
     void card.offsetWidth;
     card.classList.add('is-flipping');
+    el._flipMidpoint=setTimeout(()=>{display.textContent=next;el._flipMidpoint=null;},duration/2);
     el._flipTimeout=setTimeout(()=>{
       card.classList.remove('is-flipping');
-      top.textContent=next;
-      bottom.textContent=next;
+      display.textContent=next;
+      old.textContent=next;
+      incoming.textContent=next;
       el._flipTimeout=null;
-    },animationDuration);
+    },duration+20);
   }
-
-  function update() {
+  function update(){
     const ms=Math.max(0,target-Date.now());
-    const values=[
-      Math.floor(ms/86400000),
-      Math.floor(ms%86400000/3600000),
-      Math.floor(ms%3600000/60000),
-      Math.floor(ms%60000/1000)
-    ];
+    const values=[Math.floor(ms/86400000),Math.floor(ms%86400000/3600000),
+      Math.floor(ms%3600000/60000),Math.floor(ms%60000/1000)];
     values.forEach((value,i)=>setNumber(elements[i],String(value).padStart(i===0?3:2,'0')));
   }
   update();
   setInterval(update,1000);
-  document.addEventListener('visibilitychange',()=>{
-    if(!document.hidden)update();
-  });
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)update();});
 })();
 
 // Entrance effects for the sections after the animated hero.
@@ -896,33 +892,27 @@
 
 
 
-/* V8.80 — Direction-aware wedding navigation.
-   The film stays uninterrupted. Once the ivory page covers the video,
-   the bar shows only while scrolling UP, and hides when scrolling DOWN.
-   Desktop Details uses a dropdown; mobile uses an accessible accordion. */
+
+/* V8.82 — Foreword-first navigation with directional reveal.
+   Page 1: hidden. Page 2: fade in when the letter is readable.
+   Page 3 onwards: hide on downward scrolling, show on upward scrolling.
+   Menu remains open until the user closes it or selects a link. */
 (() => {
   'use strict';
   const header=document.getElementById('site-header');
-  const sheet=document.getElementById('countdown');
+  const rings=document.querySelector('.ring-experience');
+  const film=document.getElementById('film');
   const toggle=document.getElementById('site-menu-toggle');
   const dropdown=document.getElementById('site-dropdown');
   const detailsButton=document.getElementById('nav-details-trigger');
   const detailsGroup=document.getElementById('nav-details-group');
-  if (!header || !sheet || !toggle || !dropdown || !detailsButton || !detailsGroup) return;
-
+  if(!header||!rings||!film||!toggle||!dropdown||!detailsButton||!detailsGroup)return;
   const mobile=matchMedia('(max-width:900px)');
   const checkpoints=[
-    ['film','home'],
-    ['countdown','home'],
-    ['details','details'],
-    ['ceremony','details'],
-    ['venues','details'],
-    ['reception','details'],
-    ['day-schedule','details'],
-    ['what-to-wear','what-to-wear'],
-    ['entourage','entourage'],
-    ['rsvp','rsvp'],
-    ['faq','faq']
+    ['film','home'],['countdown','home'],['details','details'],
+    ['ceremony','details'],['venues','details'],['reception','details'],
+    ['day-schedule','details'],['what-to-wear','what-to-wear'],
+    ['entourage','entourage'],['rsvp','rsvp'],['faq','faq']
   ];
   const topLinks=[...header.querySelectorAll('[data-nav]')];
   const submenuLinks=[...header.querySelectorAll('.nav-details-popover a,.mobile-details-links a')];
@@ -931,68 +921,67 @@
   let menuOpen=false;
   let detailsOpen=false;
   let raf=0;
-  let hasPassedVideo=false;
 
-  function setMobileMenu(open) {
-    menuOpen=Boolean(open && mobile.matches && header.classList.contains('is-visible'));
+  function setMobileMenu(open){
+    menuOpen=Boolean(open&&mobile.matches&&header.classList.contains('is-visible'));
     header.classList.toggle('menu-open',menuOpen);
     toggle.setAttribute('aria-expanded',String(menuOpen));
     toggle.setAttribute('aria-label',menuOpen?'Close navigation':'Open navigation');
     dropdown.inert=!menuOpen;
   }
-  function setDetails(open) {
-    detailsOpen=Boolean(open && !mobile.matches);
+  function setDetails(open){
+    detailsOpen=Boolean(open&&!mobile.matches);
     detailsGroup.classList.toggle('is-open',detailsOpen);
     detailsButton.setAttribute('aria-expanded',String(detailsOpen));
   }
-  function setVisible(visible) {
+  function setVisible(visible){
     header.classList.toggle('is-visible',visible);
     header.inert=!visible;
     header.setAttribute('aria-hidden',String(!visible));
-    if (!visible) {
+    if(!visible){
       if(menuOpen)setMobileMenu(false);
       if(detailsOpen)setDetails(false);
     }
   }
-  function update() {
+  function update(){
     raf=0;
     const y=window.scrollY;
     const delta=y-lastY;
-    // Ignore tiny scroll jitter from Safari's dynamic browser toolbar.
-    if (delta>3)direction='down';
-    else if (delta< -3)direction='up';
+    // Small Safari browser-chrome shifts are not deliberate scrolls.
+    if(delta>4)direction='down';
+    else if(delta< -4)direction='up';
     lastY=y;
 
-    // Wait until the rounded ivory sheet reaches the top: video fully covered.
-    const panelTop=sheet.getBoundingClientRect().top;
-    hasPassedVideo=panelTop<=12;
-    const visible=hasPassedVideo && (direction==='up' || menuOpen || detailsOpen);
+    const ringRect=rings.getBoundingClientRect();
+    const ringTravel=Math.max(1,rings.offsetHeight-innerHeight);
+    const ringProgress=Math.max(0,Math.min(1,-ringRect.top/ringTravel));
+    const videoHasStarted=film.getBoundingClientRect().top<=innerHeight*.78;
+    const inForeword=ringProgress>=.935&&!videoHasStarted;
+    const afterForeword=videoHasStarted;
+    const visible=inForeword||(afterForeword&&(direction==='up'||menuOpen||detailsOpen));
     setVisible(visible);
-    header.classList.toggle('is-scrolled',hasPassedVideo);
+    header.classList.toggle('is-on-foreword',inForeword);
+    header.classList.toggle('is-scrolled',afterForeword);
 
     let active='home';
-    const threshold=Math.max(105,innerHeight*.32);
-    for(const [id,key] of checkpoints) {
+    const threshold=Math.max(95,innerHeight*.30);
+    for(const [id,key] of checkpoints){
       const el=document.getElementById(id);
-      if(el && el.getBoundingClientRect().top<=threshold) active=key;
+      if(el&&el.getBoundingClientRect().top<=threshold)active=key;
     }
-    for(const link of topLinks) {
+    for(const link of topLinks){
       const selected=link.dataset.nav===active;
       link.classList.toggle('is-active',selected);
       if(selected)link.setAttribute('aria-current','location');
       else link.removeAttribute('aria-current');
     }
     detailsButton.classList.toggle('is-active',active==='details');
-    for(const link of submenuLinks) {
+    for(const link of submenuLinks){
       const target=document.querySelector(link.getAttribute('href'));
-      const selected=target && target.getBoundingClientRect().top<=threshold;
-      link.classList.toggle('is-passed',Boolean(selected));
+      link.classList.toggle('is-passed',Boolean(target&&target.getBoundingClientRect().top<=threshold));
     }
   }
-  function requestUpdate() {
-    if(!raf)raf=requestAnimationFrame(update);
-  }
-
+  function requestUpdate(){if(!raf)raf=requestAnimationFrame(update);}
   toggle.addEventListener('click',()=>setMobileMenu(!menuOpen));
   detailsButton.addEventListener('click',()=>setDetails(!detailsOpen));
   detailsGroup.addEventListener('mouseenter',()=>{if(!mobile.matches)setDetails(true);});
@@ -1001,19 +990,18 @@
     if(!detailsGroup.contains(e.relatedTarget))setDetails(false);
   });
   header.addEventListener('click',event=>{
-    if(event.target.closest('a[href^="#"]')) {
-      setMobileMenu(false);
-      setDetails(false);
+    if(event.target.closest('a[href^="#"]')){
+      setMobileMenu(false);setDetails(false);
     }
   });
   document.addEventListener('pointerdown',event=>{
-    if(!header.contains(event.target)) {
+    if(!header.contains(event.target)){
       if(menuOpen)setMobileMenu(false);
       if(detailsOpen)setDetails(false);
     }
   });
   document.addEventListener('keydown',event=>{
-    if(event.key==='Escape') {
+    if(event.key==='Escape'){
       if(menuOpen){setMobileMenu(false);toggle.focus();}
       if(detailsOpen){setDetails(false);detailsButton.focus();}
     }
@@ -1028,7 +1016,6 @@
   setDetails(false);
   update();
 })();
-
 
 /* V8.64 — Load the couple's exact monogram when they place the PNG at
    assets/images/kc-monogram.png. Keep an accessible typographic fallback
