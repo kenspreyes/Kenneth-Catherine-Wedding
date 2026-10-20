@@ -861,6 +861,10 @@
   const detailsGroup=document.getElementById('nav-details-group');
   const popover=document.getElementById('nav-details-popover');
   const homeButton=document.getElementById('floating-home-button');
+  const mobileButton=document.getElementById('wedding-mobile-menu-button');
+  const mobileMenu=document.getElementById('wedding-mobile-menu');
+  const mobileDetails=mobileMenu?.querySelector('.wedding-mobile-details');
+
   if(!header||!sheet||!detailsButton||!detailsGroup||!popover||!homeButton)return;
 
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
@@ -875,8 +879,19 @@
   let lastY=window.scrollY;
   let direction='down';
   let detailsOpen=false;
+  let mobileOpen=false;
   let raf=0;
 
+  function setMobileOpen(open){
+    if(!mobileButton||!mobileMenu)return;
+    mobileOpen=Boolean(open && header.classList.contains('is-visible') &&
+                       matchMedia('(max-width:900px)').matches);
+    header.classList.toggle('mobile-menu-open',mobileOpen);
+    mobileButton.setAttribute('aria-expanded',String(mobileOpen));
+    mobileButton.setAttribute('aria-label',mobileOpen?'Close navigation menu':'Open navigation menu');
+    mobileMenu.inert=!mobileOpen;
+    if(!mobileOpen && mobileDetails)mobileDetails.open=false;
+  }
   function setDetails(open){
     detailsOpen=Boolean(open&&header.classList.contains('is-visible'));
     detailsGroup.classList.toggle('is-open',detailsOpen);
@@ -889,7 +904,7 @@
     header.classList.toggle('is-visible',visible);
     header.inert=!visible;
     header.setAttribute('aria-hidden',String(!visible));
-    if(!visible)setDetails(false);
+    if(!visible){setDetails(false);setMobileOpen(false);}
   }
   function update(){
     raf=0;
@@ -904,7 +919,7 @@
     // ivory Save the Date panel has risen into the main viewport.
     const panelTop=sheet.getBoundingClientRect().top;
     const reachedSaveTheDate=panelTop<=innerHeight*.48;
-    setVisible(reachedSaveTheDate && direction==='up');
+    setVisible(reachedSaveTheDate && (direction==='up' || mobileOpen));
     homeButton.hidden=!reachedSaveTheDate;
     homeButton.classList.toggle('is-visible',reachedSaveTheDate);
 
@@ -924,6 +939,24 @@
   }
   function requestUpdate(){if(!raf)raf=requestAnimationFrame(update);}
 
+  if(mobileButton && mobileMenu){
+    mobileButton.addEventListener('click',()=>setMobileOpen(!mobileOpen));
+    mobileMenu.addEventListener('click',event=>{
+      if(event.target.closest('a[href^="#"]'))setMobileOpen(false);
+    });
+    document.addEventListener('pointerdown',event=>{
+      if(mobileOpen && !header.contains(event.target))setMobileOpen(false);
+    });
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape' && mobileOpen){
+        setMobileOpen(false);
+        mobileButton.focus();
+      }
+    });
+    addEventListener('resize',()=>{
+      if(innerWidth>900 && mobileOpen)setMobileOpen(false);
+    },{passive:true});
+  }
   detailsButton.addEventListener('click',()=>setDetails(!detailsOpen));
   detailsGroup.addEventListener('focusout',event=>{
     if(!detailsGroup.contains(event.relatedTarget))setDetails(false);
@@ -974,60 +1007,3 @@
 })();
 
 
-/* V8.85 — Prenup photo gallery: click/tap, keyboard arrows, swipe,
-   and a modal lightbox. Placeholder files can be swapped for real photos
-   without changing this script. No external library or autoplay. */
-(() => {
-  'use strict';
-  const gallery = document.getElementById('prenup-gallery');
-  const dialog = document.getElementById('prenup-lightbox');
-  if (!gallery || !dialog) return;
-  const photos = [...gallery.querySelectorAll('.prenup-photo')];
-  const picture = dialog.querySelector('.prenup-lightbox-image');
-  const caption = dialog.querySelector('.prenup-lightbox-caption');
-  const counter = dialog.querySelector('.prenup-lightbox-counter');
-  const close = dialog.querySelector('.prenup-lightbox-close');
-  const previous = dialog.querySelector('.prenup-lightbox-prev');
-  const next = dialog.querySelector('.prenup-lightbox-next');
-  let current = 0;
-  let touchStartX = null;
-
-  function display(index) {
-    current = (index + photos.length) % photos.length;
-    const thumb = photos[current];
-    const image = thumb.querySelector('img');
-    picture.src = image.currentSrc || image.src;
-    picture.alt = image.alt;
-    caption.textContent = thumb.querySelector('.prenup-photo-overlay span')?.textContent || `Photo ${current+1}`;
-    counter.textContent = `${String(current+1).padStart(2,'0')} / ${String(photos.length).padStart(2,'0')}`;
-  }
-  function open(index) {
-    display(index);
-    if (typeof dialog.showModal === 'function') dialog.showModal();
-    else dialog.setAttribute('open','');
-  }
-  function hide() {
-    if (typeof dialog.close === 'function') dialog.close();
-    else dialog.removeAttribute('open');
-  }
-  photos.forEach((photo,index)=>photo.addEventListener('click',()=>open(index)));
-  close.addEventListener('click',hide);
-  previous.addEventListener('click',()=>display(current-1));
-  next.addEventListener('click',()=>display(current+1));
-  dialog.addEventListener('click',event=>{
-    if(event.target===dialog)hide();
-  });
-  dialog.addEventListener('keydown',event=>{
-    if(event.key==='ArrowRight'){event.preventDefault();display(current+1);}
-    if(event.key==='ArrowLeft'){event.preventDefault();display(current-1);}
-  });
-  picture.addEventListener('touchstart',event=>{
-    touchStartX=event.changedTouches[0]?.screenX ?? null;
-  },{passive:true});
-  picture.addEventListener('touchend',event=>{
-    if(touchStartX===null)return;
-    const dx=(event.changedTouches[0]?.screenX ?? touchStartX)-touchStartX;
-    touchStartX=null;
-    if(Math.abs(dx)>45)display(current+(dx<0?1:-1));
-  },{passive:true});
-})();
