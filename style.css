@@ -7935,28 +7935,38 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 /* V9.00 — Wedding Day / Dress Code / Full Entourage editorial redesign.
    Scoped styles appended to preserve the approved intro, rings, film and butterfly. */
 /* V9.01 — watercolor venue cards styled to match the supplied invitation reference. */
-.wedding-day-editorial{padding:clamp(56px,7vw,104px) clamp(24px,6vw,60px) clamp(88px,10vw,140px);background:#fffbef;color:#5d7059}
-.wedding-day-heading{text-align:center;max-width:900px;margin:0 auto clamp(18px,3.5vw,42px)}
-.wedding-day-heading .eyebrow{font:italic 400 clamp(14px,1.6vw,18px)/1.35 'Cormorant Garamond',Georgia,serif;color:#6d805f;letter-spacing:0;margin:0 0 2px}
-.wedding-day-heading h2{font:400 clamp(38px,5.8vw,70px)/1.04 'Cormorant Garamond',Georgia,serif;letter-spacing:-.035em;color:#62785f;margin:0}
-.wedding-day-rule{height:1px;width:52px;background:#becdb8;margin:17px auto 0}
-.venue-editorial-list{max-width:800px;margin:0 auto;display:grid;gap:clamp(54px,7vw,82px)}
-.venue-editorial-card{width:100%;min-width:0;scroll-margin-top:100px}
-.venue-editorial-card + .venue-editorial-card{position:relative}
-.venue-editorial-card + .venue-editorial-card::before{content:'';position:absolute;width:52px;height:1px;background:#c2cdb9;left:50%;transform:translateX(-50%);top:calc(-1 * clamp(27px,3.5vw,41px))}
+/* V9.02 — coordinated venue typography, square cards, map app dropdowns. */
+.wedding-day-editorial{padding:clamp(58px,7vw,104px) clamp(18px,5vw,60px) clamp(88px,10vw,140px);background:#f8f5ee;color:#354637}
+.wedding-day-heading{text-align:center;max-width:900px;margin:0 auto clamp(36px,5vw,65px)}
+.wedding-day-heading .eyebrow{font:500 10px/1.7 Montserrat,Arial,sans-serif;color:#738369;letter-spacing:.28em;margin:0 0 12px}
+.wedding-day-heading h2{font:400 clamp(46px,6vw,77px)/1.02 'Cormorant Garamond',Georgia,serif;letter-spacing:-.028em;color:#354836;margin:0}
+.wedding-day-rule{height:2px;width:32px;background:#d2dbcb;margin:20px auto 0}
+.venue-editorial-list{max-width:850px;margin:0 auto;display:grid;gap:clamp(40px,6vw,72px)}
+.venue-editorial-card{position:relative;width:100%;min-width:0;scroll-margin-top:100px;border:1px solid #cdd2c4;border-radius:0;background:rgba(255,255,255,.43);padding:clamp(22px,4vw,45px);overflow:visible}
+.venue-editorial-card + .venue-editorial-card::before{content:'';position:absolute;width:32px;height:2px;background:#d2dbcb;left:50%;transform:translateX(-50%);top:calc(-1 * clamp(21px,3vw,37px))}
 .venue-image-wrap{position:relative;width:100%;height:auto;overflow:visible;background:transparent;border-radius:0;aspect-ratio:auto}
 .venue-image-wrap img{display:block;width:100%;height:auto;object-fit:contain;mix-blend-mode:multiply;transition:none}
 .venue-editorial-card:hover .venue-image-wrap img{transform:none}
-.venue-editorial-copy{text-align:left;max-width:none;margin:clamp(6px,1.3vw,14px) 0 0;padding:0}
-.venue-kicker{font:italic 400 clamp(16px,1.7vw,20px)/1.35 'Cormorant Garamond',Georgia,serif;letter-spacing:0;color:#6a805f;margin:0 0 8px}
-.venue-editorial-copy h3{font:400 clamp(24px,2.8vw,34px)/1.03 'Cormorant Garamond',Georgia,serif;letter-spacing:-.01em;color:#61765c;margin:0 0 11px}
+.venue-editorial-copy{text-align:left;max-width:none;margin:clamp(10px,1.6vw,18px) 0 0;padding:0}
+.venue-kicker{font:600 10px/1.6 Montserrat,Arial,sans-serif;letter-spacing:.22em;color:#84927a;margin:0 0 12px}
+.venue-editorial-copy h3{font:400 clamp(29px,3.5vw,43px)/1.04 'Cormorant Garamond',Georgia,serif;letter-spacing:-.018em;color:#354836;margin:0 0 18px}
 .venue-editorial-copy h3 .venue-address{font:inherit;color:inherit;letter-spacing:inherit}
-.venue-hour{font:400 clamp(16px,1.7vw,20px)/1.3 'Cormorant Garamond',Georgia,serif;letter-spacing:0;color:#63795f;margin:0}
-.venue-fine-rule{width:100%;height:1px;background:#c3d0bc;margin:clamp(15px,2vw,22px) 0 clamp(15px,2vw,22px)}
-.venue-message{max-width:none;margin:0 0 16px;font:400 clamp(17px,1.85vw,21px)/1.35 'Cormorant Garamond',Georgia,serif;color:#60745c}
-.venue-map-link{display:inline-flex;align-items:center;justify-content:flex-start;gap:7px;border:0;padding:0;text-decoration:none;text-transform:none;font:italic 400 clamp(16px,1.7vw,20px)/1.4 'Cormorant Garamond',Georgia,serif;letter-spacing:0;color:#7d9870;transition:color .2s ease}
-.venue-map-link svg{width:16px;height:16px;flex:none}
-.venue-map-link:hover,.venue-map-link:focus-visible{background:transparent;color:#344735;text-decoration:underline;text-underline-offset:4px}
+.venue-hour{font:500 clamp(11px,1.25vw,13px)/1.7 Montserrat,Arial,sans-serif;letter-spacing:.015em;color:#596e58;margin:0}
+.venue-fine-rule{width:100%;height:2px;background:#dce3d7;margin:clamp(20px,2.6vw,28px) 0}
+.venue-message{max-width:690px;margin:0 0 24px;font:400 clamp(13px,1.35vw,15px)/1.85 Montserrat,Arial,sans-serif;color:#667363}
+.venue-map-action{position:relative;display:flex;justify-content:flex-start;width:100%;text-align:left}
+.venue-map-menu{position:relative;display:inline-block;z-index:5}
+.venue-map-menu[open]{z-index:20}
+.venue-map-menu summary{list-style:none}
+.venue-map-menu summary::-webkit-details-marker{display:none}
+.venue-map-trigger{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:38px;padding:9px 18px;border:1px solid rgba(100,121,101,.48);border-radius:999px;background:transparent;color:#3c5942;font:600 10px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.025em;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.venue-map-trigger svg{width:16px;height:16px;flex:none}
+.venue-map-trigger:hover,.venue-map-menu[open] .venue-map-trigger{background:rgba(110,134,110,.08);border-color:#6e876d}
+.venue-map-trigger:focus-visible,.venue-map-options a:focus-visible{outline:2px solid #70896e;outline-offset:3px}
+.venue-map-options{position:absolute;z-index:30;top:calc(100% + 7px);left:0;width:max-content;min-width:205px;padding:6px;border:1px solid rgba(173,184,168,.48);border-radius:13px;background:rgba(255,254,250,.985);box-shadow:0 14px 35px rgba(33,51,36,.105),0 2px 7px rgba(33,51,36,.045)}
+.venue-map-options a{display:flex;align-items:center;justify-content:flex-start;padding:11px 10px;border-radius:8px;text-decoration:none;white-space:nowrap;color:#425845;font:500 11px/1.3 Montserrat,Arial,sans-serif;transition:background .22s ease,color .22s ease}
+.venue-map-options a:hover,.venue-map-options a:focus-visible{background:#edf1e9;color:#2f4c35}
+@media(prefers-reduced-motion:no-preference){.venue-map-menu[open] .venue-map-options{animation:wedding-calendar-reveal .32s cubic-bezier(.2,.75,.25,1) both}}
 .wedding-day-editorial .day-schedule{margin:clamp(100px,11vw,165px) auto 0;max-width:830px;width:100%;border:0;border-top:1px solid #ccc8b8;border-bottom:1px solid #ccc8b8;border-radius:0;background:transparent;box-shadow:none;padding:clamp(50px,6vw,76px) clamp(8px,4vw,44px)}
 .wedding-day-editorial .schedule-eyebrow{color:#7e8d74;letter-spacing:.25em}
 .wedding-day-editorial .day-schedule h3{font:400 clamp(50px,7vw,82px)/1 'Cormorant Garamond',Georgia,serif;margin:16px 0 12px;color:#344636}
@@ -8009,19 +8019,20 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 .secondary-role p{font-size:clamp(18px,2vw,25px);margin-bottom:9px}
 .entourage-honor .entourage-list p{font-size:clamp(28px,3vw,39px)}
 @media(max-width:700px){
-  .wedding-day-editorial{padding:33px clamp(22px,9.7vw,50px) 90px}
-  .wedding-day-heading{margin-bottom:18px}
-  .wedding-day-heading h2{font-size:clamp(36px,7.7vw,43px)}
+  .wedding-day-editorial{padding:45px clamp(16px,5vw,28px) 90px}
+  .wedding-day-heading{margin-bottom:30px}
+  .wedding-day-heading h2{font-size:clamp(39px,8vw,55px)}
   .wedding-day-rule{margin-top:16px}
-  .venue-editorial-list{gap:57px}
-  .venue-editorial-card + .venue-editorial-card::before{top:-29px}
-  .venue-editorial-copy{margin-top:10px;padding:0}
-  .venue-kicker{font-size:16px;margin-bottom:8px}
-  .venue-editorial-copy h3{font-size:clamp(23px,4.8vw,27px);line-height:1.03;margin-bottom:10px}
-  .venue-hour{font-size:16px}
-  .venue-message{font-size:17px;line-height:1.28;margin-bottom:14px}
-  .venue-fine-rule{margin:16px 0}
-  .venue-map-link{font-size:16px}
+  .venue-editorial-list{gap:43px}
+  .venue-editorial-card{padding:clamp(17px,5vw,28px)}
+  .venue-editorial-card + .venue-editorial-card::before{top:-23px}
+  .venue-editorial-copy{margin-top:12px;padding:0}
+  .venue-kicker{font-size:10px;margin-bottom:10px}
+  .venue-editorial-copy h3{font-size:clamp(27px,6vw,34px);line-height:1.07;margin-bottom:14px}
+  .venue-hour{font-size:11px;line-height:1.7}
+  .venue-message{font-size:13px;line-height:1.75;margin-bottom:21px}
+  .venue-fine-rule{margin:20px 0}
+  .venue-map-trigger{font-size:10px;min-height:36px;padding:8px 15px}
   .wedding-day-editorial .day-schedule{margin-top:85px;padding:48px 5px}
   .wedding-day-editorial .schedule-intro{margin-bottom:40px}
   .wedding-day-editorial .schedule-item{grid-template-columns:75px 12px minmax(0,1fr);gap:12px;min-height:78px}
@@ -8048,3 +8059,26 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 }
 @media(max-width:360px){.wedding-entourage{padding-inline:9px}.entourage-pair-grid{gap:4px}.entourage-list p,.entourage-role-name p{font-size:17px}.entourage-sponsors .entourage-list p{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.venue-image-wrap img{transition:none}}
+
+
+/* V9.04 — consistent compact venue typography, full notes, and two-line mobile locations. */
+.venue-editorial-copy{margin-top:clamp(7px,1.1vw,12px)}
+.venue-kicker{margin-bottom:7px}
+.venue-editorial-copy h3{margin-bottom:10px;line-height:1.08}
+.venue-hour{line-height:1.5}
+.venue-fine-rule{margin:15px 0}
+.venue-message{margin-bottom:16px;line-height:1.65}
+@media(max-width:700px){
+  .venue-editorial-copy{margin-top:7px}
+  .venue-kicker{margin-bottom:6px}
+  #ceremony .venue-editorial-copy h3,
+  #reception .venue-editorial-copy h3{font-size:clamp(15px,4.9vw,24px);line-height:1.15;letter-spacing:-.032em;margin-bottom:9px}
+  #ceremony .ceremony-location-line,
+  #reception .reception-location-line{display:block;white-space:nowrap}
+  #ceremony .venue-desktop-break,
+  #reception .venue-desktop-break{display:none}
+  #reception .venue-editorial-copy h3{font-size:clamp(14px,4.65vw,24px)}
+  .venue-hour{font-size:11px;line-height:1.5}
+  .venue-fine-rule{margin:12px 0}
+  .venue-message{font-size:12px;line-height:1.6;margin-bottom:14px;max-width:none}
+}
