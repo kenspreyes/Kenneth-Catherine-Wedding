@@ -3950,80 +3950,6 @@ html {scroll-padding-top:76px;}
 .site-menu-toggle {display:none!important;}
 .site-dropdown {z-index:4!important;}
 
-/* Foreword music: wedding-site-style ivory pill with a music disc and
-   compact song label. Does not add a new section or any transition gap. */
-.foreword-music {
-  position:relative;
-  z-index:8;
-  order:8;
-  width:min(100%,340px);
-  margin:clamp(12px,2.4svh,22px) auto 0;
-  pointer-events:auto!important;
-  text-align:left;
-}
-.foreword-music-button {
-  appearance:none;
-  width:100%;
-  min-height:57px;
-  display:flex;
-  align-items:center;
-  gap:11px;
-  padding:8px 10px;
-  border:1px solid rgba(114,123,100,.22);
-  border-radius:999px;
-  color:#3a4d3b;
-  background:rgba(255,255,255,.46);
-  box-shadow:0 5px 23px rgba(61,65,44,.045),inset 0 1px 0 rgba(255,255,255,.55);
-  -webkit-backdrop-filter:blur(9px);
-  backdrop-filter:blur(9px);
-  cursor:pointer;
-  transition:background .22s ease,box-shadow .22s ease,transform .22s ease;
-}
-.foreword-music-button:hover {background:rgba(255,255,255,.73);box-shadow:0 8px 26px rgba(51,65,44,.085);}
-.foreword-music-button:focus-visible {outline:2px solid #7a9274;outline-offset:3px;}
-.foreword-music-disc {
-  flex:0 0 40px;
-  width:40px;height:40px;
-  display:grid;place-items:center;
-  border-radius:50%;
-  background:radial-gradient(circle at 38% 28%,#83917b,#52664f 60%,#344a38);
-  color:#faf7ee;
-  box-shadow:0 2px 6px rgba(44,60,45,.16);
-}
-.foreword-music-note {width:19px;height:19px;}
-.foreword-music.is-playing .foreword-music-note {animation:foreword-note-breathe 2.2s ease-in-out infinite;}
-@keyframes foreword-note-breathe {50%{transform:scale(1.18)}}
-.foreword-music-copy {display:flex;flex:1 1 auto;min-width:0;flex-direction:column;gap:3px;}
-.foreword-music-kicker {
-  font:600 8px/1.2 Montserrat,Arial,sans-serif;
-  letter-spacing:.18em;
-  color:#85917f;
-}
-.foreword-music-title {
-  font:500 clamp(11px,1.25vw,13px)/1.3 'Libre Baskerville',Georgia,serif;
-  color:#374b39;
-  white-space:nowrap;
-}
-.foreword-music-title span {color:#788171;font-size:.86em;}
-.foreword-music-action {
-  flex:0 0 29px;
-  width:29px;height:29px;
-  display:grid;place-items:center;
-  border:1px solid rgba(91,110,89,.22);
-  border-radius:50%;
-  color:#3f5a43;
-}
-.foreword-music-action svg {width:15px;height:15px;}
-.foreword-music-pause,.foreword-music.is-playing .foreword-music-play {display:none;}
-.foreword-music.is-playing .foreword-music-pause {display:block;}
-.foreword-music-feedback {
-  margin:5px auto 0;
-  font:400 10px/1.5 Montserrat,Arial,sans-serif;
-  color:#8c604f;
-  text-align:center;
-}
-.foreword-music-feedback:empty {display:none;}
-
 @media(max-width:900px) {
   :root {--site-nav-height:52px;}
   html {scroll-padding-top:69px;}
@@ -4111,33 +4037,20 @@ html {scroll-padding-top:76px;}
     margin:0!important;
     padding:0!important;
   }
-  .foreword-music {width:min(100%,300px);margin-top:clamp(8px,1.4svh,14px);}
-  .foreword-music-button {min-height:50px;padding:5px 8px;gap:9px;}
-  .foreword-music-disc {flex-basis:36px;width:36px;height:36px;}
-  .foreword-music-kicker {font-size:7px;}
-  .foreword-music-title {font-size:clamp(10px,2.8vw,12px);}
-  .foreword-music-action {flex-basis:25px;width:25px;height:25px;}
 }
 @media(max-width:360px) {
   .site-header {width:calc(100% - 10px)!important;gap:2px!important;padding-inline:5px!important;}
   .site-navigation a {font-size:8.5px!important;}
   .site-brand {width:38px!important;}
-  .foreword-music {width:min(100%,276px);}
 }
 @media(max-height:640px) {
-  .foreword-music {margin-top:7px;}
-  .foreword-music-button {min-height:43px;padding:4px 7px;}
-  .foreword-music-disc {width:31px;height:31px;flex-basis:31px;}
-  .foreword-music-title {font-size:10px;}
-  .foreword-music-kicker {font-size:7px;}
 }
 @media(prefers-reduced-motion:reduce) {
   .foreword-music.is-playing .foreword-music-note {animation:none!important;}
 }
 
 
-/* V8.66 — Page 2 becomes a personal letter, not a titled foreword.
-   The original spotlight, handwritten signature, rings, film and music stay. */
+/* V8.67 — Personal letter; original spotlight, signature, rings and film remain. */
 .spotlight-invitation-content.personal-letter-page {
   align-items:center;
   justify-content:center;
@@ -4234,4 +4147,24 @@ html {scroll-padding-top:76px;}
     width:min(60%,290px)!important;
   }
   .personal-letter-page .foreword-music {margin-top:7px;}
+}
+
+
+/* V8.67 — Explicitly disable the old oversized decorative initial.
+   Apply to both the letter wrapper and the greeting paragraph so
+   mobile-specific V8.55/V8.56 drop-cap styles cannot reappear. */
+.personal-letter-page .spotlight-invitation-message::first-letter,
+.personal-letter-page .personal-letter-body::first-letter,
+.personal-letter-page .personal-letter-greeting::first-letter,
+.personal-letter-page .personal-letter-body p::first-letter {
+  float:none!important;
+  font-family:inherit!important;
+  font-style:inherit!important;
+  font-weight:inherit!important;
+  font-size:1em!important;
+  line-height:inherit!important;
+  letter-spacing:inherit!important;
+  padding:0!important;
+  margin:0!important;
+  color:inherit!important;
 }
