@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K&C — Butterfly Model Studio</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#354b39;background:#f6f2e9}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;flex-direction:column}
+header{padding:26px max(24px,calc((100vw - 1050px)/2));border-bottom:1px solid #d8d4c7}
+small{letter-spacing:.22em;font-size:.65rem;color:#82907b}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(2rem,5vw,3.2rem);margin:8px 0}
+p{color:#7a8274;line-height:1.6;margin:8px 0}.viewer{position:relative;flex:1;min-height:460px}
+#stage{position:absolute;inset:0}#stage canvas{display:block;width:100%;height:100%}
+.controls{display:flex;flex-wrap:wrap;gap:12px;padding:16px 24px;justify-content:center;border-top:1px solid #d8d4c7}
+button{font:inherit;border:1px solid #8a9b83;border-radius:100px;background:transparent;color:#354b39;padding:10px 20px;cursor:pointer}
+button:hover{background:#e7ecdf}#status{position:absolute;bottom:15px;left:24px;font-size:12px;color:#67765f}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/"}}</script>
+</head><body><header><small>KENNETH & CATHERINE · 03.03.2027</small><h1>A Study in Flight</h1><p>Explore the enhanced butterfly in 3D. Drag to rotate, scroll to zoom.</p></header>
+<div class="viewer"><div id="stage"></div><span id="status">Loading butterfly model…</span></div>
+<div class="controls"><button id="toggle" type="button">Pause wings</button><button id="reset" type="button">Reset view</button><button id="front" type="button">Front view</button></div>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const stage=document.getElementById('stage'),status=document.getElementById('status');
+const scene=new THREE.Scene();scene.background=new THREE.Color('#f6f2e9');
+const camera=new THREE.PerspectiveCamera(38,1,.01,100);camera.position.set(0,0,7.4);
+let renderer;
+try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});}
+catch(e){status.textContent='WebGL unavailable. Try Chrome or Edge with hardware acceleration.';throw e;}
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+stage.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=2.5;controls.maxDistance=15;
+scene.add(new THREE.AmbientLight(0xffffff,1.25));
+const key=new THREE.DirectionalLight(0xfff1d8,1.5);key.position.set(-3,4,7);scene.add(key);
+const rim=new THREE.DirectionalLight(0xd4e3d2,.55);rim.position.set(3,-3,-5);scene.add(rim);
+let mixer=null,playing=true;
+new GLTFLoader().load('assets/models/butterfly.glb',gltf=>{
+ const model=gltf.scene;const bounds=new THREE.Box3().setFromObject(model);const center=bounds.getCenter(new THREE.Vector3());
+ const size=bounds.getSize(new THREE.Vector3());model.position.sub(center);
+ const wrapper=new THREE.Group();wrapper.rotation.x=Math.PI/2;
+ wrapper.scale.setScalar(3.6/Math.max(size.x,size.y,size.z));wrapper.add(model);scene.add(wrapper);
+ if(gltf.animations.length){mixer=new THREE.AnimationMixer(model);gltf.animations.forEach((clip,i)=>{const action=mixer.clipAction(clip);action.play();action.time=[0,.065,.028,.093][i%4];});}
+ status.textContent=`Model loaded · ${gltf.animations.length} wing animations · textured wings`;
+},undefined,e=>{status.textContent='Failed to load GLB. Use VS Code Live Server and check assets/models/butterfly.glb.';console.error(e)});
+const clock=new THREE.Clock();function frame(){requestAnimationFrame(frame);const dt=Math.min(clock.getDelta(),.05);if(mixer&&playing)mixer.update(dt);controls.update();renderer.render(scene,camera)}
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/Math.max(1,h);camera.updateProjectionMatrix();renderer.setSize(w,h,false)}
+new ResizeObserver(resize).observe(stage);resize();frame();
+document.getElementById('toggle').onclick=e=>{playing=!playing;e.target.textContent=playing?'Pause wings':'Play wings'};
+document.getElementById('reset').onclick=()=>{camera.position.set(0,0,7.4);controls.target.set(0,0,0);controls.update()};
+document.getElementById('front').onclick=()=>{camera.position.set(0,0,7.4);controls.target.set(0,0,0);controls.update()};
+</script></body></html>

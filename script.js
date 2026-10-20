@@ -1007,3 +1007,52 @@
 })();
 
 
+
+
+/* V8.92 — Animate the calendar dropdown gently in both directions.
+   The native <details> element remains keyboard accessible and works
+   without JavaScript. Respect reduced-motion preferences. */
+(() => {
+  'use strict';
+  const menu=document.querySelector('.save-date-calendar-menu');
+  if(!menu)return;
+  const trigger=menu.querySelector('summary');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let closingTimer=0;
+
+  function closeMenu({restoreFocus=false}={}) {
+    if(!menu.open)return;
+    window.clearTimeout(closingTimer);
+    if(reduceMotion.matches){
+      menu.open=false;
+      menu.classList.remove('is-closing');
+      if(restoreFocus)trigger.focus();
+      return;
+    }
+    menu.classList.add('is-closing');
+    closingTimer=window.setTimeout(()=>{
+      menu.open=false;
+      menu.classList.remove('is-closing');
+      if(restoreFocus)trigger.focus();
+    },190);
+  }
+  trigger.addEventListener('click',event=>{
+    event.preventDefault();
+    if(menu.open && !menu.classList.contains('is-closing')) {
+      closeMenu();
+    } else {
+      window.clearTimeout(closingTimer);
+      menu.classList.remove('is-closing');
+      menu.open=true;
+    }
+  });
+  document.addEventListener('pointerdown',event=>{
+    if(menu.open && !menu.contains(event.target))closeMenu();
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape' && menu.open){
+      event.preventDefault();
+      closeMenu({restoreFocus:true});
+    }
+  });
+})();
