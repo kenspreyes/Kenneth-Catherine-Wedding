@@ -744,58 +744,6 @@
 })();
 
 
-/* V8.63 — One fixed ivory countdown sheet moves upward over the video.
-   Text stays fixed inside the sheet. The film begins flush after Foreword. */
-(() => {
-  'use strict';
-  const section = document.querySelector('.video-countdown-transition');
-  if (!section) return;
-  const sheet = section.querySelector('.countdown-timeless');
-  const mobile = matchMedia('(max-width: 900px)');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp = n => Math.max(0, Math.min(1, n));
-  const ease = t => { t=clamp(t); return t*t*(3-2*t); };
-  let framePending=false;
-
-  function update() {
-    framePending=false;
-    if (!sheet || reduced.matches) return;
-    const rect=section.getBoundingClientRect();
-    const travel=Math.max(1,section.offsetHeight-innerHeight);
-    // V8.77: on mobile, use the ORIGINAL 208svh scene's reveal distance.
-    // Extra height for the music list must not delay the ivory sheet.
-    const originalMobileTravel=Math.max(1,(section.querySelector('.video-countdown-sticky')?.offsetHeight || innerHeight)*1.08);
-    const p=clamp(-rect.top/(mobile.matches ? originalMobileTravel : travel));
-    if (mobile.matches) {
-      const video=section.querySelector('.wedding-film');
-      const videoBottom = video
-        ? video.getBoundingClientRect().bottom - section.querySelector('.video-countdown-sticky').getBoundingClientRect().top
-        : innerWidth * .87;
-      // Position the ivory panel slightly OVER the video, never below it.
-      // This avoids the blank band on iPhone during the initial reveal.
-      const rise=ease((p-.015)/.69);
-      const initial=Math.max(0,videoBottom-26);
-      sheet.style.setProperty('--panel-offset',`${(initial*(1-rise)).toFixed(2)}px`);
-      sheet.style.setProperty('--countdown-shadow',`${(.12+.16*rise).toFixed(3)}`);
-    } else {
-      const reveal=ease((p-.28)/.47);
-      sheet.style.setProperty('--countdown-rise',`${(105*(1-reveal)).toFixed(3)}%`);
-      sheet.style.setProperty('--countdown-shadow',`${(.2+.28*Math.sin(Math.PI*reveal)).toFixed(3)}`);
-    }
-  }
-  function request() {
-    if(framePending)return;
-    framePending=true;
-    requestAnimationFrame(update);
-  }
-  if(!reduced.matches) {
-    addEventListener('scroll',request,{passive:true});
-    addEventListener('resize',request,{passive:true});
-    mobile.addEventListener('change',request);
-    update();
-  }
-})();
-
 /* V8.59 — Straightforward MP4 playback.
    The MP4 is shipped with this package at assets/videos/wedding-film.mp4.
    No MOV fallback, no changing sources, no 12-second metadata timeout.
@@ -878,14 +826,8 @@
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) {
       const visible = entry.isIntersecting;
-      const rect = section.getBoundingClientRect();
-      const travel = Math.max(1, section.offsetHeight - window.innerHeight);
-      const p = Math.max(0, Math.min(1, -rect.top / travel));
-      const mobile = window.matchMedia('(max-width: 900px)').matches;
       const videoRect = video.getBoundingClientRect();
-      inView = mobile
-        ? visible && videoRect.bottom > 0 && videoRect.top < window.innerHeight
-        : visible && p < .78;
+      inView = visible && videoRect.bottom > 0 && videoRect.top < window.innerHeight;
       if (inView && !document.hidden) tryPlay();
       else {
         video.pause();
@@ -901,14 +843,8 @@
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      const rect = section.getBoundingClientRect();
-      const travel = Math.max(1, section.offsetHeight - innerHeight);
-      const p = Math.max(0, Math.min(1, -rect.top / travel));
-      const mobile = window.matchMedia('(max-width: 900px)').matches;
       const videoRect = video.getBoundingClientRect();
-      const shouldPlay = mobile
-        ? videoRect.bottom > 0 && videoRect.top < innerHeight
-        : rect.top < innerHeight && rect.bottom > 0 && p < .78;
+      const shouldPlay = videoRect.bottom > 0 && videoRect.top < innerHeight;
       if (shouldPlay !== inView) {
         inView = shouldPlay;
         if (shouldPlay && !document.hidden) tryPlay();
@@ -1035,208 +971,4 @@
   if (image.complete) {
     if (image.naturalWidth) loaded(); else failed();
   }
-})();
-
-/* V8.76 — Native wedding playlist. No Spotify SDK, iframe or autoplay.
-   Add your own licensed files to assets/audio/ and update TRACKS below.
-   The same HTMLAudioElement stays mounted while guests scroll. */
-(() => {
-  'use strict';
-  const TRACKS = [
-    { title: 'Song 01', artist: 'Your song goes here', src: 'assets/audio/RUELLE - I Get To Love You.mp3' },
-    { title: 'Song 02', artist: 'Your song goes here', src: 'assets/audio/track-02.mp3' },
-    { title: 'Song 03', artist: 'Your song goes here', src: 'assets/audio/track-03.mp3' }
-  ];
-  const card = document.getElementById('wedding-playlist');
-  const audio = document.getElementById('wedding-music-audio');
-  const playButton = document.getElementById('wedding-music-main-play');
-  const quick = document.getElementById('music-quick-control');
-  const prev = document.getElementById('wedding-music-prev');
-  const next = document.getElementById('wedding-music-next');
-  const seek = document.getElementById('wedding-music-seek');
-  const elapsed = document.getElementById('wedding-music-elapsed');
-  const duration = document.getElementById('wedding-music-duration');
-  const nowPlaying = document.getElementById('wedding-music-now-playing');
-  const status = document.getElementById('wedding-music-status');
-  const trackButtons = [...document.querySelectorAll('#wedding-music-tracks [data-track]')];
-  if (![card,audio,playButton,quick,prev,next,seek,elapsed,duration,nowPlaying,status].every(Boolean)) return;
-
-  let selected = -1;
-  let hasStarted = false;
-  let cardVisible = true;
-  let loadRequest = 0;
-  const formatTime = value => {
-    if (!Number.isFinite(value) || value < 0) return '0:00';
-    const n = Math.floor(value);
-    return `${Math.floor(n / 60)}:${String(n % 60).padStart(2,'0')}`;
-  };
-  function updateUI() {
-    const playing = !audio.paused && !audio.ended;
-    playButton.querySelector('.wedding-music-play-glyph').textContent = playing ? 'Ⅱ' : '▶';
-    playButton.setAttribute('aria-label', playing ? 'Pause wedding playlist' : 'Play wedding playlist');
-    quick.hidden = !hasStarted || cardVisible;
-    quick.classList.toggle('is-paused', !playing);
-    quick.setAttribute('aria-label', playing ? 'Pause wedding music' : 'Play wedding music');
-    quick.title = playing ? 'Pause wedding music' : 'Play wedding music';
-    quick.setAttribute('aria-pressed', String(playing));
-    trackButtons.forEach((button,index) => {
-      const active = index === selected;
-      button.classList.toggle('is-selected', active);
-      button.setAttribute('aria-current', active ? 'true' : 'false');
-      button.querySelector('.wedding-music-track-action').textContent = active && playing ? 'Ⅱ' : '▶';
-    });
-    if (selected >= 0) {
-      nowPlaying.textContent = TRACKS[selected].title;
-    }
-    elapsed.textContent = formatTime(audio.currentTime);
-    duration.textContent = formatTime(audio.duration);
-    const seekable = Number.isFinite(audio.duration) && audio.duration > 0;
-    seek.disabled = !seekable;
-    seek.value = seekable ? String(Math.round(audio.currentTime / audio.duration * 1000)) : '0';
-  }
-  function setStatus(message) { status.textContent = message; }
-  function loadTrack(index) {
-    selected = (index + TRACKS.length) % TRACKS.length;
-    loadRequest += 1;
-    audio.pause();
-    audio.src = TRACKS[selected].src;
-    audio.load();
-    nowPlaying.textContent = TRACKS[selected].title;
-    setStatus(`Selected ${TRACKS[selected].title}`);
-    updateUI();
-  }
-  async function startPlayback() {
-    if (selected < 0) loadTrack(0);
-    const request = loadRequest;
-    try {
-      await audio.play();
-      if (request !== loadRequest) return;
-      hasStarted = true;
-      setStatus('Playing');
-      updateUI();
-    } catch (error) {
-      if (request !== loadRequest) return;
-      if (error && error.name === 'AbortError') return;
-      setStatus(`Music not added yet. Add ${TRACKS[selected].src} to your website.`);
-      updateUI();
-    }
-  }
-  function toggle() {
-    if (!audio.paused) {
-      audio.pause();
-      setStatus('Paused');
-      updateUI();
-    } else {
-      void startPlayback();
-    }
-  }
-  playButton.addEventListener('click', toggle);
-  quick.addEventListener('click', toggle);
-  trackButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const index = Number(button.dataset.track);
-      if (index === selected) toggle();
-      else {loadTrack(index);void startPlayback();}
-    });
-  });
-  prev.addEventListener('click', () => {loadTrack(selected < 0 ? 0 : selected - 1);void startPlayback();});
-  next.addEventListener('click', () => {loadTrack(selected + 1);void startPlayback();});
-  seek.addEventListener('input', () => {
-    if (Number.isFinite(audio.duration) && audio.duration > 0)
-      audio.currentTime = audio.duration * (Number(seek.value) / 1000);
-  });
-  audio.addEventListener('play', () => {hasStarted = true;updateUI();});
-  audio.addEventListener('pause', updateUI);
-  audio.addEventListener('timeupdate', updateUI);
-  audio.addEventListener('loadedmetadata', updateUI);
-  audio.addEventListener('ended', () => {loadTrack(selected + 1);void startPlayback();});
-  audio.addEventListener('error', () => {
-    if (selected >= 0) setStatus(`Song not found: ${TRACKS[selected].src}`);
-    updateUI();
-  });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => {
-      cardVisible = entries.some(entry => entry.isIntersecting);
-      updateUI();
-    }, {threshold:.2}).observe(card);
-  } else {
-    const check = () => {
-      const r = card.getBoundingClientRect();
-      cardVisible = r.bottom > 0 && r.top < innerHeight;
-      updateUI();
-    };
-    addEventListener('scroll',check,{passive:true});
-    check();
-  }
-  updateUI();
-})();
-
-
-/* V8.77 — Page-driven scrolling through the Save the Date playlist.
-   A nested overflow scroller inside a transformed sticky panel could
-   capture touch gestures on iPhone Safari. We remove that inner scroller.
-   If the page is taller than the screen, extend the film scene by exactly
-   the needed amount and scroll the CONTENT with the normal page scroll.
-   No wheel/touchmove preventDefault handlers; normal swiping works. */
-(() => {
-  'use strict';
-  const scene=document.querySelector('.video-countdown-transition');
-  const stage=scene?.querySelector('.save-date-stage');
-  const content=scene?.querySelector('.save-date-layout');
-  const sticky=scene?.querySelector('.video-countdown-sticky');
-  if (!scene || !stage || !content || !sticky) return;
-
-  const mobile=matchMedia('(max-width:900px)');
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp=n=>Math.max(0,Math.min(1,n));
-  let extra=0, originalTravel=0, scheduled=false;
-
-  function measure() {
-    if (!mobile.matches || reduced.matches) {
-      extra=0;
-      scene.style.removeProperty('height');
-      content.style.removeProperty('--playlist-page-shift');
-      return;
-    }
-    const stageStyle=getComputedStyle(stage);
-    const padding=(parseFloat(stageStyle.paddingTop)||0)+(parseFloat(stageStyle.paddingBottom)||0);
-    const viewport=sticky.offsetHeight||innerHeight;
-    originalTravel=viewport*1.08;
-    // offsetHeight is unaffected by our translateY; avoid feedback loops.
-    extra=Math.max(0,Math.ceil(content.offsetHeight+padding-viewport+12));
-    // The original 208svh scene is preserved, with added travel only when
-    // needed for short phones or accessibility font-size adjustments.
-    scene.style.setProperty('height',`calc(208svh + ${extra}px)`,'important');
-    update();
-  }
-
-  function update() {
-    scheduled=false;
-    if (!mobile.matches || reduced.matches) return;
-    const traveled=Math.max(0,-scene.getBoundingClientRect().top);
-    const scrollable=Math.max(1,scene.offsetHeight-sticky.offsetHeight);
-    // Begin scrolling the content AFTER the ivory sheet has fully risen.
-    const contentStart=originalTravel*.74;
-    const progress=clamp((traveled-contentStart)/Math.max(1,scrollable-contentStart));
-    content.style.setProperty('--playlist-page-shift',`${(-extra*progress).toFixed(2)}px`);
-  }
-
-  function request() {
-    if (scheduled) return;
-    scheduled=true;
-    requestAnimationFrame(update);
-  }
-  addEventListener('scroll',request,{passive:true});
-  addEventListener('resize',measure,{passive:true});
-  mobile.addEventListener('change',measure);
-  reduced.addEventListener('change',measure);
-  if (document.fonts?.ready) document.fonts.ready.then(measure);
-  addEventListener('load',measure,{once:true});
-  // Layout may be reflowed by user font-size settings or device rotation.
-  if ('ResizeObserver' in window) {
-    new ResizeObserver(() => {
-      if (mobile.matches && !reduced.matches) requestAnimationFrame(measure);
-    }).observe(content);
-  }
-  measure();
 })();

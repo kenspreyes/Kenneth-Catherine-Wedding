@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="website-version" content="8.76.0">
+  <meta name="website-version" content="8.79.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263328">
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=8.77.0">
+  <link rel="stylesheet" href="style.css?v=8.79.0">
 </head>
 <body>
   <!-- V8.63: Floating glass navigation appears when the film begins. -->
@@ -43,14 +43,6 @@
       <a href="#rsvp">RSVP</a>
     </nav>
   </header>
-  <!-- Small music control appears after a guest starts a song and scrolls away. -->
-  <button class="music-quick-control" id="music-quick-control" type="button"
-          aria-label="Pause wedding music" title="Pause wedding music" hidden>
-    <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">
-      <path class="music-icon-pause" d="M7 5h3v14H7zm7 0h3v14h-3z" fill="currentColor"/>
-      <path class="music-icon-play" d="M8 4.8v14.4L19 12z" fill="currentColor"/>
-    </svg>
-  </button>
   <a class="skip-link" href="#invitation">Skip animation and view invitation</a>
   <main>
     <section class="ring-experience" id="home" aria-label="Animated wedding rings introduction">
@@ -90,8 +82,7 @@
       </div>
     </section>
 
-    <!-- V8.63: seamless rounded-top film followed by a single sliding ivory countdown page
-         rising over the video, matching the reference scroll transition. -->
+    <!-- V8.79: normal document scrolling. The ivory page overlaps the film edge. -->
     <section class="video-countdown-transition" id="film" aria-label="Wedding film and countdown">
       <div class="video-countdown-sticky">
         <div class="film-background">
@@ -169,37 +160,6 @@
               </div>
             </div>
 
-            <!-- V8.76: self-hosted wedding playlist. Add audio files later in
-                 assets/audio/track-01.mp3, track-02.mp3, track-03.mp3. -->
-            <section class="wedding-music" id="wedding-playlist" aria-label="Our Wedding Playlist">
-              <div class="wedding-music-top">
-                <div class="wedding-music-art" aria-hidden="true">♫</div>
-                <div class="wedding-music-copy">
-                  <strong>Our Wedding Playlist</strong>
-                  <span>Music for our favorite people</span>
-                </div>
-                <button class="wedding-music-main-play" id="wedding-music-main-play" type="button" aria-label="Play wedding playlist">
-                  <span class="wedding-music-play-glyph" aria-hidden="true">▶</span>
-                </button>
-              </div>
-              <div class="wedding-music-progress-row">
-                <span id="wedding-music-elapsed">0:00</span>
-                <input id="wedding-music-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek within song" disabled>
-                <span id="wedding-music-duration">0:00</span>
-              </div>
-              <div class="wedding-music-actions">
-                <button id="wedding-music-prev" type="button" aria-label="Previous song">⏮</button>
-                <span class="wedding-music-now-playing" id="wedding-music-now-playing">Choose a song to begin</span>
-                <button id="wedding-music-next" type="button" aria-label="Next song">⏭</button>
-              </div>
-              <ol class="wedding-music-tracks" id="wedding-music-tracks" aria-label="Songs in our playlist">
-                <li><button type="button" data-track="0"><span class="wedding-music-track-number">01</span><span class="wedding-music-track-text"><strong>Song 01</strong><small>Awaiting your music file</small></span><span class="wedding-music-track-action" aria-hidden="true">▶</span></button></li>
-                <li><button type="button" data-track="1"><span class="wedding-music-track-number">02</span><span class="wedding-music-track-text"><strong>Song 02</strong><small>Awaiting your music file</small></span><span class="wedding-music-track-action" aria-hidden="true">▶</span></button></li>
-                <li><button type="button" data-track="2"><span class="wedding-music-track-number">03</span><span class="wedding-music-track-text"><strong>Song 03</strong><small>Awaiting your music file</small></span><span class="wedding-music-track-action" aria-hidden="true">▶</span></button></li>
-              </ol>
-              <p class="wedding-music-status" id="wedding-music-status" role="status" aria-live="polite">Songs will be available here once added.</p>
-            </section>
-            <audio id="wedding-music-audio" preload="none"></audio>
           </div>
         </div>
       </div>
@@ -291,6 +251,6 @@
        To use a local copy later, save the library to assets/js/three.min.js
        and change this script URL back to that local path. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <script src="script.js?v=8.77.0"></script>
+  <script src="script.js?v=8.79.0"></script>
 </body>
 </html>
