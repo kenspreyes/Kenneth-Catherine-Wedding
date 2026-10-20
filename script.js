@@ -206,7 +206,7 @@
   });
 
   window.updateWeddingSignature(reduced?1:0);
-  console.info('[Kenneth & Catherine] Website v8.70.1 — signature visibility fix loaded');
+  console.info('[Kenneth & Catherine] Website v8.72.0 — Save the Date refinements loaded');
 })();
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
@@ -219,7 +219,21 @@
   function update() {
     const ms = Math.max(0, target - Date.now());
     const values = [Math.floor(ms / 86400000), Math.floor(ms % 86400000 / 3600000), Math.floor(ms % 3600000 / 60000), Math.floor(ms % 60000 / 1000)];
-    values.forEach((v, i) => { elements[i].textContent = String(v).padStart(i === 0 ? 3 : 2, "0"); });
+    values.forEach((v, i) => {
+      const text = String(v).padStart(i === 0 ? 3 : 2, "0");
+      const element = elements[i];
+      // Only change the DOM when this particular unit has actually ticked.
+      // This prevents all four numbers from blinking every second.
+      if (element.textContent === text) return;
+      const hadValue = element.dataset.timerInitialized === 'true';
+      element.textContent = text;
+      element.dataset.timerInitialized = 'true';
+      if (hadValue && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        element.classList.remove('is-ticking');
+        void element.offsetWidth; // Restart only this changed number's animation.
+        element.classList.add('is-ticking');
+      }
+    });
     const seeYou=document.getElementById("see-you-days");
     if(seeYou)seeYou.textContent=String(values[0]);
   }
@@ -686,31 +700,7 @@
     render();
   }
 
-  // The original V8.48 countdown function updates the real numbers once per
-  // second. Observe only changes to these text nodes and give each changed
-  // value a restrained ink-like crossfade; never interfere with its values.
-  if (reduced || !('MutationObserver' in window)) return;
-  const values = [...section.querySelectorAll('.timeless-value')];
-  const observer = new MutationObserver(records => {
-    const changed = new Set();
-    for (const record of records) {
-      const number = record.target.nodeType === 3
-        ? record.target.parentElement : record.target;
-      if (number && number.matches && number.matches('.timeless-value')) changed.add(number);
-    }
-    // Never animate initial hidden numbers or offscreen values.
-    if (section.getBoundingClientRect().bottom <= 0 ||
-        section.getBoundingClientRect().top >= window.innerHeight) return;
-    for (const number of changed) {
-      if (getComputedStyle(number.parentElement).opacity === '0') continue;
-      number.classList.remove('is-ticking');
-      void number.offsetWidth; // restart only this digit's gentle crossfade
-      number.classList.add('is-ticking');
-    }
-  });
-  for (const number of values) {
-    observer.observe(number, {childList:true,characterData:true,subtree:true});
-  }
+
 })();
 
 
@@ -970,7 +960,7 @@
 
   function update() {
     raf = 0;
-    // Show navigation only after the countdown sheet has fully risen.
+    // Show navigation only after the Save the Date sheet has fully risen.
     // The film stays distraction-free; the header persists for later pages.
     const sheet = film.querySelector('.countdown-interlude');
     const filmTop = film.getBoundingClientRect().top;

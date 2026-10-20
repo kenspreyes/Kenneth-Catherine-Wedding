@@ -4225,3 +4225,573 @@ html {scroll-padding-top:76px;}
     visibility:visible!important;
   }
 }
+
+
+/* ====================================================================
+   V8.71 — SAVE THE DATE: INSTAX + MARCH CALENDAR + TICKING TIMER + SPOTIFY
+   The ivory sheet keeps its existing video-overlap scroll transition.
+   Only the countdown digits animate; all page text stays in place.
+   ==================================================================== */
+.video-countdown-transition .countdown-interlude.countdown-timeless.save-date-panel {
+  background:#f8f5ee!important;
+  color:#394b3a!important;
+}
+.video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:100svh!important;
+  min-height:0!important;
+  padding:clamp(48px,8svh,90px) 20px clamp(12px,2svh,24px)!important;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(252,250,244,.98),transparent 76%),
+    #f8f5ee!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  scrollbar-width:thin;
+  scrollbar-color:#d8d5c9 transparent;
+  overscroll-behavior:contain;
+}
+.video-countdown-transition .save-date-panel .timeless-content.save-date-layout {
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  width:min(100%,800px)!important;
+  max-width:800px!important;
+  flex:0 0 auto!important;
+  margin:auto!important;
+  padding:0!important;
+  gap:0!important;
+  transform:none!important;
+}
+.save-date-intro {text-align:center;flex:0 0 auto;}
+.save-date-overline {
+  font:500 clamp(8px,.8vw,10px)/1.4 Montserrat,sans-serif;
+  letter-spacing:.25em;
+  color:#9c998a;
+  margin:0 0 6px;
+}
+.save-date-panel .save-date-title {
+  margin:0!important;
+  color:#334a39;
+  font:400 clamp(37px,4.8vw,60px)/1.04 'Cormorant Garamond',Georgia,serif!important;
+  letter-spacing:-.045em;
+  text-align:center;
+}
+.save-date-title em {font-weight:400;font-style:italic;color:#82937d;}
+.save-date-subtitle {
+  margin:4px 0 0;
+  font:400 clamp(10px,1.1vw,13px)/1.5 'Libre Baskerville',Georgia,serif;
+  color:#838779;
+}
+.save-date-pair {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  justify-content:center;
+  gap:clamp(25px,5.5vw,75px);
+  width:min(100%,590px);
+  margin:clamp(13px,2.1svh,20px) auto clamp(15px,2.1svh,22px);
+}
+.instax-frame {
+  position:relative;
+  width:clamp(150px,17vw,215px);
+  max-width:100%;
+  margin:0 auto!important;
+  padding:9px 9px 0;
+  background:#fffdf8;
+  box-shadow:0 10px 25px rgba(65,65,47,.14),0 1px 4px rgba(48,45,30,.07);
+  transform:rotate(-4deg);
+  border:1px solid rgba(216,213,200,.85);
+  border-radius:2px;
+}
+.instax-picture {
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1.08;
+  overflow:hidden;
+  background:linear-gradient(145deg,#c9d3c2,#e1d6bd);
+}
+.instax-picture img {width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
+.instax-placeholder-tag {
+  position:absolute;
+  bottom:9px;
+  left:50%;
+  transform:translateX(-50%);
+  display:inline-block;
+  white-space:nowrap;
+  font:600 clamp(7px,.7vw,9px)/1.2 Montserrat,sans-serif;
+  letter-spacing:.15em;
+  color:#fff;
+  text-shadow:0 1px 4px rgba(0,0,0,.75);
+}
+.instax-frame figcaption {
+  margin:0;
+  padding:clamp(13px,2vw,22px) 1px clamp(13px,1.9vw,19px);
+  color:#6f7667;
+  font:400 clamp(14px,1.65vw,19px)/1.05 'Allura',cursive;
+  text-align:center;
+  white-space:nowrap;
+}
+.instax-frame figcaption span {color:#89957c;}
+.wedding-calendar {
+  width:clamp(174px,22vw,254px);
+  max-width:100%;
+  margin:0 auto;
+  padding:clamp(9px,1.5vw,16px) clamp(8px,1.5vw,16px) clamp(8px,1.2vw,14px);
+  background:rgba(255,255,255,.44);
+  border:1px solid rgba(173,170,152,.28);
+  border-radius:10px;
+  box-shadow:0 4px 20px rgba(65,67,50,.035);
+}
+.wedding-calendar-heading {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:clamp(8px,1.4vw,16px);
+  margin-bottom:clamp(10px,1.7vw,17px);
+}
+.wedding-calendar-heading > div {display:flex;flex-direction:column;align-items:center;}
+.calendar-flourish {font:400 10px Georgia,serif;color:#b8b7a1;}
+.calendar-month {
+  font:400 clamp(23px,2.8vw,34px)/1.05 'Cormorant Garamond',Georgia,serif;
+  color:#3f5540;
+}
+.calendar-year {
+  font:500 9px/1.5 Montserrat,sans-serif;
+  letter-spacing:.26em;
+  color:#9b9e90;
+}
+.wedding-calendar-grid {
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:clamp(2px,.42vw,5px) 1px;
+  align-items:center;
+  justify-items:center;
+  font:500 clamp(10px,1.12vw,13px)/1 Montserrat,sans-serif;
+  color:#637161;
+  font-variant-numeric:tabular-nums;
+}
+.wedding-calendar-grid > span {
+  width:clamp(19px,2.65vw,28px);
+  height:clamp(19px,2.65vw,28px);
+  display:grid;
+  place-items:center;
+  position:relative;
+  isolation:isolate;
+}
+.wedding-calendar-grid .cal-weekday {
+  color:#a7a799;
+  font-size:clamp(9px,.88vw,11px);
+  font-weight:600;
+  margin-bottom:3px;
+}
+.wedding-calendar-grid .cal-wedding-day {
+  color:#fff;
+  font-weight:600;
+}
+.wedding-calendar-grid .cal-wedding-day::before {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border:1.5px solid #6e826d;
+  border-radius:50%;
+  background:#6f866f;
+  z-index:-1;
+  box-shadow:0 0 0 3px rgba(114,134,109,.13);
+}
+.calendar-day-note {
+  margin:clamp(10px,1.7vw,16px) 0 0;
+  font:500 clamp(8px,.9vw,10px)/1.4 Montserrat,sans-serif;
+  letter-spacing:.12em;
+  color:#82917c;
+  text-align:center;
+}
+.save-date-bottom-content {
+  width:min(100%,620px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+.save-date-countdown-heading {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  width:100%;
+  margin:0 0 clamp(7px,1.2svh,11px);
+  font:500 clamp(8px,.9vw,10px)/1.4 Montserrat,sans-serif;
+  letter-spacing:.18em;
+  color:#939b87;
+  white-space:nowrap;
+}
+.save-date-countdown-heading span {
+  width:clamp(20px,7vw,64px);
+  height:1px;
+  background:linear-gradient(90deg,transparent,#d2cbb9);
+}
+.save-date-countdown-heading span:last-child {transform:rotate(180deg);}
+.video-countdown-transition .save-date-panel .save-date-countdown.timeless-numbers {
+  width:min(100%,500px)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:0!important;
+}
+.video-countdown-transition .save-date-panel .timeless-unit {
+  opacity:1!important;
+  padding:0 clamp(3px,1vw,12px)!important;
+  border-right:1px solid #ddd9cd;
+}
+.video-countdown-transition .save-date-panel .timeless-unit:last-child {border:0;}
+.video-countdown-transition .save-date-panel .timeless-value {
+  color:#415b43!important;
+  font:400 clamp(27px,3.7vw,48px)/1.05 'Cormorant Garamond',Georgia,serif!important;
+  letter-spacing:-.03em!important;
+  min-height:1.06em!important;
+  transform:none!important;
+}
+.video-countdown-transition .save-date-panel .timeless-unit small {
+  margin:4px 0 0!important;
+  font:500 clamp(8px,.86vw,10px)/1.3 Montserrat,sans-serif!important;
+  letter-spacing:.14em!important;
+  color:#8b9383!important;
+}
+@keyframes save-date-digit-tick {
+  from {opacity:.46;filter:blur(1.3px)}
+  to {opacity:1;filter:blur(0)}
+}
+.video-countdown-transition .save-date-panel .timeless-value.is-ticking {
+  animation:save-date-digit-tick .38s ease-out both!important;
+}
+.spotify-card {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  width:min(100%,500px);
+  gap:9px 14px;
+  margin-top:clamp(13px,2.4svh,23px);
+  padding:clamp(10px,1.4svh,14px) clamp(12px,2vw,20px);
+  border:1px solid #e5e1d6;
+  border-radius:14px;
+  background:rgba(255,255,255,.66);
+  box-shadow:0 5px 20px rgba(63,67,51,.045);
+}
+.spotify-card-info {display:flex;align-items:center;gap:10px;min-width:0;}
+.spotify-symbol {
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:34px;height:34px;
+  color:#f8f7f1;
+  background:#42624a;
+  border-radius:50%;
+}
+.spotify-card-info > span:last-child {display:flex;flex-direction:column;gap:3px;}
+.spotify-card-info strong {
+  color:#445743;
+  font:600 11px/1.2 Montserrat,sans-serif;
+  letter-spacing:.01em;
+}
+.spotify-card-info small {
+  color:#93998d;
+  font:400 9px/1.3 Montserrat,sans-serif;
+}
+.spotify-play-button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:34px;
+  padding:0 12px;
+  color:#fff;
+  background:#415b45;
+  border:1px solid #415b45;
+  border-radius:999px;
+  font:500 10px/1.1 Montserrat,sans-serif;
+  cursor:pointer;
+  transition:background .2s ease,box-shadow .2s ease;
+}
+.spotify-play-button:hover {background:#304935;box-shadow:0 3px 10px rgba(47,73,53,.16);}
+.spotify-play-button:focus-visible {outline:2px solid #81977b;outline-offset:3px;}
+.spotify-play-icon {font-size:9px;}
+.spotify-embed-container {
+  width:100%;
+  flex-basis:100%;
+  padding-top:4px;
+}
+.spotify-embed-container[hidden] {display:none!important;}
+.spotify-embed-container iframe {
+  width:100%;
+  height:152px;
+  display:block;
+  border:0;
+  border-radius:12px;
+}
+.section-anchor {position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;}
+@media(max-width:900px){
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    padding:clamp(55px,8svh,84px) 14px clamp(10px,2svh,18px)!important;
+    justify-content:center!important;
+  }
+  .video-countdown-transition .save-date-panel .timeless-content.save-date-layout {
+    width:min(100%,520px)!important;
+    max-width:520px!important;
+    margin:auto!important;
+    flex:0 0 auto!important;
+  }
+  .save-date-overline {font-size:8px;letter-spacing:.16em;}
+  .save-date-panel .save-date-title {font-size:clamp(35px,9.4vw,50px)!important;}
+  .save-date-subtitle {font-size:10px;}
+  .save-date-pair {
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:clamp(12px,3.2vw,22px);
+    width:min(100%,420px);
+    margin:clamp(13px,2.2svh,19px) auto clamp(17px,2.4svh,22px);
+  }
+  .instax-frame {
+    width:clamp(126px,37vw,170px);
+    padding:6px 6px 0;
+    transform:rotate(-3deg);
+  }
+  .instax-frame figcaption {padding:12px 0 13px;font-size:clamp(12px,3.8vw,17px);}
+  .instax-placeholder-tag {font-size:7px;letter-spacing:.08em;}
+  .wedding-calendar {
+    width:clamp(144px,41vw,187px);
+    padding:8px 5px 9px;
+  }
+  .wedding-calendar-heading {margin-bottom:8px;gap:8px;}
+  .calendar-month {font-size:clamp(24px,6vw,30px);}
+  .calendar-year {font-size:8px;}
+  .wedding-calendar-grid {gap:2px 0;font-size:10px;}
+  .wedding-calendar-grid > span {width:clamp(17px,5.3vw,23px);height:clamp(17px,5.3vw,23px);}
+  .wedding-calendar-grid .cal-weekday {font-size:9px;margin-bottom:2px;}
+  .calendar-day-note {font-size:8px;margin-top:9px;}
+  .save-date-countdown-heading {font-size:8px;letter-spacing:.10em;gap:8px;margin-bottom:8px;}
+  .video-countdown-transition .save-date-panel .timeless-value {font-size:clamp(29px,8.1vw,40px)!important;}
+  .video-countdown-transition .save-date-panel .timeless-unit small {font-size:8px!important;}
+  .spotify-card {width:min(100%,420px);margin-top:clamp(15px,2.4svh,22px);padding:11px 12px;gap:8px;}
+  .spotify-symbol {width:32px;height:32px;}
+  .spotify-card-info strong {font-size:10px;}
+  .spotify-card-info small {font-size:8px;}
+  .spotify-play-button {font-size:9px;min-height:32px;padding:0 10px;}
+}
+@media(max-width:360px){
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {padding:55px 9px 10px!important;}
+  .save-date-pair {gap:8px;}
+  .instax-frame {width:min(37vw,142px);}
+  .wedding-calendar {width:min(44vw,155px);}
+  .wedding-calendar-grid > span {width:clamp(16px,5.5vw,20px);height:clamp(16px,5.5vw,20px);}
+  .spotify-card {gap:6px;}
+}
+@media(max-height:700px){
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    justify-content:flex-start!important;
+    padding-top:clamp(52px,9svh,67px)!important;
+  }
+  .save-date-pair {margin-top:9px;margin-bottom:12px;}
+  .save-date-panel .save-date-title {font-size:clamp(32px,7svh,45px)!important;}
+  .instax-frame {width:clamp(110px,29svh,155px);}
+  .instax-frame figcaption {padding:8px 0 9px;}
+  .wedding-calendar {width:clamp(135px,33svh,175px);}
+  .wedding-calendar-grid {gap:1px 0;}
+  .wedding-calendar-grid > span {height:clamp(16px,3.1svh,22px);}
+  .spotify-card {margin-top:10px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .video-countdown-transition .save-date-panel .timeless-value.is-ticking {animation:none!important;}
+  .spotify-play-button {transition:none!important;}
+}
+
+/* Replace the poster by changing the background-image URL to your own photo.
+   A soft landscape gradient still looks intentional if no image is available. */
+.instax-photo-placeholder {
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(0deg,rgba(32,47,34,.20),transparent 46%),url("assets/images/video-poster.jpg");
+  background-color:#b7c9b4;
+  background-size:cover;
+  background-position:center;
+}
+
+
+/* ====================================================================
+   V8.72 — Larger Instax/calendar, quiet countdown, real Spotify mini player.
+   The film-to-ivory scroll transition and other pages are unchanged.
+   ==================================================================== */
+.save-date-panel .save-date-intro {margin-bottom:0!important;}
+.save-date-panel .save-date-title {
+  font-size:clamp(44px,5.4vw,70px)!important;
+  line-height:1.03!important;
+}
+.video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+  padding-top:clamp(30px,4.8svh,55px)!important;
+  padding-bottom:clamp(13px,2.3svh,25px)!important;
+}
+.video-countdown-transition .save-date-panel .timeless-content.save-date-layout {
+  width:min(100%,860px)!important;
+  max-width:860px!important;
+}
+.save-date-panel .save-date-pair {
+  width:min(100%,760px)!important;
+  gap:clamp(30px,5vw,70px)!important;
+  margin:clamp(15px,2.3svh,24px) auto clamp(13px,2svh,23px)!important;
+}
+.save-date-panel .instax-frame {
+  width:clamp(205px,21vw,264px)!important;
+  padding:11px 11px 0!important;
+}
+.save-date-panel .instax-frame figcaption {
+  padding:clamp(14px,2vw,21px) 0 clamp(15px,2vw,23px)!important;
+  font-size:clamp(16px,1.9vw,21px)!important;
+}
+.save-date-panel .wedding-calendar {
+  width:clamp(234px,25vw,310px)!important;
+  padding:clamp(14px,1.8vw,21px) clamp(12px,1.8vw,20px) clamp(10px,1.3vw,16px)!important;
+}
+.save-date-panel .wedding-calendar-heading {margin-bottom:clamp(12px,1.8vw,19px)!important;}
+.save-date-panel .calendar-month {font-size:clamp(31px,3.4vw,41px)!important;}
+.save-date-panel .calendar-year {font-size:9px!important;}
+.save-date-panel .wedding-calendar-grid {font-size:clamp(12px,1.3vw,15px)!important;gap:clamp(3px,.6vw,6px) 1px!important;}
+.save-date-panel .wedding-calendar-grid > span {width:clamp(26px,3.1vw,34px)!important;height:clamp(26px,3.1vw,34px)!important;}
+.save-date-panel .wedding-calendar-grid .cal-weekday {font-size:clamp(10px,1vw,12px)!important;}
+.save-date-panel .calendar-day-note {
+  margin-top:clamp(9px,1.3vw,13px)!important;
+  font-size:clamp(7px,.69vw,8px)!important;
+  font-weight:500!important;
+  letter-spacing:.08em!important;
+}
+.save-date-panel .save-date-bottom-content {width:min(100%,630px)!important;}
+.save-date-panel .save-date-countdown-heading {margin-bottom:clamp(8px,1.2svh,12px)!important;}
+/* Never animate containers, labels, headings, or stationary values. */
+.video-countdown-transition .save-date-panel .save-date-intro,
+.video-countdown-transition .save-date-panel .save-date-pair,
+.video-countdown-transition .save-date-panel .save-date-countdown-heading,
+.video-countdown-transition .save-date-panel .save-date-countdown,
+.video-countdown-transition .save-date-panel .timeless-unit,
+.video-countdown-transition .save-date-panel .timeless-unit small,
+.video-countdown-transition .save-date-panel .timeless-value:not(.is-ticking),
+.video-countdown-transition .save-date-panel .spotify-mini-player {
+  animation:none!important;
+  transition:none!important;
+  opacity:1!important;
+}
+@keyframes save-date-one-tick {
+  0% {opacity:.48;filter:blur(.75px)}
+  100% {opacity:1;filter:blur(0)}
+}
+.video-countdown-transition .save-date-panel .timeless-value.is-ticking {
+  animation:save-date-one-tick .30s ease-out both!important;
+}
+/* The real Spotify playlist is visible without requiring a separate button.
+   Guests press Spotify's own Play control; music never autoplays. */
+.save-date-panel .spotify-mini-player {
+  width:min(100%,540px);
+  margin:clamp(12px,1.8svh,19px) auto 0;
+  padding:8px 9px 9px;
+  border:1px solid rgba(173,177,157,.27);
+  border-radius:15px;
+  background:rgba(255,255,255,.73);
+  box-shadow:0 5px 20px rgba(65,67,51,.05);
+}
+.save-date-panel .spotify-mini-heading {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 6px 7px;
+  font:600 9px/1.2 Montserrat,Arial,sans-serif;
+  letter-spacing:.12em;
+  color:#4d674f;
+}
+.save-date-panel .spotify-mini-mark {display:inline-grid;place-items:center;color:#497650;}
+.save-date-panel .spotify-mini-heading a {
+  margin-left:auto;
+  color:#7a8675;
+  font:500 8px/1.2 Montserrat,Arial,sans-serif;
+  letter-spacing:.03em;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.save-date-panel .spotify-mini-heading a:hover {text-decoration:underline;}
+.save-date-panel .spotify-mini-embed {
+  display:block;
+  width:100%;
+  height:152px;
+  border:0;
+  border-radius:10px;
+  background:#f3f3f0;
+}
+@media(max-width:900px) {
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    padding:clamp(30px,5svh,55px) 12px clamp(10px,1.6svh,15px)!important;
+  }
+  .video-countdown-transition .save-date-panel .timeless-content.save-date-layout {
+    width:min(100%,540px)!important;
+    max-width:540px!important;
+  }
+  .save-date-panel .save-date-title {font-size:clamp(39px,10vw,56px)!important;}
+  .save-date-panel .save-date-pair {
+    width:min(100%,485px)!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:clamp(8px,2.8vw,18px)!important;
+    margin:clamp(13px,2svh,19px) auto clamp(15px,2svh,20px)!important;
+  }
+  .save-date-panel .instax-frame {
+    width:min(100%,clamp(143px,43vw,215px))!important;
+    padding:7px 7px 0!important;
+  }
+  .save-date-panel .instax-frame figcaption {
+    padding:clamp(11px,1.7svh,16px) 0 clamp(12px,1.9svh,17px)!important;
+    font-size:clamp(13px,3.6vw,18px)!important;
+  }
+  .save-date-panel .wedding-calendar {
+    width:min(100%,clamp(156px,45vw,225px))!important;
+    padding:clamp(9px,1.5svh,13px) 7px clamp(8px,1.4svh,12px)!important;
+  }
+  .save-date-panel .wedding-calendar-heading {margin-bottom:clamp(7px,1.2svh,11px)!important;}
+  .save-date-panel .calendar-month {font-size:clamp(28px,7vw,36px)!important;}
+  .save-date-panel .wedding-calendar-grid {font-size:clamp(10px,2.8vw,12px)!important;gap:clamp(2px,.5svh,4px) 0!important;}
+  .save-date-panel .wedding-calendar-grid > span {
+    width:clamp(19px,5.6vw,27px)!important;
+    height:clamp(19px,5.6vw,27px)!important;
+  }
+  .save-date-panel .wedding-calendar-grid .cal-weekday {font-size:9px!important;}
+  .save-date-panel .calendar-day-note {font-size:7px!important;margin-top:8px!important;letter-spacing:.025em!important;}
+  .save-date-panel .save-date-bottom-content {width:min(100%,485px)!important;}
+  .save-date-panel .spotify-mini-player {width:min(100%,485px);margin-top:clamp(12px,1.8svh,17px);padding:7px 8px 8px;}
+  .save-date-panel .spotify-mini-heading {padding-bottom:6px;font-size:8px;}
+  .save-date-panel .spotify-mini-heading a {font-size:7px;}
+  .save-date-panel .spotify-mini-embed {height:152px;}
+}
+@media(max-width:360px) {
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {padding-inline:8px!important;}
+  .save-date-panel .save-date-pair {gap:6px!important;}
+  .save-date-panel .instax-frame {width:min(100%,44vw)!important;}
+  .save-date-panel .wedding-calendar {width:min(100%,47vw)!important;}
+  .save-date-panel .wedding-calendar-grid > span {width:clamp(17px,5.8vw,21px)!important;height:clamp(17px,5.8vw,21px)!important;}
+}
+@media(max-height:700px) {
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    justify-content:flex-start!important;
+    padding-top:clamp(25px,4svh,40px)!important;
+  }
+  .save-date-panel .save-date-pair {margin-top:10px!important;margin-bottom:11px!important;}
+  .save-date-panel .instax-frame {width:clamp(133px,29svh,194px)!important;}
+  .save-date-panel .wedding-calendar {width:clamp(148px,34svh,210px)!important;}
+  .save-date-panel .wedding-calendar-grid > span {height:clamp(18px,3.5svh,26px)!important;}
+  .save-date-panel .spotify-mini-player {margin-top:10px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .save-date-panel .timeless-value.is-ticking {animation:none!important;}
+}
+
+/* Keep the handwritten Instax caption inside the frame on narrow phones. */
+@media(max-width:360px) {
+  .save-date-panel .instax-frame figcaption {font-size:clamp(11px,3.4vw,13px)!important;white-space:nowrap;}
+}

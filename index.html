@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="website-version" content="8.70.1">
+  <meta name="website-version" content="8.72.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263328">
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=8.70.1">
+  <link rel="stylesheet" href="style.css?v=8.72.0">
 </head>
 <body>
   <!-- V8.63: Floating glass navigation appears when the film begins. -->
@@ -102,45 +102,74 @@
           <p class="film-fallback-label" hidden role="status">The film could not be loaded. Please check that wedding-film.mp4 is in assets/videos.</p>
           <div class="film-cinematic-tint" aria-hidden="true"></div>
         </div>
-    <section class="countdown-interlude countdown-timeless" id="countdown" aria-labelledby="countdown-heading">
-      <div class="timeless-stage">
-        <div class="timeless-ambient-glow" aria-hidden="true"></div>
-        <div class="timeless-content">
-          <p class="timeless-eyebrow" data-timeless-part="eyebrow">THE MOMENT IS GETTING CLOSER</p>
-          <h2 id="countdown-heading" class="timeless-heading" data-timeless-part="heading">Until Our Forever</h2>
-          <p class="timeless-subtitle" data-timeless-part="subtitle">Every second brings us closer to our beginning.</p>
-          <div class="timeless-rule" aria-hidden="true">
-            <span class="timeless-rule-line timeless-rule-left"></span>
-            <span class="timeless-rule-star">✦</span>
-            <span class="timeless-rule-line timeless-rule-right"></span>
+    <section class="countdown-interlude countdown-timeless save-date-panel" id="countdown" aria-labelledby="countdown-heading">
+      <div class="timeless-stage save-date-stage">
+        <div class="timeless-content save-date-layout">
+          <div class="save-date-intro">
+            <h2 id="countdown-heading" class="save-date-title">Save <em>the</em> Date</h2>
           </div>
-          <div class="save-date-countdown timeless-numbers" role="timer" aria-label="Time remaining until March 3, 2027 at 3:00 PM Philippine time">
-            <div class="timeless-unit" data-timeless-unit="days">
-              <strong id="days" class="timeless-value" aria-label="Days">000</strong>
-              <small>DAYS</small>
+
+          <div class="save-date-pair">
+            <figure class="instax-frame">
+              <div class="instax-picture">
+                <!-- To use your own image, save it as assets/images/instax-photo.jpg.
+                     The poster is used as an attractive temporary placeholder. -->
+                <img src="assets/images/video-poster.jpg" alt="Scenic placeholder for Kenneth and Catherine's Instax photo" loading="lazy" decoding="async">
+                <span class="instax-placeholder-tag">YOUR PHOTO HERE</span>
+              </div>
+              <figcaption>forever with you <span>♡</span></figcaption>
+            </figure>
+
+            <div class="wedding-calendar" aria-label="March 2027 calendar; Wednesday March 3 is the wedding day">
+              <div class="wedding-calendar-heading">
+                <div><span class="calendar-month">March</span><span class="calendar-year">2027</span></div>
+              </div>
+              <div class="wedding-calendar-grid" aria-hidden="true">
+                <span class="cal-weekday">S</span><span class="cal-weekday">M</span><span class="cal-weekday">T</span><span class="cal-weekday">W</span><span class="cal-weekday">T</span><span class="cal-weekday">F</span><span class="cal-weekday">S</span>
+                <span class="cal-blank"></span><span>1</span><span>2</span><span class="cal-wedding-day">3</span><span>4</span><span>5</span><span>6</span>
+                <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                <span>28</span><span>29</span><span>30</span><span>31</span><span class="cal-blank"></span><span class="cal-blank"></span><span class="cal-blank"></span>
+              </div>
+              <p class="calendar-day-note">WEDNESDAY · 3:00 PM</p>
             </div>
-            <div class="timeless-unit" data-timeless-unit="hours">
-              <strong id="hours" class="timeless-value" aria-label="Hours">00</strong>
-              <small>HOURS</small>
+          </div>
+
+          <div class="save-date-bottom-content">
+            <div class="save-date-countdown-heading"><span aria-hidden="true"></span>COUNTING DOWN TO OUR DAY<span aria-hidden="true"></span></div>
+            <div class="save-date-countdown timeless-numbers" role="timer" aria-label="Time remaining until March 3, 2027 at 3:00 PM Philippine time">
+              <div class="timeless-unit" data-timeless-unit="days"><strong id="days" class="timeless-value" aria-label="Days">000</strong><small>DAYS</small></div>
+              <div class="timeless-unit" data-timeless-unit="hours"><strong id="hours" class="timeless-value" aria-label="Hours">00</strong><small>HOURS</small></div>
+              <div class="timeless-unit" data-timeless-unit="minutes"><strong id="minutes" class="timeless-value" aria-label="Minutes">00</strong><small>MINUTES</small></div>
+              <div class="timeless-unit" data-timeless-unit="seconds"><strong id="seconds" class="timeless-value" aria-label="Seconds">00</strong><small>SECONDS</small></div>
             </div>
-            <div class="timeless-unit" data-timeless-unit="minutes">
-              <strong id="minutes" class="timeless-value" aria-label="Minutes">00</strong>
-              <small>MINUTES</small>
-            </div>
-            <div class="timeless-unit" data-timeless-unit="seconds">
-              <strong id="seconds" class="timeless-value" aria-label="Seconds">00</strong>
-              <small>SECONDS</small>
+
+            <div class="spotify-mini-player" id="spotify-playlist" aria-label="Our Love Songs Spotify playlist">
+              <div class="spotify-mini-heading">
+                <span class="spotify-mini-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21Zm4.81 15.18a.67.67 0 0 1-.92.22c-2.53-1.54-5.7-1.89-9.41-1.03a.67.67 0 1 1-.3-1.31c4.07-.93 7.57-.52 10.42 1.21.31.19.41.6.21.91Zm1.32-2.94a.84.84 0 0 1-1.15.28c-2.9-1.79-7.31-2.31-10.73-1.26a.84.84 0 1 1-.49-1.6c3.91-1.19 8.76-.61 12.09 1.43.4.25.53.77.28 1.15Zm.11-3.07c-3.48-2.07-9.22-2.26-12.55-1.25a1 1 0 1 1-.59-1.91c3.82-1.16 10.16-.94 14.16 1.44a1 1 0 0 1-1.02 1.72Z"/></svg>
+                </span>
+                <span>OUR LOVE SONGS</span>
+                <a href="https://open.spotify.com/playlist/6wj5VQjk7lsOiR09ja201V" target="_blank" rel="noopener noreferrer" aria-label="Open our wedding playlist in Spotify">OPEN IN SPOTIFY ↗</a>
+              </div>
+              <iframe class="spotify-mini-embed"
+                title="Kenneth and Catherine — Our Love Songs Spotify playlist"
+                src="https://open.spotify.com/embed/playlist/6wj5VQjk7lsOiR09ja201V?utm_source=generator&amp;theme=0"
+                width="100%" height="152" frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
             </div>
           </div>
         </div>
-        <p class="timeless-scroll-label" aria-hidden="true">SCROLL TO CONTINUE <span>↓</span></p>
       </div>
     </section>
       </div>
     </section>
 
     <!-- V8.52: image-to-typography ceremony transition, inspired by the supplied video. -->
-    <section class="ceremony-cinema" id="ceremony" aria-labelledby="ceremony-title">
+    <section class="ceremony-cinema" id="details" aria-labelledby="ceremony-title">
+      <span id="ceremony" class="section-anchor" aria-hidden="true"></span>
       <div class="ceremony-cinema-sticky">
         <div class="ceremony-cinema-backdrop" aria-hidden="true"></div>
         <div class="ceremony-cinema-hero" aria-hidden="true">
@@ -158,26 +187,6 @@
         </div>
         <div class="ceremony-cinema-index" aria-hidden="true">01 / CEREMONY</div>
       </div>
-    </section>
-
-    <section class="save-date-cinematic" id="details" aria-labelledby="save-date-heading">
-      <div class="save-date-sticky">
-        <div class="save-date-photo" aria-hidden="true"></div>
-        <div class="save-date-photo-shade" aria-hidden="true"></div>
-        <div class="save-date-scene">
-        <h2 class="cinematic-title" id="save-date-heading"><span class="write-title">Save the Date</span></h2>
-        <div class="cinematic-calendar" aria-label="March 2027 wedding calendar">
-          <h3>MARCH 2027</h3>
-          <div class="cinematic-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
-          <div class="cinematic-days"><span class="calendar-cell blank" > </span><span class="calendar-cell " >1</span><span class="calendar-cell " >2</span><span class="calendar-cell wedding-day" aria-label="Wednesday March 3, wedding day">3</span><span class="calendar-cell " >4</span><span class="calendar-cell " >5</span><span class="calendar-cell " >6</span><span class="calendar-cell " >7</span><span class="calendar-cell " >8</span><span class="calendar-cell " >9</span><span class="calendar-cell " >10</span><span class="calendar-cell " >11</span><span class="calendar-cell " >12</span><span class="calendar-cell " >13</span><span class="calendar-cell " >14</span><span class="calendar-cell " >15</span><span class="calendar-cell " >16</span><span class="calendar-cell " >17</span><span class="calendar-cell " >18</span><span class="calendar-cell " >19</span><span class="calendar-cell " >20</span><span class="calendar-cell " >21</span><span class="calendar-cell " >22</span><span class="calendar-cell " >23</span><span class="calendar-cell " >24</span><span class="calendar-cell " >25</span><span class="calendar-cell " >26</span><span class="calendar-cell " >27</span><span class="calendar-cell " >28</span><span class="calendar-cell " >29</span><span class="calendar-cell " >30</span><span class="calendar-cell " >31</span></div>
-        </div>
-        <div class="save-date-bottom">
-          <a class="save-date-calendar-button" target="_blank" rel="noopener noreferrer" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Kenneth+and+Catherine+Wedding&amp;dates=20270303T150000%2F20270303T210000&amp;ctz=Asia%2FManila&amp;details=Celebrate+with+Kenneth+and+Catherine%21"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg> Add to Calendar</a>
-          <div class="save-date-farewell"><p>We cannot wait to celebrate with you.<span class="save-date-see-you">See you in <strong id="see-you-days">—</strong> days!</span></p></div>
-        </div>
-      </div>
-      </div>
-      <div class="save-date-scroll-cue" aria-hidden="true">SCROLL TO CONTINUE ↓</div>
     </section>
 
     <section class="venues-section" id="venues">
@@ -242,6 +251,6 @@
        To use a local copy later, save the library to assets/js/three.min.js
        and change this script URL back to that local path. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <script src="script.js?v=8.70.1"></script>
+  <script src="script.js?v=8.72.0"></script>
 </body>
 </html>
