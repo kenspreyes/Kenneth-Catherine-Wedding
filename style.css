@@ -4795,3 +4795,265 @@ html {scroll-padding-top:76px;}
 @media(max-width:360px) {
   .save-date-panel .instax-frame figcaption {font-size:clamp(11px,3.4vw,13px)!important;white-space:nowrap;}
 }
+
+
+/* ================================================================
+   V8.73 — Compact one-screen Save the Date + seamless film reveal
+   Only Page 3 and its Spotify mini player are affected.
+   ================================================================ */
+/* Keep a continuous moving picture behind the panel, so no pale band
+   can show between the video and the ivory sheet at first scroll. */
+@media (max-width:900px) {
+  .video-countdown-transition .video-countdown-sticky,
+  .video-countdown-transition .film-background {
+    background:#c4c7b6 url("assets/images/video-poster.jpg") center top / cover no-repeat!important;
+  }
+  .video-countdown-transition .film-background {
+    inset:0!important;
+    height:100svh!important;
+    border-radius:0!important;
+    overflow:hidden!important;
+  }
+  .video-countdown-transition .wedding-film {
+    inset:-8px 0 auto 0!important;
+    top:-8px!important;
+    left:0!important;
+    width:100%!important;
+    height:var(--mobile-video-height)!important;
+    min-height:0!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    transform:scale(1.07)!important;
+    transform-origin:center top!important;
+    border-radius:0!important;
+  }
+}
+/* Eliminate oversized top margins and keep the page's contents near
+   the upper portion of the ivory sheet, with no inner scrolling on
+   typical phones. On unusually short screens, overflow remains usable. */
+.video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+  justify-content:flex-start!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  padding:clamp(54px,8svh,76px) clamp(14px,3vw,26px) 12px!important;
+}
+.video-countdown-transition .save-date-panel .timeless-content.save-date-layout {
+  margin:0 auto!important;
+  justify-content:flex-start!important;
+  flex:0 0 auto!important;
+  gap:0!important;
+}
+.save-date-panel .save-date-title {
+  font-size:clamp(45px,5.3vw,68px)!important;
+  line-height:1!important;
+}
+.save-date-panel .save-date-pair {
+  width:min(100%,820px)!important;
+  grid-template-columns:1fr 1fr!important;
+  align-items:center!important;
+  gap:0!important;
+  margin:clamp(11px,1.6svh,17px) auto clamp(12px,1.8svh,18px)!important;
+}
+.save-date-panel .instax-frame {
+  width:min(100%,clamp(230px,25vw,292px))!important;
+  position:relative!important;
+  z-index:2!important;
+  margin:0 -16px 0 auto!important;
+  transform:translateX(16px) rotate(-4deg)!important;
+  box-shadow:0 11px 28px rgba(46,51,40,.19),0 1px 5px rgba(46,51,40,.08)!important;
+}
+.save-date-panel .wedding-calendar {
+  width:min(100%,clamp(242px,27vw,304px))!important;
+  position:relative!important;
+  z-index:1!important;
+  margin:0 auto 0 0!important;
+  padding:clamp(9px,1.3vw,15px) clamp(11px,1.4vw,16px) 10px!important;
+  border-radius:12px!important;
+}
+.save-date-panel .wedding-calendar-heading {
+  margin-bottom:clamp(7px,1vw,11px)!important;
+}
+.save-date-panel .calendar-month {font-size:clamp(31px,3.1vw,39px)!important;}
+.save-date-panel .wedding-calendar-grid {
+  gap:1px 0!important;
+  font-size:clamp(11px,1.2vw,14px)!important;
+}
+.save-date-panel .wedding-calendar-grid > span {
+  width:clamp(24px,2.7vw,31px)!important;
+  height:clamp(23px,2.55vw,29px)!important;
+}
+.save-date-panel .calendar-day-note {
+  font-size:clamp(9px,.9vw,11px)!important;
+  letter-spacing:.045em!important;
+  margin-top:8px!important;
+}
+.save-date-panel .save-date-bottom-content {width:min(100%,650px)!important;}
+.save-date-panel .save-date-countdown-heading {margin-bottom:8px!important;}
+/* Mini Spotify invitation stays small on Page 3; the actual native
+   controls live in the persistent floating dock after guest interaction. */
+.save-date-panel .spotify-mini-player {
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  flex-wrap:nowrap!important;
+  gap:11px!important;
+  width:min(100%,540px)!important;
+  margin:clamp(13px,2svh,20px) auto 0!important;
+  padding:9px 12px!important;
+  border:1px solid #e4e3d8!important;
+  border-radius:15px!important;
+  background:rgba(255,255,255,.78)!important;
+  box-shadow:0 5px 18px rgba(44,61,46,.055)!important;
+}
+.save-date-panel .spotify-mini-art {
+  width:39px;height:39px;
+  flex:0 0 39px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  color:#fff;
+  background:linear-gradient(140deg,#506e55,#2e4c37);
+}
+.save-date-panel .spotify-mini-copy {flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px;}
+.save-date-panel .spotify-mini-copy strong {
+  color:#405b44;
+  font:600 clamp(10px,1vw,12px)/1.15 Montserrat,Arial,sans-serif;
+}
+.save-date-panel .spotify-mini-copy span {
+  color:#8c9789;
+  font:400 clamp(9px,.85vw,10px)/1.15 Montserrat,Arial,sans-serif;
+}
+.save-date-panel .spotify-mini-open {
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  flex:0 0 auto;
+  min-height:34px;
+  padding:0 14px;
+  border:0;border-radius:999px;
+  color:#fff;background:#3c5942;
+  font:600 10px/1 Montserrat,Arial,sans-serif;
+  cursor:pointer;
+}
+.save-date-panel .spotify-mini-open:hover {background:#294b32;}
+.save-date-panel .spotify-mini-open:focus-visible {outline:2px solid #829a80;outline-offset:3px;}
+.spotify-floating-player[hidden] {display:none!important;}
+.spotify-floating-player {
+  position:fixed;
+  z-index:4000;
+  bottom:max(16px,env(safe-area-inset-bottom));
+  right:clamp(10px,2.5vw,30px);
+  width:min(370px,calc(100vw - 20px));
+  padding:10px;
+  border:1px solid rgba(225,230,217,.9);
+  border-radius:19px;
+  background:rgba(250,249,244,.97);
+  box-shadow:0 18px 55px rgba(20,35,23,.22);
+  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);
+  color:#38503d;
+}
+.spotify-floating-top {display:flex;align-items:center;gap:9px;margin-bottom:8px;padding:0 2px;}
+.spotify-floating-title {
+  flex:1 1 auto;min-width:0;
+  font:600 11px/1.2 Montserrat,Arial,sans-serif;
+}
+.spotify-floating-top a {color:#627b62;font:500 9px/1.3 Montserrat,Arial,sans-serif;text-decoration:none;white-space:nowrap;}
+.spotify-floating-top a:hover {text-decoration:underline;}
+.spotify-floating-close {
+  display:grid;place-items:center;flex:0 0 27px;
+  width:27px;height:27px;padding:0;
+  border:0;border-radius:50%;background:#e9ebe4;
+  color:#3b5040;font:400 20px/1 Arial,sans-serif;
+  cursor:pointer;
+}
+.spotify-floating-embed iframe {display:block;width:100%;height:152px;border:0;border-radius:12px;background:#e8e8e6;}
+.spotify-floating-note {font:400 9px/1.4 Montserrat,Arial,sans-serif;color:#879284;margin:7px 3px 0;}
+@media(max-width:900px) {
+  :root {--mobile-video-height:clamp(300px,87vw,475px);}
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    padding:clamp(65px,9svh,78px) 10px 12px!important;
+  }
+  .video-countdown-transition .save-date-panel .timeless-content.save-date-layout {width:min(100%,540px)!important;}
+  .save-date-panel .save-date-title {font-size:clamp(42px,11vw,55px)!important;}
+  .save-date-panel .save-date-pair {
+    width:min(100%,510px)!important;
+    gap:0!important;
+    margin:clamp(11px,1.7svh,16px) auto clamp(13px,2svh,19px)!important;
+  }
+  .save-date-panel .instax-frame {
+    width:min(100%,clamp(154px,49vw,230px))!important;
+    padding:7px 7px 0!important;
+    margin:0 -16px 0 auto!important;
+    transform:translateX(13px) rotate(-4deg)!important;
+  }
+  .save-date-panel .instax-frame figcaption {
+    padding:clamp(11px,1.5svh,15px) 0 clamp(11px,1.6svh,15px)!important;
+    font-size:clamp(13px,3.9vw,19px)!important;
+  }
+  .save-date-panel .wedding-calendar {
+    width:min(100%,clamp(155px,49vw,225px))!important;
+    padding:9px 6px 8px!important;
+  }
+  .save-date-panel .wedding-calendar-heading {margin-bottom:6px!important;}
+  .save-date-panel .calendar-month {font-size:clamp(27px,7.2vw,37px)!important;}
+  .save-date-panel .calendar-year {font-size:8px!important;}
+  .save-date-panel .wedding-calendar-grid {gap:1px 0!important;font-size:clamp(10px,2.7vw,12px)!important;}
+  .save-date-panel .wedding-calendar-grid > span {
+    width:clamp(17px,5.5vw,25px)!important;
+    height:clamp(17px,5.3vw,23px)!important;
+  }
+  .save-date-panel .wedding-calendar-grid .cal-weekday {font-size:9px!important;margin-bottom:1px!important;}
+  .save-date-panel .calendar-day-note {font-size:clamp(8px,2.1vw,10px)!important;margin-top:8px!important;letter-spacing:0!important;}
+  .save-date-panel .save-date-countdown-heading {margin-bottom:8px!important;}
+  .save-date-panel .spotify-mini-player {width:min(100%,490px)!important;margin-top:clamp(11px,1.6svh,17px)!important;padding:8px 10px!important;gap:9px!important;}
+  .save-date-panel .spotify-mini-art {width:36px;height:36px;flex-basis:36px;}
+  .save-date-panel .spotify-mini-copy strong {font-size:11px;}
+  .save-date-panel .spotify-mini-copy span {font-size:9px;}
+  .save-date-panel .spotify-mini-open {min-height:33px;padding:0 12px;font-size:10px;}
+  .spotify-floating-player {bottom:max(8px,env(safe-area-inset-bottom));right:8px;width:calc(100vw - 16px);}
+}
+@media(max-width:360px) {
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {padding:clamp(52px,8svh,62px) 7px 9px!important;}
+  .save-date-panel .save-date-title {font-size:clamp(35px,10.5vw,43px)!important;}
+  .save-date-panel .save-date-pair {margin:9px auto 11px!important;}
+  .save-date-panel .instax-frame {width:min(100%,49vw)!important;}
+  .save-date-panel .instax-frame figcaption {padding:8px 0 9px!important;font-size:clamp(11px,3.5vw,14px)!important;}
+  .save-date-panel .wedding-calendar {width:min(100%,49vw)!important;padding:6px 4px!important;}
+  .save-date-panel .wedding-calendar-heading {margin-bottom:4px!important;}
+  .save-date-panel .calendar-month {font-size:25px!important;}
+  .save-date-panel .calendar-year {font-size:7px!important;}
+  .save-date-panel .wedding-calendar-grid {gap:0!important;font-size:10px!important;}
+  .save-date-panel .wedding-calendar-grid > span {width:clamp(16px,5.3vw,19px)!important;height:clamp(16px,5vw,18px)!important;}
+  .save-date-panel .calendar-day-note {font-size:8px!important;margin-top:5px!important;}
+  .save-date-panel .save-date-countdown-heading {font-size:8px!important;margin-bottom:5px!important;}
+  .save-date-panel .spotify-mini-player {margin-top:9px!important;padding:6px 9px!important;}
+  .save-date-panel .spotify-mini-art {width:33px;height:33px;flex-basis:33px;}
+  .save-date-panel .spotify-mini-copy span {display:none;}
+}
+@media(max-width:900px) and (max-height:700px) {
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {padding-top:clamp(42px,7svh,55px)!important;}
+  .save-date-panel .save-date-pair {margin-top:7px!important;margin-bottom:9px!important;}
+  .save-date-panel .instax-frame {width:min(100%,clamp(135px,31svh,185px))!important;}
+  .save-date-panel .instax-frame figcaption {padding:8px 0 9px!important;}
+  .save-date-panel .wedding-calendar {width:min(100%,clamp(142px,34svh,185px))!important;}
+  .save-date-panel .wedding-calendar-grid > span {height:clamp(16px,3.1svh,21px)!important;}
+  .save-date-panel .save-date-countdown-heading {margin-bottom:5px!important;}
+  .save-date-panel .spotify-mini-player {margin-top:9px!important;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .save-date-panel .timeless-value.is-ticking {animation:none!important;}
+}
+/* Final calendar refinement: a denser, more square date grid. */
+@media (max-width:900px) {
+  .save-date-panel .wedding-calendar-grid > span {
+    height:clamp(17px,4.7vw,20px)!important;
+  }
+  .save-date-panel .wedding-calendar-heading {margin-bottom:5px!important;}
+  .save-date-panel .calendar-day-note {
+    font-size:clamp(9px,2.25vw,10px)!important;
+    margin-top:7px!important;
+  }
+}
+@media (max-width:360px) {
+  .save-date-panel .wedding-calendar-grid > span {height:16px!important;}
+  .save-date-panel .calendar-day-note {font-size:8.5px!important;}
+}

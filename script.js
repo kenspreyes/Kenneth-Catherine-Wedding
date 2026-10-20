@@ -1033,3 +1033,45 @@
     if (image.naturalWidth) loaded(); else failed();
   }
 })();
+
+
+/* V8.73 — Persistent, user-initiated Spotify mini player.
+   Spotify provides and controls the music stream. This cannot bypass Spotify's
+   preview/full-song restrictions. The iframe remains mounted while scrolling. */
+(() => {
+  'use strict';
+  const openButton = document.getElementById('spotify-mini-open');
+  const dock = document.getElementById('spotify-floating-player');
+  const closeButton = document.getElementById('spotify-floating-close');
+  const mount = document.getElementById('spotify-floating-embed');
+  if (!openButton || !dock || !closeButton || !mount) return;
+  let created = false;
+  function showPlayer() {
+    if (!created) {
+      const iframe = document.createElement('iframe');
+      iframe.className = 'spotify-floating-iframe';
+      iframe.title = 'Our Wedding Playlist — Spotify player';
+      iframe.src = 'https://open.spotify.com/embed/playlist/6wj5VQjk7lsOiR09ja201V?utm_source=generator&theme=0';
+      iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+      iframe.setAttribute('loading', 'eager');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      mount.appendChild(iframe);
+      created = true;
+    }
+    dock.hidden = false;
+    openButton.setAttribute('aria-expanded', 'true');
+    closeButton.focus({preventScroll:true});
+  }
+  function hidePlayer() {
+    // Hide without removing/reloading the iframe; Spotify controls whether
+    // playback continues in a hidden embedded player.
+    dock.hidden = true;
+    openButton.setAttribute('aria-expanded', 'false');
+    openButton.focus({preventScroll:true});
+  }
+  openButton.addEventListener('click', showPlayer);
+  closeButton.addEventListener('click', hidePlayer);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !dock.hidden) hidePlayer();
+  });
+})();
