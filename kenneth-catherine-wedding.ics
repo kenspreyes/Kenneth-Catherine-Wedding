@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kenneth and Catherine//Wedding Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:kenneth-catherine-wedding-20270303@wedding.example
+DTSTAMP:20261020T000000Z
+DTSTART:20270303T070000Z
+DTEND:20270303T080000Z
+SUMMARY:Kenneth & Catherine's Wedding Ceremony
+LOCATION:Hearts of Jesus and Mary Parish Church\, Mojon\, Malolos City\, Bulacan\, Philippines
+DESCRIPTION:Please arrive by 2:00 PM. Ceremony begins at 3:00 PM at Hearts of Jesus and Mary Parish Church\, Mojon\, Malolos City\, Bulacan. Reception at 5:00 PM at The Alfredos Events Place & Private Resort\, Pulilan\, Bulacan.
+END:VEVENT
+END:VCALENDAR

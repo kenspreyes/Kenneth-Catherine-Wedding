@@ -206,7 +206,7 @@
   });
 
   window.updateWeddingSignature(reduced?1:0);
-  console.info('[Kenneth & Catherine] Website v8.72.0 — Save the Date refinements loaded');
+  console.info('[Kenneth & Catherine] Website v8.74.0 — Save the Date calendar and centered layout loaded');
 })();
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
@@ -234,8 +234,6 @@
         element.classList.add('is-ticking');
       }
     });
-    const seeYou=document.getElementById("see-you-days");
-    if(seeYou)seeYou.textContent=String(values[0]);
   }
   update();
   setInterval(update, 1000);
@@ -1035,43 +1033,128 @@
 })();
 
 
-/* V8.73 — Persistent, user-initiated Spotify mini player.
-   Spotify provides and controls the music stream. This cannot bypass Spotify's
-   preview/full-song restrictions. The iframe remains mounted while scrolling. */
+
+/* V8.75 — Spotify player stays embedded on Page 3. Its iframe is created
+   once, never moved or destroyed, so audio can continue as guests scroll.
+   Official Spotify IFrame API supplies pause/play for the tiny floating
+   control when available. Spotify decides song/preview availability. */
 (() => {
   'use strict';
-  const openButton = document.getElementById('spotify-mini-open');
-  const dock = document.getElementById('spotify-floating-player');
-  const closeButton = document.getElementById('spotify-floating-close');
-  const mount = document.getElementById('spotify-floating-embed');
-  if (!openButton || !dock || !closeButton || !mount) return;
-  let created = false;
-  function showPlayer() {
-    if (!created) {
-      const iframe = document.createElement('iframe');
-      iframe.className = 'spotify-floating-iframe';
-      iframe.title = 'Our Wedding Playlist — Spotify player';
-      iframe.src = 'https://open.spotify.com/embed/playlist/6wj5VQjk7lsOiR09ja201V?utm_source=generator&theme=0';
-      iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
-      iframe.setAttribute('loading', 'eager');
-      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      mount.appendChild(iframe);
-      created = true;
+  const PLAYLIST_ID = '6wj5VQjk7lsOiR09ja201V';
+  const PLAYLIST_URI = `spotify:playlist:${PLAYLIST_ID}`;
+  const open = document.getElementById('spotify-mini-open');
+  const area = document.getElementById('spotify-inline-embed');
+  const mount = document.getElementById('spotify-iframe-mount');
+  const quick = document.getElementById('spotify-quick-control');
+  const card = document.getElementById('spotify-playlist');
+  if (!open || !area || !mount || !quick || !card) return;
+
+  let controller = null;
+  let started = false;
+  let isPaused = true;
+  let playerVisible = false;
+  let opened = false;
+  let apiRequested = false;
+  let fallbackLoaded = false;
+
+  const updateQuick = () => {
+    // No floating UI while the inline Spotify player is visible, or before
+    // the listener has actually started playback. The controller is needed
+    // to provide an honest, functional pause/play button.
+    quick.hidden = !started || !controller || playerVisible;
+    quick.classList.toggle('is-paused', isPaused);
+    quick.setAttribute('aria-label', isPaused ? 'Resume wedding playlist' : 'Pause wedding playlist');
+    quick.title = isPaused ? 'Resume wedding playlist' : 'Pause wedding playlist';
+    quick.setAttribute('aria-pressed', String(!isPaused));
+  };
+
+  // An iframe fallback remains usable if Spotify's control API is blocked.
+  // It is never removed or replaced once mounted.
+  function loadFallback() {
+    if (controller || fallbackLoaded || mount.querySelector('iframe')) return;
+    fallbackLoaded = true;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0`;
+    iframe.title = 'Our Wedding Playlist — Spotify';
+    iframe.width = '100%';
+    iframe.height = '152';
+    iframe.loading = 'eager';
+    iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    mount.appendChild(iframe);
+  }
+
+  function createPlayer(API) {
+    if (fallbackLoaded || controller || mount.querySelector('iframe')) return;
+    API.createController(mount, {
+      uri: PLAYLIST_URI,
+      width: '100%',
+      height: 152,
+      theme: 0
+    }, embedController => {
+      controller = embedController;
+      controller.addListener('playback_update', event => {
+        const data = event && event.data ? event.data : {};
+        if (typeof data.isPaused === 'boolean') {
+          isPaused = data.isPaused;
+          if (!isPaused) started = true;
+          updateQuick();
+        }
+      });
+      updateQuick();
+    });
+  }
+
+  function requestSpotify() {
+    if (apiRequested) return;
+    apiRequested = true;
+    // Spotify invokes this callback once the official API script is ready.
+    window.onSpotifyIframeApiReady = API => {
+      try { createPlayer(API); }
+      catch (error) { loadFallback(); }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://open.spotify.com/embed/iframe-api/v1';
+    script.async = true;
+    script.onerror = loadFallback;
+    document.head.appendChild(script);
+    // Covers network filters that silently block the API script.
+    window.setTimeout(() => { if (!controller && !mount.querySelector('iframe')) loadFallback(); }, 7000);
+  }
+
+  open.addEventListener('click', () => {
+    if (opened) {
+      area.scrollIntoView({behavior:'smooth',block:'nearest'});
+      return;
     }
-    dock.hidden = false;
-    openButton.setAttribute('aria-expanded', 'true');
-    closeButton.focus({preventScroll:true});
-  }
-  function hidePlayer() {
-    // Hide without removing/reloading the iframe; Spotify controls whether
-    // playback continues in a hidden embedded player.
-    dock.hidden = true;
-    openButton.setAttribute('aria-expanded', 'false');
-    openButton.focus({preventScroll:true});
-  }
-  openButton.addEventListener('click', showPlayer);
-  closeButton.addEventListener('click', hidePlayer);
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !dock.hidden) hidePlayer();
+    opened = true;
+    area.hidden = false;
+    open.setAttribute('aria-expanded','true');
+    open.innerHTML = '<span aria-hidden="true">♫</span> Playlist open';
+    requestSpotify();
+    updateQuick();
   });
+
+  quick.addEventListener('click', () => {
+    if (!controller) return;
+    // togglePlay is the official controller method. The playback_update
+    // event will sync the icon after Spotify confirms the change.
+    controller.togglePlay();
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      playerVisible = entries.some(entry => entry.isIntersecting);
+      updateQuick();
+    }, {threshold:0.25});
+    observer.observe(card);
+  } else {
+    const onScroll = () => {
+      const rect = card.getBoundingClientRect();
+      playerVisible = rect.bottom > 0 && rect.top < innerHeight;
+      updateQuick();
+    };
+    addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  }
 })();
