@@ -8116,3 +8116,237 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
   content: none;
   display: none;
 }
+
+
+/* V9.06 — warm, restrained sunrays inspired by the Sun lamp in Butterfly.blend.
+   Decorative only; no effect on calendar layout, text, or controls. */
+.video-countdown-transition .save-date-panel .wedding-calendar {
+  position:relative;
+}
+.video-countdown-transition .save-date-panel .calendar-sunrays {
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(ellipse at 91% 2%,rgba(255,227,166,.34),transparent 54%),
+    repeating-conic-gradient(from 206deg at 90% 2%,
+      rgba(232,197,120,.12) 0deg 5deg,transparent 5deg 17deg);
+  -webkit-mask-image:radial-gradient(ellipse at 87% 5%,#000 0%,transparent 77%);
+  mask-image:radial-gradient(ellipse at 87% 5%,#000 0%,transparent 77%);
+  filter:blur(6px);
+  transition:opacity 1.6s ease;
+}
+.video-countdown-transition .save-date-panel .calendar-sunrays.is-active {opacity:.7;}
+.video-countdown-transition .save-date-panel .wedding-calendar-heading,
+.video-countdown-transition .save-date-panel .wedding-calendar-grid,
+.video-countdown-transition .save-date-panel .calendar-day-note {
+  position:relative;
+  z-index:1;
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .save-date-panel .calendar-sunrays {transition:none;opacity:0!important;}
+}
+
+
+/* V9.07 — Butterfly flies ONLY within the rounded ivory Save the Date panel.
+   The original wedding film and ring animation are untouched. */
+.video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+  position:relative!important;
+  isolation:isolate;
+}
+.video-countdown-transition .save-date-panel #butterfly-3d-container.butterfly-flight-panel {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  border-radius:inherit;
+  pointer-events:none!important;
+  z-index:12;
+  contain:layout style paint;
+  background:transparent!important;
+}
+.video-countdown-transition .save-date-panel #butterfly-3d-container.butterfly-flight-panel canvas {
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  background:transparent!important;
+  pointer-events:none;
+}
+/* Reserve one small landing shelf immediately below the number 3, so the
+   butterfly never overlaps the following Wednesday dates 10 or 17. */
+.video-countdown-transition .save-date-panel .wedding-calendar-grid > span:nth-child(n+15):nth-child(-n+21) {
+  margin-top:clamp(25px,3.1vw,32px);
+}
+/* Subtle olive halo makes March 3 unmistakably the highlighted wedding date. */
+.video-countdown-transition .save-date-panel .wedding-calendar.butterfly-has-landed #calendar-wedding-day {
+  border-radius:50%!important;
+  outline:1.5px solid rgba(104,130,81,.74)!important;
+  outline-offset:1px;
+  background:rgba(198,216,178,.26)!important;
+  transition:background .35s ease,outline-color .35s ease;
+}
+/* No flight traces, sparkle particles or trail effects. */
+#butterfly-3d-container .butterfly-3d-dust,
+.butterfly-trail-canvas,.butterfly-trace-particles {display:none!important;}
+
+
+/* V9.08 — compact horizontal event timeline, inspired by the reference's icon/rail rhythm. */
+.wedding-day-editorial .day-schedule{
+  width:min(100%,1180px);max-width:1180px;
+  padding:clamp(36px,5vw,60px) clamp(8px,2vw,28px) clamp(35px,4vw,54px);
+  margin-top:clamp(65px,8vw,105px);
+}
+.wedding-day-editorial .day-schedule h3{font-size:clamp(46px,6vw,72px)}
+.wedding-day-editorial .schedule-intro{margin-bottom:clamp(28px,4vw,44px)}
+.wedding-day-editorial .schedule-items{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+  max-width:none;width:100%;margin:0;gap:0;
+}
+.wedding-day-editorial .schedule-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  min-width:0;min-height:0;gap:0;padding:0 3px;
+  text-align:center;position:relative;
+  grid-template-columns:none;
+}
+.wedding-day-editorial .schedule-icon{
+  display:flex;align-items:center;justify-content:center;
+  height:54px;width:54px;margin:0 auto 11px;
+  color:#6c8066;
+}
+.wedding-day-editorial .schedule-icon svg{width:45px;height:45px;display:block}
+.wedding-day-editorial .schedule-rail{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:15px;position:relative;margin-bottom:13px;
+}
+.wedding-day-editorial .schedule-rail::before{
+  content:"";height:1.5px;position:absolute;left:0;right:0;top:calc(50% - .75px);
+  background:#bfcbb8;
+}
+.wedding-day-editorial .schedule-item:first-child .schedule-rail::before{left:50%}
+.wedding-day-editorial .schedule-item:last-child .schedule-rail::before{right:50%}
+.wedding-day-editorial .schedule-dot{
+  display:block;position:relative;z-index:1;
+  width:11px;height:11px;border-radius:50%;background:#7b9073;
+  box-shadow:0 0 0 3px #f8f5ee;
+}
+.wedding-day-editorial .schedule-dot::after,
+.wedding-day-editorial .schedule-item:not(:last-child) .schedule-dot::after{display:none!important;content:none!important}
+.wedding-day-editorial .schedule-item time{
+  display:block;white-space:nowrap;font:600 clamp(10px,1.05vw,13px)/1.45 Montserrat,Arial,sans-serif;
+  color:#425943;letter-spacing:.015em;margin:0 0 6px;
+}
+.wedding-day-editorial .schedule-item strong{
+  display:block;max-width:150px;font:500 clamp(10px,1.1vw,13px)/1.5 Montserrat,Arial,sans-serif;
+  color:#52634e;letter-spacing:0;overflow-wrap:normal;
+}
+/* V9.08 — three illustrated dress-code cards with a small understated divider. */
+.wedding-attire{padding:clamp(72px,8vw,115px) clamp(15px,3vw,30px)}
+.wedding-attire .attire-inner{width:min(100%,1210px);max-width:1210px}
+.wedding-attire .attire-section-divider{width:37px;height:2px;background:#bdc8b6;margin:22px auto 0;border-radius:1px}
+.wedding-attire .attire-description{max-width:770px;margin:26px auto 42px;font:400 clamp(13px,1.4vw,16px)/1.8 'Libre Baskerville',Georgia,serif;color:#647161}
+.wedding-attire .attire-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);align-items:stretch;text-align:center}
+.wedding-attire .attire-category{
+  display:flex;flex-direction:column;align-items:center;min-height:0;min-width:0;
+  padding:clamp(19px,2.5vw,30px) clamp(10px,1.4vw,22px) 25px;
+  border:1px solid rgba(133,153,126,.47);background:rgba(255,254,247,.56);
+  border-radius:9px;overflow:hidden;
+}
+.wedding-attire .attire-category h3{
+  font:400 clamp(29px,3.2vw,41px)/1.08 'Cormorant Garamond',Georgia,serif;
+  color:#3c4d3c;margin:0;min-height:45px;
+}
+.wedding-attire .attire-rule{width:33px;height:1.5px;background:#b5c3ad;margin:15px auto 8px;flex:none}
+.wedding-attire .attire-people{
+  display:block;object-fit:contain;object-position:center bottom;
+  width:100%;height:clamp(210px,24vw,295px);margin:0 auto 14px;
+  filter:saturate(.86);
+}
+.wedding-attire .attire-card-swatches{
+  display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;
+  width:100%;gap:10px clamp(6px,.7vw,13px);margin:0 0 20px;
+}
+.wedding-attire .attire-card-swatch{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:43px}
+.wedding-attire .attire-card-swatch i{
+  width:28px;height:28px;border-radius:50%;background:var(--swatch);
+  border:1px solid rgba(87,105,77,.12);box-shadow:0 1px 3px rgba(35,48,34,.06);
+}
+.wedding-attire .attire-card-swatch small{font:500 9px/1.25 Montserrat,Arial,sans-serif;color:#566552;white-space:nowrap}
+.wedding-attire .attire-card-caption{font:400 clamp(17px,2vw,22px)/1.25 'Cormorant Garamond',Georgia,serif;color:#425642;margin:auto 0 5px}
+.wedding-attire .attire-card-note{font:500 9px/1.5 Montserrat,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#7b8574;margin:0}
+@media(max-width:850px){
+  .wedding-day-editorial .schedule-items{grid-template-columns:repeat(12,minmax(0,1fr));row-gap:27px}
+  .wedding-day-editorial .schedule-item{grid-column:span 3}
+  .wedding-day-editorial .schedule-item:nth-child(n+5){grid-column:span 4}
+  .wedding-day-editorial .schedule-item:nth-child(4) .schedule-rail::before{right:50%}
+  .wedding-day-editorial .schedule-item:nth-child(5) .schedule-rail::before{left:50%}
+  .wedding-day-editorial .schedule-item time{font-size:11px}
+  .wedding-day-editorial .schedule-item strong{font-size:11px}
+  .wedding-attire .attire-category-grid{grid-template-columns:1fr;max-width:530px;margin:auto;gap:18px}
+  .wedding-attire .attire-category{padding:24px 18px 26px}
+  .wedding-attire .attire-people{height:clamp(250px,62vw,370px);max-width:480px}
+  .wedding-attire .attire-category h3{font-size:39px;min-height:0}
+  .wedding-attire .attire-card-swatches{gap:10px 16px}
+  .wedding-attire .attire-card-swatch i{width:31px;height:31px}
+}
+@media(max-width:480px){
+  .wedding-day-editorial .day-schedule{padding:35px 0 38px;margin-top:72px}
+  .wedding-day-editorial .day-schedule h3{font-size:clamp(44px,12vw,60px)}
+  .wedding-day-editorial .schedule-intro{font-size:13px;margin-bottom:30px}
+  .wedding-day-editorial .schedule-items{row-gap:23px}
+  .wedding-day-editorial .schedule-item{padding:0 1px}
+  .wedding-day-editorial .schedule-icon{width:41px;height:43px;margin-bottom:6px}
+  .wedding-day-editorial .schedule-icon svg{width:34px;height:34px}
+  .wedding-day-editorial .schedule-rail{margin-bottom:9px}
+  .wedding-day-editorial .schedule-dot{width:9px;height:9px;box-shadow:0 0 0 2px #f8f5ee}
+  .wedding-day-editorial .schedule-item time{font-size:clamp(8px,2.45vw,10px);letter-spacing:-.02em;margin-bottom:5px}
+  .wedding-day-editorial .schedule-item strong{font-size:clamp(8px,2.45vw,10px);line-height:1.4;max-width:100px}
+  .wedding-attire .attire-description{font-size:13px;line-height:1.8;margin-bottom:28px}
+  .wedding-attire .attire-category{padding:22px 10px 25px}
+  .wedding-attire .attire-category h3{font-size:34px}
+  .wedding-attire .attire-people{height:clamp(225px,71vw,320px);margin-bottom:12px}
+  .wedding-attire .attire-card-swatch{min-width:39px}
+  .wedding-attire .attire-card-swatch small{font-size:8px}
+  .wedding-attire .attire-card-swatch i{width:27px;height:27px}
+}
+
+/* V9.09 — refined illustrated attire guide, with no dividers beneath category titles. */
+.wedding-attire .attire-category{justify-content:flex-start}
+.wedding-attire .attire-category h3{min-height:0;margin:0 0 10px}
+.wedding-attire .attire-category .attire-rule{display:none!important}
+.wedding-attire .attire-people{
+  width:100%;height:clamp(215px,26vw,320px);margin:0 auto 12px;
+  object-fit:contain;object-position:center bottom;filter:none;
+}
+.wedding-attire .attire-card-swatches{margin:2px 0 2px;gap:12px clamp(8px,1vw,16px)}
+.wedding-attire .attire-card-caption,.wedding-attire .attire-card-note{display:none}
+.wedding-attire .attire-color-reminders{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
+  margin:20px 0 0;padding:17px 20px;
+  border:1px solid rgba(133,153,126,.25);border-radius:9px;
+  background:rgba(230,233,217,.28);
+}
+.wedding-attire .attire-color-reminder{
+  display:flex;align-items:center;justify-content:center;gap:15px;
+  padding:2px 20px;margin:0;min-width:0;
+  color:#596752;text-align:left;font:400 clamp(12px,1.2vw,14px)/1.7 'Libre Baskerville',Georgia,serif;
+}
+.wedding-attire .attire-color-reminder+.attire-color-reminder{border-left:1px solid rgba(133,153,126,.37)}
+.wedding-attire .attire-color-reminder svg{
+  width:45px;height:45px;flex:none;fill:none;stroke:#7c8972;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;
+}
+.wedding-attire .attire-color-reminder strong{font-weight:700;color:#3f503e}
+@media(max-width:850px){
+  .wedding-attire .attire-people{height:clamp(240px,65vw,380px);max-width:480px}
+  .wedding-attire .attire-category h3{margin-bottom:12px}
+  .wedding-attire .attire-color-reminders{grid-template-columns:1fr;gap:13px;max-width:530px;margin:20px auto 0;padding:17px}
+  .wedding-attire .attire-color-reminder{justify-content:flex-start;padding:0;gap:13px}
+  .wedding-attire .attire-color-reminder+.attire-color-reminder{border-left:0;border-top:1px solid rgba(133,153,126,.3);padding-top:13px}
+}
+@media(max-width:480px){
+  .wedding-attire .attire-people{height:clamp(235px,77vw,355px)}
+  .wedding-attire .attire-color-reminder{font-size:12px;line-height:1.65}
+  .wedding-attire .attire-color-reminder svg{width:37px;height:37px}
+}

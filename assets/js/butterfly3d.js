@@ -1,8 +1,8 @@
 /**
- * Kenneth & Catherine — V8.99, cinematic corner-to-calendar butterfly flight.
+ * Kenneth & Catherine — V9.07, sage-green original Blender butterfly + panel-contained flight.
  * A separate, lazy-loaded Three.js scene; the wedding rings are not touched.
- * The butterfly enters from the UPPER-RIGHT CORNER OF THE VIEWPORT, follows
- * an arcing flight with gentle banks, then lands beneath March 3.
+ * The butterfly enters from the LOWER-RIGHT of the ivory Save the Date panel,
+ * stays within its rounded boundaries, and lands in a reserved space under 3.
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -14,15 +14,16 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
   const calendar = overlay?.closest('.wedding-calendar');
   if (!overlay || !day || !calendar) return;
 
-  // A calendar-sized canvas clips the butterfly at the calendar boundary.
-  // Move ONLY the butterfly overlay to <body>, leaving the calendar and all
-  // other website elements unchanged. This lets it cross the full page view.
-  document.body.appendChild(overlay);
-  overlay.classList.add('butterfly-flight-viewport');
+  // Keep the canvas INSIDE the ivory rounded Save the Date panel, not in
+  // <body>. This prevents the butterfly from appearing over the wedding film.
+  const stage = overlay.closest('.save-date-stage');
+  if (!stage) return;
+  stage.appendChild(overlay);
+  overlay.classList.add('butterfly-flight-panel');
   overlay.style.visibility = 'hidden';
 
   const MODEL_URL = 'assets/models/butterfly.glb';
-  const FLIGHT_MS = 5200;
+  const FLIGHT_MS = 6200;
   const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
   const mix = (a, b, t) => a + (b - a) * t;
   const smooth = t => { t = clamp(t, 0, 1); return t*t*(3-2*t); };
@@ -30,12 +31,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
   const variation = Array.from({length: 8}, () => Math.random()*2-1);
 
   let scene, camera, renderer, butterfly, mixer;
-  let actions = [], loaded = false, initializing = false;
+  let actions = [], wingParts = [], loaded = false, initializing = false;
   let inView = false, started = false, progress = 0;
   let lastTime = 0, frameId = 0, viewportW = 0, viewportH = 0;
   let modelPixels = 54;
-  let dust = [];
   let forceReplay = false;
+  let entrance = null;
   const clock = new THREE.Clock();
 
   // Cubic Bezier points are in VIEWPORT coordinates, not calendar coordinates.
@@ -46,73 +47,99 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
   function xy(a,b,c,d,t) {
     return {x:bezier(a.x,b.x,c.x,d.x,t), y:bezier(a.y,b.y,c.y,d.y,t)};
   }
+  // Landing point is anchored to the actual March 3 DOM cell.
+  // A reserved gap beneath the first calendar week ensures the butterfly
+  // cannot cover the numbers 10 or 17 (especially on narrow phones).
   function landingPoint() {
     const rect = day.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
     return {
-      x: rect.left + rect.width*.53 + 3,
-      y: rect.bottom + Math.max(15,modelPixels*.40)
+      x: rect.left + rect.width * .5 - stageRect.left,
+      y: rect.bottom - stageRect.top + clamp(modelPixels*.32, 9, 15)
     };
   }
+
+  // Entrance is the LOWER-RIGHT corner of the visible ivory panel.
+  // The coordinates are local to that panel and cannot enter the video.
+  function entrancePoint() {
+    const rect = stage.getBoundingClientRect();
+    const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+    const safeBottom = visibleBottom > Math.max(0,rect.top)+90
+      ? visibleBottom-rect.top : stage.clientHeight;
+    return {
+      x: Math.max(modelPixels,stage.clientWidth-modelPixels*.75),
+      y: clamp(safeBottom-modelPixels*.75,modelPixels,stage.clientHeight-modelPixels*.55)
+    };
+  }
+
   function flightPoint(rawT) {
-    const t = clamp(rawT,0,1);
+    const t = smooth(clamp(rawT, 0, 1));
     const end = landingPoint();
     const w = viewportW, h = viewportH;
-    const start = {x:w + modelPixels*.6, y:-modelPixels*.6};
-    const entry = {x:w*.85, y:Math.min(h*.18, end.y*.46)};
+    const start = entrance || entrancePoint();
+    // Four connected, gently curving arcs; approach the date from below,
+    // not from the video above the panel.
+    const entry = {
+      x: clamp(w*.79,modelPixels,w-modelPixels*.5),
+      y: mix(start.y,end.y,.24)
+    };
+    const swoop = {
+      x: clamp(end.x-w*.21,modelPixels*.8,w*.73),
+      y: mix(start.y,end.y,.58)
+    };
     const approach = {
-      x:end.x + clamp(w*.15,45,115),
-      y:end.y - clamp(h*.19,65,125)
+      x: clamp(end.x+Math.min(w*.12,95),modelPixels*.5,w-modelPixels*.5),
+      y: end.y + clamp(h*.12,45,108)
     };
-    const hover = {
-      x:end.x + clamp(w*.055,16,45),
-      y:end.y - Math.max(30,modelPixels*.80)
-    };
-    // Ease only at the beginning and end. Keep speed through the middle
-    // so the butterfly does not stop unnaturally at each curve join.
-    const phase=smooth(t);
-    if (phase < .38) {
-      const u=phase/.38;
-      return xy(start,
-        {x:w*.98,y:h*.08},
-        {x:entry.x+w*.08,y:entry.y-h*.10},
-        entry,u);
+    if (t<.29) {
+      const u=t/.29;
+      return xy(start,{x:start.x-w*.025,y:mix(start.y,entry.y,.35)},
+        {x:entry.x+w*.07,y:mix(start.y,entry.y,.83)},entry,u);
     }
-    if (phase < .78) {
-      const u=(phase-.38)/.40;
-      return xy(entry,
-        {x:entry.x-w*.085,y:entry.y+h*.11},
-        {x:approach.x+w*.045,y:approach.y-h*.09},
-        approach,u);
+    if (t<.57) {
+      const u=(t-.29)/.28;
+      return xy(entry,{x:entry.x-w*.15,y:entry.y-h*.05},
+        {x:swoop.x+w*.07,y:swoop.y+h*.06},swoop,u);
     }
-    // Final curve: gentle hover, then a slow touchdown below March 3.
-    const u=(phase-.78)/.22;
-    return xy(approach,
-      {x:approach.x-w*.025,y:approach.y+h*.055},
-      {x:hover.x,y:hover.y},
-      end,u);
+    if (t<.82) {
+      const u=(t-.57)/.25;
+      return xy(swoop,{x:swoop.x+w*.05,y:swoop.y-h*.08},
+        {x:approach.x-w*.08,y:approach.y+h*.07},approach,u);
+    }
+    const u=(t-.82)/.18;
+    return xy(approach,{x:approach.x-w*.03,y:approach.y-h*.06},
+      {x:end.x+modelPixels*.08,y:end.y+modelPixels*.32},end,u);
+  }
+
+  // Wing pivots are separate named meshes reconstructed from the original
+  // Blender file. They are animated in Three.js because the Blender 2.60
+  // armature data is not portable to this lightweight reconstructed GLB.
+  function animateWings(now) {
+    if (!wingParts.length) return;
+    const landed=smooth((progress-.83)/.17);
+    const flutterTime=now*.044;
+    const asymmetry=.06*Math.sin(now*.0028+variation[0]);
+    for (const {mesh, side, hind} of wingParts) {
+      const phase=flutterTime-(hind?.30:0)+(side<0?.045:-.045);
+      const wave=.5+.5*Math.sin(phase);
+      const flyingAngle=.12+1.02*(1-wave)+asymmetry;
+      const restingAngle=.86+.055*Math.sin(now*.003+(hind?.7:0));
+      mesh.rotation.y=side*mix(flyingAngle,restingAngle,landed);
+      mesh.rotation.x=(hind?-.055:.035)*Math.sin(phase*.5)*(1-landed);
+    }
   }
 
   function resize() {
     if (!renderer) return;
-    const w=Math.max(1,window.innerWidth),h=Math.max(1,window.innerHeight);
+    const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);
     if (w===viewportW && h===viewportH) return;
     viewportW=w; viewportH=h;
     camera.left=0;camera.right=w;camera.top=0;camera.bottom=h;
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
     renderer.setSize(w,h,false);
-    modelPixels=clamp(Math.min(w*.14,h*.13),38,76);
+    modelPixels=clamp(Math.min(w*.095,h*.08),30,46);
     paint();
-  }
-
-  function makeDust() {
-    dust=Array.from({length:30},(_,i)=>{
-      const el=document.createElement('span');
-      el.className='butterfly-3d-dust';
-      overlay.appendChild(el);
-      return {el, lag:.014+i*.0067, dx:variation[i%8]*6+(Math.random()-.5)*9,
-        dy:(Math.random()-.5)*11, size:.65+Math.random()*1.4};
-    });
   }
 
   function paint() {
@@ -123,30 +150,19 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     const p2=flightPoint(clamp(t+.003,0,1));
     const dx=p2.x-p1.x, dy=p2.y-p1.y;
     const heading=Math.atan2(dy,dx);
-    const airborne=1-smooth((t-.80)/.20);
-    const hoverAmount=1-smooth((t-.73)/.27);
-    butterfly.position.set(p.x,p.y+Math.sin(t*57+variation[2])*3.6*hoverAmount,0);
+    const airborne=1-smooth((t-.82)/.18);
+    const hoverAmount=1-smooth((t-.76)/.24);
+    butterfly.position.set(p.x,p.y+(Math.sin(t*51+variation[2])*3.4+Math.sin(t*91)*1.1)*hoverAmount,0);
     // Bank through turns; a small yaw exposes the thickness of real 3D wings.
-    butterfly.rotation.z=clamp(Math.sin(heading)*-.22,-.30,.30)*airborne +
-      Math.sin(t*18+variation[3])*.075*airborne;
-    butterfly.rotation.y=(Math.sin(t*13+variation[4])*.26 + .07)*airborne;
+    butterfly.rotation.z=clamp(Math.sin(heading)*-.31,-.39,.39)*airborne +
+      Math.sin(t*21+variation[3])*.075*airborne;
+    butterfly.rotation.y=(Math.sin(t*14+variation[4])*.29 + .08)*airborne;
     butterfly.rotation.x=Math.sin(t*9+variation[5])*.09*airborne;
-    const perspective=mix(1.16,.70,smooth(t));
+    const perspective=mix(1.23,.70,smooth(t));
     butterfly.scale.setScalar(modelPixels*perspective);
     butterfly.visible=started && (t>.006 || reduced.matches);
-    for (const dot of dust) {
-      const tailT=t-dot.lag;
-      const active=started && !reduced.matches && t<.91 &&
-        tailT>0 && tailT<1 && t>.02;
-      if (!active) {dot.el.style.opacity='0';continue;}
-      const q=flightPoint(tailT);
-      const alpha=.62*(1-smooth(dot.lag/.24))*smooth(t/.07);
-      dot.el.style.setProperty('--dust-x',`${(q.x+dot.dx).toFixed(1)}px`);
-      dot.el.style.setProperty('--dust-y',`${(q.y+dot.dy).toFixed(1)}px`);
-      dot.el.style.setProperty('--dust-alpha',alpha.toFixed(3));
-      dot.el.style.setProperty('--dust-size',dot.size.toFixed(2));
-      dot.el.style.opacity='';
-    }
+    // Highlight the date itself only when the butterfly lands.
+    calendar.classList.toggle('butterfly-has-landed',t>=.995 && started);
     overlay.dataset.flightState=t>=1?'landed':t>.006?'flying':'starting';
     overlay.dataset.flightProgress=t.toFixed(3);
   }
@@ -163,6 +179,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     if (started && !reduced.matches) progress=clamp(progress+dt/FLIGHT_MS,0,1);
     if (reduced.matches) progress=1;
     paint();
+    animateWings(now);
     if (mixer) {
       const settling=smooth((progress-.82)/.18);
       const speed=mix(1.40+.14*Math.sin(progress*29),.075,settling);
@@ -179,6 +196,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     started=true;
     progress=reduced.matches?1:0;
     lastTime=0;
+    entrance=entrancePoint();
     overlay.style.visibility='visible';
     overlay.dataset.flightState='starting';
     paint();
@@ -209,7 +227,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     light.position.set(-35,-25,100);scene.add(light);
     const fill=new THREE.DirectionalLight(0xe1e9d5,.55);
     fill.position.set(50,50,75);scene.add(fill);
-    makeDust();
     resize();
     new GLTFLoader().load(MODEL_URL,gltf=>{
       const model=gltf.scene;
@@ -223,10 +240,19 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
       model.position.sub(box.getCenter(new THREE.Vector3()));
       const normalized=new THREE.Group();
       normalized.scale.setScalar(1/largest);
-      normalized.rotation.x=Math.PI/2; // Blender's XZ wings face the viewer.
+      // Blender uses a Y-up butterfly; the overlay camera is Y-down.
+      // A 180-degree rotation makes the head/antennae point UP in the browser.
+      normalized.rotation.z = Math.PI;
       normalized.add(model);
       butterfly=new THREE.Group();butterfly.add(normalized);scene.add(butterfly);
-      if (gltf.animations.length) {
+      for (const name of ['TW_Left','TW_Right','BW_Left','BW_Right']) {
+        const mesh=model.getObjectByName(name);
+        if (mesh) {
+          mesh.material.side=THREE.DoubleSide;
+          wingParts.push({mesh,side:name.endsWith('Left')?1:-1,hind:name.startsWith('BW')});
+        }
+      }
+      if (gltf.animations.length && !wingParts.length) {
         mixer=new THREE.AnimationMixer(model);
         actions=gltf.animations.map((clip,i)=>{
           const action=mixer.clipAction(clip);
@@ -236,7 +262,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
         });
       }
       loaded=true;
-      console.info(`[Butterfly 3D] Ready: upper-right corner flight; ${gltf.animations.length} wing animations.`);
+      console.info(`[Butterfly 3D] Ready: original Blender geometry, ${wingParts.length} wing meshes, lower-right panel flight, upright, sage-green.`);
       if (inView || forceReplay) {inView=true;begin();}
     },undefined,error=>{
       overlay.dataset.flightState='error';
@@ -246,6 +272,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
   // Preload shortly BEFORE the calendar appears. The large 3D file won't
   // compete with the opening wedding-ring animation on initial page load.
+  const sunrays=document.querySelector('.calendar-sunrays');
   const preload=new IntersectionObserver(entries=>{
     if (entries.some(entry=>entry.isIntersecting)) {
       initialize();preload.disconnect();
@@ -259,6 +286,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     const nowVisible=entries.some(entry=>entry.isIntersecting);
     if (nowVisible===inView) return;
     inView=nowVisible;
+    if (sunrays) sunrays.classList.toggle('is-active',inView && !reduced.matches);
     if (inView) {
       if (loaded) begin();
       else initialize();
@@ -268,14 +296,18 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
       lastTime=0;
       overlay.style.visibility='hidden';
       overlay.dataset.flightState='waiting';
-      for (const dot of dust) dot.el.style.opacity='0';
+      calendar.classList.remove('butterfly-has-landed');
+      entrance=null;
     }
   },{threshold:.60,rootMargin:'0px 0px -8% 0px'});
   watcher.observe(day);
 
   window.addEventListener('resize',()=>{resize();if(inView)schedule();},{passive:true});
   window.addEventListener('scroll',()=>{if(inView && loaded)schedule();},{passive:true});
-  reduced.addEventListener('change',()=>{if(inView && loaded)begin();});
+  reduced.addEventListener('change',()=>{
+    if (sunrays) sunrays.classList.toggle('is-active',inView && !reduced.matches);
+    if(inView && loaded)begin();
+  });
   document.addEventListener('visibilitychange',()=>{
     if (!document.hidden && inView && loaded) {lastTime=0;schedule();}
   });
@@ -283,7 +315,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
   // Optional replay from the browser console: KCButterflyFlight.replay()
   window.KCButterflyFlight={
     replay(){forceReplay=true;initialize();if(loaded){inView=true;begin();}},
-    status(){return {loaded,inView,started,progress,state:overlay.dataset.flightState||'waiting'};}
+    status(){return {loaded,inView,started,progress,state:overlay.dataset.flightState||'waiting',entrance:entrance||null,landing:landingPoint(),model:MODEL_URL};}
   };
   overlay.dataset.flightState='waiting';
 })();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="website-version" content="9.05.0">
+  <meta name="website-version" content="9.08.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263328">
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=9.05.0">
+  <link rel="stylesheet" href="style.css?v=9.08.0">
   <!-- Separate ES-module Three.js r152.2 for the Blender butterfly.
        Original non-module Three.js for the rings remains untouched. -->
   <script type="importmap">
@@ -160,6 +160,7 @@
             </figure>
 
             <div class="wedding-calendar" aria-label="March 2027 calendar; Wednesday March 3 is the wedding day">
+              <div class="calendar-sunrays" aria-hidden="true"></div>
               <div class="wedding-calendar-heading">
                 <div><span class="calendar-month">March</span><span class="calendar-year">2027</span></div>
               </div>
@@ -171,7 +172,7 @@
                 <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
                 <span>28</span><span>29</span><span>30</span><span>31</span><span class="cal-blank"></span><span class="cal-blank"></span><span class="cal-blank"></span>
               </div>
-              <!-- V8.99: independent Three.js butterfly moves to the top-right corner of the viewport, then lands below March 3. -->
+              <!-- V9.07: the sage-green Blender butterfly enters from the lower-right ivory panel and lands directly below March 3. -->
               <div id="butterfly-3d-container" class="butterfly-3d-container"
                    aria-hidden="true"></div>
               <p class="calendar-day-note">WEDNESDAY · 3:00 PM</p>
@@ -281,13 +282,15 @@
     <p class="schedule-eyebrow">WEDNESDAY · MARCH 3, 2027</p>
     <h3 id="day-schedule-heading">Day <em>Schedule</em></h3>
     <p class="schedule-intro">A little guide to our favorite day.</p>
-    <div class="schedule-items"><div class="schedule-item"><time datetime="2027-03-03T14:00:00+08:00">2:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Call Time</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T15:00:00+08:00">3:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Ceremony Starts</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T16:00:00+08:00">4:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Pictorial</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T17:00:00+08:00">5:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Cocktail Hour</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T18:00:00+08:00">6:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Reception Grand Entrance</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T19:00:00+08:00">7:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>Dinner &amp; Program Continuation</strong></div></div>
-<div class="schedule-item"><time datetime="2027-03-03T22:00:00+08:00">10:00 PM</time><span class="schedule-dot" aria-hidden="true"></span><div><strong>After Party</strong></div></div></div>
+    <div class="schedule-items" role="list" aria-label="Wedding day timeline">
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/><path d="M6.5 2.8 4.2 5M17.5 2.8l2.3 2.2"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T14:00:00+08:00">2:00 PM</time><strong>Call Time</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="8" cy="11" rx="5.6" ry="7.2" transform="rotate(-34 8 11)"/><ellipse cx="16" cy="13" rx="5.6" ry="7.2" transform="rotate(34 16 13)"/><path d="M3.5 6.2 6 3.8 8.4 6.2"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T15:00:00+08:00">3:00 PM</time><strong>Ceremony Starts</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h4l2-2h6l2 2h4v12H3z"/><circle cx="12" cy="13" r="4"/><path d="M17.5 10h.01"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T16:00:00+08:00">4:00 PM</time><strong>Pictorial</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4h17L12 13.5 3.5 4Z"/><path d="M12 13.5v6.5M8.2 20h7.6"/><path d="M17 3 19.5 1"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T17:00:00+08:00">5:00 PM</time><strong>Cocktail Hour</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5.5L12 2l8 3.5V21"/><path d="M9 21v-9h6v9"/><path d="M2 21h20M10 7h4"/><path d="m12 15 1.5 1.5L12 18l-1.5-1.5z"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T18:00:00+08:00">6:00 PM</time><strong>Reception Grand Entrance</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><circle cx="12" cy="13" r="4"/><path d="M2 5v15M4.5 5v15M7 5v4M21 5v15M19 5c-2 2-2 5 2 6"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T19:00:00+08:00">7:00 PM</time><strong>Dinner &amp; Program Continuation</strong></div>
+  <div class="schedule-item" role="listitem"><span class="schedule-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7.8"/><path d="M4.5 10.2 12 7l7.5 3.2M4.5 13.8 12 17l7.5-3.2M12 4.2v15.6"/><path d="M2 3v2M1 4h2M21 19v2M20 20h2"/></svg></span><span class="schedule-rail" aria-hidden="true"><span class="schedule-dot"></span></span><time datetime="2027-03-03T22:00:00+08:00">10:00 PM</time><strong>After Party</strong></div>
+</div>
   </div>
 </section>
 
@@ -295,17 +298,48 @@
   <div class="attire-inner reveal-on-scroll">
     <p class="attire-eyebrow">DRESS CODE</p>
     <h2 id="attire-heading">What to <em>Wear</em></h2>
-    <div class="editorial-ornament" aria-hidden="true"><span></span>✦<span></span></div>
-    <p class="attire-description">We would love for you to celebrate with us in elegant, wedding-appropriate attire. Our color palette is inspired by soft sage and olive greens, champagne, and warm neutrals. Dress beautifully, feel comfortable, and come ready to make memories with us.</p>
-    <div class="attire-palette" aria-label="Wedding color inspiration">
-      <div class="attire-swatch"><span class="attire-color attire-sage" aria-hidden="true"></span><span>Sage Green</span></div>
-      <div class="attire-swatch"><span class="attire-color attire-olive" aria-hidden="true"></span><span>Olive Green</span></div>
-      <div class="attire-swatch"><span class="attire-color attire-champagne" aria-hidden="true"></span><span>Champagne</span></div>
-      <div class="attire-swatch"><span class="attire-color attire-beige" aria-hidden="true"></span><span>Beige</span></div>
-    </div>
+    <div class="attire-section-divider" aria-hidden="true"></div>
+    <p class="attire-description">Help us create a beautifully cohesive celebration. Here’s the attire guide for each group—we’d love for everyone to feel elegant and in harmony with our day.</p>
     <div class="attire-category-grid">
-      <article class="attire-category"><p class="attire-category-number">01 / FORMAL</p><h3>Principal <em>Sponsors</em></h3><div class="attire-rule"></div><p>We invite our principal sponsors to wear elegant formal attire in our wedding palette. Champagne and beige tones, barong, or classic suits are lovely choices.</p></article>
-      <article class="attire-category"><p class="attire-category-number">02 / GUESTS</p><h3>Our <em>Guests</em></h3><div class="attire-rule"></div><p>Semi-formal to formal attire is welcome. Feel free to choose sage, olive, champagne, beige, or other soft neutrals that complement the celebration.</p></article>
+      <article class="attire-category attire-card-principal">
+        <h3>Principal Sponsors</h3>
+        <img class="attire-people" src="assets/images/attire-principal-sponsors.webp" alt="Principal sponsors: a ninang in a champagne gown holding flowers and a black-haired ninong in a beige suit and matching necktie" loading="lazy" decoding="async">
+        <div class="attire-card-swatches" aria-label="Principal sponsors attire colors">
+          <span class="attire-card-swatch"><i style="--swatch:#dec2a3" aria-hidden="true"></i><small>Champagne</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#e6d6c2" aria-hidden="true"></i><small>Beige</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#c8b495" aria-hidden="true"></i><small>Khaki</small></span>
+        </div>
+      </article>
+      <article class="attire-category attire-card-secondary">
+        <h3>Secondary Sponsors</h3>
+        <img class="attire-people" src="assets/images/attire-secondary-sponsors.webp" alt="Secondary sponsors centered in a lineup: bridesmaids in sage, maid of honor in dark olive, and groomsmen in beige suits" loading="lazy" decoding="async">
+        <div class="attire-card-swatches" aria-label="Secondary sponsors attire colors">
+          <span class="attire-card-swatch"><i style="--swatch:#9eae94" aria-hidden="true"></i><small>Sage Green</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#697852" aria-hidden="true"></i><small>Olive Green</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#e6d6c2" aria-hidden="true"></i><small>Beige</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#c8b495" aria-hidden="true"></i><small>Khaki</small></span>
+        </div>
+      </article>
+      <article class="attire-category attire-card-guests">
+        <h3>Wedding Guests</h3>
+        <img class="attire-people" src="assets/images/attire-wedding-guests.webp" alt="Wedding guests: a man in a sage-green polo with beige trousers and a woman in a sage-green dress" loading="lazy" decoding="async">
+        <div class="attire-card-swatches" aria-label="Wedding guests attire colors">
+          <span class="attire-card-swatch"><i style="--swatch:#9eae94" aria-hidden="true"></i><small>Sage Green</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#e6d6c2" aria-hidden="true"></i><small>Beige</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#c8b495" aria-hidden="true"></i><small>Khaki</small></span>
+          <span class="attire-card-swatch"><i style="--swatch:#dec2a3" aria-hidden="true"></i><small>Champagne</small></span>
+        </div>
+      </article>
+    </div>
+    <div class="attire-color-reminders" aria-label="Reserved wedding attire colors">
+      <p class="attire-color-reminder">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="m18 7 6 4 6-4 7 8-5 7 3 18H13l3-18-5-7 7-8Z"/><path d="m16 22 16 0"/><circle cx="36" cy="35" r="9"/><path d="m30 29 12 12"/></svg>
+        <span>Kindly avoid wearing <strong>white or ivory</strong>, as these colors are reserved for the <strong>BRIDE</strong>.</span>
+      </p>
+      <p class="attire-color-reminder">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="m18 7 6 5 6-5 10 8-6 8v17H14V23l-6-8 10-8Z"/><path d="m18 7 6 12 6-12M24 19v17M15 23l5-3M33 23l-5-3"/><circle cx="36" cy="35" r="9"/><path d="m30 29 12 12"/></svg>
+        <span>Kindly avoid wearing <strong>black</strong>, as this color is reserved for the <strong>GROOM</strong>.</span>
+      </p>
     </div>
   </div>
 </section>
@@ -382,6 +416,6 @@
        and change this script URL back to that local path. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script src="script.js?v=9.00.0"></script>
-  <script type="module" src="assets/js/butterfly3d.js?v=9.00.0"></script>
+  <script type="module" src="assets/js/butterfly3d.js?v=9.07.0"></script>
 </body>
 </html>
