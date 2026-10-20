@@ -8350,3 +8350,165 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
   .wedding-attire .attire-color-reminder{font-size:12px;line-height:1.65}
   .wedding-attire .attire-color-reminder svg{width:37px;height:37px}
 }
+
+
+/* V9.10 — Ceremony to Reception: small illustrated, animated journey.
+   No external mapping API. The drawing is intentionally schematic. */
+.wedding-day-editorial .venue-travel-note {
+  position:relative;isolation:isolate;max-width:850px;margin:clamp(46px,6.5vw,72px) auto 0;
+  padding:clamp(24px,4vw,46px);border:1px solid #cdd2c4;border-radius:0;
+  background:#f8f5ee;text-align:left;color:#354836;overflow:visible;
+}
+.venue-travel-note .travel-note-kicker {
+  margin:0 0 8px;color:#84927a;font:600 10px/1.5 Montserrat,Arial,sans-serif;letter-spacing:.19em;
+}
+.venue-travel-note h3 {
+  margin:0;color:#354836;font:400 clamp(30px,4vw,47px)/1.03 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em;
+}
+.venue-travel-note .travel-note-rule {width:100%;height:2px;margin:17px 0;background:#dce3d7;}
+.venue-travel-note .travel-note-copy {
+  margin:0 0 clamp(18px,2.8vw,27px);max-width:690px;color:#667363;
+  font:400 clamp(12px,1.4vw,14px)/1.8 Montserrat,Arial,sans-serif;
+}
+.venue-travel-note .travel-route-illustration {
+  padding:clamp(12px,2vw,22px) clamp(13px,2.5vw,25px) 14px;
+  border:1px solid #dce2d4;background:linear-gradient(160deg,#f3f5eb 0%,#faf8f1 56%,#f3f4eb 100%);
+  overflow:hidden;
+}
+.venue-travel-note .travel-route-svg{width:100%;height:auto;display:block;overflow:visible;}
+.venue-travel-note .travel-route-mobile{display:none;}
+.venue-travel-note .travel-route-places{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:-4px;}
+.venue-travel-note .travel-route-place{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;}
+.venue-travel-note .travel-route-place-end{text-align:right;align-items:flex-end;}
+.venue-travel-note .travel-place-eyebrow{color:#7d9178;font:600 9px/1.5 Montserrat,Arial,sans-serif;letter-spacing:.12em;}
+.venue-travel-note .travel-route-place strong{color:#435d46;font:500 clamp(23px,3.5vw,32px)/1 'Cormorant Garamond',Georgia,serif;}
+.venue-travel-note .travel-route-place > span:last-child{max-width:230px;color:#687765;font:400 10px/1.6 Montserrat,Arial,sans-serif;}
+.venue-travel-note .travel-route-action{position:relative;margin-top:20px;z-index:3;}
+.venue-travel-note:has(.travel-route-map-menu[open]){z-index:85;}
+.venue-travel-note .travel-route-map-menu[open]{z-index:90;}
+.venue-travel-note .travel-route-map-menu .venue-map-options{z-index:100;}
+.venue-travel-note .travel-route-draw{stroke-dasharray:1500;stroke-dashoffset:1500;}
+.venue-travel-note.travel-route-playing .travel-route-draw{animation:kc-travel-draw 3.5s cubic-bezier(.2,.1,.3,1) both;}
+@keyframes kc-travel-draw{to{stroke-dashoffset:0;}}
+@media(max-width:600px){
+  .wedding-day-editorial .venue-travel-note{margin-top:42px;padding:19px 17px 21px;}
+  .venue-travel-note h3{font-size:clamp(28px,7.6vw,37px);}
+  .venue-travel-note .travel-note-kicker{font-size:9px;}
+  .venue-travel-note .travel-note-rule{margin:12px 0;}
+  .venue-travel-note .travel-note-copy{font-size:12px;line-height:1.7;margin-bottom:17px;}
+  .venue-travel-note .travel-route-illustration{padding:10px 11px 12px;}
+  .venue-travel-note .travel-route-desktop{display:none;}
+  .venue-travel-note .travel-route-mobile{display:block;}
+  .venue-travel-note .travel-route-places{gap:9px;margin-top:0;}
+  .venue-travel-note .travel-place-eyebrow{font-size:7px;letter-spacing:.07em;}
+  .venue-travel-note .travel-route-place strong{font-size:clamp(22px,6vw,28px);}
+  .venue-travel-note .travel-route-place > span:last-child{font-size:9px;line-height:1.45;}
+  .venue-travel-note .travel-route-action{margin-top:16px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .venue-travel-note .travel-route-draw{stroke-dashoffset:0!important;animation:none!important;}
+}
+
+/* V9.12: route line and vehicle advance together along the road-bend path.
+   The original V9.10 illustrated card, labels and responsive layout remain intact. */
+.venue-travel-note .travel-route-draw,
+.venue-travel-note.travel-route-playing .travel-route-draw {
+  animation: none !important;
+  transition: none;
+}
+.venue-travel-note .travel-route-svg .travel-route-vehicle {
+  will-change: transform;
+}
+
+
+/* V9.13 — Keep all seven schedule stops and all three attire cards in
+   ONE HORIZONTAL ROW at every screen width, including mobile.
+   On narrow screens, reduce only the contents' dimensions to fit. */
+@media (max-width: 850px) {
+  .wedding-day-editorial .schedule-items {
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    width:100%;max-width:none;row-gap:0;gap:0;
+  }
+  .wedding-day-editorial .schedule-item,
+  .wedding-day-editorial .schedule-item:nth-child(n+5) {
+    grid-column:auto;min-width:0;padding:0 2px;
+  }
+  .wedding-day-editorial .schedule-item:nth-child(4) .schedule-rail::before {right:0;}
+  .wedding-day-editorial .schedule-item:nth-child(5) .schedule-rail::before {left:0;}
+  .wedding-day-editorial .schedule-item:first-child .schedule-rail::before {left:50%;}
+  .wedding-day-editorial .schedule-item:last-child .schedule-rail::before {right:50%;}
+  .wedding-attire .attire-category-grid {
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    max-width:none;width:100%;margin:0;gap:clamp(6px,1.3vw,12px);
+  }
+  .wedding-attire .attire-category {min-width:0;padding:clamp(10px,2vw,20px) clamp(5px,1.2vw,12px) 14px;}
+  .wedding-attire .attire-category h3 {
+    font-size:clamp(18px,3.3vw,28px);line-height:1.06;
+    min-height:2.15em;margin:0 0 6px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .wedding-attire .attire-people {
+    width:100%;height:clamp(140px,24vw,230px);max-width:none;
+    margin:0 auto 8px;object-fit:contain;object-position:center bottom;
+  }
+  .wedding-attire .attire-card-swatches {gap:6px 2px;justify-content:center;flex-wrap:wrap;}
+  .wedding-attire .attire-card-swatch {flex:0 1 46%;min-width:0;gap:4px;}
+  .wedding-attire .attire-card-swatch i {width:20px;height:20px;}
+  .wedding-attire .attire-card-swatch small {font-size:clamp(7px,.85vw,9px);white-space:normal;overflow-wrap:normal;}
+}
+@media (max-width: 480px) {
+  .wedding-day-editorial .day-schedule {padding:32px 5px 32px;}
+  .wedding-day-editorial .schedule-items {
+    display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+    row-gap:0;width:100%;max-width:none;
+  }
+  .wedding-day-editorial .schedule-item,
+  .wedding-day-editorial .schedule-item:nth-child(n+5) {
+    grid-column:auto;min-width:0;padding:0 1px;
+  }
+  .wedding-day-editorial .schedule-icon {width:100%;height:32px;margin-bottom:6px;}
+  .wedding-day-editorial .schedule-icon svg {width:clamp(19px,6.3vw,28px);height:clamp(19px,6.3vw,28px);}
+  .wedding-day-editorial .schedule-rail {height:11px;margin-bottom:7px;}
+  .wedding-day-editorial .schedule-dot {width:7px;height:7px;box-shadow:0 0 0 2px #f8f5ee;}
+  .wedding-day-editorial .schedule-item time {
+    font-size:clamp(7px,2.05vw,9px);letter-spacing:-.045em;
+    white-space:nowrap;line-height:1.3;margin-bottom:4px;
+  }
+  .wedding-day-editorial .schedule-item strong {
+    font-size:clamp(7px,2.05vw,9px);line-height:1.32;
+    max-width:100%;overflow-wrap:break-word;hyphens:auto;
+  }
+  .wedding-attire {padding-left:10px;padding-right:10px;}
+  .wedding-attire .attire-category-grid {
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    max-width:none;gap:5px;margin:0;
+  }
+  .wedding-attire .attire-category {
+    padding:10px 3px 12px;border-radius:5px;min-width:0;
+  }
+  .wedding-attire .attire-category h3 {
+    font-size:clamp(15px,4.3vw,19px);line-height:1.04;
+    min-height:2.2em;margin:0 0 5px;
+  }
+  .wedding-attire .attire-people {
+    height:clamp(105px,36vw,150px);max-width:none;
+    margin:0 auto 8px;
+  }
+  .wedding-attire .attire-card-swatches {gap:5px 0;margin:0;}
+  .wedding-attire .attire-card-swatch {flex:0 1 49%;min-width:0;gap:3px;}
+  .wedding-attire .attire-card-swatch i {width:clamp(12px,3.7vw,17px);height:clamp(12px,3.7vw,17px);}
+  .wedding-attire .attire-card-swatch small {font-size:clamp(6px,1.65vw,7px);line-height:1.2;}
+}
+
+/* V9.14 — matching map-app dropdown chevrons across all three buttons. */
+.venue-map-trigger .map-dropdown-chevron {
+  width:13px; height:13px; flex:none; margin-left:3px;
+  transition:transform .2s ease;
+}
+.venue-map-menu[open] .venue-map-trigger .map-dropdown-chevron {
+  transform:rotate(180deg);
+}
+@media (prefers-reduced-motion:reduce) {
+  .venue-map-trigger .map-dropdown-chevron {transition:none;}
+}
