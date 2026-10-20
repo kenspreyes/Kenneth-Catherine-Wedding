@@ -1,0 +1,4136 @@
+:root{--olive:#263328;--olive-dark:#19231c;--ivory:#f5f0e6;--cream:#e8e0d1;--gold:#b4a88a;--ink:#394338}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ivory);color:var(--ink);font-family:Montserrat,sans-serif}a{color:inherit}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400}em{font-weight:400}button,a{-webkit-tap-highlight-color:transparent}.skip-link{position:fixed;top:-100px;left:12px;z-index:100;background:white;padding:12px}.skip-link:focus{top:12px}.eyebrow{font-size:10px;letter-spacing:.28em;line-height:1.7;font-weight:500}.ring-experience{height:440svh;background:var(--olive-dark)}.ring-stage{height:100svh;position:sticky;top:0;overflow:hidden;isolation:isolate;background:var(--olive-dark);color:var(--ivory)}.ring-background{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#415143 0%,#263328 45%,#19231c 100%);z-index:0}.ring-top-label{position:absolute;top:7%;width:100%;text-align:center;font-size:10px;letter-spacing:.35em;z-index:3}#wedding-rings{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}.ring-intro,.ring-formation{position:absolute;left:5%;right:5%;bottom:12%;text-align:center;z-index:3;pointer-events:none}.ring-intro h1{font-size:clamp(44px,8vw,96px);line-height:1;margin:12px 0}.ring-intro .date-line{font-size:10px;letter-spacing:.3em;margin:22px 0}.ring-formation{opacity:0}.ring-formation h2{font-size:clamp(38px,6vw,72px)}.engraving-overlay{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;pointer-events:none;opacity:0;color:#e3ddd0;text-shadow:0 1px 0 #111,0 -1px 1px #fff5,0 3px 10px #000a}.engraving-inner{padding:20px;transform:translateY(3vh)}.engraving-kicker{font-size:9px;letter-spacing:.35em;color:#c9bea7}.engraving-names{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6vw,72px);letter-spacing:.08em;margin:18px 0 12px;white-space:nowrap}.engraving-names span{font-size:.75em}.engraving-date{font-size:11px;letter-spacing:.3em}.ring-scroll-hint{position:absolute;bottom:4%;width:100%;z-index:3;text-align:center;font-size:9px;letter-spacing:.28em}.ring-scroll-hint span{display:block;margin-top:12px;font-size:18px}.ring-progress{position:absolute;bottom:0;left:0;width:100%;height:2px;z-index:4;background:#ffffff1a}.ring-progress span{display:block;width:0;height:100%;background:#d7cbb0}.invitation-section{min-height:100svh;background:var(--ivory);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px}.invitation-inner{max-width:670px}.invitation-inner .eyebrow{color:#7d876d}.engraving-echo{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,4vw,36px);letter-spacing:.09em;margin:22px 0}.ornament{font-size:19px;color:var(--gold);margin:24px}.invitation-section h2,.section-heading h2,.story-copy h2,.rsvp-section h2{font-size:clamp(54px,8vw,100px);line-height:.95;margin:20px 0 30px}.invitation-inner>p:not(.eyebrow):not(.engraving-echo),.story-copy>p:not(.eyebrow):not(.story-signature){font-family:'Cormorant Garamond',serif;font-size:clamp(23px,2.8vw,30px);line-height:1.45}.invitation-date{margin-top:28px!important;font-family:Montserrat,sans-serif!important;font-size:11px!important;letter-spacing:.15em}.outline-button{display:inline-flex;gap:25px;align-items:center;justify-content:center;border:1px solid currentColor;text-decoration:none;padding:16px 24px;margin-top:24px;font-size:10px;letter-spacing:.12em;transition:background .3s,color .3s}.outline-button:hover{background:var(--olive);color:var(--ivory)}.story-section{display:grid;grid-template-columns:1fr 1fr;min-height:660px;background:#eae4d8}.story-photo{min-height:540px;background:#b3b6a7;position:relative;overflow:hidden}.story-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.photo-placeholder{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-align:center;line-height:2;font-size:12px;color:#46503e}.story-photo.missing-photo .photo-placeholder{display:flex}.story-copy{align-self:center;max-width:620px;padding:90px clamp(30px,7vw,110px)}.story-signature{font-family:'Cormorant Garamond',serif;font-size:30px;margin-top:30px}.details-section{padding:110px 24px;text-align:center}.section-heading{text-align:center;margin-bottom:48px}.section-heading>p:last-child{font-size:12px;letter-spacing:.12em}.calendar{width:min(100%,420px);margin:0 auto 55px;padding:28px;background:#fffaf2;border:1px solid #ded6c8}.calendar-weekdays,.calendar-days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.calendar-weekdays{margin-bottom:16px;font-size:10px;font-weight:600}.calendar-days span{aspect-ratio:1;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:23px}.calendar-days .wedding-day{border-radius:50%;background:var(--olive);color:white}.countdown{display:flex;justify-content:center;gap:clamp(12px,4vw,50px);margin:0 auto 36px}.countdown>div{display:flex;flex-direction:column;gap:8px}.countdown strong{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,68px);font-weight:400}.countdown span{font-size:9px;letter-spacing:.2em}.venues-section{padding:110px 24px;background:#e8e4d9}.venue-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}.venue-card{padding:clamp(28px,5vw,65px);background:#f8f4eb;min-height:360px;display:flex;flex-direction:column;align-items:flex-start}.venue-number{font-size:10px;letter-spacing:.2em;color:#7b826d}.venue-card h3{font-size:clamp(36px,4vw,54px);line-height:1;margin:30px 0 16px}.venue-card p{font-size:12px;line-height:1.8}.venue-time{margin-top:auto;padding-top:22px}.venue-card a{font-size:10px;letter-spacing:.1em;text-underline-offset:5px;margin-top:16px}.rsvp-section{background:var(--olive);color:var(--ivory);padding:125px 24px;text-align:center}.rsvp-section h2{margin:30px 0}.rsvp-section>div>p:not(.eyebrow){font-family:'Cormorant Garamond',serif;font-size:23px}.rsvp-section .rsvp-note{font-family:Montserrat,sans-serif!important;font-size:11px!important;letter-spacing:.06em;opacity:.75;margin-top:35px}footer{background:var(--olive-dark);color:#e9e2d7;text-align:center;padding:35px 16px;font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:.08em}footer small{display:block;margin-top:8px;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.2em}footer span{color:#c7b69b}.reveal-on-scroll{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}.reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}@media(max-width:700px){.ring-experience{height:400svh}.ring-top-label{top:6%}.ring-intro,.ring-formation{bottom:15%}.engraving-names{font-size:clamp(23px,6.3vw,42px)}.story-section{grid-template-columns:1fr}.story-photo{min-height:420px}.story-copy{padding:70px 26px}.venue-grid{grid-template-columns:1fr}.venue-card{min-height:300px}.countdown{gap:18px}.calendar{padding:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring-experience{height:100svh}.ring-intro{opacity:1!important}.ring-formation,.engraving-overlay,.ring-scroll-hint{display:none}#wedding-rings{display:none}.reveal-on-scroll{opacity:1;transform:none;transition:none}}
+
+/* V7: Coin-toss flight and continuous invitation handoff */
+.ring-experience{height:420svh;background:var(--ivory)}
+.ring-stage{background:var(--olive-dark);transition:none}
+.ring-background{will-change:opacity}
+#wedding-rings{z-index:2;will-change:opacity}
+.ring-intro,.ring-formation,.ring-top-label,.ring-scroll-hint{z-index:4}
+.invitation-preview{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;background:var(--ivory);color:var(--ink);opacity:0;visibility:hidden;pointer-events:none;overflow:hidden}
+.preview-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform:translateY(28px);will-change:transform}
+.invitation-preview .invitation-inner{width:100%;max-width:670px;padding:70px 24px;text-align:center}
+.invitation-preview .outline-button{display:none}
+.invitation-section{min-height:100svh}
+@media(max-width:700px){.ring-experience{height:400svh}}
+@media(prefers-reduced-motion:reduce){.ring-experience{height:100svh}.invitation-preview{display:none}}
+
+
+/* V8.2 — centered opening, downward title motion; toss unchanged */
+.ring-intro {
+  top: 50%;
+  bottom: auto;
+  left: 4%;
+  right: 4%;
+  transform: translate3d(0, calc(-50% + var(--title-drop, 0svh)), 0);
+  will-change: transform, opacity;
+}
+.ring-intro .eyebrow {
+  font-size: clamp(10px, 1.2vw, 13px);
+  letter-spacing: .32em;
+  margin-bottom: 22px;
+}
+.ring-intro h1 {
+  font-size: clamp(46px, 8vw, 96px);
+  line-height: 1.04;
+  margin: 0;
+}
+.ring-intro .date-line {
+  font-size: clamp(9px, 1.1vw, 12px);
+  letter-spacing: .23em;
+  line-height: 1.8;
+  margin: 28px 0 0;
+}
+.ring-scroll-hint { bottom: 4%; }
+@media (max-width: 700px) {
+  .ring-intro { top: 50%; bottom: auto; left: 3%; right: 3%; }
+  .ring-intro h1 { font-size: clamp(39px, 8.5vw, 64px); }
+  .ring-intro .date-line { letter-spacing: .15em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ring-intro { transform: translateY(-50%); }
+}
+
+/* V8.3 — mobile title spacing; 3D toss paths unchanged */
+@media (max-width: 600px) {
+  .ring-intro { width: 100%; left: 0; right: 0; padding: 0 18px; }
+  .ring-intro h1 { font-size: clamp(38px, 9vw, 54px); line-height: 1.05; }
+  .ring-intro .eyebrow { margin-bottom: 14px; }
+  .ring-intro .date-line { display: block; margin-top: 20px; font-size: 10px; letter-spacing: .15em; }
+}
+
+/* V8.4 — responsive title and rings safe zones */
+.ring-intro {
+  max-width: 100%;
+  margin-inline: auto;
+  transform: translate3d(0, calc(-50% + var(--title-drop, 0px)), 0);
+}
+.ring-intro h1 {
+  font-size: clamp(34px, min(7.3vw, 9.5svh), 100px);
+  overflow-wrap: normal;
+  text-wrap: balance;
+}
+.ring-intro .date-line { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .ring-intro h1 { font-size: clamp(31px, 8.3vw, 58px); }
+  .ring-intro { padding-inline: 14px; }
+}
+@media (max-height: 550px) {
+  .ring-intro h1 { font-size: clamp(27px, 5.5svh, 55px); }
+  .ring-intro .eyebrow { margin-bottom: 8px; }
+  .ring-intro .date-line { margin-top: 10px; }
+}
+
+/* V8.5 — Center the opening title and keep its block readable. */
+.ring-intro { left: 50%; right: auto; width: min(94%, 1300px); transform: translate3d(-50%, calc(-50% + var(--title-drop, 0px)), 0); }
+@media (max-width: 700px) { .ring-intro { width: 94%; padding-inline: 10px; } }
+
+/* V8.7 — Invitation: no eyebrow, no underline. The ring animation is unchanged. */
+.invitation-section{background:#f5f0e6;color:#354337;min-height:100svh;padding:clamp(72px,10svh,120px) 24px}
+.invitation-section .invitation-inner{width:100%;max-width:760px;margin:0 auto;text-align:center}
+.invitation-ornament{display:flex;align-items:center;justify-content:center;gap:15px;margin:0 auto 32px;color:#a9a183}
+.invitation-ornament>span:first-child,.invitation-ornament>span:last-child{width:38px;height:1px;background:#c5bea9}
+.ornament-symbol{font-size:16px}
+.invitation-section .invitation-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,90px);font-weight:400;line-height:1.05;letter-spacing:-.025em;margin:0 0 38px;color:#344235}
+.invitation-section .invitation-heading em{color:#758266;font-weight:400}
+.invitation-section .invitation-message{max-width:590px;margin:0 auto;font-family:Montserrat,sans-serif!important;font-size:clamp(13px,1.35vw,16px)!important;line-height:2.1!important;letter-spacing:.015em;color:#666c61}
+.invite-word{display:inline-block;white-space:nowrap;font-family:'Cormorant Garamond',serif;font-size:1.85em;font-style:italic;font-weight:600;line-height:.8;color:#647951;vertical-align:-.07em;/* no underline */text-decoration:none}
+.invitation-section .invitation-signature{font-family:'Cormorant Garamond',serif!important;font-style:italic;font-size:clamp(25px,4vw,38px)!important;color:#63745c;line-height:1.2!important;margin:50px 0 0!important}
+.invitation-signature span{color:#aa9c7f;margin:0 7px}
+.invitation-bottom-line{width:1px;height:50px;background:#b5bca9;margin:30px auto 0}
+.invitation-section .outline-button{margin-top:30px}
+/* Reveal individual lines after the original section enters view. */
+.invitation-section .invitation-inner>*:not(.outline-button){opacity:0;transform:translateY(20px);filter:blur(4px);transition:opacity .9s ease,transform 1.05s cubic-bezier(.22,1,.36,1),filter .9s ease}
+.invitation-section .invitation-inner.is-visible>*:not(.outline-button){opacity:1;transform:translateY(0);filter:blur(0)}
+.invitation-section .invitation-inner.is-visible .invitation-ornament{transition-delay:.12s}
+.invitation-section .invitation-inner.is-visible .invitation-heading{transition-delay:.28s}
+.invitation-section .invitation-inner.is-visible .invitation-message{transition-delay:.5s}
+.invitation-section .invitation-inner.is-visible .invitation-signature{transition-delay:.75s}
+.invitation-section .invitation-inner.is-visible .invitation-bottom-line{transition-delay:.9s}
+/* The visual preview is cloned by the existing script and shares the design. */
+.invitation-preview .invitation-inner{max-width:760px;padding:55px 24px}
+.invitation-preview .invitation-heading{font-size:clamp(40px,6vw,76px)}
+@media(max-width:600px){.invitation-section{padding:75px 26px}.invitation-section .invitation-heading{font-size:clamp(44px,12vw,64px);margin-bottom:28px}.invitation-section .invitation-message{font-size:13px!important;line-height:2.2!important}.invitation-section .invitation-signature{margin-top:42px!important}}
+@media(prefers-reduced-motion:reduce){.invitation-section .invitation-inner>*:not(.outline-button){opacity:1;transform:none;filter:none;transition:none}}
+
+
+/* V8.8 — Single invitation and scroll-grown botanical accents */
+.invitation-preview { background: var(--ivory); }
+.invitation-section { position:relative; isolation:isolate; overflow:hidden; }
+.invitation-section .invitation-inner { position:relative; z-index:2; }
+.invitation-section .invitation-heading { font-style:normal; color:#344235; }
+.invitation-section .invitation-message { max-width:610px; }
+.invitation-section .invitation-bottom-line { margin-top:42px; }
+/* Keep the sprout behind the text, on the outer sides. */
+.sprout { position:absolute; z-index:1; width:clamp(100px,15vw,215px); height:auto; bottom:0; color:#899b78; opacity:.66; pointer-events:none; overflow:visible; }
+.sprout-left { left:clamp(-72px,0vw,0px); }
+.sprout-right { right:clamp(-72px,0vw,0px); transform:scaleX(-1); opacity:.42; }
+.sprout-stem,.sprout-twig { stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:100; stroke-dashoffset:calc(100 - 100 * var(--grow,0)); }
+.sprout-twig { stroke-width:1.5; }
+.sprout-leaf { fill:#9eae8b; stroke:#7e9370; stroke-width:1; opacity:0; transform:scale(.1); transform-box:fill-box; transform-origin:bottom center; }
+.sprout-bud { fill:#c7b89a; opacity:0; transform:scale(.1); transform-box:fill-box; transform-origin:center; }
+/* CSS receives independent progress values from the scroll controller. */
+.sprout .leaf-1 { opacity:var(--leaf1,0); transform:scale(var(--leaf1scale,.1)); }
+.sprout .leaf-2 { opacity:var(--leaf2,0); transform:scale(var(--leaf2scale,.1)); }
+.sprout .leaf-3 { opacity:var(--leaf3,0); transform:scale(var(--leaf3scale,.1)); }
+.sprout .leaf-4 { opacity:var(--leaf4,0); transform:scale(var(--leaf4scale,.1)); }
+.sprout-bud { opacity:var(--bud,0); transform:scale(var(--budscale,.1)); }
+@media(max-width:900px){.sprout { width:clamp(75px,16vw,140px); opacity:.36; }.sprout-right{opacity:.22}.invitation-section .invitation-inner{max-width:min(75%,670px)} }
+@media(max-width:600px){.sprout { width:100px; left:-45px; opacity:.34; }.sprout-right { left:auto; right:-48px; opacity:.23; }.invitation-section .invitation-inner{max-width:100%; padding:0 12px}.invitation-section .invitation-heading{font-size:clamp(42px,10vw,60px)}.invitation-section .invitation-message{font-size:13px!important;line-height:2!important} }
+@media(prefers-reduced-motion:reduce){.sprout-stem,.sprout-twig{stroke-dashoffset:0}.sprout-leaf,.sprout-bud{opacity:.8;transform:scale(1)} }
+
+/* V8.9: seamless invitation handoff and botanical depth */
+.invitation-preview{z-index:3;pointer-events:none}
+.invitation-preview .invitation-inner{position:relative;max-width:760px;padding:70px 24px;opacity:1;transform:none;filter:none}
+.invitation-preview .invitation-inner>*{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+.invitation-preview .invitation-inner .outline-button{display:none}
+.invitation-section .invitation-inner{opacity:1!important;transform:none!important;filter:none!important}
+.invitation-section .invitation-inner>*{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+.invitation-section{overflow:hidden;isolation:isolate}
+.botanical{position:absolute;z-index:1;bottom:-2%;width:clamp(155px,23vw,350px);height:min(88%,740px);pointer-events:none;filter:drop-shadow(8px 12px 11px rgba(40,59,31,.15));opacity:.96}
+.botanical-left{left:clamp(-75px,-3vw,-18px)}
+.botanical-right{right:clamp(-90px,-4vw,-22px);height:min(77%,620px);width:clamp(140px,20vw,310px)}
+.botanical svg{width:100%;height:100%;overflow:visible}
+.botanical .plant-path{fill:none;stroke:url(#stemLeft);stroke-linecap:round;stroke-width:3.5;stroke-dasharray:1;stroke-dashoffset:1}
+.botanical-right .plant-path{stroke:url(#stemRight)}
+.botanical .plant-leaf{transform-box:fill-box;transform-origin:50% 100%;opacity:0;transform:scale(.08) rotate(-14deg);filter:drop-shadow(2px 4px 3px rgba(34,60,25,.15))}
+.botanical .plant-bud{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.15)}
+@media(max-width:850px){.botanical{width:clamp(115px,22vw,200px);opacity:.74}.botanical-left{left:-60px}.botanical-right{right:-66px}.invitation-section .invitation-inner{max-width:80%}}
+@media(max-width:600px){.botanical{width:145px;height:67%;opacity:.52}.botanical-left{left:-95px}.botanical-right{right:-100px;height:58%}.invitation-section .invitation-inner{max-width:100%;padding:0 9px}}
+@media(prefers-reduced-motion:reduce){.botanical .plant-path{stroke-dashoffset:0}.botanical .plant-leaf,.botanical .plant-bud{opacity:1;transform:none}}
+/* Match the single invitation's appearance during the transition preview. */
+.invitation-preview .invitation-ornament{display:flex;align-items:center;justify-content:center;gap:15px;margin:0 auto 32px;color:#a9a183}
+.invitation-preview .invitation-ornament>span:first-child,.invitation-preview .invitation-ornament>span:last-child{width:38px;height:1px;background:#c5bea9}
+.invitation-preview .invitation-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,90px);font-weight:400;line-height:1.05;letter-spacing:-.025em;margin:0 0 38px;color:#344235;font-style:normal}
+.invitation-preview .invitation-message{max-width:610px;margin:0 auto;font-family:Montserrat,sans-serif;font-size:clamp(13px,1.35vw,16px);line-height:2.1;letter-spacing:.015em;color:#666c61}
+.invitation-preview .invitation-bottom-line{width:1px;height:50px;background:#b5bca9;margin:42px auto 0}
+@media(max-width:600px){.invitation-preview .invitation-heading{font-size:clamp(42px,10vw,60px);margin-bottom:28px}.invitation-preview .invitation-message{font-size:13px;line-height:2}}
+
+/* V8.10 — one invitation, top-down growth */
+.ring-experience{height:408svh}
+.invitation-preview{background:var(--ivory)}
+.invitation-preview:empty{display:block}
+.botanical{top:0;bottom:auto;height:min(90%,760px);filter:drop-shadow(5px 9px 7px rgba(40,59,31,.15))}
+.botanical-left{left:clamp(-75px,-3vw,-18px)}
+.botanical-right{right:clamp(-90px,-4vw,-22px);height:min(84%,720px)}
+.botanical .plant-leaf{transform:scale(var(--leaf-grow,.06));transform-box:fill-box;transform-origin:50% 100%}
+@media(max-width:600px){.botanical{top:0;bottom:auto;width:135px;height:65%;opacity:.7}.botanical-left{left:-83px}.botanical-right{right:-86px;height:63%}}
+
+/* V8.11 — remove the extra ivory viewport at the end of the ring scene.
+   The real invitation overlaps the end of the sticky scene so its content
+   enters immediately as the rings finish their upward flight. */
+.ring-experience { position: relative; }
+.invitation-section {
+  margin-top: -48svh;
+  position: relative;
+  z-index: 5;
+  border-top: 0;
+}
+/* Make the invitation headline visible as the section enters the viewport,
+   instead of waiting until its centered position is fully reached. */
+.invitation-section .invitation-inner,
+.invitation-section .invitation-inner > * {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-section { margin-top: 0; }
+}
+
+
+/* V8.12 — seamless handoff: eliminate the remaining ivory-only viewport.
+   The single invitation begins during the final 12svh of the sticky intro.
+   Place its real content at the top of that overlap, not 50vh below it. */
+@media (prefers-reduced-motion: no-preference) {
+  .ring-experience { position: relative; }
+  .invitation-section {
+    margin-top: -112svh;
+    min-height: 112svh;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: clamp(62px, 9svh, 110px);
+    padding-bottom: clamp(70px, 10svh, 120px);
+  }
+  .invitation-section .invitation-inner { margin: 0 auto; }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: no-preference) {
+  .invitation-section { padding-top: clamp(58px, 8svh, 85px); }
+}
+
+/* V8.13 — restore cinematic olive-to-ivory dissolve without an empty page.
+   The actual invitation is the only text layer; no duplicated preview. */
+@media (prefers-reduced-motion: no-preference) {
+  .invitation-section { isolation: isolate; }
+  .invitation-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: #19231c;
+    opacity: var(--invitation-curtain, 0);
+    will-change: opacity;
+  }
+  .invitation-section .invitation-inner {
+    opacity: var(--invitation-text-opacity, 1) !important;
+    filter: blur(var(--invitation-text-blur, 0px)) !important;
+    transition: none !important;
+    will-change: opacity, filter;
+  }
+  .invitation-section .invitation-inner > * {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* V8.14 — seamless synchronized olive-to-ivory fade.
+   The same color is assigned to both neighboring sections by script.js.
+   No separate curtain, border, or static overlay can create a seam. */
+@media (prefers-reduced-motion: no-preference) {
+  .invitation-section::after { display: none !important; }
+  .ring-stage, .invitation-section { transition: none !important; }
+  .invitation-section { border: 0 !important; box-shadow: none !important; }
+  .invitation-section .invitation-inner {
+    opacity: var(--invitation-text-opacity, 0) !important;
+    filter: blur(var(--invitation-text-blur, 5px)) !important;
+    transition: none !important;
+  }
+}
+
+
+/* V8.15 — ONE CONTINUOUS CINEMATIC SCENE.
+   Invitation and rings are siblings in a single sticky stage.
+   No second background, negative margins, preview or section boundary. */
+.ring-experience {height:440svh !important; background:#19231c !important; position:relative;}
+.ring-stage {position:sticky !important;top:0 !important;height:100svh !important;
+  overflow:hidden !important;isolation:isolate;background:#19231c;}
+.ring-background {z-index:0;pointer-events:none;}
+#wedding-rings {z-index:2;}
+.ring-intro {z-index:4;}
+.invitation-overlay {
+  position:absolute !important;inset:0 !important;top:0 !important;left:0 !important;
+  width:100% !important;height:100% !important;min-height:0 !important;
+  margin:0 !important;padding:clamp(30px,6svh,75px) 24px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  z-index:3 !important;overflow:hidden !important;
+  background:transparent !important;border:0 !important;box-shadow:none !important;
+  opacity:0;filter:blur(8px);pointer-events:none;
+  will-change:opacity,filter;
+}
+.invitation-overlay::after {display:none !important;}
+.invitation-overlay .invitation-inner {
+  position:relative !important;z-index:5 !important;
+  width:100% !important;max-width:760px !important;
+  margin:0 auto !important;padding:0 8px !important;
+  opacity:1 !important;filter:none !important;transform:none !important;
+  transition:none !important;
+}
+.invitation-overlay .invitation-inner > * {
+  opacity:1 !important;filter:none !important;transform:none !important;transition:none !important;
+}
+.invitation-overlay .invitation-heading {font-style:normal !important;}
+.invitation-overlay .botanical {top:0 !important;bottom:auto !important;z-index:1 !important;}
+.invitation-overlay .outline-button {pointer-events:auto;}
+@media(max-width:700px){.ring-experience{height:410svh !important;}}
+@media(max-width:600px){
+  .invitation-overlay{padding:30px 22px !important;}
+  .invitation-overlay .invitation-inner{max-width:100% !important;padding:0 8px !important;}
+  .invitation-overlay .invitation-heading{font-size:clamp(42px,10vw,60px) !important;}
+}
+@media(prefers-reduced-motion:reduce){
+  .ring-experience{height:100svh !important;}
+  .ring-stage{background:var(--ivory) !important;}
+  .ring-background,.ring-intro,#wedding-rings{display:none !important;}
+  .invitation-overlay{opacity:1 !important;filter:none !important;pointer-events:auto !important;}
+}
+
+/* V8.17 — A single cinematic book leaf replaces the botanical artwork.
+   The book exists within the SAME sticky viewport as the rings and invitation. */
+.book-turn {
+  position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;
+  perspective:1600px;perspective-origin:50% 50%;
+  overflow:hidden;transform-style:preserve-3d;
+}
+.book-leaf {
+  position:absolute;inset:-1px;transform-origin:left center;
+  transform:rotateY(0deg);transform-style:preserve-3d;
+  will-change:transform;box-shadow:8px 0 24px rgba(45,40,31,.12);
+}
+.book-leaf-front,.book-leaf-back {
+  position:absolute;inset:0;backface-visibility:hidden;
+  background:linear-gradient(105deg,#e7ddcc 0%,#faf5ea 8%,#f5f0e6 55%,#e5dbc9 97%,#d8c9b2 100%);
+}
+.book-leaf-front::before {
+  content:"";position:absolute;top:0;bottom:0;right:0;width:clamp(16px,4vw,58px);
+  background:linear-gradient(90deg,transparent,rgba(119,100,75,.13),rgba(255,255,255,.45));
+}
+.book-leaf-back {
+  transform:rotateY(180deg);
+  background:linear-gradient(95deg,#d7c7af 0%,#eee3d1 5%,#f7f0e4 55%,#e9dcc8 100%);
+}
+.book-emboss {
+  position:absolute;top:49%;left:50%;transform:translate(-50%,-50%);
+  font-family:"Cormorant Garamond",serif;font-size:clamp(16px,3vw,30px);
+  letter-spacing:.22em;color:#8c806e;white-space:nowrap;opacity:.65;
+}
+.book-flourish {
+  position:absolute;top:calc(49% + 36px);left:50%;transform:translateX(-50%);
+  color:#ad9c7d;font-size:18px;
+}
+.book-fold-shadow {
+  position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(43,37,28,.25),transparent 38%);
+}
+@media(max-width:600px){
+  .book-turn{perspective:1000px}
+  .book-emboss{font-size:15px;letter-spacing:.14em}
+}
+@media(prefers-reduced-motion:reduce){.book-turn{display:none !important}}
+
+
+/* V8.18 — softly curling paper: curved edge, traveling highlights and contact shadow */
+.book-turn { perspective: 1900px; perspective-origin: 47% 49%; overflow: hidden; }
+.book-leaf { transform-origin: 0% 50%; border-radius: 0 3px 3px 0; box-shadow: 8px 3px 25px rgba(48,38,24,.10); }
+.book-leaf-front,.book-leaf-back { border-radius: inherit; }
+.book-leaf-front {
+ background: linear-gradient(105deg,#e4d9c7 0%,#f9f4e9 6%,#f7f1e6 43%,#f4ebdc 78%,#dfd0b9 100%);
+}
+.book-leaf-front::before {
+ width: 30%; background: linear-gradient(90deg,transparent 0%,rgba(255,255,255,.22) 30%,rgba(104,81,52,.10) 76%,rgba(255,255,255,.48) 94%,rgba(94,72,49,.19));
+ opacity:var(--curl-shade,.25);transition:none;
+}
+.book-leaf-front::after {
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(90deg,rgba(101,77,49,.17),transparent 9%,transparent 68%,rgba(101,76,44,.12) 94%,rgba(70,54,38,.24));
+ opacity:var(--curl-shade,.25);
+}
+.book-leaf-back {
+ background:linear-gradient(95deg,#cdbb9f 0%,#eee2ce 5%,#fbf5ea 28%,#f1e7d8 72%,#d9c8ac 100%);
+}
+.book-fold-shadow {
+ z-index:0;background:linear-gradient(90deg,rgba(36,29,19,.33),rgba(56,44,27,.10) 16%,transparent 54%);
+ transform-origin:left center;filter:blur(12px);will-change:opacity,transform;
+}
+.book-contact-shadow {
+ position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+ background:linear-gradient(90deg,rgba(39,29,17,.28),transparent 32%);
+ filter:blur(18px);will-change:opacity;
+}
+@media (max-width:600px){.book-turn{perspective:1200px}}
+@media (prefers-reduced-motion:reduce){.book-turn{display:none!important}}
+
+/* V8.19 — one continuous stage, longer scroll and actual curved 3D paper mesh */
+.ring-experience { height: 800svh !important; }
+.book-turn { position:absolute; inset:0; overflow:hidden; z-index:5; pointer-events:none; opacity:0; perspective:none; }
+#book-paper-canvas { display:block; width:100%; height:100%; position:absolute; inset:0; background:transparent; }
+.book-fold-shadow { background:linear-gradient(90deg,rgba(48,35,19,.26),transparent 42%); filter:blur(20px); }
+.book-contact-shadow { background:linear-gradient(90deg,rgba(65,47,25,.25),transparent 45%); filter:blur(26px); }
+@media(max-width:700px){.ring-experience{height:760svh !important;}}
+@media(prefers-reduced-motion:reduce){.ring-experience{height:100svh !important;}.book-turn{display:none!important}}
+
+/* V8.20 — soft traveling crease and contact shadow */
+.book-fold-shadow{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 40%,rgba(80,57,32,.12) 48%,rgba(47,32,17,.24) 50%,rgba(255,255,255,.20) 53%,transparent 62%);filter:blur(12px);mix-blend-mode:multiply;}
+.book-contact-shadow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,rgba(63,43,24,.15),transparent 58%);filter:blur(18px);}
+
+/* V8.21 — Hardcover book opening, replacing all previous paper simulations. */
+.book-cover-scene{position:absolute;inset:0;z-index:5;pointer-events:none;display:grid;place-items:center;perspective:1600px;overflow:visible;opacity:0;}
+.book-volume{position:relative;width:min(73vw,540px);height:min(69svh,660px);min-height:320px;perspective:1800px;transform-style:preserve-3d;filter:drop-shadow(0 22px 24px rgba(31,28,21,.20));}
+.book-underpage{position:absolute;inset:0;background:linear-gradient(90deg,#d8cbb6 0 2%,#fffaf0 5%,#f5eee1 96%,#dfd4c2);border:1px solid #c6b89e;border-radius:3px 12px 12px 3px;box-shadow:7px 4px 0 #dfd2be,11px 8px 0 #c9bba6;}
+.book-cover-leaf{position:absolute;inset:0;transform-origin:0% 50%;transform-style:preserve-3d;will-change:transform;}
+.book-cover-front,.book-cover-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px 12px 12px 4px;overflow:hidden;}
+.book-cover-front{background:radial-gradient(ellipse at 67% 34%,#455547 0%,#29392d 55%,#17241c 100%);border:2px solid #6e6850;box-shadow:inset 8px 0 14px #0e1b15a8,inset -3px 0 8px #8c967544,8px 10px 24px #14201966;color:#d7c6a0;display:grid;place-items:center;}
+.book-cover-front:before{content:"";position:absolute;inset:0;opacity:.22;background:repeating-linear-gradient(94deg,transparent 0 2px,#d2ddbb20 3px,transparent 4px 6px);mix-blend-mode:screen;}
+.cover-gold-border{position:absolute;inset:24px;border:1px solid #b4a27b9c;box-shadow:0 0 0 5px #b4a27b19,inset 0 0 0 5px #b4a27b12;}
+.cover-center{position:relative;display:flex;align-items:center;flex-direction:column;gap:23px;padding:20px;text-align:center;}
+.cover-kicker,.cover-date{font:500 clamp(8px,1vw,11px)/1.5 Montserrat,sans-serif;letter-spacing:.29em;}
+.cover-names{font:400 clamp(32px,5vw,59px)/1.02 'Cormorant Garamond',Georgia,serif;max-width:370px;}
+.cover-names i{font-weight:400;}
+.cover-ornament{font-size:19px;}
+.cover-spine{position:absolute;left:11px;top:0;bottom:0;width:8px;border-left:1px solid #a7957055;border-right:1px solid #0d1913aa;box-shadow:5px 0 10px #0b191550;}
+.book-cover-back{transform:rotateY(180deg);background:linear-gradient(90deg,#c3b89d,#eee4d0 9%,#e9dfcd 94%,#b9aa8e);border:2px solid #b2a083;box-shadow:inset 12px 0 22px #8f7c5e42;}
+.book-cover-back:after{content:"";position:absolute;inset:24px;border:1px solid #b4a27b77;}
+.book-cover-shadow{position:absolute;inset:8% -7% 3% 3%;background:radial-gradient(ellipse,#2b241d66,transparent 66%);filter:blur(18px);z-index:-1;opacity:0;pointer-events:none;}
+/* Signature writes on as the book opens; the leading stroke follows the reveal. */
+.invitation-overlay .book-signoff{margin-top:42px!important;display:flex;align-items:center;flex-direction:column;gap:8px;opacity:1!important;filter:none!important;transform:none!important;}
+.signoff-intro{font:400 clamp(17px,2.5vw,24px)/1.3 'Cormorant Garamond',Georgia,serif;color:#706c5c;letter-spacing:.02em;}
+.handwritten-names{position:relative;display:inline-block;font:italic 500 clamp(34px,5vw,62px)/1.1 'Cormorant Garamond',Georgia,serif;color:#4d5b46;clip-path:inset(0 calc((1 - var(--write-progress,0))*100%) 0 0);white-space:nowrap;}
+.signature-trail{position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,#8d7b60,transparent);transform-origin:left;transform:scaleX(var(--write-progress,0));}
+.footer-love{color:#e9e2d7!important;font:italic 400 clamp(24px,3vw,34px)/1.2 'Cormorant Garamond',Georgia,serif;letter-spacing:0!important;}
+@media(max-width:600px){.book-volume{width:min(84vw,380px);height:min(55svh,470px);min-height:290px}.cover-gold-border{inset:16px}.cover-center{gap:15px}.cover-names{font-size:clamp(30px,9vw,46px)}.handwritten-names{font-size:clamp(30px,8.2vw,43px)}}
+@media(prefers-reduced-motion:reduce){.book-cover-scene{display:none!important}.handwritten-names{clip-path:none!important}}
+
+/* V8.22 — FULL-VIEWPORT TEXT-FREE HARDCOVER.
+   The final dark olive frame IS the cover, with no floating book or borders. */
+.book-turn.book-cover-scene {
+  position:absolute !important; inset:0 !important; width:100% !important;
+  height:100% !important; display:block !important; z-index:5 !important;
+  perspective:clamp(1100px,150vw,2600px) !important;
+  perspective-origin:50% 50% !important;
+  overflow:visible !important; pointer-events:none !important;
+  background:transparent !important; opacity:0;
+  filter:none !important;
+}
+.book-cover-scene .book-cover-leaf {
+  position:absolute !important; inset:0 !important; width:100% !important;
+  height:100% !important; transform-origin:0% 50% !important;
+  transform-style:preserve-3d !important; border-radius:0 !important;
+  box-shadow:none !important; will-change:transform;
+}
+.book-cover-scene .book-cover-front,
+.book-cover-scene .book-cover-back {
+  position:absolute !important; inset:0 !important; width:100% !important;
+  height:100% !important; border:0 !important; border-radius:0 !important;
+  backface-visibility:hidden !important;
+  -webkit-backface-visibility:hidden !important;
+}
+.book-cover-scene .book-cover-front {
+  background:radial-gradient(ellipse at 51% 50%, #303e32 0%, #263328 54%, #1c2920 100%) !important;
+  box-shadow:inset -7px 0 18px rgba(0,0,0,.10),
+             inset 7px 0 10px rgba(255,255,255,.035) !important;
+}
+.book-cover-scene .book-cover-front::before,
+.book-cover-scene .book-cover-front::after {display:none !important;content:none !important;}
+.book-cover-scene .book-cover-back {
+  transform:rotateY(180deg) !important;
+  background:linear-gradient(90deg,#d9d0be 0%,#eee8dd 3%,#f5f0e6 22%,#f5f0e6 100%) !important;
+  box-shadow:inset 12px 0 23px rgba(52,42,30,.12) !important;
+}
+.book-cover-scene .book-cover-back::after {display:none !important;}
+.book-cover-spine {
+  position:absolute; top:0;left:0;height:100%;width:5px;
+  background:linear-gradient(90deg,rgba(0,0,0,.20),rgba(255,255,255,.045),transparent);
+  transform:translateZ(1px); pointer-events:none;
+}
+.book-cover-scene .book-cover-shadow {
+  position:absolute !important; inset:0 !important; z-index:0 !important;
+  background:linear-gradient(90deg,rgba(25,27,20,.32),rgba(25,27,20,.12) 42%,transparent 83%) !important;
+  filter:blur(24px) !important; pointer-events:none !important;
+}
+@media(prefers-reduced-motion:reduce){.book-turn.book-cover-scene{display:none !important}}
+
+
+/* V8.23 — Hardcover depth, moving light, and contact shadows. */
+.book-turn.book-cover-scene { perspective: min(160vw, 2100px) !important; perspective-origin: 15% 50% !important; }
+.book-cover-scene .book-cover-leaf {
+  transform-origin: 0% 50% !important;
+  filter: drop-shadow(calc(12px + 26px * var(--cover-arc, 0)) 5px calc(8px + 28px * var(--cover-arc, 0)) rgba(8, 15, 10, .36));
+}
+.book-cover-scene .book-cover-front {
+  background:
+    linear-gradient(90deg, rgba(6,17,10,.40) 0%, transparent 2.5%, transparent 86%, rgba(2,12,7,.32) 100%),
+    radial-gradient(ellipse at 44% 35%, #384a3b 0%, #263529 55%, #18251d 100%) !important;
+  box-shadow: inset 14px 0 28px rgba(0,0,0,.32), inset -18px 0 36px rgba(0,0,0,.19), inset 0 0 90px rgba(8,15,10,.10) !important;
+}
+.book-cover-scene .book-cover-front::before {
+  display:block !important; content:"" !important; position:absolute; inset:0;
+  background:linear-gradient(90deg, transparent 24%, rgba(235,235,205,.12) 52%, transparent 76%);
+  opacity:calc(.12 + var(--cover-arc, 0) * .8);
+  transform:translateX(calc(-36% + var(--cover-turn, 0) * 65%));
+  pointer-events:none;
+}
+.book-cover-scene .book-cover-back {
+  background:linear-gradient(90deg, #bdb29f 0%, #e4dccc 2%, #f0e8d9 9%, #eee6d7 91%, #c4b8a4 100%) !important;
+  box-shadow: inset 22px 0 35px rgba(44,32,19,.26), inset -8px 0 22px rgba(40,30,20,.18), 0 0 0 1px rgba(82,65,43,.18) !important;
+}
+.book-cover-scene .book-cover-back::after {
+  display:block !important; content:"" !important; position:absolute; inset:0;
+  background:linear-gradient(90deg,rgba(43,33,24,.32),transparent 17%,rgba(255,255,255,.12) 57%,rgba(61,48,30,.12));
+  pointer-events:none;
+}
+.book-cover-spine { width:12px; background:linear-gradient(90deg,rgba(4,11,7,.55),rgba(211,202,172,.12) 35%,rgba(4,11,7,.25) 70%,transparent); }
+.book-cover-scene .book-cover-shadow {
+  inset:3% -8% 2% 0 !important;
+  background:linear-gradient(90deg,rgba(10,18,12,.68),rgba(12,20,14,.42) 38%,rgba(13,22,15,.10) 77%,transparent) !important;
+  filter:blur(32px) !important;
+  transform-origin:0% 50%;
+}
+@media(max-width:600px){.book-turn.book-cover-scene{perspective:1050px !important;}}
+
+/* V8.24 — Color-match the closing intro to the cover to avoid a visible pop.
+   The cover is softly crossfaded in by script.js; no section boundary is added. */
+.book-cover-scene .book-cover-front {
+  background:
+    linear-gradient(90deg,rgba(6,17,10,.28) 0%,transparent 3%,transparent 88%,rgba(2,12,7,.22) 100%),
+    radial-gradient(ellipse at 44% 35%,#28372b 0%,#202e24 52%,#19231c 100%) !important;
+}
+
+/* V8.25 — physical hardcover board thickness (no changes to animation timing).
+   The four faces sit in 3D space between the front and back cover planes. */
+.book-cover-scene .book-cover-leaf {
+  --board-depth: 15px;
+  transform-style: preserve-3d !important;
+  isolation: auto;
+}
+.book-cover-scene .book-cover-front {
+  transform: translateZ(7.5px) !important;
+  overflow: visible !important;
+  border-right: 2px solid rgba(150,151,117,.48) !important;
+  border-top: 1px solid rgba(186,183,147,.27) !important;
+  box-shadow: inset -12px 0 18px rgba(4,11,7,.25),
+              inset 5px 0 12px rgba(235,224,180,.06),
+              0 0 1px rgba(210,204,157,.3) !important;
+}
+.book-cover-scene .book-cover-back {
+  transform: rotateY(180deg) translateZ(7.5px) !important;
+  border-right: 1px solid rgba(85,72,49,.25) !important;
+}
+.book-cover-scene .cover-board-edge {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  box-sizing: border-box;
+}
+.book-cover-scene .cover-board-right {
+  right: 0; top: 0; width: var(--board-depth); height: 100%;
+  transform-origin: right center;
+  transform: rotateY(90deg) translateX(50%);
+  background: linear-gradient(90deg, #0c1710 0%, #52624c 16%,
+    #7e8066 43%, #374737 76%, #14241a 100%);
+  border-left: 1px solid rgba(219,211,166,.35);
+  box-shadow: inset 0 0 8px rgba(0,0,0,.45);
+}
+.book-cover-scene .cover-board-top,
+.book-cover-scene .cover-board-bottom {
+  left: 0; width: 100%; height: var(--board-depth);
+  background: linear-gradient(180deg, #1a2a1e 0%, #75816a 38%, #26382a 100%);
+  box-shadow: inset 0 0 5px rgba(0,0,0,.4);
+}
+.book-cover-scene .cover-board-top {
+  top: 0; transform-origin: top center;
+  transform: rotateX(-90deg) translateY(-50%);
+  border-top: 1px solid rgba(224,216,177,.26);
+}
+.book-cover-scene .cover-board-bottom {
+  bottom: 0; transform-origin: bottom center;
+  transform: rotateX(90deg) translateY(50%);
+  background: linear-gradient(180deg,#101d15,#4a5a45 55%,#111e16);
+}
+.book-cover-scene .cover-board-left {
+  left: 0; top: 0; width: var(--board-depth); height: 100%;
+  transform-origin: left center;
+  transform: rotateY(-90deg) translateX(-50%);
+  background: linear-gradient(90deg,#09140d,#59654e 48%,#15231a);
+}
+.book-cover-scene .book-cover-spine {
+  z-index: 2; width: 22px !important;
+  transform: translateZ(8px) !important;
+  background: linear-gradient(90deg,rgba(5,12,8,.70),
+    rgba(126,138,107,.30) 35%,rgba(5,12,8,.34) 75%,transparent) !important;
+  box-shadow: 3px 0 11px rgba(0,0,0,.24), inset 1px 0 rgba(229,218,172,.15);
+}
+@media (max-width: 600px) {
+  .book-cover-scene .book-cover-leaf { --board-depth: 11px; }
+  .book-cover-scene .book-cover-front { transform:translateZ(5.5px) !important; }
+  .book-cover-scene .book-cover-back { transform:rotateY(180deg) translateZ(5.5px) !important; }
+  .book-cover-scene .book-cover-spine { transform:translateZ(6px) !important; width:15px !important; }
+}
+
+/* V8.26 — Genuine pen-stroke signature, not a text wipe. */
+.invitation-overlay .book-signoff{gap:4px;}
+.handwritten-names{clip-path:none!important;display:block!important;width:min(88vw,490px);max-width:100%;font-size:inherit!important;line-height:1!important;overflow:visible;}
+.ink-signature{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 .35px .2px rgba(50,63,43,.14));}
+.ink-signature path{fill:none;stroke:#53644c;stroke-width:2.35;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:0;}
+.signoff-intro{transition:opacity .5s ease;opacity:var(--signoff-intro-opacity,0);}
+@media(max-width:600px){.handwritten-names{width:min(91vw,440px);}}
+@media(prefers-reduced-motion:reduce){.ink-signature path{opacity:1!important;stroke-dasharray:none!important;stroke-dashoffset:0!important}.signoff-intro{opacity:1!important}}
+
+/* V8.27 — ink handwriting on both lines, with a softer calligraphic stroke. */
+.invitation-overlay .book-signoff{display:flex;justify-content:center;align-items:center;max-width:100%;}
+.handwritten-names{width:min(88vw,520px)!important;max-width:100%!important;}
+.ink-signature{display:block;width:100%;height:auto;overflow:visible;}
+.ink-signature path{stroke:#506147!important;stroke-width:2.15!important;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:600px){.handwritten-names{width:min(92vw,430px)!important;}}
+
+/* V8.28 — a gently tilted, hand-inked note. */
+.handwritten-names{transform:rotate(-3.2deg) translateY(2px)!important;transform-origin:50% 50%;width:min(89vw,545px)!important;}
+.ink-signature .ink-stroke{stroke:#475a42!important;stroke-linecap:round!important;stroke-linejoin:round!important;fill:none!important;vector-effect:non-scaling-stroke;}
+.ink-signature .ink-flecks{pointer-events:none;transition:none;}
+@media(max-width:600px){.handwritten-names{width:min(92vw,450px)!important;transform:rotate(-2.4deg) translateY(2px)!important}}
+@media(prefers-reduced-motion:reduce){.ink-signature .ink-flecks{opacity:1!important}}
+
+/* V8.29 — larger invitation copy, refined engraved calligraphy, and expressive ink splashes. */
+.invitation-overlay .invitation-message,
+.invitation-section .invitation-message {
+  font-size:clamp(17px,1.85vw,21px)!important;
+  line-height:1.85!important;
+  max-width:690px!important;
+  letter-spacing:.005em!important;
+}
+.handwritten-names{width:min(92vw,630px)!important;transform:rotate(-3.0deg) translateY(4px)!important;}
+.ink-signature{overflow:visible!important;}
+.ink-signature .signature-glyph{
+  font-family:'Pinyon Script','URW Chancery L','Brush Script MT',cursive!important;
+  font-weight:400!important;font-style:normal!important;
+  fill:#485a40;fill-opacity:0;
+  stroke:#485a40;stroke-width:.62;stroke-linecap:round;stroke-linejoin:round;
+  paint-order:stroke fill;
+}
+.ink-signature .ink-splashes{opacity:0;pointer-events:none;}
+@media(max-width:600px){
+ .invitation-overlay .invitation-message,.invitation-section .invitation-message{
+   font-size:clamp(16px,4.2vw,18px)!important;line-height:1.75!important;
+ }
+ .handwritten-names{width:min(96vw,560px)!important;transform:rotate(-2.5deg) translateY(3px)!important;}
+}
+@media(prefers-reduced-motion:reduce){
+ .ink-signature .signature-glyph{fill-opacity:1!important;stroke-opacity:1!important;stroke-dashoffset:0!important;}
+ .ink-signature .ink-splashes{opacity:1!important;}
+}
+
+/* V8.30 — intimate penmanship, fine ink strokes, independent splatter timing. */
+.handwritten-names{width:min(82vw,485px)!important;transform:rotate(-3.7deg) translateY(3px)!important;}
+.ink-signature .signature-glyph{font-family:'Allura','URW Chancery L','Brush Script MT',cursive!important;stroke-width:.49!important;letter-spacing:0!important;}
+.ink-signature .ink-splashes{opacity:1!important;pointer-events:none;}
+.ink-signature .ink-splash-cluster{opacity:0;}
+@media(max-width:600px){.handwritten-names{width:min(88vw,420px)!important;transform:rotate(-3deg) translateY(2px)!important;}}
+@media(prefers-reduced-motion:reduce){.ink-signature .ink-splash-cluster{opacity:1!important;transform:none!important;}}
+
+/* V8.31 — personal note signed at the lower right, with ink over the full writing surface. */
+.invitation-overlay .book-signoff{width:100%!important;align-items:flex-end!important;justify-content:flex-end!important;padding-right:clamp(4px,3.5vw,35px)!important;margin-top:48px!important;}
+.invitation-overlay .handwritten-names{width:min(78%,485px)!important;max-width:100%!important;align-self:flex-end!important;margin-left:auto!important;margin-right:0!important;transform:rotate(-3.7deg) translateY(3px)!important;transform-origin:75% 50%!important;}
+@media(max-width:600px){.invitation-overlay .book-signoff{padding-right:4px!important;margin-top:35px!important;}.invitation-overlay .handwritten-names{width:min(92%,420px)!important;}}
+
+/* V8.32 — independent, full-paper ink splashes, not trapped in the signature SVG. */
+.invitation-overlay{position:absolute!important;isolation:isolate!important;}
+.invitation-overlay .paper-ink-splashes{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible;filter:blur(.2px);}
+.invitation-overlay .paper-ink-blot{opacity:0;will-change:opacity;}
+.invitation-overlay .invitation-inner{position:relative;z-index:1;}
+@media(max-width:600px){.invitation-overlay .paper-ink-splashes{opacity:.73;}}
+@media(prefers-reduced-motion:reduce){.invitation-overlay .paper-ink-blot{opacity:1!important;}}
+
+/* V8.34: ink opacity must be controlled by JS on the CSS style property. */
+.invitation-overlay .paper-ink-blot{transition:none!important;}
+.invitation-overlay .paper-ink-splashes{filter:none!important;}
+@media(max-width:600px){.invitation-overlay .paper-ink-splashes{opacity:1!important;}}
+
+/* V8.35 — confine soft, organic ink marks to the handwritten note. */
+.invitation-overlay .paper-ink-splashes{display:none!important;}
+.invitation-overlay .handwritten-names{position:relative!important;overflow:visible!important;}
+.invitation-overlay .signature-ink-splashes{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ display:block!important;pointer-events:none!important;overflow:visible!important;
+ z-index:2!important;opacity:1!important;
+}
+.invitation-overlay .signature-ink-blot{opacity:0;transition:none!important;}
+@media(prefers-reduced-motion:reduce){.invitation-overlay .signature-ink-blot{opacity:1!important;}}
+
+/* V8.36: larger, rounded overlapping pools remain restricted to signature. */
+.invitation-overlay .signature-ink-blot{transition:none!important;}
+
+/* V8.40 — Editorial Save the Date: Polaroid + refined stationery calendar */
+.save-date-page{position:relative;overflow:hidden;min-height:100svh;padding:72px 24px 100px!important;background:radial-gradient(ellipse at 48% 25%,#faf6eb 0%,#f5f0e6 64%,#ede7da 100%);color:#3d4939}
+.save-date-page::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;background-image:radial-gradient(#ad9e7c 0.5px,transparent .65px);background-size:28px 28px;mask-image:linear-gradient(90deg,#0003,transparent 35%,transparent 65%,#0003)}
+.save-date-intro{position:relative;display:flex;align-items:center;flex-direction:column;z-index:1}
+.save-date-polaroid{width:clamp(210px,30vw,365px);padding:12px 12px 28px;margin:0 auto 20px;background:#fffdf7;box-shadow:0 18px 42px #403d3033,0 2px 6px #403d3020;transform:rotate(-5deg);position:relative;border:1px solid #e5dfd3;transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s}
+.save-date-polaroid:hover{transform:rotate(-2deg) translateY(-5px);box-shadow:0 24px 46px #403d3030}
+.polaroid-photo{position:relative;aspect-ratio:1.24;overflow:hidden;background:linear-gradient(135deg,#9fa996,#d8c9af)}
+.polaroid-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.polaroid-photo-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:27px;color:#f9f6ed}
+.polaroid-photo.missing-photo .polaroid-photo-fallback{display:flex}
+.save-date-polaroid figcaption{font-family:'Allura','Cormorant Garamond',cursive;font-size:clamp(18px,2.3vw,25px);color:#65705a;text-align:center;margin:8px 0 -14px}
+.polaroid-tape{position:absolute;width:84px;height:29px;top:-17px;left:50%;transform:translateX(-50%) rotate(4deg);background:#d8c39f9c;z-index:2;box-shadow:0 1px 2px #00000012;clip-path:polygon(3% 0,100% 4%,97% 100%,0 94%)}
+.save-date-flourish{font-family:'Cormorant Garamond',serif;font-size:23px;color:#a69c7d;margin:0 0 3px}
+.save-date-title{font-family:'Allura','Cormorant Garamond',cursive!important;font-size:clamp(66px,10vw,130px)!important;font-weight:400;line-height:.98;margin:6px 0 3px!important;letter-spacing:0}
+.save-date-title em{font-weight:400;font-style:normal}
+.save-date-rule{display:flex;align-items:center;justify-content:center;gap:14px;color:#a89b78;font-size:17px;margin:5px 0 35px}
+.save-date-rule span{display:block;width:65px;height:1px;background:#bcb196}
+.save-date-information{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1.12fr);align-items:center;gap:clamp(22px,4vw,70px);max-width:1040px;margin:0 auto 22px}
+.calendar-month{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:400;letter-spacing:.12em;text-transform:uppercase;margin:0 0 13px}
+.calendar-month span{font-size:.82em}
+.save-date-page .calendar{width:min(100%,420px);margin:0 auto;padding:0!important;border:0!important;background:transparent!important}
+.save-date-page .calendar-weekdays,.save-date-page .calendar-days{gap:3px}
+.save-date-page .calendar-weekdays{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,21px);font-weight:400;margin-bottom:5px}
+.save-date-page .calendar-days span{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,2.6vw,30px);font-weight:400;aspect-ratio:1.17}
+.save-date-page .calendar-days .wedding-day{position:relative;border:1.5px solid #657454;border-radius:50%;background:transparent!important;color:#364533!important;transform:rotate(-9deg)}
+.save-date-page .calendar-days .wedding-day::after{content:"♡";position:absolute;right:-8px;top:-17px;font-family:'Allura',cursive;font-size:26px;transform:rotate(17deg)}
+.save-date-divider{height:100%;min-height:265px;background:#b8ad91;position:relative;opacity:.8}
+.save-date-divider span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#f5f0e6;padding:14px 0;color:#998e70;font-size:18px}
+.save-date-kicker{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2vw,24px);letter-spacing:.22em;line-height:1.6;margin:0 0 25px}
+.save-date-page .countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0 auto;max-width:530px}
+.save-date-page .countdown>div{gap:6px;padding:0 clamp(4px,1.5vw,14px);border-right:1px solid #bfb49b}
+.save-date-page .countdown>div:last-child{border-right:0}
+.save-date-page .countdown strong{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(37px,5vw,69px);line-height:1}
+.save-date-page .countdown span{font-family:'Cormorant Garamond',serif;font-size:clamp(11px,1.25vw,16px);letter-spacing:.12em}
+.countdown-ornament{font-family:'Cormorant Garamond',serif;font-size:58px;color:#7c896d;line-height:1.3;margin-top:20px}
+.save-date-button{position:relative;z-index:1;margin-top:12px!important}
+@media(max-width:700px){
+ .save-date-page{padding:65px 18px 85px!important}
+ .save-date-polaroid{width:min(66vw,285px)}
+ .save-date-title{font-size:clamp(65px,15vw,96px)!important}
+ .save-date-information{grid-template-columns:1fr;gap:22px;max-width:440px}
+ .save-date-divider{min-height:0;height:1px;width:60%;margin:5px auto}
+ .save-date-divider span{padding:0 14px}
+ .save-date-kicker{margin-bottom:19px}
+ .save-date-page .countdown strong{font-size:clamp(36px,10vw,54px)}
+ .save-date-page .countdown span{font-size:12px}
+ .calendar-month{font-size:38px}
+ .save-date-page .calendar-days span{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){.save-date-polaroid{transition:none}}
+
+/* V8.41 — cinematic full-photo Save the Date */
+.save-date-cinematic{height:185svh;position:relative;background:#43533b;color:#fffaf0;isolation:isolate}
+.save-date-photo,.save-date-photo-shade{position:absolute;inset:0;pointer-events:none}
+.save-date-photo{background-image:url('assets/images/our-story.jpg');background-size:cover;background-position:center 55%;transform:scale(1.08);will-change:transform}
+.save-date-photo-shade{background:linear-gradient(180deg,rgba(18,30,20,.51),rgba(20,31,22,.24) 38%,rgba(16,27,18,.55) 100%)}
+.save-date-scene{position:sticky;top:0;min-height:100svh;height:100svh;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:flex-start;z-index:2;padding:clamp(24px,4vh,48px) 20px 22px;overflow:hidden}
+.save-date-eyebrow{font:500 10px Montserrat,sans-serif;letter-spacing:.28em;color:#f4f0e9;margin:0 0 5px;opacity:0;transform:translateY(12px)}
+.cinematic-title{font-family:'Allura','Cormorant Garamond',cursive!important;font-size:clamp(62px,9vw,110px)!important;font-weight:400;line-height:1.1!important;margin:0 0 5px!important;white-space:nowrap;text-shadow:0 2px 14px #0004}
+.write-title{display:inline-block;clip-path:inset(0 100% 0 0);will-change:clip-path}
+.cinematic-calendar{width:min(88vw,420px);margin:0 auto;opacity:0;transform:translateY(17px)}
+.cinematic-calendar h3{font-family:'Cormorant Garamond',serif;font-size:clamp(27px,3vw,36px);letter-spacing:.12em;font-weight:500;margin:10px 0 11px;color:#fffdf6}
+.cinematic-weekdays,.cinematic-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.cinematic-weekdays{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,20px);font-weight:600;margin-bottom:3px}
+.cinematic-weekdays span,.cinematic-days span{display:grid;place-items:center;min-width:0}
+.cinematic-days .calendar-cell{aspect-ratio:1.23;font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,25px);font-weight:600;opacity:0;transform:translateY(7px);position:relative;text-shadow:0 1px 4px #0005}
+.cinematic-days .wedding-day::after{content:"";position:absolute;inset:0;border:2px solid #fffef8;border-radius:50% 48% 51% 46%;transform:rotate(-22deg) scale(.8);opacity:0;transition:none}
+.cinematic-days .wedding-day.circle-drawn::after{animation:drawWeddingCircle .75s ease-out forwards}
+@keyframes drawWeddingCircle{0%{opacity:0;transform:rotate(-45deg) scale(.55);clip-path:inset(0 100% 0 0)}40%{opacity:1}100%{opacity:1;transform:rotate(-15deg) scale(1);clip-path:inset(0 0 0 0)}}
+.save-date-bottom{margin-top:auto;padding-top:14px;opacity:0;transform:translateY(20px)}
+.save-date-calendar-button{display:inline-flex;gap:9px;align-items:center;padding:10px 17px;background:#1e2b2294;border:1px solid #ffffff5e;border-radius:4px;color:white;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;backdrop-filter:blur(9px);transition:background .25s,transform .25s}
+.save-date-calendar-button:hover,.save-date-calendar-button:focus-visible{background:#f8f2e7;color:#263328;transform:translateY(-3px)}
+.save-date-waiting{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.5vw,27px);line-height:1.2;margin:15px 0 9px;text-shadow:0 1px 5px #0006}
+.save-date-countdown{display:flex;justify-content:center;gap:clamp(13px,3vw,38px);font-family:'Cormorant Garamond',serif}
+.save-date-countdown span{display:flex;flex-direction:column;gap:0}
+.save-date-countdown strong{font-weight:400;font-size:clamp(24px,3vw,38px);line-height:1}
+.save-date-countdown small{font-size:13px;letter-spacing:.09em}
+.save-date-scroll-cue{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:9px Montserrat,sans-serif;letter-spacing:.18em;color:#fff9;z-index:3;pointer-events:none}
+@media(max-width:700px){
+ .save-date-cinematic{height:170svh}
+ .save-date-scene{padding:clamp(36px,7vh,65px) 12px 30px}
+ .cinematic-title{font-size:clamp(62px,14vw,90px)!important}
+ .cinematic-calendar{width:min(89vw,355px)}
+ .cinematic-calendar h3{font-size:27px;margin:6px 0 8px}
+ .cinematic-days .calendar-cell{font-size:21px}
+ .save-date-photo{background-position:center center}
+ .save-date-waiting{font-size:21px}
+}
+@media(prefers-reduced-motion:reduce){
+ .save-date-cinematic{height:100svh}
+ .save-date-photo{transform:none!important}
+ .write-title{clip-path:none!important}
+ .save-date-eyebrow,.cinematic-calendar,.save-date-bottom,.cinematic-days .calendar-cell{opacity:1!important;transform:none!important}
+ .cinematic-days .wedding-day::after{opacity:1;transform:none;clip-path:none}
+}
+
+/* V8.42: portrait-inspired Save the Date, original photo preserved on disk. */
+.save-date-cinematic{height:185svh!important;position:relative!important;overflow:clip!important;background:#34422e!important}
+.save-date-sticky{position:sticky;top:0;height:100svh;width:100%;overflow:hidden;isolation:isolate}
+.save-date-photo,.save-date-photo-shade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.save-date-photo{background-image:url('assets/images/our-story.jpg')!important;background-repeat:no-repeat;background-size:cover!important;background-position:center bottom!important;transform-origin:center 78%;will-change:transform}
+.save-date-photo-shade{background:linear-gradient(180deg,rgba(19,31,22,.48) 0%,rgba(19,31,22,.29) 34%,rgba(19,31,22,.13) 57%,rgba(15,27,17,.35) 75%,rgba(14,24,14,.65) 100%)!important}
+.save-date-scene{position:relative!important;inset:auto!important;height:100%!important;min-height:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;padding:clamp(35px,6vh,72px) 20px clamp(20px,4vh,45px)!important;overflow:hidden!important;z-index:2}
+.save-date-eyebrow{display:none!important}
+.cinematic-title{font-family:'Pinyon Script','Allura','Cormorant Garamond',cursive!important;font-weight:400!important;font-size:clamp(72px,10.4vw,152px)!important;line-height:1.12!important;margin:0 0 3px!important;text-shadow:0 2px 12px rgba(0,0,0,.20)!important;white-space:nowrap!important}
+.cinematic-calendar{width:min(85vw,460px)!important;margin:0 auto!important}
+.cinematic-calendar h3{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(29px,3.1vw,39px)!important;letter-spacing:.24em!important;font-weight:400!important;margin:2px 0 14px!important}
+.cinematic-weekdays{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:500!important;font-size:clamp(19px,2.1vw,25px)!important;margin-bottom:5px!important}
+.cinematic-days .calendar-cell{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(20px,2.25vw,28px)!important;font-weight:500!important;aspect-ratio:1.22!important}
+.cinematic-days .wedding-day::after{border-width:1.8px!important}
+.cinematic-days .wedding-day::before{content:'♡';position:absolute;right:-5px;top:-13px;font:24px 'Cormorant Garamond',serif;color:#fffdf6;opacity:0}
+.cinematic-days .wedding-day.circle-drawn::before{opacity:1;transition:opacity .6s ease .5s}
+.save-date-bottom{width:min(92vw,550px);margin-top:auto!important;padding-top:0!important}
+.save-date-calendar-button{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(20px,2.3vw,25px)!important;padding:10px 24px!important;background:rgba(18,31,20,.22)!important;border:1px solid rgba(255,253,245,.75)!important;border-radius:12px!important;box-shadow:0 4px 15px #0002!important}
+.save-date-calendar-button:hover{background:#f8f2e7!important;color:#263328!important}
+.save-date-countdown{display:flex!important;justify-content:center!important;gap:0!important;margin:19px auto 12px!important;width:100%!important}
+.save-date-countdown>span{flex:1;min-width:0;position:relative;padding:0 7px}
+.save-date-countdown>span:not(:last-child){border-right:1px solid rgba(255,255,255,.62)}
+.save-date-countdown strong{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:400!important;font-size:clamp(33px,4vw,54px)!important;line-height:1.1!important}
+.save-date-countdown small{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(12px,1.4vw,17px)!important;letter-spacing:.17em!important;text-transform:uppercase}
+.save-date-farewell{margin-top:18px;color:#fffdf6}
+.save-date-farewell-rule{display:flex;align-items:center;gap:12px;justify-content:center;font-size:16px}
+.save-date-farewell-rule::before,.save-date-farewell-rule::after{content:'';height:1px;width:min(31vw,175px);background:rgba(255,255,255,.73)}
+.save-date-farewell p{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(21px,2.7vw,30px)!important;font-style:italic!important;letter-spacing:.035em!important;line-height:1.2!important;margin:12px 0 0!important;text-shadow:0 1px 8px #0005}
+.save-date-scroll-cue{display:none!important}
+@media(max-width:700px){
+ .save-date-cinematic{height:170svh!important}
+ .save-date-photo{background-position:center bottom!important}
+ .save-date-scene{padding:clamp(28px,5vh,55px) 11px clamp(17px,3vh,32px)!important}
+ .cinematic-title{font-size:clamp(62px,14vw,100px)!important}
+ .cinematic-calendar{width:min(90vw,390px)!important}
+ .cinematic-calendar h3{font-size:clamp(25px,6vw,33px)!important;margin:0 0 10px!important}
+ .cinematic-weekdays{font-size:19px!important}
+ .cinematic-days .calendar-cell{font-size:clamp(19px,5vw,24px)!important}
+ .save-date-countdown strong{font-size:clamp(30px,8vw,43px)!important}
+ .save-date-farewell p{font-size:clamp(19px,5vw,25px)!important}
+}
+@media(prefers-reduced-motion:reduce){.save-date-cinematic{height:100svh!important}.save-date-photo{transform:none!important}}
+
+/* V8.43 — single-screen, fixed-photo composition; intentional clear space for couple. */
+.save-date-cinematic{height:142svh!important;overflow:visible!important}
+.save-date-sticky{height:100svh!important;min-height:0!important;overflow:hidden!important}
+.save-date-photo{
+ transform:none!important;will-change:auto!important;
+ background-size:cover!important;background-position:center 78%!important;
+}
+.save-date-photo-shade{background:linear-gradient(180deg,rgba(17,30,20,.48) 0%,rgba(17,30,20,.25) 37%,rgba(17,30,20,.08) 55%,rgba(17,30,20,.18) 76%,rgba(15,26,17,.76) 100%)!important}
+.save-date-scene{
+ height:100%!important;min-height:0!important;max-height:100svh!important;
+ padding:clamp(12px,2.3svh,25px) 12px clamp(12px,2svh,22px)!important;
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ gap:0!important;overflow:hidden!important;
+}
+.cinematic-title{
+ font-size:clamp(42px,min(7vw,10svh),91px)!important;
+ line-height:1.03!important;margin:0 0 clamp(3px,.8svh,9px)!important;
+ max-width:95vw!important;white-space:nowrap!important;
+}
+.write-title{clip-path:none!important;opacity:0;transform:translateY(10px);filter:blur(5px);will-change:opacity,transform,filter}
+.cinematic-calendar{width:min(76vw,380px,48svh)!important;max-width:100%!important;margin:0 auto!important;flex:none!important}
+.cinematic-calendar h3{
+ font-size:clamp(21px,min(2.5vw,3.7svh),31px)!important;
+ letter-spacing:.18em!important;margin:0 0 clamp(3px,.65svh,7px)!important;line-height:1.05!important;
+}
+.cinematic-weekdays{font-size:clamp(14px,2.4svh,19px)!important;margin-bottom:2px!important;line-height:1.05!important}
+.cinematic-days,.cinematic-weekdays{gap:1px!important}
+.cinematic-days .calendar-cell{
+ font-size:clamp(15px,2.7svh,23px)!important;
+ height:clamp(20px,3.7svh,34px)!important;aspect-ratio:auto!important;
+ line-height:1!important;
+}
+.cinematic-days .wedding-day::before{font-size:17px!important;right:-4px!important;top:-9px!important}
+.save-date-bottom{
+ width:min(92vw,470px)!important;
+ margin-top:auto!important;padding-top:5px!important;
+ position:relative!important;z-index:3!important;
+}
+.save-date-calendar-button{font-size:clamp(15px,2.5svh,20px)!important;padding:5px 15px!important;border-radius:8px!important}
+.save-date-countdown{margin:clamp(6px,1.4svh,13px) auto 5px!important}
+.save-date-countdown strong{font-size:clamp(23px,4.5svh,38px)!important}
+.save-date-countdown small{font-size:clamp(9px,1.55svh,13px)!important;letter-spacing:.10em!important}
+.save-date-farewell{margin-top:clamp(5px,1.3svh,12px)!important}
+.save-date-farewell p{font-size:clamp(15px,2.6svh,22px)!important;margin:4px 0 0!important}
+.save-date-farewell-rule{font-size:12px!important}
+.save-date-farewell-rule::before,.save-date-farewell-rule::after{width:min(23vw,135px)!important}
+@media(max-width:700px){
+ .save-date-cinematic{height:138svh!important}
+ .save-date-photo{background-position:center 82%!important}
+ .save-date-scene{padding:clamp(12px,2.8svh,25px) 10px clamp(10px,2svh,20px)!important}
+ .cinematic-title{font-size:clamp(40px,min(12vw,8.5svh),73px)!important}
+ .cinematic-calendar{width:min(85vw,345px,45svh)!important}
+ .cinematic-calendar h3{font-size:clamp(20px,3.6svh,27px)!important}
+ .cinematic-days .calendar-cell{font-size:clamp(14px,2.5svh,20px)!important;height:clamp(19px,3.6svh,29px)!important}
+ .save-date-bottom{width:min(92vw,400px)!important}
+ .save-date-countdown strong{font-size:clamp(22px,4.2svh,33px)!important}
+ .save-date-farewell p{font-size:clamp(14px,2.5svh,19px)!important}
+}
+@media(max-height:650px){
+ .save-date-scene{padding-top:9px!important;padding-bottom:9px!important}
+ .cinematic-title{font-size:clamp(38px,8svh,66px)!important}
+ .cinematic-calendar{width:min(68vw,310px,43svh)!important}
+ .cinematic-days .calendar-cell{height:clamp(17px,3.2svh,23px)!important;font-size:clamp(13px,2.4svh,18px)!important}
+ .save-date-countdown{margin:5px auto 3px!important}
+ .save-date-farewell{margin-top:3px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .save-date-cinematic{height:100svh!important}
+ .write-title{opacity:1!important;transform:none!important;filter:none!important}
+}
+
+/* V8.44: editorial typography, photo crop, fade-only movement. */
+.save-date-photo{transform:scale(1.16)!important;transform-origin:center bottom!important;background-position:center bottom!important;animation:none!important;transition:none!important;will-change:auto!important}
+.save-date-photo-shade{background:linear-gradient(180deg,rgba(31,43,32,.67) 0%,rgba(32,46,32,.31) 36%,rgba(22,35,24,.06) 56%,rgba(21,33,23,.17) 73%,rgba(20,31,22,.80) 100%)!important}
+.cinematic-title{font-family:'Allura','Cormorant Garamond',cursive!important;font-size:clamp(43px,min(7.5vw,9svh),88px)!important;font-weight:400!important;letter-spacing:0!important}
+.cinematic-calendar{margin:clamp(32px,7svh,80px) auto 0!important;width:min(76vw,380px,46svh)!important}
+.cinematic-calendar h3{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(21px,3.4svh,32px)!important;font-weight:400!important;letter-spacing:.20em!important}
+.cinematic-weekdays,.cinematic-days .calendar-cell{font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:400!important}
+.save-date-bottom{padding:10px 12px 5px!important;background:linear-gradient(180deg,transparent,rgba(20,32,22,.16) 25%,rgba(20,32,22,.35) 100%);border-radius:12px}
+.save-date-see-you{display:block;margin-top:3px;font-family:'Cormorant Garamond',Georgia,serif!important;font-size:.78em;font-style:normal;letter-spacing:.055em}
+.save-date-see-you strong{font-weight:500}
+.write-title,.cinematic-calendar,.cinematic-days .calendar-cell,.save-date-bottom{transition:none!important;animation:none!important}
+.write-title{transform:none!important;filter:none!important}
+@media(max-width:700px){.save-date-photo{transform:scale(1.14)!important;transform-origin:center bottom!important}.cinematic-title{font-size:clamp(44px,min(12vw,8svh),75px)!important}.cinematic-calendar{margin:clamp(30px,6svh,65px) auto 0!important;width:min(82vw,340px,45svh)!important}.save-date-bottom{padding:6px 7px 4px!important}}
+@media(max-height:650px){.cinematic-calendar{margin:clamp(18px,4svh,33px) auto 0!important;width:min(72vw,310px,41svh)!important}.save-date-see-you{margin-top:1px}}
+@media(prefers-reduced-motion:reduce){.save-date-photo{transform:scale(1.16)!important}}
+
+/* V8.45 — clean responsive composition, unified elegant typography. */
+.countdown-interlude{
+ min-height:80svh;display:grid;place-items:center;padding:85px 20px;
+ background:radial-gradient(ellipse at center,#f9f5eb 0%,#f0eadf 100%);
+ color:#364637;text-align:center;
+}
+.countdown-interlude-inner{width:min(100%,790px)}
+.countdown-interlude-kicker{font:500 11px 'DM Sans',Montserrat,sans-serif;letter-spacing:.24em}
+.countdown-interlude h2{font:400 clamp(42px,7vw,84px)/1.15 'Bodoni Moda',Georgia,serif;margin:25px 0 38px}
+.countdown-interlude .save-date-countdown{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:0!important;margin:0!important}
+.countdown-interlude .save-date-countdown span{border-right:1px solid #b7b6a7;padding:0 8px}
+.countdown-interlude .save-date-countdown span:last-child{border-right:0}
+.countdown-interlude .save-date-countdown strong{font:400 clamp(39px,7vw,79px)/1 'Bodoni Moda',Georgia,serif!important;color:#364637}
+.countdown-interlude .save-date-countdown small{font:500 clamp(9px,1.4vw,12px) 'DM Sans',Montserrat,sans-serif!important;letter-spacing:.15em;color:#64735e;margin-top:11px}
+.countdown-interlude p{font:400 17px 'Bodoni Moda',Georgia,serif;margin:40px 0 0;letter-spacing:.06em}
+.countdown-interlude p span{padding:0 13px;color:#9b9e80}
+.save-date-cinematic{height:142svh!important;background:#344532!important}
+.save-date-sticky{position:sticky!important;top:0!important;height:100svh!important;overflow:hidden!important}
+.save-date-photo{
+ inset:0!important;background-image:url('assets/images/our-story.jpg')!important;
+ background-repeat:no-repeat!important;
+ background-color:#344532!important;
+ background-size:auto 100%!important;
+ background-position:center center!important;
+ transform:none!important;animation:none!important;transition:none!important;
+}
+.save-date-photo-shade{
+ background:linear-gradient(180deg,rgba(25,38,27,.48) 0%,rgba(25,38,27,.23) 40%,rgba(20,32,22,.10) 68%,rgba(17,30,20,.65) 100%)!important;
+}
+.save-date-scene{
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ height:100svh!important;max-height:100svh!important;min-height:0!important;
+ padding:clamp(20px,3svh,34px) 16px clamp(14px,2svh,23px)!important;
+}
+.cinematic-title{
+ font-family:'Bodoni Moda',Georgia,serif!important;
+ font-size:clamp(34px,5.1vw,66px)!important;
+ font-weight:400!important;letter-spacing:-.04em!important;
+ line-height:1.13!important;margin:0!important;
+ text-shadow:0 2px 14px #1727187a!important;
+}
+.cinematic-calendar{
+ box-sizing:border-box!important;
+ position:relative!important;
+ width:min(88vw,410px)!important;
+ max-width:410px!important;
+ margin:clamp(12px,3svh,28px) auto 0!important;
+ padding:0!important;
+ left:auto!important;right:auto!important;
+ align-self:center!important;
+ transform:none!important;
+ text-align:center!important;
+}
+.cinematic-calendar h3{
+ font:400 clamp(20px,2.7vw,29px)/1.25 'Bodoni Moda',Georgia,serif!important;
+ letter-spacing:.14em!important;margin:0 0 10px!important;
+}
+.cinematic-weekdays,.cinematic-days{
+ width:100%!important;
+ grid-template-columns:repeat(7,minmax(0,1fr))!important;
+ gap:1px!important;margin:0!important;padding:0!important;
+}
+.cinematic-weekdays span,.cinematic-days span{width:100%!important;min-width:0!important}
+.cinematic-weekdays{
+ font:500 clamp(12px,1.4vw,16px) 'DM Sans',Montserrat,sans-serif!important;
+ margin-bottom:4px!important;
+}
+.cinematic-days .calendar-cell{
+ font:400 clamp(16px,1.6vw,22px)/1 'Bodoni Moda',Georgia,serif!important;
+ height:clamp(24px,3.5svh,34px)!important;
+ transform:none!important;
+}
+.save-date-bottom{
+ width:min(90vw,430px)!important;margin-top:auto!important;
+ padding:5px 12px 8px!important;
+ background:linear-gradient(180deg,transparent,rgba(20,33,22,.42))!important;
+ border-radius:12px!important;
+}
+.save-date-calendar-button{
+ font:400 clamp(14px,1.5vw,17px) 'DM Sans',Montserrat,sans-serif!important;
+ font-style:normal!important;
+ padding:9px 15px!important;
+}
+.save-date-farewell p{
+ font:400 clamp(16px,1.65vw,20px)/1.4 'Bodoni Moda',Georgia,serif!important;
+}
+.save-date-see-you{font:400 clamp(13px,1.4vw,16px) 'DM Sans',Montserrat,sans-serif!important;margin-top:8px!important}
+.save-date-farewell-rule{margin-top:10px}
+@media(min-width:900px){
+ .save-date-photo{background-size:auto 100%!important}
+ .save-date-photo-shade{background:linear-gradient(90deg,#263b2e99,transparent 25%,transparent 75%,#263b2e99),linear-gradient(180deg,#19291e66,transparent 35%,#19291e99)!important}
+}
+@media(max-width:899px){
+ .save-date-photo{background-size:cover!important;background-position:center 74%!important}
+ .cinematic-title{font-size:clamp(34px,7vw,58px)!important}
+ .cinematic-calendar{width:min(83vw,360px)!important;margin:clamp(12px,2.6svh,22px) auto 0!important}
+ .cinematic-days .calendar-cell{height:clamp(22px,3.3svh,31px)!important;font-size:clamp(15px,2.4svh,20px)!important}
+ .cinematic-calendar h3{font-size:clamp(19px,3.1svh,25px)!important}
+}
+@media(max-width:500px){
+ .save-date-photo{background-position:center 79%!important}
+ .save-date-scene{padding:clamp(20px,4svh,37px) 12px clamp(12px,2svh,21px)!important}
+ .cinematic-title{font-size:clamp(35px,9vw,49px)!important}
+ .cinematic-calendar{width:min(78vw,330px)!important;margin:clamp(14px,3svh,25px) auto 0!important}
+ .cinematic-days .calendar-cell{height:clamp(23px,3.4svh,31px)!important}
+ .countdown-interlude{min-height:65svh}
+ .countdown-interlude h2{font-size:43px}
+ .countdown-interlude .save-date-countdown strong{font-size:clamp(32px,8vw,48px)!important}
+}
+@media(max-height:650px){
+ .cinematic-calendar{margin:8px auto 0!important;width:min(76vw,310px)!important}
+ .cinematic-days .calendar-cell{height:clamp(19px,3.1svh,26px)!important}
+ .cinematic-title{font-size:clamp(30px,6svh,45px)!important}
+}
+
+/* V8.46 — clean static Save the Date, consistent first-page small-text typography. */
+.save-date-cinematic{height:100svh!important;min-height:100svh!important;overflow:hidden!important}
+.save-date-sticky{position:relative!important;top:auto!important;height:100svh!important;min-height:100svh!important;overflow:hidden!important}
+.save-date-photo{
+ background-image:url('assets/images/our-story.jpg')!important;
+ background-repeat:no-repeat!important;
+ background-color:#334631!important;
+ background-size:auto 115%!important;
+ background-position:center bottom!important;
+ transform:none!important;animation:none!important;transition:none!important;
+}
+.save-date-photo-shade{background:linear-gradient(180deg,rgba(24,39,28,.46) 0%,rgba(24,39,28,.16) 37%,rgba(24,39,28,.04) 60%,rgba(17,29,19,.62) 100%)!important}
+.save-date-scene{
+ height:100svh!important;min-height:0!important;max-height:100svh!important;
+ padding:clamp(20px,4svh,40px) 14px clamp(15px,2.5svh,25px)!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ justify-content:flex-start!important;overflow:hidden!important;
+}
+.cinematic-title{
+ font-family:Montserrat,Arial,sans-serif!important;font-weight:300!important;
+ font-size:clamp(28px,4vw,52px)!important;line-height:1.2!important;
+ letter-spacing:.015em!important;margin:0!important;text-align:center!important;
+}
+.write-title{
+ display:inline-block!important;opacity:1!important;clip-path:none!important;
+ transform:none!important;filter:none!important;animation:none!important;transition:none!important;
+}
+.cinematic-calendar{
+ width:min(80vw,365px)!important;max-width:365px!important;
+ margin:clamp(65px,14svh,155px) auto 0!important;
+ padding:0!important;position:relative!important;
+ left:auto!important;right:auto!important;align-self:center!important;
+ opacity:1!important;transform:none!important;filter:none!important;
+ animation:none!important;transition:none!important;text-align:center!important;
+}
+.cinematic-calendar h3{
+ font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(17px,2vw,24px)!important;
+ font-weight:400!important;letter-spacing:.22em!important;line-height:1.4!important;
+ margin:0 0 12px!important;
+}
+.cinematic-weekdays,.cinematic-days{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:1px!important;width:100%!important}
+.cinematic-weekdays{font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(11px,1.2vw,14px)!important;font-weight:400!important;letter-spacing:.03em!important;margin-bottom:5px!important}
+.cinematic-days .calendar-cell{
+ font-family:Montserrat,Arial,sans-serif!important;font-weight:300!important;
+ font-size:clamp(13px,1.4vw,18px)!important;
+ height:clamp(23px,3.6svh,34px)!important;
+ opacity:1!important;transform:none!important;filter:none!important;
+ animation:none!important;transition:none!important;
+}
+.cinematic-days .wedding-day::after{
+ opacity:1!important;transform:rotate(-15deg) scale(1)!important;
+ clip-path:none!important;animation:none!important;
+}
+.save-date-bottom{
+ opacity:1!important;transform:none!important;filter:none!important;
+ animation:none!important;transition:none!important;
+ width:min(88vw,420px)!important;margin-top:auto!important;
+ padding:8px 12px 10px!important;
+}
+.save-date-farewell-rule,.save-date-farewell-rule::before,.save-date-farewell-rule::after{display:none!important;content:none!important}
+.save-date-calendar-button{
+ font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(12px,1.3vw,15px)!important;
+ font-weight:400!important;letter-spacing:.02em!important;
+}
+.save-date-farewell p{
+ font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(13px,1.4vw,17px)!important;
+ font-weight:300!important;line-height:1.6!important;letter-spacing:.01em!important;
+}
+.save-date-see-you{
+ font-family:Montserrat,Arial,sans-serif!important;font-size:clamp(12px,1.3vw,15px)!important;
+ font-weight:400!important;margin-top:6px!important;
+}
+.save-date-scroll-cue{display:none!important}
+@media(max-width:899px){
+ .save-date-photo{background-size:auto 115%!important;background-position:center bottom!important}
+ .cinematic-calendar{width:min(78vw,340px)!important;margin:clamp(66px,13svh,132px) auto 0!important}
+ .cinematic-title{font-size:clamp(27px,6vw,43px)!important}
+ .cinematic-calendar h3{font-size:clamp(16px,2.8vw,21px)!important}
+ .cinematic-days .calendar-cell{font-size:clamp(12px,2.3vw,17px)!important;height:clamp(22px,3.4svh,31px)!important}
+}
+@media(max-width:500px){
+ .save-date-photo{background-size:auto 114%!important;background-position:center bottom!important}
+ .save-date-scene{padding:clamp(23px,4svh,40px) 12px clamp(14px,2.5svh,25px)!important}
+ .cinematic-title{font-size:clamp(27px,7vw,38px)!important}
+ .cinematic-calendar{width:min(77vw,325px)!important;margin:clamp(76px,15svh,145px) auto 0!important}
+ .cinematic-calendar h3{font-size:clamp(16px,4vw,19px)!important}
+ .cinematic-weekdays{font-size:12px!important}
+ .cinematic-days .calendar-cell{font-size:clamp(12px,3.3vw,15px)!important;height:clamp(21px,3.4svh,29px)!important}
+ .save-date-farewell p{font-size:clamp(12px,3.2vw,15px)!important}
+}
+@media(max-height:670px){
+ .cinematic-calendar{margin:clamp(30px,8svh,65px) auto 0!important;width:min(73vw,300px)!important}
+ .cinematic-days .calendar-cell{height:clamp(18px,3svh,25px)!important}
+ .save-date-scene{padding-top:15px!important;padding-bottom:12px!important}
+}
+
+
+/* V8.48 — Minimal spotlight reveal, within the SAME sticky ring viewport.
+   No 3D hardcover and no second page seam. The former book-only rules above
+   are inert: their elements have been removed from the markup. */
+.spotlight-invitation {
+  position:absolute; inset:0; z-index:3;
+  width:100%; height:100%; min-height:0;
+  isolation:isolate; overflow:hidden;
+  opacity:0; pointer-events:none;
+  background:transparent; color:#344235;
+}
+.spotlight-darkness,
+.spotlight-light-cone,
+.spotlight-light-pool,
+.spotlight-ivory-paper,
+.spotlight-warm-vignette {
+  position:absolute; inset:0; pointer-events:none;
+}
+.spotlight-darkness {
+  background:radial-gradient(ellipse at 50% 34%,#263228 0%,#131e17 62%,#0c140f 100%);
+  z-index:0; opacity:.94;
+}
+/* Feathered stage lighting: no hard-edged triangular spotlight cone. */
+.spotlight-light-cone {
+  z-index:1;
+  background:
+    radial-gradient(ellipse 44% 90% at 50% 12%,
+      rgba(250,244,214,.40) 0%,rgba(249,234,194,.22) 33%,
+      rgba(245,226,180,.07) 58%,transparent 90%);
+  mix-blend-mode:screen;
+  opacity:0;
+}
+.spotlight-light-pool {
+  z-index:2;
+  inset:auto;
+  left:50%; top:45%;
+  width:min(68vw,880px);
+  height:min(72svh,650px);
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(.37);
+  background:radial-gradient(ellipse at center,
+    rgba(255,251,230,.82) 0%, rgba(250,237,198,.38) 26%,
+    rgba(238,220,174,.09) 57%, transparent 74%);
+  mix-blend-mode:screen;
+  filter:blur(26px);
+  opacity:0;
+}
+.spotlight-ivory-paper {
+  z-index:3;
+  background:
+    radial-gradient(ellipse at 50% 44%,rgba(255,252,244,.88) 0%,rgba(255,252,244,.12) 45%,transparent 80%),
+    linear-gradient(120deg,#eee7d9 0%,#f8f4eb 44%,#f5f0e6 100%);
+  opacity:0;
+  -webkit-mask-image:radial-gradient(ellipse 70% 81% at 50% 46%,#000 0%,transparent 17%);
+  mask-image:radial-gradient(ellipse 70% 81% at 50% 46%,#000 0%,transparent 17%);
+}
+.spotlight-ivory-paper::before {
+  content:"";
+  position:absolute; inset:0;
+  background-image:radial-gradient(rgba(105,94,67,.12) .45px,transparent .6px);
+  background-size:8px 8px;
+  opacity:.15;
+}
+.spotlight-warm-vignette {
+  z-index:4;
+  background:
+    radial-gradient(ellipse at 50% 42%,transparent 38%,rgba(73,62,43,.032) 80%,rgba(73,62,43,.075) 100%);
+  opacity:0;
+}
+.spotlight-invitation-content {
+  position:absolute; inset:0; z-index:5;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding:clamp(42px,7svh,82px) clamp(23px,5vw,68px);
+  width:100%; max-width:920px; margin:0 auto;
+  color:#344235;
+  pointer-events:none;
+}
+.spotlight-invitation-ornament,
+.spotlight-invitation-heading,
+.spotlight-invitation-message,
+.spotlight-invitation-signature {opacity:0; transition:none;}
+.spotlight-invitation-ornament{
+  display:flex;align-items:center;justify-content:center;gap:15px;
+  color:#a99a78;margin-bottom:clamp(19px,3.2svh,37px);
+}
+.spotlight-invitation-ornament span{height:1px;width:clamp(39px,7vw,76px);background:#bdb197;display:block}
+.spotlight-invitation-ornament b{font-weight:400;font-size:15px}
+.spotlight-invitation-heading{
+  font:400 clamp(50px,7vw,96px)/.98 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.037em;
+  margin:0 0 clamp(25px,4svh,43px);
+  max-width:100%;
+}
+.spotlight-invitation-message{
+  font:400 clamp(16px,1.7vw,20px)/1.88 Montserrat,sans-serif;
+  letter-spacing:.005em;
+  color:#61695e;
+  max-width:690px;
+  margin:0;
+}
+.spotlight-invitation-signature{
+  width:100%;max-width:730px;
+  display:flex;justify-content:flex-end;align-items:center;
+  margin:clamp(30px,4.3svh,49px) auto 0;
+  padding-right:clamp(0px,2vw,32px);
+}
+.spotlight-invitation-signature .handwritten-names{
+  display:block;position:relative;
+  width:min(78%,485px)!important;max-width:100%!important;
+  clip-path:none!important;overflow:visible!important;
+  transform:rotate(-3.7deg) translateY(3px)!important;
+  transform-origin:75% 50%;
+  margin:0!important;
+}
+.spotlight-invitation-signature .ink-signature{display:block;width:100%;height:auto;overflow:visible}
+.spotlight-invitation-signature .signature-ink-splashes{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+  z-index:2;pointer-events:none;
+  opacity:1!important;overflow:visible!important;
+}
+.spotlight-invitation-signature .signature-ink-blot{opacity:0;transition:none!important}
+@media(max-width:700px){
+  .spotlight-invitation-content{padding:38px 25px;max-width:100%}
+  .spotlight-invitation-heading{font-size:clamp(43px,11vw,66px);margin-bottom:25px}
+  .spotlight-invitation-message{font-size:clamp(14px,3.65vw,17px);line-height:1.85;max-width:490px}
+  .spotlight-invitation-signature{margin-top:clamp(30px,5svh,42px);padding-right:0}
+  .spotlight-invitation-signature .handwritten-names{width:min(88%,430px)!important}
+  .spotlight-invitation-ornament{margin-bottom:24px}
+}
+@media(max-height:680px){
+  .spotlight-invitation-content{padding-top:22px;padding-bottom:20px}
+  .spotlight-invitation-heading{font-size:clamp(38px,8svh,66px);margin-bottom:18px}
+  .spotlight-invitation-message{font-size:clamp(13px,2.1svh,18px);line-height:1.65}
+  .spotlight-invitation-signature{margin-top:20px}
+  .spotlight-invitation-ornament{margin-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ring-intro{display:none!important}
+  .ring-stage{background:#f5f0e6!important}
+  .spotlight-invitation{opacity:1!important}
+  .spotlight-darkness,.spotlight-light-cone,.spotlight-light-pool{display:none!important}
+  .spotlight-ivory-paper{opacity:1!important;mask-image:none!important;-webkit-mask-image:none!important}
+  .spotlight-warm-vignette{opacity:1!important}
+  .spotlight-invitation-ornament,.spotlight-invitation-heading,.spotlight-invitation-message,.spotlight-invitation-signature{opacity:1!important}
+  .spotlight-invitation-signature .signature-ink-blot{opacity:1!important}
+}
+
+
+/* ========================================================================
+   V8.50 — MINIMALIST TIMELESS COUNTDOWN
+   New styles are scoped to .countdown-timeless, leaving ring, spotlight,
+   Save the Date, venues and RSVP untouched.
+   ======================================================================== */
+.countdown-interlude.countdown-timeless{
+  display:block!important;
+  position:relative;
+  isolation:isolate;
+  height:165svh;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  background:#f5f0e6!important;
+  color:#354635!important;
+  overflow:clip;
+  text-align:center;
+}
+.countdown-timeless .timeless-stage{
+  position:sticky;
+  top:0;
+  width:100%;
+  height:100svh;
+  min-height:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:clamp(25px,4svh,56px) clamp(16px,4vw,54px);
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 68% 70% at 50% 43%,#fbf8f0 0%,#f7f2e9 50%,#f5f0e6 100%);
+}
+.countdown-timeless .timeless-ambient-glow{
+  position:absolute;
+  top:13%;left:50%;
+  width:min(72vw,900px);height:66%;
+  transform:translateX(-50%);
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(246,232,199,.31) 0%,rgba(246,232,199,0) 74%);
+  opacity:.25;
+  will-change:opacity;
+}
+.countdown-timeless .timeless-content{
+  width:min(100%,920px);
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+}
+.countdown-timeless .timeless-eyebrow{
+  margin:0 0 clamp(15px,2.6svh,24px);
+  color:#8d947e;
+  font:500 clamp(9px,1.05vw,11px)/1.7 Montserrat,sans-serif;
+  letter-spacing:.31em;
+  text-transform:uppercase;
+}
+.countdown-timeless .timeless-heading{
+  font:400 clamp(38px,5.5vw,72px)/1.16 Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important;
+  letter-spacing:-.055em;
+  color:#354535;
+  margin:0 0 clamp(10px,1.9svh,19px)!important;
+  text-wrap:balance;
+}
+.countdown-timeless .timeless-subtitle{
+  font:400 clamp(12px,1.45vw,15px)/1.8 Montserrat,sans-serif;
+  letter-spacing:.015em;
+  color:#7a8173;
+  margin:0;
+  max-width:430px;
+}
+.countdown-timeless .timeless-rule{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:clamp(12px,2vw,21px);
+  margin:clamp(30px,5svh,48px) auto clamp(32px,5.5svh,56px);
+  width:min(85%,510px);
+  color:#aa9b7c;
+}
+.countdown-timeless .timeless-rule-line{
+  display:block;
+  width:clamp(60px,13vw,150px);
+  height:1px;
+  flex:1;
+  background:linear-gradient(90deg,transparent,#c6b898);
+  transform:scaleX(0);
+  transform-origin:right center;
+  opacity:.7;
+  will-change:transform;
+}
+.countdown-timeless .timeless-rule-right{
+  transform-origin:left center;
+  background:linear-gradient(90deg,#c6b898,transparent);
+}
+.countdown-timeless .timeless-rule-star{
+  color:#ae9f80;
+  font:400 17px/1 Georgia,serif;
+  opacity:0;
+}
+.countdown-timeless .save-date-countdown.timeless-numbers{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  width:min(100%,780px)!important;
+  max-width:100%!important;
+  gap:0!important;
+  margin:0 auto!important;
+  padding:0!important;
+  align-items:stretch;
+}
+.countdown-timeless .timeless-unit{
+  display:flex!important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:clamp(4px,1.5vw,18px);
+  border-right:1px solid rgba(169,157,132,.38);
+  opacity:0;
+}
+.countdown-timeless .timeless-unit:last-child{border-right:none}
+.countdown-interlude.countdown-timeless .save-date-countdown .timeless-value{
+  display:block;
+  color:#344735!important;
+  font:400 clamp(35px,6.5vw,73px)/1.14 Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important;
+  letter-spacing:-.055em;
+  font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+  min-height:1.13em;
+  text-align:center;
+  transform:none!important;
+}
+.countdown-timeless .timeless-unit small{
+  display:block;
+  color:#7c8775!important;
+  font:500 clamp(9px,1.2vw,11px)/1.6 Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important;
+  letter-spacing:.2em!important;
+  margin-top:clamp(9px,1.8svh,17px)!important;
+}
+.countdown-timeless .timeless-scroll-label{
+  position:absolute;
+  bottom:clamp(10px,2.5svh,22px);
+  margin:0;
+  font:500 9px/1.4 Montserrat,sans-serif;
+  letter-spacing:.23em;
+  color:#a9ae9e;
+  opacity:0;
+  pointer-events:none;
+}
+.countdown-timeless .timeless-scroll-label span{margin-left:7px}
+.countdown-timeless [data-timeless-part]{opacity:0}
+/* Tiny crossfade on changed digits; no slot machines or flipping cards. */
+@keyframes timeless-digit-settle{
+  0%{opacity:.65;filter:blur(.9px)}
+  100%{opacity:1;filter:blur(0)}
+}
+.countdown-timeless .timeless-value.is-ticking{
+  animation:timeless-digit-settle .46s ease-out both;
+}
+@media(max-width:700px){
+ .countdown-interlude.countdown-timeless{height:158svh}
+ .countdown-timeless .timeless-heading{font-size:clamp(34px,8vw,57px)!important}
+ .countdown-timeless .timeless-eyebrow{letter-spacing:.22em}
+ .countdown-timeless .timeless-rule{margin:clamp(25px,4.5svh,38px) auto}
+ .countdown-timeless .timeless-unit{padding:4px}
+ .countdown-timeless .timeless-value{font-size:clamp(30px,8vw,49px)!important}
+ .countdown-timeless .timeless-unit small{font-size:9px!important;letter-spacing:.12em!important}
+  }
+@media(max-width:360px){
+ .countdown-timeless .timeless-stage{padding-inline:11px}
+ .countdown-timeless .timeless-value{font-size:clamp(27px,8.5vw,34px)!important}
+ .countdown-timeless .timeless-unit small{font-size:8px!important}
+ .countdown-timeless .timeless-heading{font-size:32px!important}
+}
+@media(max-height:630px){
+ .countdown-timeless .timeless-stage{padding-top:13px;padding-bottom:17px}
+ .countdown-timeless .timeless-heading{font-size:clamp(36px,6svh,55px)!important}
+ .countdown-timeless .timeless-eyebrow{margin-bottom:10px}
+ .countdown-timeless .timeless-rule{margin:15px auto 18px}
+ .countdown-timeless .timeless-value{font-size:clamp(29px,6svh,48px)!important}
+  }
+@media(prefers-reduced-motion:reduce){
+ .countdown-interlude.countdown-timeless{height:auto;min-height:100svh!important}
+ .countdown-timeless .timeless-stage{position:relative;height:auto;min-height:100svh}
+ .countdown-timeless [data-timeless-part],
+ .countdown-timeless .timeless-rule-star,
+ .countdown-timeless .timeless-unit,
+ .countdown-timeless .timeless-scroll-label{opacity:1!important}
+ .countdown-timeless .timeless-rule-line{transform:scaleX(1)!important}
+ .countdown-timeless .timeless-value.is-ticking{animation:none!important}
+}
+
+
+/* V8.51 — 2.5D church ceremony showcase */
+
+.ceremony-immersive {
+  position: relative;
+  min-height: 220vh;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,246,224,.10) 0%, rgba(255,246,224,0) 30%),
+    linear-gradient(180deg, #111815 0%, #17201c 22%, #1d2721 55%, #efe8dc 100%);
+  color: #f7f1e8;
+}
+.ceremony-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.ceremony-shell {
+  width: min(1220px, calc(100vw - 3rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(320px, 460px) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4.75rem);
+  align-items: center;
+}
+.ceremony-copy {
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+.ceremony-immersive.is-active .ceremony-copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ceremony-copy h2 {
+  margin: .35rem 0 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: #f4eee4;
+}
+.ceremony-copy h2 em { font-style: italic; color: #d7c8ad; }
+.ceremony-description {
+  margin: 0 0 1.4rem;
+  max-width: 36ch;
+  color: rgba(244, 239, 229, .74);
+  line-height: 1.75;
+}
+.ceremony-meta {
+  display: grid;
+  gap: .9rem;
+  margin: 0 0 1.2rem;
+}
+.ceremony-meta-block {
+  padding: 1.05rem 1.1rem;
+  border: 1px solid rgba(232, 220, 196, .14);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+.ceremony-label {
+  display: block;
+  margin-bottom: .45rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .72rem;
+  letter-spacing: .28em;
+  color: rgba(230, 217, 190, .75);
+}
+.ceremony-meta-block strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #fff8ef;
+}
+.ceremony-meta-block small {
+  display: block;
+  margin-top: .4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .92rem;
+  line-height: 1.6;
+  color: rgba(244,239,229,.72);
+}
+.ceremony-actions { margin-top: 1.4rem; }
+.ceremony-map-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .95rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(231,218,191,.28);
+  color: #f9f4eb;
+  text-decoration: none;
+  letter-spacing: .14em;
+  font-size: .78rem;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 10px 35px rgba(0,0,0,.18);
+  transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+.ceremony-map-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.09);
+  border-color: rgba(231,218,191,.45);
+}
+.church-stage {
+  position: relative;
+  min-height: min(78vh, 860px);
+  display: grid;
+  place-items: center;
+  perspective: 1800px;
+}
+.church-orbit {
+  --church-rotate-x: -8deg;
+  --church-rotate-y: -18deg;
+  --church-scale: .9;
+  --church-lift: 24px;
+  --church-float-x: 0px;
+  position: relative;
+  width: min(860px, 100%);
+  aspect-ratio: 1.08 / 1;
+  transform-style: preserve-3d;
+}
+.church-aura,
+.church-floor-glow,
+.church-pedestal,
+.church-model-wrap {
+  position: absolute;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+.church-aura {
+  top: 20%;
+  width: 72%;
+  height: 42%;
+  transform: translateX(-50%) translateZ(-160px);
+  background: radial-gradient(circle at 50% 50%, rgba(239,226,193,.24), rgba(239,226,193,0) 70%);
+  filter: blur(18px);
+  opacity: .72;
+}
+.church-floor-glow {
+  bottom: 17%;
+  width: 66%;
+  height: 13%;
+  transform: translateX(-50%) rotateX(76deg) translateZ(-25px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(229,214,180,.34) 0%, rgba(229,214,180,.12) 38%, rgba(229,214,180,0) 72%);
+  filter: blur(10px);
+}
+.church-pedestal {
+  bottom: 11%;
+  width: 58%;
+  height: 14%;
+  transform: translateX(-50%) rotateX(78deg) translateZ(-6px);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.05) 35%, rgba(255,255,255,.02)),
+    linear-gradient(180deg, rgba(210, 216, 214, .20), rgba(101, 113, 108, .12));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.12) inset,
+    0 40px 90px rgba(0,0,0,.28);
+  backdrop-filter: blur(18px);
+}
+.church-model-wrap {
+  bottom: 18%;
+  width: min(720px, 88%);
+  transform: translateX(calc(-50% + var(--church-float-x))) translateY(calc(var(--church-lift) * -1)) translateZ(60px) rotateX(var(--church-rotate-x)) rotateY(var(--church-rotate-y)) scale(var(--church-scale));
+  transition: transform .2s linear;
+  will-change: transform;
+}
+.church-depth,
+.church-model {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+.church-model-wrap::before {
+  content: '';
+  position: absolute;
+  inset: auto 9% -2% 9%;
+  height: 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(0,0,0,.32), rgba(0,0,0,0) 70%);
+  transform: translateZ(-8px);
+  filter: blur(16px);
+}
+.church-depth-back {
+  transform: translateZ(-54px) scale(1.04);
+  opacity: .22;
+  filter: blur(10px) saturate(.9);
+  mix-blend-mode: screen;
+}
+.church-depth-mid {
+  transform: translateZ(-22px) scale(1.02);
+  opacity: .5;
+  filter: blur(2px) drop-shadow(0 26px 32px rgba(0,0,0,.24));
+}
+.church-model {
+  position: relative;
+  transform: translateZ(0);
+  filter: drop-shadow(0 24px 26px rgba(0,0,0,.22)) drop-shadow(0 10px 44px rgba(0,0,0,.18));
+}
+.ceremony-scroll-label {
+  margin: 1.5rem auto 0;
+  text-align: center;
+  font-size: .78rem;
+  letter-spacing: .24em;
+  color: rgba(244,239,229,.58);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.ceremony-immersive.is-active .ceremony-scroll-label { opacity: 1; }
+.ceremony-scroll-label span { display: inline-block; margin-left: .35rem; }
+
+@media (max-width: 980px) {
+  .ceremony-shell {
+    width: min(100vw - 2rem, 780px);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+  .church-stage {
+    order: -1;
+    min-height: 49vh;
+  }
+  .church-orbit { width: min(700px, 100%); }
+  .church-model-wrap { width: min(560px, 95%); bottom: 17%; }
+  .church-pedestal { width: 76%; }
+  .church-floor-glow { width: 78%; }
+  .ceremony-copy { text-align: center; }
+  .ceremony-description { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 640px) {
+  .ceremony-immersive { min-height: 205vh; }
+  .ceremony-shell { width: min(100vw - 1.25rem, 560px); }
+  .church-stage { min-height: 42vh; }
+  .church-model-wrap {
+    width: min(470px, 100%);
+    --church-rotate-x: -5deg;
+    --church-rotate-y: -10deg;
+  }
+  .church-pedestal { bottom: 12%; width: 86%; height: 16%; }
+  .church-floor-glow { width: 88%; height: 16%; }
+  .ceremony-copy h2 { font-size: clamp(2.35rem, 12vw, 3.25rem); }
+  .ceremony-meta-block strong { font-size: 1.28rem; }
+  .ceremony-map-button { width: 100%; }
+}
+
+
+/* V8.52: photographic product-reveal rhythm, reimagined with the supplied church art. */
+.ceremony-cinema{position:relative;height:360svh;background:#f5f0e6;color:#263328;isolation:isolate}
+.ceremony-cinema-sticky{height:100svh;position:sticky;top:0;overflow:hidden;isolation:isolate}
+.ceremony-cinema-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse 85% 65% at 50% 56%,#fffdf7 0%,#f5f0e6 66%,#e8e0d1 100%)}
+.ceremony-cinema-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#e8e0d12b,transparent 32%,transparent 75%,#e7e0d685);pointer-events:none}
+.ceremony-cinema-hero{position:absolute;inset:0;display:grid;place-items:center;opacity:0;perspective:1600px;transform-style:preserve-3d;will-change:opacity}
+.ceremony-cinema-glow{position:absolute;top:54%;left:50%;width:min(78vw,850px);height:min(26vw,270px);transform:translate(-50%,-50%);background:radial-gradient(ellipse,#cbc6b490,transparent 70%);filter:blur(22px);opacity:.5}
+.ceremony-cinema-image{position:absolute;width:min(84vw,950px);max-height:78svh;object-fit:contain;filter:drop-shadow(0 28px 23px #404c362e);transform:translate3d(0,var(--church-rise,0px),0) rotateX(var(--church-rx,5deg)) rotateY(var(--church-ry,-7deg)) scale(var(--church-zoom,.84));transform-origin:center 64%;will-change:transform;user-select:none;pointer-events:none}
+.ceremony-cinema-word{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;overflow:hidden}
+.ceremony-cinema-word span{display:block;font-family:Montserrat,Arial,sans-serif;font-size:clamp(54px,14.5vw,230px);font-weight:600;letter-spacing:-.075em;line-height:1;white-space:nowrap;text-align:center;padding-right:.075em;background-image:url('assets/images/church-watercolor.png');background-repeat:no-repeat;background-size:cover;background-position:center 48%;color:transparent;-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 10px 11px #27372621);transform:scale(var(--ceremony-word-scale,.76));will-change:transform}
+.ceremony-cinema-details{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(26px,5svh,65px) 18px;opacity:0;pointer-events:none;color:#344335}
+.ceremony-cinema-kicker{font-family:Montserrat,sans-serif;font-size:clamp(10px,1vw,12px);letter-spacing:.28em;color:#79826c;margin:0 0 clamp(24px,4svh,40px)}
+.ceremony-cinema-details h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(56px,8vw,112px);font-weight:400;letter-spacing:-.035em;line-height:.92;margin:0 0 clamp(25px,4svh,46px)}
+.ceremony-cinema-details h2 em{font-weight:400;color:#738064}
+.ceremony-cinema-church{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(27px,3vw,42px);margin:0 0 10px;line-height:1.13}
+.ceremony-cinema-place,.ceremony-cinema-time{font-family:Montserrat,sans-serif;font-size:clamp(11px,1.2vw,14px);letter-spacing:.03em;color:#657062;line-height:1.8;margin:0 0 5px}
+.ceremony-cinema-map{display:inline-flex;align-items:center;gap:16px;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.15em;text-decoration:none;margin-top:clamp(20px,4svh,44px);padding:15px 26px;border:1px solid #69745d7d;border-radius:999px;color:#344335;transition:background .25s,color .25s}
+.ceremony-cinema-map:hover{background:#344335;color:#f5f0e6}
+.ceremony-cinema-index{position:absolute;bottom:clamp(20px,3svh,34px);width:100%;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.24em;color:#87907b;text-align:center;opacity:.65}
+@media(max-width:650px){
+ .ceremony-cinema{height:330svh}
+ .ceremony-cinema-image{width:110vw;max-height:73svh}
+ .ceremony-cinema-word span{font-size:clamp(46px,14.5vw,84px);letter-spacing:-.08em}
+ .ceremony-cinema-details{padding:40px 21px 65px}
+ .ceremony-cinema-details h2{font-size:clamp(54px,13vw,72px)}
+ .ceremony-cinema-church{font-size:clamp(27px,7vw,35px)}
+ .ceremony-cinema-kicker{letter-spacing:.19em}
+}
+@media(prefers-reduced-motion:reduce){
+ .ceremony-cinema{height:100svh}
+ .ceremony-cinema-hero,.ceremony-cinema-word{display:none!important}
+ .ceremony-cinema-details{opacity:1!important;pointer-events:auto!important}
+}
+
+/* V8.53 — Front-matter / foreword typography and printed-page composition.
+   Existing spotlight, signature animation and ring motion remain untouched. */
+.spotlight-ivory-paper {
+  background:
+    radial-gradient(ellipse at 50% 43%, rgba(255,253,247,.72), transparent 74%),
+    linear-gradient(112deg, #eae1d0 0%, #f8f3e9 16%, #f9f5ec 53%, #eee5d6 100%);
+}
+.spotlight-ivory-paper::before {
+  background-image: radial-gradient(rgba(106,88,61,.18) .42px,transparent .7px);
+  background-size: 6px 6px;
+  opacity:.17;
+}
+.spotlight-invitation-content.foreword-page {
+  max-width: min(850px, 90vw);
+  padding: clamp(42px, 7vh, 78px) clamp(38px, 7vw, 90px);
+  justify-content:center;
+  border-left: 1px solid rgba(115,101,74,.075);
+  border-right: 1px solid rgba(115,101,74,.075);
+}
+.foreword-running-head {
+  position:absolute;
+  top:clamp(23px,5vh,50px);
+  left:0;right:0;
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(8px,.75vw,10px);
+  letter-spacing:.24em;
+  color:#8d8777;
+  opacity:.75;
+}
+.foreword-running-head span {padding:0 .7em;color:#ab9b7e}
+.foreword-kicker {
+  margin:0 0 clamp(16px,3vh,27px);
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(8px,.84vw,10px);
+  line-height:1.8;
+  letter-spacing:.16em;
+  color:#8b846e;
+  opacity:0;
+}
+.foreword-page .spotlight-invitation-ornament {
+  order:0;
+  margin-bottom:clamp(17px,3vh,29px);
+}
+.foreword-page .spotlight-invitation-heading {
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-weight:400;
+  font-size:clamp(43px,5.3vw,67px);
+  line-height:1.2;
+  letter-spacing:-.035em;
+  margin:0 0 clamp(22px,4vh,38px);
+  color:#303d32;
+}
+.foreword-page .spotlight-invitation-message {
+  max-width:560px;
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(13px,1.35vw,16px);
+  line-height:2.05;
+  letter-spacing:0;
+  color:#555a50;
+  text-wrap:pretty;
+}
+.foreword-page .spotlight-invitation-signature {
+  max-width:590px;
+  margin-top:clamp(22px,5vh,46px);
+}
+.foreword-folio {
+  position:absolute;
+  bottom:clamp(22px,4.2vh,43px);
+  left:0;right:0;
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:12px;
+  color:#968c76;
+  opacity:.72;
+}
+@media(max-width:700px) {
+  .spotlight-invitation-content.foreword-page {max-width:100%;padding:52px 28px 48px;border:0}
+  .foreword-running-head {top:23px;font-size:8px}
+  .foreword-kicker {font-size:8px;letter-spacing:.11em;margin-bottom:17px}
+  .foreword-page .spotlight-invitation-heading {font-size:clamp(38px,10vw,54px);margin-bottom:20px}
+  .foreword-page .spotlight-invitation-message {font-size:clamp(12px,3.3vw,15px);line-height:1.9;max-width:450px}
+  .foreword-page .spotlight-invitation-signature {margin-top:26px}
+  .foreword-folio {bottom:18px;font-size:10px}
+}
+@media(max-height:620px){
+  .spotlight-invitation-content.foreword-page {padding-top:40px;padding-bottom:30px}
+  .foreword-running-head {top:10px}
+  .foreword-kicker {margin-bottom:8px}
+  .foreword-page .spotlight-invitation-ornament {margin-bottom:8px}
+  .foreword-page .spotlight-invitation-heading {font-size:clamp(34px,7vh,54px);margin-bottom:10px}
+  .foreword-page .spotlight-invitation-message {font-size:clamp(11px,2.2vh,14px);line-height:1.6}
+  .foreword-page .spotlight-invitation-signature {margin-top:12px}
+  .foreword-folio {bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){.foreword-kicker{opacity:1!important}}
+
+
+/* V8.54 — tactile foreword paper and mobile-first legibility.
+   Intentionally scoped to Page 2; existing animations remain unchanged. */
+.spotlight-ivory-paper{
+  background:
+    radial-gradient(ellipse at 26% 17%,rgba(255,255,255,.55),transparent 50%),
+    radial-gradient(ellipse at 78% 85%,rgba(174,143,100,.12),transparent 58%),
+    repeating-linear-gradient(3deg,rgba(104,81,50,.014) 0px,rgba(104,81,50,.014) 1px,transparent 1px,transparent 4px),
+    linear-gradient(108deg,#e7decc 0%,#f5eddd 8%,#fcf8ee 31%,#faf4e8 70%,#e9dfcd 100%) !important;
+}
+.spotlight-ivory-paper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(rgba(86,70,44,.24) .5px,transparent .9px),
+    radial-gradient(rgba(255,255,255,.8) .55px,transparent 1px);
+  background-position:0 0,3px 4px;
+  background-size:9px 11px,13px 17px;
+  opacity:.25 !important;
+  pointer-events:none;
+}
+.spotlight-ivory-paper::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(86,70,43,.065),transparent 5%,transparent 94%,rgba(86,70,43,.075));
+  box-shadow:inset 0 0 85px rgba(110,86,55,.075);
+  pointer-events:none;
+}
+.spotlight-invitation-content.foreword-page{
+  max-width:min(850px,92vw);
+  padding:clamp(55px,8vh,88px) clamp(26px,7vw,90px);
+}
+.foreword-running-head{
+  top:clamp(21px,4.4vh,44px);
+  font-size:clamp(11px,1vw,13px);
+  line-height:1.6;
+  letter-spacing:.15em;
+  color:#696653;
+  opacity:.9;
+}
+.foreword-kicker{
+  font-size:clamp(11px,1vw,13px);
+  line-height:1.75;
+  letter-spacing:.10em;
+  color:#746d5d;
+}
+.foreword-page .spotlight-invitation-heading{
+  font-size:clamp(30px,3.5vw,43px);
+  line-height:1.18;
+  margin-bottom:clamp(20px,3vh,29px);
+}
+.foreword-page .spotlight-invitation-message{
+  max-width:630px;
+  font-size:clamp(17px,1.55vw,20px);
+  line-height:1.85;
+  letter-spacing:.005em;
+  color:#444b40;
+}
+.foreword-folio{
+  font-size:clamp(12px,1.1vw,14px);
+  opacity:.85;
+}
+@media(max-width:700px){
+  .spotlight-invitation-content.foreword-page{
+    max-width:100%;
+    padding:clamp(70px,11vh,96px) 26px clamp(56px,9vh,80px);
+  }
+  .foreword-running-head{
+    top:clamp(23px,4.2vh,35px);
+    font-size:clamp(10px,2.75vw,12px);
+    letter-spacing:.09em;
+    padding:0 10px;
+  }
+  .foreword-kicker{
+    font-size:clamp(11px,2.9vw,13px);
+    letter-spacing:.06em;
+    line-height:1.6;
+    margin-bottom:clamp(12px,2.6vh,20px);
+  }
+  .foreword-page .spotlight-invitation-ornament{
+    margin-bottom:clamp(12px,2vh,20px);
+  }
+  .foreword-page .spotlight-invitation-heading{
+    font-size:clamp(30px,8vw,38px);
+    margin-bottom:clamp(15px,2.7vh,23px);
+  }
+  .foreword-page .spotlight-invitation-message{
+    font-size:clamp(16px,4.15vw,18px);
+    line-height:1.75;
+    max-width:36ch;
+  }
+  .foreword-page .spotlight-invitation-signature{
+    margin-top:clamp(16px,3vh,27px);
+  }
+  .foreword-folio{
+    bottom:clamp(18px,3.5vh,28px);
+    font-size:12px;
+  }
+}
+@media(max-height:620px){
+  .spotlight-invitation-content.foreword-page{
+    padding-top:48px;
+    padding-bottom:38px;
+  }
+  .foreword-running-head{top:10px;font-size:10px}
+  .foreword-kicker{margin-bottom:7px;font-size:10px}
+  .foreword-page .spotlight-invitation-ornament{margin-bottom:7px}
+  .foreword-page .spotlight-invitation-heading{font-size:clamp(27px,6vh,34px);margin-bottom:8px}
+  .foreword-page .spotlight-invitation-message{font-size:clamp(14px,2.8vh,16px);line-height:1.45}
+  .foreword-page .spotlight-invitation-signature{margin-top:9px}
+  .foreword-folio{bottom:7px}
+}
+
+
+/* V8.55 — literary foreword: restrained type and ornamental initial. */
+.foreword-page .spotlight-invitation-heading{
+  font-size:clamp(28px,3vw,37px);
+  margin-bottom:clamp(16px,2.6vh,24px);
+}
+.foreword-page .spotlight-invitation-message{
+  max-width: min(560px,100%);
+  font-size:clamp(14px,1.35vw,17px);
+  line-height:1.8;
+  text-align:left;
+  text-wrap:wrap;
+  overflow:visible;
+}
+.foreword-page .spotlight-invitation-message::first-letter{
+  float:left;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(76px,8vw,106px);
+  line-height:.70;
+  padding: .09em .105em 0 0;
+  color:#3d523e;
+}
+.foreword-running-head{
+  font-size:clamp(10px,.85vw,12px);
+  letter-spacing:.12em;
+  line-height:1.5;
+}
+@media(max-width:700px){
+  .foreword-page .spotlight-invitation-heading{
+    font-size:clamp(27px,7.2vw,34px);
+    margin-bottom:clamp(15px,2.6vh,22px);
+  }
+  .foreword-page .spotlight-invitation-message{
+    max-width: min(420px,100%);
+    font-size:clamp(14px,3.7vw,16px);
+    line-height:1.75;
+  }
+  .foreword-page .spotlight-invitation-message::first-letter{
+    font-size:clamp(68px,18vw,88px);
+    line-height:.73;
+    padding-right:.09em;
+  }
+  .foreword-running-head{
+    font-size:clamp(9px,2.5vw,11px);
+    letter-spacing:.07em;
+    padding-inline:18px;
+  }
+}
+@media(max-height:620px){
+  .foreword-page .spotlight-invitation-heading{font-size:clamp(25px,5vh,30px);margin-bottom:9px}
+  .foreword-page .spotlight-invitation-message{font-size:clamp(13px,2.4vh,15px);line-height:1.5}
+  .foreword-page .spotlight-invitation-message::first-letter{font-size:clamp(55px,12vh,74px)}
+}
+
+/* V8.56 — calligraphic initial and centered foreword preface. */
+.foreword-running-head{
+  position:relative;
+  inset:auto;
+  order:-1;
+  width:100%;
+  max-width:520px;
+  margin:0 auto clamp(12px,2.4vh,20px);
+  padding:0;
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(10px,.9vw,12px);
+  line-height:1.65;
+  letter-spacing:.10em;
+  text-align:center;
+  color:#79705e;
+  opacity:.95;
+}
+.foreword-page .spotlight-invitation-ornament{order:0;margin-bottom:clamp(9px,1.7vh,15px)}
+.foreword-page .spotlight-invitation-message::first-letter{
+  font-family:'Great Vibes','Allura','Brush Script MT',cursive;
+  font-style:normal;
+  font-weight:400;
+  font-size:clamp(92px,10vw,134px);
+  line-height:.65;
+  padding:.12em .10em .02em 0;
+  color:#384b39;
+}
+@media(max-width:700px){
+  .foreword-running-head{
+    position:relative;top:auto;left:auto;right:auto;
+    max-width:290px;
+    margin-bottom:clamp(9px,1.8vh,15px);
+    padding:0;
+    font-size:clamp(10px,2.65vw,12px);
+    letter-spacing:.055em;
+  }
+  .foreword-page .spotlight-invitation-message::first-letter{
+    font-size:clamp(80px,21vw,108px);
+    line-height:.68;
+    padding:.13em .09em .02em 0;
+  }
+}
+@media(max-height:620px){
+  .foreword-running-head{position:relative;top:auto;margin-bottom:5px;font-size:10px}
+  .foreword-page .spotlight-invitation-message::first-letter{font-size:clamp(67px,14vh,86px)}
+}
+
+
+/* V8.57 — Film-to-countdown scroll reveal.
+   The film remains pinned while the countdown sheet rises from below,
+   with rounded leading corners as in the supplied screen recording. */
+.video-countdown-transition{
+  position:relative;
+  height:265svh;
+  background:#19231d;
+  isolation:isolate;
+}
+.video-countdown-sticky{
+  position:sticky;
+  top:0;
+  width:100%;
+  height:100svh;
+  overflow:hidden;
+  isolation:isolate;
+}
+.film-background{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(150deg,rgba(28,40,31,.35),rgba(13,20,15,.7)),
+    url("assets/images/hero.jpg") center 48%/cover no-repeat,
+    #202b23;
+}
+.wedding-film{
+  display:block;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.film-cinematic-tint{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(13,20,15,.36),rgba(14,20,16,.05) 38%,rgba(14,20,16,.63)),
+    linear-gradient(90deg,rgba(20,30,23,.24),rgba(20,30,23,.04),rgba(20,30,23,.24));
+  pointer-events:none;
+}
+.film-caption{
+  position:absolute;
+  z-index:1;
+  left:20px;right:20px;top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+  color:#f8f2e8;
+  opacity:1;
+  text-shadow:0 3px 25px rgba(0,0,0,.38);
+}
+.film-caption-eyebrow{
+  font:500 clamp(10px,1.2vw,12px)/1.5 Montserrat,sans-serif;
+  letter-spacing:.28em;
+  margin:0 0 24px;
+}
+.film-caption h2{
+  font:400 clamp(45px,7.6vw,104px)/.97 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.035em;
+  margin:0;
+}
+.film-caption-note{
+  font:400 clamp(12px,1.3vw,15px)/1.7 Montserrat,sans-serif;
+  letter-spacing:.12em;
+  margin:28px 0 0;
+}
+.film-scroll-prompt{
+  position:absolute;
+  bottom:clamp(26px,5vh,54px);
+  left:0;right:0;
+  z-index:1;
+  text-align:center;
+  color:rgba(248,242,232,.84);
+  font:500 10px/1.5 Montserrat,sans-serif;
+  letter-spacing:.24em;
+}
+.film-scroll-prompt span{padding-left:9px}
+.video-countdown-transition .countdown-interlude.countdown-timeless{
+  position:absolute!important;
+  z-index:4;
+  inset:0!important;
+  width:100%;
+  height:100svh!important;
+  min-height:0!important;
+  border-radius:clamp(22px,3.8vw,46px) clamp(22px,3.8vw,46px) 0 0;
+  transform:translate3d(0,var(--countdown-rise,105%),0);
+  overflow:hidden!important;
+  box-shadow:0 -25px 70px rgba(6,14,10,var(--countdown-shadow,.25));
+  will-change:transform;
+}
+.video-countdown-transition .countdown-timeless .timeless-stage{
+  position:relative!important;
+  height:100svh!important;
+  min-height:0!important;
+}
+@media(max-width:700px){
+  .video-countdown-transition{height:245svh}
+  .film-caption h2{font-size:clamp(48px,12vw,74px)}
+  .film-caption-eyebrow{letter-spacing:.18em}
+  .film-background{background-position:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .video-countdown-transition{height:auto;min-height:200svh}
+  .video-countdown-sticky{position:relative;height:auto;min-height:200svh;overflow:visible}
+  .film-background{position:relative;height:100svh}
+  .video-countdown-transition .countdown-interlude.countdown-timeless{
+    position:relative!important;
+    transform:none!important;
+    height:auto!important;
+    min-height:100svh!important;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage{
+    height:auto!important;
+    min-height:100svh!important;
+  }
+}
+
+
+/* V8.58 — resilient MOV/MP4 video playback with graceful fallbacks.
+   The pinned-film and countdown scroll choreography above is unchanged. */
+.wedding-film{
+  z-index:0;
+  background:transparent;
+}
+.film-background{
+  isolation:isolate;
+}
+.film-cinematic-tint{z-index:1;}
+.film-caption{z-index:2;}
+.film-scroll-prompt{z-index:2;}
+.film-play-button{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  bottom:clamp(90px,14vh,160px);
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:48px;
+  padding:12px 22px;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:999px;
+  background:rgba(25,35,28,.65);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  box-shadow:0 10px 30px rgba(0,0,0,.24);
+  color:#f9f5ea;
+  font:500 11px/1.2 Montserrat,Arial,sans-serif;
+  letter-spacing:.18em;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.film-play-button:hover{background:rgba(38,51,40,.84);}
+.film-play-button:focus-visible{outline:2px solid #f5f0e6;outline-offset:4px;}
+.film-play-button[hidden],.film-fallback-label[hidden]{display:none!important;}
+.film-fallback-label{
+  position:absolute;
+  z-index:2;
+  left:16px;
+  right:16px;
+  bottom:clamp(96px,15vh,164px);
+  text-align:center;
+  color:rgba(250,245,235,.78);
+  font:400 11px/1.6 Montserrat,Arial,sans-serif;
+  letter-spacing:.12em;
+  pointer-events:none;
+}
+@media(max-width:700px){
+  .film-play-button{bottom:clamp(85px,13vh,120px);}
+  .film-fallback-label{bottom:clamp(85px,13vh,120px);}
+}
+
+
+
+/* V8.59: single bundled MP4, explicit poster, no MOV fallback delay. */
+.film-background {
+  background:
+    linear-gradient(150deg,rgba(28,40,31,.28),rgba(13,20,15,.56)),
+    url("assets/images/video-poster.jpg") center center / cover no-repeat,
+    #202b23;
+}
+.wedding-film {
+  display:block!important;
+  visibility:visible;
+  opacity:1;
+  background:transparent;
+  z-index:0;
+}
+.film-fallback-label {
+  max-width:min(420px,calc(100vw - 40px));
+  margin:0 auto;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(17,28,21,.65);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+
+
+/* V8.60 — Fixed Apple-inspired wedding navigation */
+:root { --site-nav-height: 72px; }
+html { scroll-padding-top: calc(var(--site-nav-height) + 12px); }
+#home,#film,#ceremony,#details,#venues,#entourage,#rsvp{
+  scroll-margin-top: var(--site-nav-height);
+}
+.site-header {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--site-nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 0 clamp(22px,4vw,66px);
+  color: #f6f0e6;
+  background: linear-gradient(180deg,rgba(23,34,27,.73),rgba(23,34,27,.50));
+  border-bottom: 1px solid rgba(247,241,226,.13);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  backdrop-filter: blur(22px) saturate(130%);
+  transition: background .35s ease, box-shadow .35s ease;
+}
+.site-header.is-scrolled {
+  background: rgba(28,40,32,.86);
+  box-shadow: 0 10px 32px rgba(0,0,0,.11);
+}
+.site-brand {
+  flex: 0 0 auto;
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 31px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #f5eee2;
+}
+.site-brand span {
+  font-style: italic;
+  color: #c6b796;
+  padding: 0 .04em;
+}
+.site-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px,1.8vw,29px);
+  min-width: 0;
+}
+.site-navigation a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  white-space: nowrap;
+  color: rgba(249,244,233,.78);
+  font: 500 clamp(10px,.78vw,12px)/1.3 Montserrat,Arial,sans-serif;
+  letter-spacing: .025em;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.site-navigation a::after {
+  content:"";
+  position:absolute;
+  bottom:6px;
+  left:0;
+  right:0;
+  height:1px;
+  background:#d4c4a6;
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .25s ease;
+}
+.site-navigation a:hover,
+.site-navigation a.is-active { color: #fffaf0; }
+.site-navigation a:hover::after,
+.site-navigation a.is-active::after { transform:scaleX(1); }
+.site-navigation a:focus-visible,
+.site-brand:focus-visible,
+.site-menu-toggle:focus-visible {
+  outline: 2px solid #e6d3ad;
+  outline-offset: 4px;
+}
+.site-menu-toggle { display:none; }
+
+/* The film is entirely text-free; fallback/play controls only appear if needed. */
+.film-caption,
+.film-scroll-prompt { display:none!important; }
+.film-cinematic-tint {
+  background: linear-gradient(180deg,rgba(13,20,15,.14),rgba(13,20,15,.02) 44%,rgba(13,20,15,.22));
+}
+
+/* Entourage placeholder matches the invitation's paper/olive editorial theme. */
+.entourage-section {
+  position: relative;
+  min-height: min(78svh, 780px);
+  padding: clamp(100px,13vh,160px) 24px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 24%,rgba(255,255,255,.62),transparent 55%),
+    linear-gradient(135deg,#eee7da,#f8f4eb 55%,#e8dfcf);
+  color: #344535;
+  text-align: center;
+}
+.entourage-inner { max-width:720px; }
+.entourage-eyebrow,
+.entourage-coming-soon {
+  font:500 10px/1.8 Montserrat,Arial,sans-serif;
+  letter-spacing:.24em;
+  color:#78816e;
+}
+.entourage-ornament {
+  color:#ad9c7d;
+  font-size:17px;
+  margin:24px 0 12px;
+}
+.entourage-section h2 {
+  font:400 clamp(52px,8vw,96px)/1 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.025em;
+  margin: 0 0 25px;
+}
+.entourage-section h2 em { font-style:italic; }
+.entourage-inner > p:not(.entourage-eyebrow) {
+  font:400 clamp(15px,1.6vw,19px)/1.9 'Libre Baskerville',Georgia,serif;
+  color:#65705e;
+  max-width:42ch;
+  margin:0 auto 32px;
+}
+.entourage-coming-soon {
+  display:inline-block;
+  padding-top:14px;
+  border-top:1px solid #c5b79e;
+}
+
+/* Mobile: a truly landscape (16:9) video, never a portrait crop. */
+@media(max-width:900px) {
+  :root { --site-nav-height: 64px; }
+  .site-header {
+    padding:0 20px;
+    gap:14px;
+  }
+  .site-brand { font-size:30px; }
+  .site-menu-toggle {
+    display:flex;
+    width:44px;
+    height:44px;
+    padding:12px 9px;
+    border:1px solid rgba(249,244,233,.22);
+    border-radius:13px;
+    background:rgba(255,255,255,.045);
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    color:inherit;
+    cursor:pointer;
+  }
+  .site-menu-toggle span {
+    display:block;
+    width:21px;
+    height:1.5px;
+    border-radius:2px;
+    background:currentColor;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .site-header.menu-open .site-menu-toggle span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+  .site-header.menu-open .site-menu-toggle span:nth-child(2) { opacity:0; }
+  .site-header.menu-open .site-menu-toggle span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+  .site-navigation {
+    position:fixed;
+    top:calc(var(--site-nav-height) + 8px);
+    left:12px;
+    right:12px;
+    max-height:calc(100svh - var(--site-nav-height) - 20px);
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:10px 18px;
+    border:1px solid rgba(246,238,223,.2);
+    border-radius:18px;
+    background:rgba(28,40,32,.97);
+    box-shadow:0 24px 65px rgba(0,0,0,.28);
+    -webkit-backdrop-filter:blur(28px);
+    backdrop-filter:blur(28px);
+    visibility:hidden;
+    opacity:0;
+    transform:translateY(-8px);
+    pointer-events:none;
+    transition:opacity .22s ease, transform .22s ease, visibility .22s;
+  }
+  .site-header.menu-open .site-navigation {
+    visibility:visible;
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .site-navigation a {
+    min-height:49px;
+    width:100%;
+    padding:10px 7px;
+    border-bottom:1px solid rgba(245,240,230,.1);
+    font-size:12px;
+    letter-spacing:.075em;
+  }
+  .site-navigation a:last-child{border-bottom:0}
+  .site-navigation a::after{display:none}
+  .site-navigation a.is-active{color:#dfd0b2}
+  .film-background {
+    background:#121b16;
+    overflow:hidden;
+  }
+  .film-background::before {
+    content:"";
+    position:absolute;
+    z-index:0;
+    inset:-38px;
+    background:url("assets/images/video-poster.jpg") center center/cover no-repeat;
+    filter:blur(28px) brightness(.37) saturate(.65);
+    opacity:.8;
+    pointer-events:none;
+  }
+  .wedding-film {
+    position:absolute!important;
+    inset:auto 0 auto 0!important;
+    top:50%!important;
+    transform:translateY(-50%);
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:16 / 9;
+    object-fit:contain!important;
+    object-position:center center!important;
+    border-radius:0;
+    box-shadow:0 12px 45px rgba(0,0,0,.27);
+    background:#101712;
+  }
+  .film-cinematic-tint {
+    z-index:1;
+    background:linear-gradient(180deg,rgba(12,18,14,.28),transparent 24%,transparent 76%,rgba(12,18,14,.33));
+    pointer-events:none;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-navigation,
+  .site-menu-toggle span { transition:none!important; }
+}
+
+
+/* ======================================================================
+   V8.61 — THIN NAV / MOBILE ONE-PAGE FILM + COUNTDOWN
+   All previous ring/foreword and desktop scroll animations are untouched.
+   ====================================================================== */
+:root { --site-nav-height: 54px; }
+#film { scroll-margin-top:0!important; }
+#details,#venues,#what-to-wear,#entourage,#rsvp {
+  scroll-margin-top:var(--site-nav-height);
+}
+/* Header does not cover the opening ring animation or literary foreword. */
+.site-header {
+  min-height:var(--site-nav-height);
+  height:var(--site-nav-height);
+  gap:clamp(12px,2vw,28px);
+  padding-inline:clamp(18px,3.3vw,48px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-105%);
+  transition:opacity .24s ease,transform .32s ease,visibility .32s,
+             background .35s ease,box-shadow .35s ease;
+}
+.site-header.is-visible {
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.site-brand { font-size:27px; }
+.site-navigation { flex:1; gap:clamp(13px,1.8vw,30px); }
+.site-navigation a {
+  min-height:var(--site-nav-height);
+  font-size:clamp(10px,.81vw,12px);
+  letter-spacing:.01em;
+}
+.site-navigation a::after { bottom:11px; }
+.site-dropdown { display:none; }
+
+/* What to Wear: a gentle palette section without a fabricated dress code. */
+.attire-section {
+  background:linear-gradient(140deg,#f8f5ed 0%,#f1ede2 52%,#eae5d7 100%);
+  padding:clamp(88px,12vh,140px) 22px;
+  text-align:center;
+  color:#354635;
+}
+.attire-inner { width:min(100%,880px);margin:0 auto; }
+.attire-eyebrow {
+  margin:0 0 19px;
+  font:500 10px/1.7 Montserrat,sans-serif;
+  letter-spacing:.27em;
+  color:#788372;
+}
+.attire-section h2 {
+  margin:0 0 18px;
+  font:400 clamp(54px,8vw,94px)/1 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.03em;
+}
+.attire-section h2 em {font-style:italic;}
+.attire-description {
+  max-width:510px;
+  margin:0 auto clamp(34px,5vh,52px);
+  font:400 clamp(13px,1.35vw,16px)/1.9 'Libre Baskerville',Georgia,serif;
+  color:#697263;
+}
+.attire-palette {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(9px,2vw,25px);
+  max-width:690px;
+  margin:0 auto 28px;
+}
+.attire-swatch {display:flex;flex-direction:column;align-items:center;gap:14px;}
+.attire-color {
+  display:block;
+  width:100%;
+  aspect-ratio:1;
+  max-width:140px;
+  border-radius:50%;
+  border:5px solid rgba(255,255,255,.68);
+  box-shadow:0 8px 22px rgba(43,53,41,.09);
+}
+.attire-sage {background:#a4b49d;}
+.attire-olive {background:#6d7c56;}
+.attire-champagne {background:#d8c5a5;}
+.attire-beige {background:#dfd5c4;}
+.attire-swatch>span:last-child {
+  font:500 10px/1.4 Montserrat,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#5c675a;
+}
+.attire-footnote {
+  font:400 12px/1.7 Montserrat,sans-serif;
+  color:#83897d;
+}
+
+/* Mobile: all six text links remain tappable and horizontally swipeable,
+   while the separate hamburger opens the full vertical list. */
+@media(max-width:900px) {
+  :root { --site-nav-height:52px; }
+  .site-header { gap:10px; padding-inline:12px; }
+  .site-brand { font-size:24px; }
+  .site-navigation {
+    position:static;
+    display:flex;
+    flex:1 1 auto;
+    min-width:0;
+    width:auto;
+    max-height:none;
+    flex-direction:row;
+    align-items:center;
+    gap:18px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:0 3px;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+    visibility:visible;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    transition:none;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    overscroll-behavior-x:contain;
+  }
+  .site-navigation::-webkit-scrollbar { display:none; }
+  .site-navigation a {
+    width:auto;
+    flex:0 0 auto;
+    min-height:var(--site-nav-height);
+    padding:0;
+    border:0;
+    font-size:10px;
+    letter-spacing:.025em;
+  }
+  .site-navigation a::after { display:block;bottom:9px; }
+  .site-menu-toggle {
+    display:flex;
+    flex:0 0 36px;
+    width:36px;
+    height:34px;
+    padding:7px;
+    border-radius:9px;
+  }
+  .site-menu-toggle span { width:17px; }
+  .site-header.menu-open .site-menu-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .site-header.menu-open .site-menu-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .site-dropdown {
+    position:fixed;
+    display:flex;
+    flex-direction:column;
+    top:calc(var(--site-nav-height) + 6px);
+    left:12px;
+    right:12px;
+    max-height:calc(100svh - var(--site-nav-height) - 20px);
+    overflow-y:auto;
+    padding:9px 18px;
+    border:1px solid rgba(246,238,223,.2);
+    border-radius:15px;
+    background:rgba(28,40,32,.97);
+    box-shadow:0 20px 60px rgba(0,0,0,.22);
+    -webkit-backdrop-filter:blur(22px);
+    backdrop-filter:blur(22px);
+    visibility:hidden;
+    opacity:0;
+    transform:translateY(-8px);
+    pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease,visibility .2s;
+  }
+  .site-header.menu-open .site-dropdown {
+    visibility:visible;
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .site-dropdown a {
+    display:flex;
+    align-items:center;
+    min-height:45px;
+    padding:7px 3px;
+    border-bottom:1px solid rgba(255,255,255,.10);
+    color:#eee8dd;
+    font:500 12px/1.4 Montserrat,sans-serif;
+    text-decoration:none;
+  }
+  .site-dropdown a:last-child {border:0;}
+  .site-dropdown a.is-active {color:#d8c4a1;}
+  .site-dropdown a:focus-visible {outline:2px solid #e6d3ad;outline-offset:-3px;}
+
+  /* The film and the countdown now live on the same mobile page. The video
+     retains the full 16:9 frame and fills the available screen width.
+     There is no dark olive surround or blurred letterboxing. */
+  .video-countdown-transition {
+    height:auto!important;
+    min-height:100svh;
+    background:#f5f0e6!important;
+  }
+  .video-countdown-sticky {
+    position:relative!important;
+    top:auto;
+    display:flex;
+    flex-direction:column;
+    height:auto!important;
+    min-height:100svh;
+    overflow:visible!important;
+    padding-top:var(--site-nav-height);
+    background:#f5f0e6;
+  }
+  .film-background {
+    position:relative!important;
+    inset:auto!important;
+    flex:0 0 auto;
+    width:100%;
+    height:auto!important;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#f5f0e6!important;
+  }
+  .film-background::before {content:none!important;display:none!important;}
+  .wedding-film {
+    display:block;
+    position:absolute!important;
+    inset:0!important;
+    top:0!important;
+    left:0!important;
+    width:100%!important;
+    height:100%!important;
+    aspect-ratio:16/9;
+    transform:none!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+    box-shadow:none!important;
+    border-radius:0;
+    background:transparent!important;
+  }
+  .film-cinematic-tint {display:none!important;}
+  .film-play-button {bottom:15px;}
+  .film-fallback-label {bottom:15px;}
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    position:relative!important;
+    inset:auto!important;
+    flex:1 0 auto;
+    height:auto!important;
+    min-height:0!important;
+    width:100%;
+    overflow:visible!important;
+    transform:none!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    will-change:auto;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    position:relative!important;
+    top:auto;
+    height:auto!important;
+    min-height:max(370px,calc(100svh - var(--site-nav-height) - 56.25vw))!important;
+    overflow:visible;
+    padding:clamp(25px,4vh,40px) 13px;
+  }
+  /* The desktop countdown's scroll reveal is disabled on mobile because
+     both parts are immediately visible within one combined page. */
+  .video-countdown-transition .countdown-timeless [data-timeless-part],
+  .video-countdown-transition .countdown-timeless .timeless-unit,
+  .video-countdown-transition .countdown-timeless .timeless-rule-star,
+  .video-countdown-transition .countdown-timeless .timeless-ambient-glow {
+    opacity:1!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule-line {
+    transform:scaleX(1)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-scroll-label {
+    display:none!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-heading {
+    font-size:clamp(30px,8vw,44px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-eyebrow {
+    margin-bottom:13px;
+    font-size:9px;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule {
+    margin:clamp(15px,3vh,24px) auto;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-subtitle {
+    font-size:clamp(11px,3vw,13px);
+  }
+  .video-countdown-transition .countdown-timeless .timeless-unit small {
+    margin-top:7px!important;
+    font-size:8px!important;
+  }
+  .attire-section {padding:90px 20px;}
+  .attire-palette {gap:10px;}
+  .attire-color {border-width:3px;}
+}
+@media(max-width:360px){
+  .site-header{padding-inline:9px;gap:7px}
+  .site-navigation{gap:12px}
+  .site-brand{font-size:21px}
+  .attire-palette{grid-template-columns:repeat(2,minmax(0,1fr));max-width:260px;gap:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header,.site-dropdown{transition:none!important}
+}
+
+
+/* ======================================================================
+   V8.62 — Seamless foreword handoff / compact four-link navigation /
+            enlarged landscape film + scroll-rising rounded ivory sheet.
+   The ring animation and Foreword CSS remain untouched.
+   ====================================================================== */
+:root { --site-nav-height: 52px; }
+.ring-experience { margin-bottom:0!important; }
+.ring-experience + .video-countdown-transition {
+  margin-top:0!important;
+  border-top:0!important;
+}
+/* An ivory-to-video crossfade removes the hard color jump after the Foreword.
+   It is painted over the video rather than inserting a blank spacer. */
+.film-background::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background:linear-gradient(180deg,#f5f0e6 0%,#f5f0e6 35%,rgba(245,240,230,.96) 100%);
+  opacity:var(--film-entry-opacity,0);
+  will-change:opacity;
+}
+/* Desktop: thin branded header and four pill links. */
+.site-header {
+  height:var(--site-nav-height);
+  min-height:var(--site-nav-height);
+  gap:clamp(14px,2.2vw,35px);
+  padding-inline:clamp(17px,3.3vw,48px);
+}
+.site-brand {
+  font-family:Montserrat,Arial,sans-serif;
+  font-style:normal;
+  font-weight:500;
+  font-size:clamp(10px,.84vw,12px);
+  line-height:1.35;
+  letter-spacing:.045em;
+  text-transform:none;
+  white-space:nowrap;
+}
+.site-navigation { justify-content:flex-end; gap:clamp(5px,.7vw,12px); }
+.site-navigation a {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  height:30px;
+  width:auto;
+  padding:0 clamp(12px,1.2vw,19px);
+  border:0;
+  border-radius:999px;
+  color:rgba(249,244,233,.83);
+  background:transparent;
+  font-size:clamp(10px,.81vw,12px);
+  letter-spacing:.015em;
+  transition:background .22s ease,color .22s ease,box-shadow .22s ease;
+}
+.site-navigation a::after { display:none!important; }
+.site-navigation a:hover:not(.is-active) {
+  background:rgba(255,255,255,.13);
+  color:#fffaf0;
+}
+.site-navigation a.is-active,
+.site-navigation a.is-active:hover {
+  background:#fffdf8!important;
+  color:#263328!important;
+  box-shadow:0 2px 12px rgba(0,0,0,.10);
+}
+.site-dropdown a.is-active {
+  background:#fffdf8;
+  color:#263328;
+  border-radius:9px;
+  padding-left:12px;
+}
+
+@media(max-width:900px) {
+  :root {
+    --site-nav-height:80px;
+    /* 16:10 landscape: approximately 12.5% taller than the former 16:9
+       presentation, with modest center cropping of the original 16:9. */
+    --mobile-video-height:min(62.5vw,48svh);
+  }
+  /* Two-row bar: title + hamburger above four fully visible text tabs. */
+  .site-header {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:27px 35px;
+    align-content:center;
+    column-gap:8px;
+    row-gap:2px;
+    width:100%;
+    height:var(--site-nav-height);
+    min-height:var(--site-nav-height);
+    padding:5px 10px;
+  }
+  .site-brand {
+    grid-column:1;
+    grid-row:1;
+    align-self:center;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:clamp(9px,2.6vw,11px);
+    letter-spacing:.015em;
+  }
+  .site-menu-toggle {
+    grid-column:2;
+    grid-row:1;
+    justify-self:end;
+    align-self:center;
+    flex:none;
+    width:32px;
+    height:28px;
+    padding:5px;
+    border-radius:8px;
+  }
+  .site-menu-toggle span {width:16px;}
+  .site-navigation {
+    grid-column:1 / -1;
+    grid-row:2;
+    position:static;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:3px;
+    width:100%;
+    min-width:0;
+    height:35px;
+    padding:2px;
+    overflow:visible;
+    justify-content:stretch;
+    align-items:center;
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:999px;
+    background:rgba(255,255,255,.065);
+    visibility:visible;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+  .site-navigation a {
+    min-width:0;
+    width:100%;
+    height:30px;
+    min-height:30px;
+    padding:0 2px;
+    font-size:clamp(9px,2.65vw,11px);
+    line-height:1;
+    letter-spacing:-.015em;
+    white-space:nowrap;
+    border-radius:999px;
+  }
+  .site-navigation a.is-active {color:#263328!important;}
+  .site-dropdown {top:calc(var(--site-nav-height) + 5px);}
+
+  /* One mobile viewport combines the video and the countdown. The film is
+     enlarged to 16:10, without dark olive borders or blurred letterboxing. */
+  .video-countdown-transition {
+    height:188svh!important;
+    min-height:0!important;
+    background:#f5f0e6!important;
+  }
+  .video-countdown-sticky {
+    position:sticky!important;
+    top:0!important;
+    display:block!important;
+    width:100%;
+    height:100svh!important;
+    min-height:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+    background:#f5f0e6!important;
+    isolation:isolate;
+  }
+  .film-background {
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100svh!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    background:#f5f0e6!important;
+  }
+  .film-background::before {content:none!important;display:none!important;}
+  .wedding-film {
+    display:block!important;
+    position:absolute!important;
+    inset:auto 0 auto 0!important;
+    top:var(--site-nav-height)!important;
+    left:0!important;
+    width:100%!important;
+    height:var(--mobile-video-height)!important;
+    aspect-ratio:16/10!important;
+    transform:none!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    background:#f5f0e6!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+  .film-cinematic-tint {display:none!important;}
+  .film-play-button {
+    top:calc(var(--site-nav-height) + 31.25vw);
+    bottom:auto!important;
+    transform:translate(-50%,-50%);
+  }
+  .film-fallback-label {
+    top:calc(var(--site-nav-height) + 31.25vw);
+    bottom:auto!important;
+    transform:translateY(-50%);
+    padding:0 20px;
+    color:#344535;
+  }
+
+  /* The countdown is already immediately below the landscape frame, with
+     no blank strip. Scrolling lifts its rounded corners over the footage. */
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    --mobile-rise:0px;
+    --mobile-panel-start:calc(var(--site-nav-height) + var(--mobile-video-height));
+    display:block!important;
+    position:absolute!important;
+    inset:auto 0 auto 0!important;
+    top:var(--mobile-panel-start)!important;
+    left:0!important;
+    right:0!important;
+    bottom:auto!important;
+    width:100%!important;
+    height:calc(100svh - var(--mobile-panel-start) + var(--mobile-rise))!important;
+    min-height:0!important;
+    padding:0!important;
+    margin:0!important;
+    border-radius:clamp(24px,7vw,34px) clamp(24px,7vw,34px) 0 0!important;
+    overflow:hidden!important;
+    transform:translate3d(0,calc(-1 * var(--mobile-rise)),0)!important;
+    box-shadow:0 -14px 40px rgba(28,36,26,var(--countdown-shadow,.12))!important;
+    will-change:transform;
+    z-index:4;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    position:relative!important;
+    top:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:100%!important;
+    min-height:0!important;
+    padding:clamp(17px,2.8svh,28px) 13px!important;
+    overflow:hidden!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-content {
+    max-width:100%;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-heading {
+    font-size:clamp(28px,7.8vw,43px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule {
+    margin:clamp(12px,2.5svh,22px) auto!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-eyebrow {
+    margin-bottom:9px!important;
+    font-size:9px!important;
+    letter-spacing:.18em!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-subtitle {
+    font-size:clamp(11px,2.7vw,13px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-unit small {
+    font-size:8px!important;
+    letter-spacing:.11em!important;
+  }
+  .video-countdown-transition .countdown-timeless [data-timeless-part],
+  .video-countdown-transition .countdown-timeless .timeless-unit,
+  .video-countdown-transition .countdown-timeless .timeless-rule-star,
+  .video-countdown-transition .countdown-timeless .timeless-ambient-glow {
+    opacity:1!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule-line {
+    transform:scaleX(1)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-scroll-label {
+    display:none!important;
+  }
+}
+@media(max-width:360px) {
+  .site-header {padding-inline:7px;}
+  .site-navigation {gap:2px;}
+  .site-navigation a {font-size:9px;}
+  .site-brand {font-size:9px;}
+}
+@media(max-width:900px) and (max-height:580px) {
+  :root {--mobile-video-height:min(54vw,36svh);}
+  .video-countdown-transition .countdown-timeless .timeless-heading {
+    font-size:clamp(25px,6svh,34px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule {
+    margin:9px auto!important;
+  }
+}
+@media(max-width:900px) and (prefers-reduced-motion:reduce) {
+  .video-countdown-transition {height:auto!important;min-height:0!important;}
+  .video-countdown-sticky {
+    position:relative!important;
+    height:auto!important;
+    min-height:100svh!important;
+    overflow:visible!important;
+    padding-top:var(--site-nav-height)!important;
+  }
+  .film-background {
+    position:relative!important;
+    height:var(--mobile-video-height)!important;
+  }
+  .wedding-film {top:0!important;}
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    position:relative!important;
+    inset:auto!important;
+    top:auto!important;
+    height:auto!important;
+    min-height:calc(100svh - var(--site-nav-height) - var(--mobile-video-height))!important;
+    transform:none!important;
+    border-radius:25px 25px 0 0!important;
+    box-shadow:none!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    min-height:inherit!important;
+    height:auto!important;
+  }
+}
+
+
+/* =======================================================================
+   V8.63 — SEAMLESS FILM / SINGLE MOVING COUNTDOWN SHEET / FLOATING GLASS NAV
+   The ring-toss and Foreword animation CSS above are unchanged.
+   ======================================================================= */
+:root { --site-nav-height: 56px; }
+html { scroll-padding-top:76px; }
+.ring-experience { margin-bottom:0!important; padding-bottom:0!important; }
+.ring-experience + .video-countdown-transition {
+  margin:0!important; padding:0!important;
+  border:0!important;
+}
+.video-countdown-transition {
+  margin:0!important;
+  padding:0!important;
+}
+/* No simulated ivory fade, which previously looked like a blank strip. */
+.film-background::after { content:none!important; display:none!important; }
+.film-background {
+  border-radius:clamp(23px,4vw,46px) clamp(23px,4vw,46px) 0 0;
+  overflow:hidden!important;
+}
+.film-cinematic-tint { pointer-events:none; }
+
+/* Countdown content never fades or slides independently. The whole ivory
+   page is translated, carrying its typography in one rigid composition. */
+.video-countdown-transition .countdown-timeless [data-timeless-part],
+.video-countdown-transition .countdown-timeless .timeless-unit,
+.video-countdown-transition .countdown-timeless .timeless-rule-star,
+.video-countdown-transition .countdown-timeless .timeless-ambient-glow {
+  opacity:1!important;
+}
+.video-countdown-transition .countdown-timeless .timeless-rule-line {
+  transform:scaleX(1)!important;
+}
+.video-countdown-transition .countdown-timeless .timeless-scroll-label {
+  opacity:1!important;
+}
+
+/* Apple-inspired, warm frosted-glass floating navigation.
+   It remains hidden until the video begins; active tab is a white pill. */
+.site-header {
+  --site-nav-height:56px;
+  position:fixed!important;
+  top:12px!important;
+  left:50%!important;
+  right:auto!important;
+  width:min(1060px,calc(100% - 32px))!important;
+  height:56px!important;
+  min-height:56px!important;
+  padding:6px 12px 6px 23px!important;
+  gap:clamp(12px,2vw,30px)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:999px!important;
+  color:#354334!important;
+  background:rgba(246,245,238,.82)!important;
+  box-shadow:0 8px 32px rgba(24,35,27,.12),0 1px 2px rgba(25,32,23,.06)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(160%)!important;
+  backdrop-filter:blur(24px) saturate(160%)!important;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,-120%)!important;
+  transition:opacity .28s ease,transform .36s cubic-bezier(.2,.8,.2,1),visibility .36s!important;
+}
+.site-header.is-visible {
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translate(-50%,0)!important;
+}
+.site-header.is-scrolled {
+  background:rgba(248,247,242,.88)!important;
+  box-shadow:0 10px 38px rgba(25,34,25,.14)!important;
+}
+.site-brand {
+  flex:0 1 auto!important;
+  min-width:0;
+  font:500 clamp(10px,1vw,12px)/1.3 Montserrat,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;
+  letter-spacing:-.015em!important;
+  color:#455344!important;
+  text-decoration:none!important;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.site-navigation {
+  position:static!important;
+  display:flex!important;
+  flex:0 0 auto!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:3px!important;
+  width:auto!important;
+  height:42px!important;
+  min-width:0!important;
+  padding:4px!important;
+  margin:0!important;
+  border:1px solid rgba(84,99,83,.075)!important;
+  border-radius:999px!important;
+  background:rgba(226,229,220,.49)!important;
+  box-shadow:none!important;
+  visibility:visible!important;
+  opacity:1!important;
+  transform:none!important;
+  pointer-events:auto!important;
+  overflow:visible!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+.site-navigation a {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  height:33px!important;
+  min-height:33px!important;
+  padding:0 clamp(12px,1.3vw,19px)!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#5b6759!important;
+  font:500 11px/1 Montserrat,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;
+  letter-spacing:-.025em!important;
+  text-decoration:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+  transition:background .22s ease,color .22s ease,box-shadow .22s ease!important;
+}
+.site-navigation a::after { display:none!important; }
+.site-navigation a:hover:not(.is-active) {
+  color:#283a2b!important;
+  background:rgba(255,255,255,.54)!important;
+}
+.site-navigation a.is-active,
+.site-navigation a.is-active:hover {
+  color:#26362a!important;
+  background:#fff!important;
+  box-shadow:0 2px 9px rgba(30,43,32,.11),0 1px 1px rgba(30,43,32,.04)!important;
+}
+.site-menu-toggle {display:none!important;}
+.site-dropdown {
+  border:1px solid rgba(255,255,255,.74)!important;
+  background:rgba(248,247,242,.97)!important;
+  box-shadow:0 18px 60px rgba(21,32,24,.16)!important;
+  border-radius:17px!important;
+}
+.site-dropdown a {
+  color:#4a594a!important;
+  border-color:rgba(66,83,66,.10)!important;
+}
+.site-dropdown a.is-active {
+  background:#fff!important;
+  color:#26362a!important;
+  border-radius:11px!important;
+  box-shadow:0 2px 8px rgba(30,43,32,.07)!important;
+}
+.site-brand:focus-visible,
+.site-navigation a:focus-visible,
+.site-menu-toggle:focus-visible,
+.site-dropdown a:focus-visible {
+  outline:2px solid #70866f!important;
+  outline-offset:2px!important;
+}
+
+@media(max-width:900px){
+  :root {
+    --site-nav-height:80px;
+    --mobile-video-height:clamp(255px,74vw,430px);
+  }
+  html {scroll-padding-top:100px;}
+  .site-header {
+    top:8px!important;
+    width:calc(100% - 18px)!important;
+    height:77px!important;
+    min-height:77px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 31px!important;
+    grid-template-rows:22px 36px!important;
+    align-content:center!important;
+    align-items:center!important;
+    gap:3px 7px!important;
+    padding:6px 9px 7px!important;
+    border-radius:22px!important;
+  }
+  .site-brand {
+    grid-column:1!important;
+    grid-row:1!important;
+    align-self:center!important;
+    padding-left:8px;
+    font-size:clamp(9px,2.7vw,11px)!important;
+    letter-spacing:-.025em!important;
+  }
+  .site-menu-toggle {
+    display:flex!important;
+    grid-column:2!important;
+    grid-row:1!important;
+    width:30px!important;
+    height:26px!important;
+    min-height:26px!important;
+    padding:5px!important;
+    justify-self:end!important;
+    align-self:center!important;
+    border:0!important;
+    border-radius:9px!important;
+    background:rgba(210,217,205,.58)!important;
+    color:#354735!important;
+  }
+  .site-menu-toggle span {
+    width:17px!important;
+    background:#465745!important;
+  }
+  .site-navigation {
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:2px!important;
+    width:100%!important;
+    height:36px!important;
+    padding:3px!important;
+    justify-content:stretch!important;
+    overflow:visible!important;
+  }
+  .site-navigation a {
+    width:100%!important;
+    min-width:0!important;
+    height:28px!important;
+    min-height:28px!important;
+    padding:0 2px!important;
+    font-size:clamp(9px,2.55vw,11px)!important;
+    letter-spacing:-.045em!important;
+  }
+  .site-dropdown {
+    position:fixed!important;
+    display:flex!important;
+    flex-direction:column!important;
+    top:calc(100% + 7px)!important;
+    left:4px!important;
+    right:4px!important;
+    max-height:calc(100svh - 105px)!important;
+    padding:8px 13px!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    transform:translateY(-8px)!important;
+    pointer-events:none!important;
+    transition:opacity .2s ease,transform .2s ease,visibility .2s!important;
+  }
+  .site-header.menu-open .site-dropdown {
+    visibility:visible!important;
+    opacity:1!important;
+    transform:translateY(0)!important;
+    pointer-events:auto!important;
+  }
+  .site-dropdown a {
+    display:flex!important;
+    align-items:center!important;
+    min-height:44px!important;
+    padding:9px 11px!important;
+    font-size:12px!important;
+  }
+
+  /* The film starts at the VERY TOP of its section. No nav-height offset,
+     padding, pale transition veil, blurred letterboxing or blank strip. */
+  .video-countdown-transition {
+    position:relative!important;
+    height:208svh!important;
+    min-height:0!important;
+    background:#f5f0e6!important;
+    overflow:clip!important;
+  }
+  .video-countdown-sticky {
+    position:sticky!important;
+    top:0!important;
+    width:100%!important;
+    height:100svh!important;
+    min-height:0!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+    background:#f5f0e6!important;
+  }
+  .film-background {
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100svh!important;
+    min-height:0!important;
+    background:#f5f0e6!important;
+    border-radius:26px 26px 0 0!important;
+    overflow:hidden!important;
+  }
+  .film-background::before,
+  .film-background::after {
+    content:none!important;
+    display:none!important;
+  }
+  .wedding-film {
+    position:absolute!important;
+    inset:0 auto auto 0!important;
+    top:0!important;
+    left:0!important;
+    width:100%!important;
+    height:var(--mobile-video-height)!important;
+    aspect-ratio:auto!important;
+    transform:none!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    border:0!important;
+    border-radius:26px 26px 0 0!important;
+    box-shadow:none!important;
+    background:#f5f0e6!important;
+  }
+  .film-cinematic-tint {display:none!important;}
+  .film-play-button {
+    top:calc(var(--mobile-video-height) / 2)!important;
+    bottom:auto!important;
+    transform:translate(-50%,-50%)!important;
+  }
+  .film-fallback-label {
+    top:calc(var(--mobile-video-height) / 2)!important;
+    bottom:auto!important;
+    transform:translateY(-50%)!important;
+  }
+
+  /* One ivory panel slides as a single rigid page: typography stays at
+     a constant position relative to the rounded upper corners. */
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    position:absolute!important;
+    inset:0!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    bottom:auto!important;
+    width:100%!important;
+    height:100svh!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    border-radius:30px 30px 0 0!important;
+    overflow:hidden!important;
+    transform:translate3d(0,var(--panel-offset, var(--mobile-video-height)),0)!important;
+    box-shadow:0 -9px 26px rgba(33,44,32,.13)!important;
+    will-change:transform;
+    z-index:4;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    position:relative!important;
+    top:0!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    width:100%!important;
+    height:100svh!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:clamp(102px,14svh,150px) 13px 26px!important;
+    overflow:hidden!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-content {
+    width:100%!important;
+    max-width:100%!important;
+    flex:0 0 auto!important;
+    transform:none!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-heading {
+    font-size:clamp(27px,7.6vw,42px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-rule {
+    margin:clamp(14px,2.3svh,21px) auto!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-eyebrow {
+    font-size:9px!important;
+    margin-bottom:11px!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-subtitle {
+    font-size:clamp(11px,2.8vw,13px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-scroll-label {
+    display:none!important;
+  }
+}
+@media(max-width:360px) {
+  .site-header {width:calc(100% - 12px)!important;}
+  .site-navigation a {font-size:9px!important;}
+}
+@media(max-width:900px) and (max-height:600px) {
+  :root {--mobile-video-height:min(74vw,52svh);}
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    padding-top:clamp(60px,11svh,100px)!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-heading {
+    font-size:clamp(24px,6svh,35px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-header,.site-navigation a,.site-dropdown {transition:none!important;}
+  .video-countdown-transition {height:auto!important;overflow:visible!important;}
+  .video-countdown-sticky {
+    position:relative!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+  .film-background {
+    position:relative!important;
+    height:var(--mobile-video-height,100svh)!important;
+  }
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    position:relative!important;
+    inset:auto!important;
+    height:auto!important;
+    min-height:100svh!important;
+    transform:none!important;
+  }
+  .video-countdown-transition .countdown-timeless .timeless-stage {
+    height:auto!important;
+    min-height:100svh!important;
+  }
+}
+
+
+/* ======================================================================
+   V8.64 — CINEMATIC FOREWORD HANDOFF / TRUE EDGE-TO-EDGE FILM / MONOGRAM NAV
+   All approved Three.js ring motion, spotlight/ink and timer logic unchanged.
+   ====================================================================== */
+
+/* No rounded upper corners on the FILM. Only the rising countdown sheet
+   keeps its curved corners. This overrides earlier V8.63 rules. */
+.video-countdown-transition .film-background,
+.video-countdown-transition .wedding-film,
+.video-countdown-transition .video-countdown-sticky {
+  border-radius:0!important;
+}
+.video-countdown-transition .film-background {
+  overflow:hidden!important;
+  isolation:isolate;
+}
+.video-countdown-transition .film-background::after {
+  content:none!important;
+  display:none!important;
+}
+
+/* Cinematic paper-to-footage crossfade: a translucent ivory film is drawn
+   OVER the footage, never as a blank block between the two sections.
+   Its opacity is scroll-driven, so the foreword dissolves into the scene. */
+.video-countdown-transition .film-entry-wash {
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:var(--film-entry-opacity,.76);
+  background:
+    linear-gradient(180deg,
+      rgba(246,241,232,.94) 0%,
+      rgba(246,241,232,.83) 38%,
+      rgba(246,241,232,.62) 70%,
+      rgba(246,241,232,.40) 100%);
+  will-change:opacity;
+}
+/* Ensure no obsolete spacing remains at the scene boundary. */
+.ring-experience,
+.ring-experience + .video-countdown-transition {
+  margin-bottom:0!important;
+  padding-bottom:0!important;
+}
+.ring-experience + .video-countdown-transition {
+  margin-top:0!important;
+  padding-top:0!important;
+  border-top:0!important;
+}
+
+/* Elegant compact Apple-style glass navigation with the original K&C
+   artwork loaded from assets/images/kc-monogram.png when available. */
+.site-header {
+  width:min(930px,calc(100% - 30px))!important;
+  height:58px!important;
+  min-height:58px!important;
+  padding:6px 9px 6px 14px!important;
+  gap:clamp(10px,2.2vw,34px)!important;
+  background:rgba(250,248,244,.82)!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+  border-radius:999px!important;
+  box-shadow:0 6px 28px rgba(25,35,26,.13),0 1px 1px rgba(25,35,26,.035)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(155%)!important;
+  backdrop-filter:blur(28px) saturate(155%)!important;
+}
+.site-header.is-scrolled {
+  background:rgba(251,249,245,.9)!important;
+  box-shadow:0 10px 38px rgba(25,35,26,.13)!important;
+}
+.site-brand {
+  flex:0 0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:92px!important;
+  min-width:92px!important;
+  height:42px!important;
+  overflow:visible!important;
+  color:#344335!important;
+  text-decoration:none!important;
+}
+.site-brand-fallback {
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:1px;
+  white-space:nowrap;
+  color:#40533f;
+  font:500 30px/1 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.09em;
+}
+.site-brand-amp {
+  font-size:19px;
+  font-style:italic;
+  font-weight:400;
+  padding:0 3px;
+  color:#ab9774;
+}
+.site-monogram {
+  display:block;
+  width:auto;
+  max-width:90px;
+  height:auto;
+  max-height:43px;
+  object-fit:contain;
+}
+.site-monogram[hidden] {display:none!important;}
+.site-brand.has-monogram .site-brand-fallback {display:none!important;}
+.site-navigation {
+  background:rgba(225,229,221,.52)!important;
+  border:1px solid rgba(65,87,65,.055)!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.45)!important;
+}
+.site-navigation a {
+  color:#536451!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  padding:0 clamp(13px,1.55vw,20px)!important;
+}
+.site-navigation a.is-active {
+  background:#fff!important;
+  color:#293b2d!important;
+  box-shadow:0 2px 10px rgba(26,40,29,.13),0 1px 1px rgba(26,40,29,.03)!important;
+}
+.site-navigation a:focus-visible,.site-brand:focus-visible,
+.site-menu-toggle:focus-visible {
+  outline:2px solid #839a81!important;
+  outline-offset:3px!important;
+}
+
+@media(max-width:900px) {
+  /* Film is intentionally larger than the original 16:9 viewport.
+     object-fit:cover crops the sides rather than adding dark letterboxes. */
+  :root { --mobile-video-height:clamp(300px,86vw,470px); }
+  .video-countdown-transition .film-background,
+  .video-countdown-transition .wedding-film {
+    border-radius:0!important;
+  }
+  .video-countdown-transition .wedding-film {
+    top:0!important;
+    left:0!important;
+    width:100%!important;
+    height:var(--mobile-video-height)!important;
+    object-fit:cover!important;
+    object-position:50% 50%!important;
+    transform:scale(1.045)!important;
+    transform-origin:center center!important;
+  }
+  /* The footage is clipped at the screen edges, not by rounded corners. */
+  .video-countdown-transition .film-background {
+    overflow:hidden!important;
+  }
+  /* Maintain a slim two-row bar so all four tabs remain visible at 320px. */
+  .site-header {
+    top:8px!important;
+    width:calc(100% - 16px)!important;
+    height:76px!important;
+    min-height:76px!important;
+    grid-template-columns:minmax(0,1fr) 34px!important;
+    grid-template-rows:26px 34px!important;
+    gap:2px 5px!important;
+    padding:5px 8px 6px!important;
+    border-radius:20px!important;
+  }
+  .site-brand {
+    grid-column:1!important;
+    grid-row:1!important;
+    justify-self:start!important;
+    width:62px!important;
+    min-width:62px!important;
+    height:26px!important;
+    margin-left:7px!important;
+  }
+  .site-brand-fallback {font-size:24px!important;}
+  .site-brand-amp {font-size:16px!important;}
+  .site-monogram {max-width:62px!important;max-height:28px!important;}
+  .site-menu-toggle {
+    grid-column:2!important;
+    grid-row:1!important;
+    align-self:center!important;
+    justify-self:end!important;
+    width:30px!important;
+    height:27px!important;
+    background:rgba(220,227,217,.56)!important;
+    border-radius:9px!important;
+  }
+  .site-navigation {
+    grid-column:1/-1!important;
+    grid-row:2!important;
+    width:100%!important;
+    height:34px!important;
+    padding:3px!important;
+    gap:2px!important;
+  }
+  .site-navigation a {
+    height:27px!important;
+    min-height:27px!important;
+    padding:0 2px!important;
+    font-size:clamp(9px,2.6vw,11px)!important;
+    letter-spacing:-.02em!important;
+  }
+  .site-dropdown {top:calc(100% + 7px)!important;}
+  /* Keep the curved top on the IVORY countdown sheet only. */
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    border-radius:30px 30px 0 0!important;
+  }
+}
+@media(max-width:360px) {
+  .site-header {width:calc(100% - 12px)!important;}
+  .site-navigation a {font-size:9px!important;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .film-entry-wash {opacity:0!important;}
+}
+
+
+/* ================================================================
+   V8.65 — NO SPACER / NO FADE / SINGLE-ROW GLASS NAV / MUSIC BUTTON
+   ================================================================ */
+/* A hard cut from the finished Foreword to the first frame of film.
+   No pseudo-element, translucent ivory wash, or margin between them. */
+.ring-experience,
+.ring-experience + .video-countdown-transition,
+.video-countdown-transition,
+.video-countdown-sticky,
+.video-countdown-transition .film-background {
+  margin-top:0!important;
+  margin-bottom:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  border-top:0!important;
+}
+.video-countdown-transition .film-entry-wash,
+.video-countdown-transition .film-background::before,
+.video-countdown-transition .film-background::after {
+  display:none!important;
+  content:none!important;
+}
+.video-countdown-transition .film-background,
+.video-countdown-transition .wedding-film {
+  border-radius:0!important;
+}
+.video-countdown-transition .film-background {background:#f5f0e6!important;}
+.video-countdown-transition .countdown-interlude.countdown-timeless {
+  border-radius:30px 30px 0 0!important;
+}
+
+/* Slim, single-line, Apple-style floating glass header. */
+:root { --site-nav-height:54px; }
+html {scroll-padding-top:76px;}
+.site-header,
+.site-header.is-scrolled {
+  position:fixed!important;
+  top:10px!important;
+  left:50%!important;
+  right:auto!important;
+  width:min(700px,calc(100% - 26px))!important;
+  height:54px!important;
+  min-height:54px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  flex-wrap:nowrap!important;
+  gap:clamp(8px,2vw,24px)!important;
+  padding:5px 9px 5px 14px!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+  border-radius:999px!important;
+  background:rgba(249,248,244,.84)!important;
+  box-shadow:0 8px 32px rgba(21,33,24,.12)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(145%)!important;
+  backdrop-filter:blur(24px) saturate(145%)!important;
+}
+.site-header:not(.is-visible) {pointer-events:none!important;}
+.site-header.is-visible {pointer-events:auto!important;}
+.site-brand {
+  display:flex!important;
+  position:relative!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  flex:0 0 64px!important;
+  width:64px!important;
+  min-width:0!important;
+  max-width:64px!important;
+  height:42px!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+}
+.site-brand-fallback {font-size:clamp(23px,2.2vw,29px)!important;}
+.site-monogram {max-width:100%!important;max-height:41px!important;object-fit:contain!important;}
+.site-navigation {
+  position:relative!important;
+  inset:auto!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  flex:0 1 auto!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  height:40px!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:3px!important;
+  gap:2px!important;
+  overflow:visible!important;
+  border-radius:999px!important;
+  background:rgba(221,227,218,.48)!important;
+  border:1px solid rgba(88,106,86,.075)!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  pointer-events:auto!important;
+}
+.site-navigation a {
+  position:relative!important;
+  display:flex!important;
+  flex:0 0 auto!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0 clamp(11px,1.7vw,20px)!important;
+  border:0!important;
+  border-radius:999px!important;
+  white-space:nowrap!important;
+  font:500 11px/1 Montserrat,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;
+  letter-spacing:-.02em!important;
+  color:#4c5d4e!important;
+  background:transparent!important;
+  text-decoration:none!important;
+}
+.site-navigation a::after {display:none!important;}
+.site-navigation a.is-active {
+  color:#293d2c!important;
+  background:#fff!important;
+  box-shadow:0 2px 9px rgba(25,42,28,.12)!important;
+}
+.site-menu-toggle {display:none!important;}
+.site-dropdown {z-index:4!important;}
+
+/* Foreword music: wedding-site-style ivory pill with a music disc and
+   compact song label. Does not add a new section or any transition gap. */
+.foreword-music {
+  position:relative;
+  z-index:8;
+  order:8;
+  width:min(100%,340px);
+  margin:clamp(12px,2.4svh,22px) auto 0;
+  pointer-events:auto!important;
+  text-align:left;
+}
+.foreword-music-button {
+  appearance:none;
+  width:100%;
+  min-height:57px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:8px 10px;
+  border:1px solid rgba(114,123,100,.22);
+  border-radius:999px;
+  color:#3a4d3b;
+  background:rgba(255,255,255,.46);
+  box-shadow:0 5px 23px rgba(61,65,44,.045),inset 0 1px 0 rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  cursor:pointer;
+  transition:background .22s ease,box-shadow .22s ease,transform .22s ease;
+}
+.foreword-music-button:hover {background:rgba(255,255,255,.73);box-shadow:0 8px 26px rgba(51,65,44,.085);}
+.foreword-music-button:focus-visible {outline:2px solid #7a9274;outline-offset:3px;}
+.foreword-music-disc {
+  flex:0 0 40px;
+  width:40px;height:40px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 28%,#83917b,#52664f 60%,#344a38);
+  color:#faf7ee;
+  box-shadow:0 2px 6px rgba(44,60,45,.16);
+}
+.foreword-music-note {width:19px;height:19px;}
+.foreword-music.is-playing .foreword-music-note {animation:foreword-note-breathe 2.2s ease-in-out infinite;}
+@keyframes foreword-note-breathe {50%{transform:scale(1.18)}}
+.foreword-music-copy {display:flex;flex:1 1 auto;min-width:0;flex-direction:column;gap:3px;}
+.foreword-music-kicker {
+  font:600 8px/1.2 Montserrat,Arial,sans-serif;
+  letter-spacing:.18em;
+  color:#85917f;
+}
+.foreword-music-title {
+  font:500 clamp(11px,1.25vw,13px)/1.3 'Libre Baskerville',Georgia,serif;
+  color:#374b39;
+  white-space:nowrap;
+}
+.foreword-music-title span {color:#788171;font-size:.86em;}
+.foreword-music-action {
+  flex:0 0 29px;
+  width:29px;height:29px;
+  display:grid;place-items:center;
+  border:1px solid rgba(91,110,89,.22);
+  border-radius:50%;
+  color:#3f5a43;
+}
+.foreword-music-action svg {width:15px;height:15px;}
+.foreword-music-pause,.foreword-music.is-playing .foreword-music-play {display:none;}
+.foreword-music.is-playing .foreword-music-pause {display:block;}
+.foreword-music-feedback {
+  margin:5px auto 0;
+  font:400 10px/1.5 Montserrat,Arial,sans-serif;
+  color:#8c604f;
+  text-align:center;
+}
+.foreword-music-feedback:empty {display:none;}
+
+@media(max-width:900px) {
+  :root {--site-nav-height:52px;}
+  html {scroll-padding-top:69px;}
+  .site-header,.site-header.is-scrolled {
+    top:7px!important;
+    width:calc(100% - 14px)!important;
+    height:52px!important;
+    min-height:52px!important;
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr) 25px!important;
+    grid-template-rows:40px!important;
+    gap:4px!important;
+    padding:5px 7px!important;
+    border-radius:19px!important;
+  }
+  .site-brand {
+    grid-column:1!important;grid-row:1!important;
+    justify-self:center!important;
+    width:42px!important;
+    max-width:42px!important;
+    min-width:0!important;
+    height:37px!important;
+    flex:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .site-brand-fallback {font-size:23px!important;}
+  .site-monogram {max-width:42px!important;max-height:36px!important;}
+  .site-navigation {
+    grid-column:2!important;grid-row:1!important;
+    justify-self:stretch!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:36px!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:0!important;
+    padding:3px!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+  .site-navigation a {
+    flex:none!important;
+    width:100%!important;
+    min-width:0!important;
+    height:28px!important;
+    min-height:28px!important;
+    padding:0 1px!important;
+    font-size:clamp(8.5px,2.55vw,10.5px)!important;
+    letter-spacing:-.04em!important;
+  }
+  .site-menu-toggle {
+    display:flex!important;
+    grid-column:3!important;grid-row:1!important;
+    width:25px!important;
+    min-width:25px!important;
+    height:29px!important;
+    padding:5px 3px!important;
+    justify-self:center!important;
+    border-radius:9px!important;
+    background:rgba(221,227,217,.62)!important;
+  }
+  .site-menu-toggle span {width:15px!important;}
+  .site-dropdown {top:calc(100% + 6px)!important;}
+  /* Fill every pixel between film and countdown with the video or the
+     ivory panel; the entire sheet rises over the moving film. */
+  .video-countdown-transition {
+    background:#f5f0e6!important;
+    padding:0!important;
+    margin:0!important;
+  }
+  .video-countdown-transition .film-background {background:#f5f0e6!important;}
+  .video-countdown-transition .wedding-film {
+    top:0!important;
+    left:0!important;
+    width:100%!important;
+    height:var(--mobile-video-height)!important;
+    object-fit:cover!important;
+    object-position:50% 50%!important;
+    border-radius:0!important;
+  }
+  .video-countdown-transition .countdown-interlude.countdown-timeless {
+    border-radius:28px 28px 0 0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .foreword-music {width:min(100%,300px);margin-top:clamp(8px,1.4svh,14px);}
+  .foreword-music-button {min-height:50px;padding:5px 8px;gap:9px;}
+  .foreword-music-disc {flex-basis:36px;width:36px;height:36px;}
+  .foreword-music-kicker {font-size:7px;}
+  .foreword-music-title {font-size:clamp(10px,2.8vw,12px);}
+  .foreword-music-action {flex-basis:25px;width:25px;height:25px;}
+}
+@media(max-width:360px) {
+  .site-header {width:calc(100% - 10px)!important;gap:2px!important;padding-inline:5px!important;}
+  .site-navigation a {font-size:8.5px!important;}
+  .site-brand {width:38px!important;}
+  .foreword-music {width:min(100%,276px);}
+}
+@media(max-height:640px) {
+  .foreword-music {margin-top:7px;}
+  .foreword-music-button {min-height:43px;padding:4px 7px;}
+  .foreword-music-disc {width:31px;height:31px;flex-basis:31px;}
+  .foreword-music-title {font-size:10px;}
+  .foreword-music-kicker {font-size:7px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .foreword-music.is-playing .foreword-music-note {animation:none!important;}
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263328">
+  <meta name="description" content="Celebrate the wedding of Kenneth and Catherine on March 3, 2027.">
+  <title>Kenneth & Catherine | 03.03.2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&family=Allura&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- V8.63: Floating glass navigation appears when the film begins. -->
+  <header class="site-header" id="site-header" aria-label="Wedding navigation">
+    <a class="site-brand" href="#film" aria-label="Kenneth and Catherine — Home">
+      <!-- Add your ORIGINAL transparent monogram as assets/images/kc-monogram.png.
+           Until that exact asset is present, an elegant K & C fallback is shown. -->
+      <span class="site-brand-fallback" aria-hidden="true">K<span class="site-brand-amp">&amp;</span>C</span>
+      <img class="site-monogram" src="assets/images/kc-monogram.png" alt=""
+           decoding="async" width="116" height="68" hidden>
+    </a>
+    <nav class="site-navigation" id="site-navigation" aria-label="Wedding sections">
+      <a href="#film">Home</a>
+      <a href="#details">Details</a>
+      <a href="#entourage">Entourage</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+    <button class="site-menu-toggle" type="button" id="site-menu-toggle"
+            aria-label="Open all sections" aria-controls="site-dropdown"
+            aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-dropdown" id="site-dropdown" aria-label="All wedding sections" inert>
+      <a href="#film">Home</a>
+      <a href="#details">Details</a>
+      <a href="#entourage">Entourage</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </header>
+  <a class="skip-link" href="#invitation">Skip animation and view invitation</a>
+  <main>
+    <section class="ring-experience" id="home" aria-label="Animated wedding rings introduction">
+      <div class="ring-stage">
+        <div class="ring-background" aria-hidden="true"></div>
+        <canvas id="wedding-rings" aria-hidden="true"></canvas>
+        <div class="ring-intro">
+          <p class="eyebrow">THE WEDDING OF</p>
+          <h1>Kenneth <em>&</em> Catherine</h1>
+          <p class="date-line">WEDNESDAY · MARCH 03, 2027</p>
+        </div>
+        <!-- V8.48: ONE sticky scene: rings dissolve into the spotlight invitation. -->
+        <section class="spotlight-invitation" id="invitation" aria-labelledby="invitation-heading">
+          <div class="spotlight-darkness" aria-hidden="true"></div>
+          <div class="spotlight-light-cone" aria-hidden="true"></div>
+          <div class="spotlight-light-pool" aria-hidden="true"></div>
+          <div class="spotlight-ivory-paper" aria-hidden="true"></div>
+          <div class="spotlight-warm-vignette" aria-hidden="true"></div>
+
+          <div class="spotlight-invitation-content foreword-page">
+            <div class="foreword-running-head" aria-hidden="true">A NOTE TO OUR DEAREST FAMILY AND FRIENDS</div>
+            
+            <div class="spotlight-invitation-ornament" aria-hidden="true">
+              <span></span><b>✦</b><span></span>
+            </div>
+            <h2 id="invitation-heading" class="spotlight-invitation-heading">Foreword</h2>
+            <p class="spotlight-invitation-message">Surrounded by the love of our families, we warmly invite you to celebrate this special day as we begin our life together.</p>
+            <div class="spotlight-invitation-signature" aria-label="love lots, Kenneth and Catherine">
+              <span class="handwritten-names" aria-hidden="true">
+                <svg class="ink-signature" viewBox="0 0 480 105" preserveAspectRatio="xMidYMid meet" focusable="false" aria-hidden="true"></svg>
+              </span>
+            </div>
+            <!-- V8.65 — elegant optional wedding-song player. Add your licensed MP3. -->
+            <div class="foreword-music" id="foreword-music">
+              <button class="foreword-music-button" id="foreword-music-toggle"
+                      type="button" aria-label="Play I Get to Love You by Ruelle" aria-pressed="false">
+                <span class="foreword-music-disc" aria-hidden="true">
+                  <svg class="foreword-music-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l11-2v13"/><ellipse cx="6" cy="18" rx="3" ry="2"/><ellipse cx="17" cy="16" rx="3" ry="2"/>
+                  </svg>
+                </span>
+                <span class="foreword-music-copy">
+                  <span class="foreword-music-kicker">OUR SONG <span aria-hidden="true">·</span> TAP TO LISTEN</span>
+                  <span class="foreword-music-title">I Get to Love You <span>— Ruelle</span></span>
+                </span>
+                <span class="foreword-music-action" aria-hidden="true">
+                  <svg class="foreword-music-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5c0-.8.9-1.3 1.6-.9l9.4 6.5c.6.4.6 1.4 0 1.8l-9.4 6.5c-.7.5-1.6 0-1.6-.9z"/></svg>
+                  <svg class="foreword-music-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                </span>
+              </button>
+              <p class="foreword-music-feedback" id="foreword-music-feedback" role="status" aria-live="polite"></p>
+              <audio id="foreword-audio" preload="none" loop>
+                <source src="assets/audio/i-get-to-love-you-ruelle.mp3" type="audio/mpeg">
+              </audio>
+            </div>
+            <div class="foreword-folio" aria-hidden="true">I</div>
+          </div>
+        </section>
+
+        <div class="ring-scroll-hint" aria-hidden="true">SCROLL TO EXPLORE <span>↓</span></div>
+        <div class="ring-progress" aria-hidden="true"><span id="ring-progress-bar"></span></div>
+      </div>
+    </section>
+
+    <!-- V8.63: seamless rounded-top film followed by a single sliding ivory countdown page
+         rising over the video, matching the reference scroll transition. -->
+    <section class="video-countdown-transition" id="film" aria-label="Wedding film and countdown">
+      <div class="video-countdown-sticky">
+        <div class="film-background">
+          <!-- V8.59: MP4 is bundled in this ZIP at this exact path. -->
+          <video class="wedding-film" id="wedding-film"
+                 autoplay muted loop playsinline webkit-playsinline preload="auto"
+                 poster="assets/images/video-poster.jpg"
+                 aria-label="Kenneth and Catherine's wedding film">
+            <source src="assets/videos/wedding-film.mp4" type="video/mp4">
+            Your browser cannot play this video.
+          </video>
+          <button class="film-play-button" type="button" hidden aria-label="Play wedding film">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2a1 1 0 0 1 1.52-.85l10.1 6.8a1 1 0 0 1 0 1.7l-10.1 6.8A1 1 0 0 1 8 18.8z"/></svg>
+            <span>PLAY OUR FILM</span>
+          </button>
+          <p class="film-fallback-label" hidden role="status">The film could not be loaded. Please check that wedding-film.mp4 is in assets/videos.</p>
+          <div class="film-cinematic-tint" aria-hidden="true"></div>
+        </div>
+    <section class="countdown-interlude countdown-timeless" id="countdown" aria-labelledby="countdown-heading">
+      <div class="timeless-stage">
+        <div class="timeless-ambient-glow" aria-hidden="true"></div>
+        <div class="timeless-content">
+          <p class="timeless-eyebrow" data-timeless-part="eyebrow">THE MOMENT IS GETTING CLOSER</p>
+          <h2 id="countdown-heading" class="timeless-heading" data-timeless-part="heading">Until Our Forever</h2>
+          <p class="timeless-subtitle" data-timeless-part="subtitle">Every second brings us closer to our beginning.</p>
+          <div class="timeless-rule" aria-hidden="true">
+            <span class="timeless-rule-line timeless-rule-left"></span>
+            <span class="timeless-rule-star">✦</span>
+            <span class="timeless-rule-line timeless-rule-right"></span>
+          </div>
+          <div class="save-date-countdown timeless-numbers" role="timer" aria-label="Time remaining until March 3, 2027 at 3:00 PM Philippine time">
+            <div class="timeless-unit" data-timeless-unit="days">
+              <strong id="days" class="timeless-value" aria-label="Days">000</strong>
+              <small>DAYS</small>
+            </div>
+            <div class="timeless-unit" data-timeless-unit="hours">
+              <strong id="hours" class="timeless-value" aria-label="Hours">00</strong>
+              <small>HOURS</small>
+            </div>
+            <div class="timeless-unit" data-timeless-unit="minutes">
+              <strong id="minutes" class="timeless-value" aria-label="Minutes">00</strong>
+              <small>MINUTES</small>
+            </div>
+            <div class="timeless-unit" data-timeless-unit="seconds">
+              <strong id="seconds" class="timeless-value" aria-label="Seconds">00</strong>
+              <small>SECONDS</small>
+            </div>
+          </div>
+        </div>
+        <p class="timeless-scroll-label" aria-hidden="true">SCROLL TO CONTINUE <span>↓</span></p>
+      </div>
+    </section>
+      </div>
+    </section>
+
+    <!-- V8.52: image-to-typography ceremony transition, inspired by the supplied video. -->
+    <section class="ceremony-cinema" id="ceremony" aria-labelledby="ceremony-title">
+      <div class="ceremony-cinema-sticky">
+        <div class="ceremony-cinema-backdrop" aria-hidden="true"></div>
+        <div class="ceremony-cinema-hero" aria-hidden="true">
+          <div class="ceremony-cinema-glow"></div>
+          <img src="assets/images/church-watercolor.png" alt="" class="ceremony-cinema-image" decoding="async">
+        </div>
+        <div class="ceremony-cinema-word" aria-hidden="true"><span>OUR VOWS</span></div>
+        <div class="ceremony-cinema-details">
+          <p class="ceremony-cinema-kicker">THE CEREMONY · 03.03.2027</p>
+          <h2 id="ceremony-title">Where our vows<br><em>begin.</em></h2>
+          <p class="ceremony-cinema-church">Hearts of Jesus and Mary Parish Church</p>
+          <p class="ceremony-cinema-place">Mojon, Malolos City, Bulacan</p>
+          <p class="ceremony-cinema-time">Arrival at 2:00 PM <span aria-hidden="true">·</span> Ceremony at 3:00 PM</p>
+          <a class="ceremony-cinema-map" href="https://www.google.com/maps/search/?api=1&amp;query=Hearts+of+Jesus+and+Mary+Parish+Church+Mojon+Malolos+Bulacan" target="_blank" rel="noopener noreferrer">VIEW LOCATION <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="ceremony-cinema-index" aria-hidden="true">01 / CEREMONY</div>
+      </div>
+    </section>
+
+    <section class="save-date-cinematic" id="details" aria-labelledby="save-date-heading">
+      <div class="save-date-sticky">
+        <div class="save-date-photo" aria-hidden="true"></div>
+        <div class="save-date-photo-shade" aria-hidden="true"></div>
+        <div class="save-date-scene">
+        <h2 class="cinematic-title" id="save-date-heading"><span class="write-title">Save the Date</span></h2>
+        <div class="cinematic-calendar" aria-label="March 2027 wedding calendar">
+          <h3>MARCH 2027</h3>
+          <div class="cinematic-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+          <div class="cinematic-days"><span class="calendar-cell blank" > </span><span class="calendar-cell " >1</span><span class="calendar-cell " >2</span><span class="calendar-cell wedding-day" aria-label="Wednesday March 3, wedding day">3</span><span class="calendar-cell " >4</span><span class="calendar-cell " >5</span><span class="calendar-cell " >6</span><span class="calendar-cell " >7</span><span class="calendar-cell " >8</span><span class="calendar-cell " >9</span><span class="calendar-cell " >10</span><span class="calendar-cell " >11</span><span class="calendar-cell " >12</span><span class="calendar-cell " >13</span><span class="calendar-cell " >14</span><span class="calendar-cell " >15</span><span class="calendar-cell " >16</span><span class="calendar-cell " >17</span><span class="calendar-cell " >18</span><span class="calendar-cell " >19</span><span class="calendar-cell " >20</span><span class="calendar-cell " >21</span><span class="calendar-cell " >22</span><span class="calendar-cell " >23</span><span class="calendar-cell " >24</span><span class="calendar-cell " >25</span><span class="calendar-cell " >26</span><span class="calendar-cell " >27</span><span class="calendar-cell " >28</span><span class="calendar-cell " >29</span><span class="calendar-cell " >30</span><span class="calendar-cell " >31</span></div>
+        </div>
+        <div class="save-date-bottom">
+          <a class="save-date-calendar-button" target="_blank" rel="noopener noreferrer" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Kenneth+and+Catherine+Wedding&amp;dates=20270303T150000%2F20270303T210000&amp;ctz=Asia%2FManila&amp;details=Celebrate+with+Kenneth+and+Catherine%21"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg> Add to Calendar</a>
+          <div class="save-date-farewell"><p>We cannot wait to celebrate with you.<span class="save-date-see-you">See you in <strong id="see-you-days">—</strong> days!</span></p></div>
+        </div>
+      </div>
+      </div>
+      <div class="save-date-scroll-cue" aria-hidden="true">SCROLL TO CONTINUE ↓</div>
+    </section>
+
+    <section class="venues-section" id="venues">
+      <div class="section-heading reveal-on-scroll"><p class="eyebrow">THE CELEBRATION</p><h2>Where love <em>leads us.</em></h2></div>
+      <div class="venue-grid">
+        <article class="venue-card reveal-on-scroll">
+          <span class="venue-number">01 / CEREMONY</span>
+          <h3>Hearts of Jesus and Mary<br>Parish Church</h3>
+          <p>Mojon, Malolos City, Bulacan</p>
+          <p class="venue-time">Arrival at 2:00 PM · Ceremony at 3:00 PM</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Hearts+of+Jesus+and+Mary+Parish+Church+Mojon+Malolos+Bulacan" target="_blank" rel="noopener noreferrer">VIEW ON GOOGLE MAPS ↗</a>
+        </article>
+        <article class="venue-card reveal-on-scroll">
+          <span class="venue-number">02 / RECEPTION</span>
+          <h3>The Alfredos Events Place<br>&amp; Private Resort</h3>
+          <p>Pulilan, Bulacan</p>
+          <p class="venue-time">Reception begins at 5:00 PM</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=The+Alfredos+Events+Place+Private+Resort+Pulilan+Bulacan" target="_blank" rel="noopener noreferrer">VIEW ON GOOGLE MAPS ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- V8.61: editable palette preview; no invented formal dress-code rules. -->
+    <section class="attire-section" id="what-to-wear" aria-labelledby="attire-heading">
+      <div class="attire-inner reveal-on-scroll">
+        <p class="attire-eyebrow">A LITTLE STYLE GUIDE</p>
+        <h2 id="attire-heading">What to <em>Wear</em></h2>
+        <p class="attire-description">A celebration in gentle greens and warm neutrals. Here is a little inspiration from our wedding palette.</p>
+        <div class="attire-palette" aria-label="Wedding color inspiration">
+          <div class="attire-swatch"><span class="attire-color attire-sage" aria-hidden="true"></span><span>Sage</span></div>
+          <div class="attire-swatch"><span class="attire-color attire-olive" aria-hidden="true"></span><span>Olive</span></div>
+          <div class="attire-swatch"><span class="attire-color attire-champagne" aria-hidden="true"></span><span>Champagne</span></div>
+          <div class="attire-swatch"><span class="attire-color attire-beige" aria-hidden="true"></span><span>Beige</span></div>
+        </div>
+        <p class="attire-footnote">More attire details will be shared soon.</p>
+      </div>
+    </section>
+
+    <!-- Entourage names will be added when the couple provides the final list. -->
+    <section class="entourage-section" id="entourage" aria-labelledby="entourage-heading">
+      <div class="entourage-inner reveal-on-scroll">
+        <p class="entourage-eyebrow">OUR FAVORITE PEOPLE</p>
+        <div class="entourage-ornament" aria-hidden="true">✦</div>
+        <h2 id="entourage-heading">Our <em>Entourage</em></h2>
+        <p>With the people who have loved us, guided us, and stood beside us.</p>
+        <span class="entourage-coming-soon">DETAILS TO FOLLOW</span>
+      </div>
+    </section>
+
+    <section class="rsvp-section" id="rsvp">
+      <div class="reveal-on-scroll">
+        <p class="eyebrow">THE PLEASURE OF YOUR COMPANY</p>
+        <h2>We can't wait to<br><em>celebrate with you.</em></h2>
+        <p>Kindly respond on or before January 31, 2027.</p>
+        <p class="rsvp-note">Our personalized RSVP experience is coming soon.</p>
+        <!-- Replace the text above with your RSVP link when ready. -->
+      </div>
+    </section>
+  </main>
+  <footer><span class="footer-love">love lots, Kenneth &amp; Catherine</span><small>03.03.2027</small></footer>
+  <!-- Three.js r152.2: pinned dependency for the original ring animation.
+       To use a local copy later, save the library to assets/js/three.min.js
+       and change this script URL back to that local path. -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+To activate the Foreword music player, add your legitimately obtained
+MP3 file here with this exact filename:
+  i-get-to-love-you-ruelle.mp3
+The song is not included in the package.

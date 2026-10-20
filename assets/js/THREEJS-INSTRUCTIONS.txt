@@ -1,0 +1,7 @@
+The wedding ring animation loads Three.js r152.2 from the CDN URL
+specified near the end of index.html. An internet connection is needed.
+
+If you want the library hosted locally, download the matching release from:
+https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js
+Save it here as three.min.js, then replace the CDN script src in index.html
+with assets/js/three.min.js.
