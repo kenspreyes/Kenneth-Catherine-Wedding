@@ -4211,3 +4211,17 @@ html {scroll-padding-top:76px;}
     stroke-dashoffset:0!important;
   }
 }
+
+
+/* V8.70 — final specificity guard for mobile pen strokes. */
+.spotlight-invitation-signature .ink-signature .handwriting-trace path {
+  opacity:1!important;
+  visibility:visible!important;
+  stroke-opacity:1!important;
+}
+@media(max-width:900px) {
+  .spotlight-invitation-signature .ink-signature .handwriting-trace path {
+    opacity:1!important;
+    visibility:visible!important;
+  }
+}

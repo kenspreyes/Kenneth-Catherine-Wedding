@@ -1,4 +1,4 @@
-/* V8.69 — Fixed visible hand-traced signature, inspired by the referenced handwriting tutorial.
+/* V8.70 — Mobile-visible handwriting trigger and cache-safe deployment, inspired by the referenced handwriting tutorial.
    Each visible ink stroke follows a real SVG path in natural pen order.
    Paths use a small subset of the Hershey Script 1 vector alphabet;
    attribution appears in README.txt. No font files are bundled.
@@ -176,7 +176,37 @@
     startTime=performance.now();
     animationFrame=requestAnimationFrame(tick);
   };
+  // V8.70: Wait until the signature is ACTUALLY visible on the screen.
+  // On mobile, the ring scene's scroll progress alone can pass its trigger
+  // while the letter/signature is still outside the viewport.
+  const signature = svg.closest('.spotlight-invitation-signature');
+  window.requestWeddingSignature = () => {
+    if (hasStarted || !signature) return;
+    if (reduced) { window.updateWeddingSignature(1); return; }
+    const bounds = signature.getBoundingClientRect();
+    const inViewport = bounds.bottom > 10 && bounds.top < innerHeight - 10;
+    const opacity = parseFloat(getComputedStyle(signature).opacity) || 0;
+    if (inViewport && opacity >= .78) window.startWeddingSignature();
+  };
+
+  // Mobile scroll can jump past the exact trigger point. Check again after
+  // every scroll/resize and when the tab returns to the foreground.
+  let visibilityFrame = 0;
+  const checkSignature = () => {
+    if (visibilityFrame || hasStarted) return;
+    visibilityFrame = requestAnimationFrame(() => {
+      visibilityFrame = 0;
+      window.requestWeddingSignature();
+    });
+  };
+  addEventListener('scroll', checkSignature, {passive:true});
+  addEventListener('resize', checkSignature, {passive:true});
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) checkSignature();
+  });
+
   window.updateWeddingSignature(reduced?1:0);
+  console.info('[Kenneth & Catherine] Website v8.70.1 — signature visibility fix loaded');
 })();
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
@@ -580,8 +610,8 @@
     alpha(heading, phase(p, .873, .944));
     alpha(message, phase(p, .896, .966));
     alpha(signoff, phase(p, .929, .985));
-    // V8.68: trigger the independent pen-trace once the signoff is visible.
-    if (p >= .962) window.startWeddingSignature?.();
+    // V8.70: never start while the signature is still off-screen on mobile.
+    if (p >= .945) window.requestWeddingSignature?.();
   }
 
   const request = () => {
