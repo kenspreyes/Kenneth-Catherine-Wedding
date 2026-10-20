@@ -212,56 +212,53 @@
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
 
 
-// V8.82 — downward-hinged 3D rotation, only on the changing number.
-// An old digit folds down, followed by the new digit rotating into place.
+// V8.85 — animate only the exact digit that changes (not its neighbors).
+// Each character is a separate inline element. Unchanged characters are
+// never replaced, faded, transformed, or given an animation class.
 (() => {
   'use strict';
-  const target=new Date('2027-03-03T15:00:00+08:00').getTime();
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  const ids=['days','hours','minutes','seconds'];
-  const elements=ids.map(id=>document.getElementById(id));
-  if(elements.some(el=>!el))return;
-  const duration=560;
+  const target = new Date('2027-03-03T15:00:00+08:00').getTime();
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const fields = ['days','hours','minutes','seconds'].map(id => document.getElementById(id));
+  if (fields.some(el => !el)) return;
 
-  function setNumber(el,next){
-    const card=el.querySelector('.flip-card');
-    const display=el.querySelector('.flip-display');
-    const old=el.querySelector('.flip-rotor-old');
-    const incoming=el.querySelector('.flip-rotor-new');
-    if(!card||!display||!old||!incoming)return;
-    const previous=el.dataset.lastValue;
-    if(previous===next)return;
-    el.dataset.lastValue=next;
-    if(el._flipTimeout){clearTimeout(el._flipTimeout);el._flipTimeout=null;}
-    if(el._flipMidpoint){clearTimeout(el._flipMidpoint);el._flipMidpoint=null;}
-    card.classList.remove('is-flipping');
-    if(!el.dataset.timerInitialized||reduced.matches){
-      display.textContent=next;
-      old.textContent=next;
-      incoming.textContent=next;
-      el.dataset.timerInitialized='true';
-      return;
+  function setNumber(el, next) {
+    const previous = el.dataset.lastValue || '';
+    if (previous === next) return;
+    const chars = [...el.querySelectorAll('.countdown-digit')];
+    // Stable width for days (3 digits) and the remaining fields (2).
+    for (let i = 0; i < next.length; i++) {
+      const span = chars[i];
+      if (!span || previous[i] === next[i]) continue;
+      span.textContent = next[i];
+      span.classList.remove('digit-is-changing');
+      if (!reduced.matches && el.dataset.timerInitialized === 'true') {
+        // Reflow only the changed digit so the fade restarts after tab resume.
+        void span.offsetWidth;
+        span.classList.add('digit-is-changing');
+      }
     }
-    display.textContent=previous;
-    old.textContent=previous;
-    incoming.textContent=next;
-    // Restart keyframes even after background-tab time corrections.
-    void card.offsetWidth;
-    card.classList.add('is-flipping');
-    el._flipMidpoint=setTimeout(()=>{display.textContent=next;el._flipMidpoint=null;},duration/2);
-    el._flipTimeout=setTimeout(()=>{
-      card.classList.remove('is-flipping');
-      display.textContent=next;
-      old.textContent=next;
-      incoming.textContent=next;
-      el._flipTimeout=null;
-    },duration+20);
+    el.dataset.lastValue = next;
+    el.setAttribute('aria-label', `${next} ${el.id}`);
+    el.dataset.timerInitialized = 'true';
   }
-  function update(){
-    const ms=Math.max(0,target-Date.now());
-    const values=[Math.floor(ms/86400000),Math.floor(ms%86400000/3600000),
-      Math.floor(ms%3600000/60000),Math.floor(ms%60000/1000)];
-    values.forEach((value,i)=>setNumber(elements[i],String(value).padStart(i===0?3:2,'0')));
+
+  function update() {
+    const ms = Math.max(0,target-Date.now());
+    const numbers = [
+      Math.floor(ms/86400000),
+      Math.floor((ms%86400000)/3600000),
+      Math.floor((ms%3600000)/60000),
+      Math.floor((ms%60000)/1000)
+    ];
+    numbers.forEach((value,i)=>setNumber(fields[i],String(value).padStart(i===0?3:2,'0')));
+  }
+  for (const field of fields) {
+    field.addEventListener('animationend',event=>{
+      if (event.target.classList.contains('countdown-digit')) {
+        event.target.classList.remove('digit-is-changing');
+      }
+    });
   }
   update();
   setInterval(update,1000);
@@ -731,48 +728,6 @@
 })();
 
 
-/* V8.52 — Scroll-controlled church → cutout type → ceremony details. */
-(() => {
-  const section=document.querySelector('.ceremony-cinema');
-  if(!section)return;
-  const hero=section.querySelector('.ceremony-cinema-hero');
-  const art=section.querySelector('.ceremony-cinema-image');
-  const word=section.querySelector('.ceremony-cinema-word');
-  const wordText=section.querySelector('.ceremony-cinema-word span');
-  const details=section.querySelector('.ceremony-cinema-details');
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced)return;
-  const clamp=x=>Math.max(0,Math.min(1,x));
-  const ease=t=>{t=clamp(t);return t*t*(3-2*t)};
-  const phase=(p,a,b)=>ease((p-a)/(b-a));
-  let queued=false;
-  const update=()=>{
-    queued=false;
-    const rect=section.getBoundingClientRect();
-    const max=Math.max(1,section.offsetHeight-innerHeight);
-    const p=clamp(-rect.top/max);
-    const entrance=phase(p,.01,.19);
-    const shift=phase(p,.14,.62);
-    const leave=phase(p,.50,.66);
-    const reveal=phase(p,.59,.75)*(1-phase(p,.79,.95));
-    const final=phase(p,.80,.975);
-    hero.style.opacity=(entrance*(1-leave)).toFixed(4);
-    art.style.setProperty('--church-rise',`${(58-65*shift).toFixed(2)}px`);
-    art.style.setProperty('--church-rx',`${(8-7*shift).toFixed(2)}deg`);
-    art.style.setProperty('--church-ry',`${(-8+11*shift).toFixed(2)}deg`);
-    art.style.setProperty('--church-zoom',(.77+.26*shift).toFixed(4));
-    word.style.opacity=reveal.toFixed(4);
-    wordText.style.setProperty('--ceremony-word-scale',(.70+.44*phase(p,.57,.84)).toFixed(4));
-    details.style.opacity=final.toFixed(4);
-    details.style.pointerEvents=final>.85?'auto':'none';
-  };
-  const request=()=>{if(!queued){queued=true;requestAnimationFrame(update)}};
-  addEventListener('scroll',request,{passive:true});
-  addEventListener('resize',request,{passive:true});
-  update();
-})();
-
-
 /* V8.59 — Straightforward MP4 playback.
    The MP4 is shipped with this package at assets/videos/wedding-film.mp4.
    No MOV fallback, no changing sources, no 12-second metadata timeout.
@@ -893,78 +848,68 @@
 
 
 
-/* V8.82 — Foreword-first navigation with directional reveal.
-   Page 1: hidden. Page 2: fade in when the letter is readable.
-   Page 3 onwards: hide on downward scrolling, show on upward scrolling.
-   Menu remains open until the user closes it or selects a link. */
+/* V8.83 — Directional navigation from the Save the Date page onward.
+   Hidden on the ring introduction, letter, and video-only section.
+   When scrolling UP after the ivory Save the Date panel enters view,
+   the full-width bar fades in. Scrolling DOWN hides it. The separate
+   floating Home button remains available on subsequent pages. */
 (() => {
   'use strict';
   const header=document.getElementById('site-header');
-  const rings=document.querySelector('.ring-experience');
-  const film=document.getElementById('film');
-  const toggle=document.getElementById('site-menu-toggle');
-  const dropdown=document.getElementById('site-dropdown');
+  const sheet=document.getElementById('countdown');
   const detailsButton=document.getElementById('nav-details-trigger');
   const detailsGroup=document.getElementById('nav-details-group');
-  if(!header||!rings||!film||!toggle||!dropdown||!detailsButton||!detailsGroup)return;
-  const mobile=matchMedia('(max-width:900px)');
+  const popover=document.getElementById('nav-details-popover');
+  const homeButton=document.getElementById('floating-home-button');
+  if(!header||!sheet||!detailsButton||!detailsGroup||!popover||!homeButton)return;
+
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
   const checkpoints=[
-    ['film','home'],['countdown','home'],['details','details'],
-    ['ceremony','details'],['venues','details'],['reception','details'],
-    ['day-schedule','details'],['what-to-wear','what-to-wear'],
-    ['entourage','entourage'],['rsvp','rsvp'],['faq','faq']
+    ['home','home'],['film','home'],['countdown','home'],
+    ['details','details'],['ceremony','details'],
+    ['reception','details'],['day-schedule','details'],
+    ['what-to-wear','details'],['entourage','entourage'],
+    ['rsvp','rsvp'],['faq','faq']
   ];
   const topLinks=[...header.querySelectorAll('[data-nav]')];
-  const submenuLinks=[...header.querySelectorAll('.nav-details-popover a,.mobile-details-links a')];
   let lastY=window.scrollY;
   let direction='down';
-  let menuOpen=false;
   let detailsOpen=false;
   let raf=0;
 
-  function setMobileMenu(open){
-    menuOpen=Boolean(open&&mobile.matches&&header.classList.contains('is-visible'));
-    header.classList.toggle('menu-open',menuOpen);
-    toggle.setAttribute('aria-expanded',String(menuOpen));
-    toggle.setAttribute('aria-label',menuOpen?'Close navigation':'Open navigation');
-    dropdown.inert=!menuOpen;
-  }
   function setDetails(open){
-    detailsOpen=Boolean(open&&!mobile.matches);
+    detailsOpen=Boolean(open&&header.classList.contains('is-visible'));
     detailsGroup.classList.toggle('is-open',detailsOpen);
     detailsButton.setAttribute('aria-expanded',String(detailsOpen));
+    popover.inert=!detailsOpen;
   }
   function setVisible(visible){
+    const wasVisible=header.classList.contains('is-visible');
+    if(visible===wasVisible)return;
     header.classList.toggle('is-visible',visible);
     header.inert=!visible;
     header.setAttribute('aria-hidden',String(!visible));
-    if(!visible){
-      if(menuOpen)setMobileMenu(false);
-      if(detailsOpen)setDetails(false);
-    }
+    if(!visible)setDetails(false);
   }
   function update(){
     raf=0;
     const y=window.scrollY;
     const delta=y-lastY;
-    // Small Safari browser-chrome shifts are not deliberate scrolls.
+    // Ignore Safari browser chrome's tiny layout movements.
     if(delta>4)direction='down';
     else if(delta< -4)direction='up';
     lastY=y;
 
-    const ringRect=rings.getBoundingClientRect();
-    const ringTravel=Math.max(1,rings.offsetHeight-innerHeight);
-    const ringProgress=Math.max(0,Math.min(1,-ringRect.top/ringTravel));
-    const videoHasStarted=film.getBoundingClientRect().top<=innerHeight*.78;
-    const inForeword=ringProgress>=.935&&!videoHasStarted;
-    const afterForeword=videoHasStarted;
-    const visible=inForeword||(afterForeword&&(direction==='up'||menuOpen||detailsOpen));
-    setVisible(visible);
-    header.classList.toggle('is-on-foreword',inForeword);
-    header.classList.toggle('is-scrolled',afterForeword);
+    // No navigation on the video: enable it only after the rounded
+    // ivory Save the Date panel has risen into the main viewport.
+    const panelTop=sheet.getBoundingClientRect().top;
+    const reachedSaveTheDate=panelTop<=innerHeight*.48;
+    setVisible(reachedSaveTheDate && direction==='up');
+    homeButton.hidden=!reachedSaveTheDate;
+    homeButton.classList.toggle('is-visible',reachedSaveTheDate);
 
+    const threshold=Math.max(100,innerHeight*.30);
     let active='home';
-    const threshold=Math.max(95,innerHeight*.30);
     for(const [id,key] of checkpoints){
       const el=document.getElementById(id);
       if(el&&el.getBoundingClientRect().top<=threshold)active=key;
@@ -976,43 +921,29 @@
       else link.removeAttribute('aria-current');
     }
     detailsButton.classList.toggle('is-active',active==='details');
-    for(const link of submenuLinks){
-      const target=document.querySelector(link.getAttribute('href'));
-      link.classList.toggle('is-passed',Boolean(target&&target.getBoundingClientRect().top<=threshold));
-    }
   }
   function requestUpdate(){if(!raf)raf=requestAnimationFrame(update);}
-  toggle.addEventListener('click',()=>setMobileMenu(!menuOpen));
+
   detailsButton.addEventListener('click',()=>setDetails(!detailsOpen));
-  detailsGroup.addEventListener('mouseenter',()=>{if(!mobile.matches)setDetails(true);});
-  detailsGroup.addEventListener('mouseleave',()=>{if(!mobile.matches)setDetails(false);});
-  detailsGroup.addEventListener('focusout',e=>{
-    if(!detailsGroup.contains(e.relatedTarget))setDetails(false);
+  detailsGroup.addEventListener('focusout',event=>{
+    if(!detailsGroup.contains(event.relatedTarget))setDetails(false);
   });
   header.addEventListener('click',event=>{
-    if(event.target.closest('a[href^="#"]')){
-      setMobileMenu(false);setDetails(false);
-    }
+    if(event.target.closest('a[href^="#"]'))setDetails(false);
   });
   document.addEventListener('pointerdown',event=>{
-    if(!header.contains(event.target)){
-      if(menuOpen)setMobileMenu(false);
-      if(detailsOpen)setDetails(false);
-    }
+    if(!detailsGroup.contains(event.target))setDetails(false);
   });
   document.addEventListener('keydown',event=>{
-    if(event.key==='Escape'){
-      if(menuOpen){setMobileMenu(false);toggle.focus();}
-      if(detailsOpen){setDetails(false);detailsButton.focus();}
-    }
+    if(event.key==='Escape'&&detailsOpen){setDetails(false);detailsButton.focus();}
   });
-  mobile.addEventListener('change',()=>{
-    setMobileMenu(false);setDetails(false);requestUpdate();
+  homeButton.addEventListener('click',()=>{
+    setDetails(false);
+    window.scrollTo({top:0,behavior:'instant'});
   });
   addEventListener('scroll',requestUpdate,{passive:true});
   addEventListener('resize',requestUpdate,{passive:true});
   addEventListener('pageshow',requestUpdate);
-  setMobileMenu(false);
   setDetails(false);
   update();
 })();
@@ -1040,4 +971,63 @@
   if (image.complete) {
     if (image.naturalWidth) loaded(); else failed();
   }
+})();
+
+
+/* V8.85 — Prenup photo gallery: click/tap, keyboard arrows, swipe,
+   and a modal lightbox. Placeholder files can be swapped for real photos
+   without changing this script. No external library or autoplay. */
+(() => {
+  'use strict';
+  const gallery = document.getElementById('prenup-gallery');
+  const dialog = document.getElementById('prenup-lightbox');
+  if (!gallery || !dialog) return;
+  const photos = [...gallery.querySelectorAll('.prenup-photo')];
+  const picture = dialog.querySelector('.prenup-lightbox-image');
+  const caption = dialog.querySelector('.prenup-lightbox-caption');
+  const counter = dialog.querySelector('.prenup-lightbox-counter');
+  const close = dialog.querySelector('.prenup-lightbox-close');
+  const previous = dialog.querySelector('.prenup-lightbox-prev');
+  const next = dialog.querySelector('.prenup-lightbox-next');
+  let current = 0;
+  let touchStartX = null;
+
+  function display(index) {
+    current = (index + photos.length) % photos.length;
+    const thumb = photos[current];
+    const image = thumb.querySelector('img');
+    picture.src = image.currentSrc || image.src;
+    picture.alt = image.alt;
+    caption.textContent = thumb.querySelector('.prenup-photo-overlay span')?.textContent || `Photo ${current+1}`;
+    counter.textContent = `${String(current+1).padStart(2,'0')} / ${String(photos.length).padStart(2,'0')}`;
+  }
+  function open(index) {
+    display(index);
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open','');
+  }
+  function hide() {
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
+  }
+  photos.forEach((photo,index)=>photo.addEventListener('click',()=>open(index)));
+  close.addEventListener('click',hide);
+  previous.addEventListener('click',()=>display(current-1));
+  next.addEventListener('click',()=>display(current+1));
+  dialog.addEventListener('click',event=>{
+    if(event.target===dialog)hide();
+  });
+  dialog.addEventListener('keydown',event=>{
+    if(event.key==='ArrowRight'){event.preventDefault();display(current+1);}
+    if(event.key==='ArrowLeft'){event.preventDefault();display(current-1);}
+  });
+  picture.addEventListener('touchstart',event=>{
+    touchStartX=event.changedTouches[0]?.screenX ?? null;
+  },{passive:true});
+  picture.addEventListener('touchend',event=>{
+    if(touchStartX===null)return;
+    const dx=(event.changedTouches[0]?.screenX ?? touchStartX)-touchStartX;
+    touchStartX=null;
+    if(Math.abs(dx)>45)display(current+(dx<0?1:-1));
+  },{passive:true});
 })();

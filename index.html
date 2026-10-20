@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="website-version" content="8.82.0">
+  <meta name="website-version" content="8.88.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#263328">
@@ -13,58 +13,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=8.82.0">
+  <link rel="stylesheet" href="style.css?v=8.88.0">
 </head>
 <body>
-  <!-- V8.82: slim navigation; fade on foreword, hide on downward scroll thereafter. -->
+  <!-- V8.83 — full-width editorial navigation. On mobile all four requested
+       sections remain visible, with What to Wear inside Details. -->
   <header class="site-header wedding-nav" id="site-header" aria-label="Wedding navigation" inert>
-    <a class="site-brand" href="#film" aria-label="Kenneth and Catherine — Home">
+    <a class="site-brand" href="#home" aria-label="Kenneth and Catherine — back to Home">
       <span class="site-brand-fallback" aria-hidden="true">K<span class="site-brand-amp">&amp;</span>C</span>
-      <img class="site-monogram" src="assets/images/kc-monogram.png?v=8.82.0"
+      <img class="site-monogram" src="assets/images/kc-monogram.png?v=8.88.0"
            alt="" decoding="async" width="599" height="620" hidden>
     </a>
-
     <nav class="site-navigation" id="site-navigation" aria-label="Wedding sections">
-      <a href="#film" data-nav="home">Home</a>
+      <a href="#home" data-nav="home" class="desktop-home-link">Home</a>
       <div class="nav-details-group" id="nav-details-group">
         <button class="nav-details-trigger" id="nav-details-trigger" type="button"
                 aria-haspopup="true" aria-expanded="false" aria-controls="nav-details-popover">
-          Details 
+          Details
         </button>
-        <div class="nav-details-popover" id="nav-details-popover">
+        <div class="nav-details-popover" id="nav-details-popover" inert>
           <a href="#ceremony">Ceremony</a>
           <a href="#reception">Reception</a>
           <a href="#day-schedule">Day Schedule</a>
+          <a href="#what-to-wear">What to Wear</a>
         </div>
       </div>
-      <a href="#what-to-wear" data-nav="what-to-wear">What to Wear</a>
-      <a href="#entourage" data-nav="entourage">Entourage</a>
-      <a href="#rsvp" data-nav="rsvp">RSVP</a>
-      <a href="#faq" data-nav="faq">FAQ</a>
-    </nav>
-
-    <a class="mobile-rsvp-shortcut" href="#rsvp" aria-label="Go to RSVP">RSVP</a>
-
-    <button class="site-menu-toggle" type="button" id="site-menu-toggle"
-            aria-label="Open navigation" aria-controls="site-dropdown" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="site-dropdown" id="site-dropdown" aria-label="Mobile wedding navigation" inert>
-      <a href="#film" data-nav="home">Home</a>
-      <details class="mobile-details-menu">
-        <summary>Details</summary>
-        <div class="mobile-details-links">
-          <a href="#ceremony">Ceremony</a>
-          <a href="#reception">Reception</a>
-          <a href="#day-schedule">Day Schedule</a>
-        </div>
-      </details>
-      <a href="#what-to-wear" data-nav="what-to-wear">What to Wear</a>
       <a href="#entourage" data-nav="entourage">Entourage</a>
       <a href="#rsvp" data-nav="rsvp">RSVP</a>
       <a href="#faq" data-nav="faq">FAQ</a>
     </nav>
   </header>
+
+  <!-- Independent of the navigation; remains available while scrolling down. -->
+  <button class="floating-home-button" id="floating-home-button" type="button"
+          aria-label="Back to the beginning of our wedding website" title="Back to Home" hidden>
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+         stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/>
+    </svg>
+  </button>
   <a class="skip-link" href="#invitation">Skip animation and view invitation</a>
   <main>
     <section class="ring-experience" id="home" aria-label="Animated wedding rings introduction">
@@ -158,36 +145,12 @@
           </div>
 
           <div class="save-date-bottom-content">
-            <div class="save-date-countdown-heading"><span aria-hidden="true"></span>COUNTING DOWN TO OUR DAY<span aria-hidden="true"></span></div>
+            <div class="save-date-countdown-heading">COUNTING DOWN TO OUR DAY</div>
             <div class="save-date-countdown timeless-numbers" role="timer" aria-label="Time remaining until March 3, 2027 at 3:00 PM Philippine time">
-              <div class="timeless-unit" data-timeless-unit="days"><strong id="days" class="timeless-value flip-number" aria-label="Days" data-last-value="000">
-                  <span class="flip-card">
-                    <span class="flip-display">000</span>
-                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">000</span>
-                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">000</span>
-                  </span>
-                </strong><small>DAYS</small></div>
-              <div class="timeless-unit" data-timeless-unit="hours"><strong id="hours" class="timeless-value flip-number" aria-label="Hours" data-last-value="00">
-                  <span class="flip-card">
-                    <span class="flip-display">00</span>
-                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
-                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
-                  </span>
-                </strong><small>HOURS</small></div>
-              <div class="timeless-unit" data-timeless-unit="minutes"><strong id="minutes" class="timeless-value flip-number" aria-label="Minutes" data-last-value="00">
-                  <span class="flip-card">
-                    <span class="flip-display">00</span>
-                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
-                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
-                  </span>
-                </strong><small>MINUTES</small></div>
-              <div class="timeless-unit" data-timeless-unit="seconds"><strong id="seconds" class="timeless-value flip-number" aria-label="Seconds" data-last-value="00">
-                  <span class="flip-card">
-                    <span class="flip-display">00</span>
-                    <span class="flip-rotor flip-rotor-old" aria-hidden="true">00</span>
-                    <span class="flip-rotor flip-rotor-new" aria-hidden="true">00</span>
-                  </span>
-                </strong><small>SECONDS</small></div>
+              <div class="timeless-unit" data-timeless-unit="days"><strong id="days" class="timeless-value countdown-digits" aria-label="000 Days" data-last-value="000"><span class="countdown-digit" aria-hidden="true">0</span><span class="countdown-digit" aria-hidden="true">0</span><span class="countdown-digit" aria-hidden="true">0</span></strong><small>DAYS</small></div>
+              <div class="timeless-unit" data-timeless-unit="hours"><strong id="hours" class="timeless-value countdown-digits" aria-label="00 Hours" data-last-value="00"><span class="countdown-digit" aria-hidden="true">0</span><span class="countdown-digit" aria-hidden="true">0</span></strong><small>HOURS</small></div>
+              <div class="timeless-unit" data-timeless-unit="minutes"><strong id="minutes" class="timeless-value countdown-digits" aria-label="00 Minutes" data-last-value="00"><span class="countdown-digit" aria-hidden="true">0</span><span class="countdown-digit" aria-hidden="true">0</span></strong><small>MINUTES</small></div>
+              <div class="timeless-unit" data-timeless-unit="seconds"><strong id="seconds" class="timeless-value countdown-digits" aria-label="00 Seconds" data-last-value="00"><span class="countdown-digit" aria-hidden="true">0</span><span class="countdown-digit" aria-hidden="true">0</span></strong><small>SECONDS</small></div>
             </div>
 
             <div class="save-date-personal-note" aria-label="Add the wedding to your calendar">
@@ -208,37 +171,50 @@
 
           </div>
         </div>
-      </div>
+
+</div>
+<!-- Prenup gallery belongs to the Save the Date page, before venue details. -->
+<section class="prenup-gallery" id="prenup-gallery" aria-labelledby="prenup-gallery-heading">
+  <div class="prenup-gallery-intro">
+    <h2 id="prenup-gallery-heading">Our <em>Prenup Photoshoot</em></h2>
+    <p>A few captured moments from the beautiful chapter before our next one begins.</p>
+  </div>
+  <div class="prenup-photo-grid">
+          <button type="button" class="prenup-photo prenup-photo-1" data-photo-index="0" aria-label="View prenup photo 1 of 6: The beginning">
+            <img src="assets/images/prenup-01.svg" alt="Placeholder for prenup photo 1" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>The beginning</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button type="button" class="prenup-photo prenup-photo-2" data-photo-index="1" aria-label="View prenup photo 2 of 6: Golden hour">
+            <img src="assets/images/prenup-02.svg" alt="Placeholder for prenup photo 2" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>Golden hour</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button type="button" class="prenup-photo prenup-photo-3" data-photo-index="2" aria-label="View prenup photo 3 of 6: Just us">
+            <img src="assets/images/prenup-03.svg" alt="Placeholder for prenup photo 3" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>Just us</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button type="button" class="prenup-photo prenup-photo-4" data-photo-index="3" aria-label="View prenup photo 4 of 6: A quiet moment">
+            <img src="assets/images/prenup-04.svg" alt="Placeholder for prenup photo 4" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>A quiet moment</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button type="button" class="prenup-photo prenup-photo-5" data-photo-index="4" aria-label="View prenup photo 5 of 6: Side by side">
+            <img src="assets/images/prenup-05.svg" alt="Placeholder for prenup photo 5" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>Side by side</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button type="button" class="prenup-photo prenup-photo-6" data-photo-index="5" aria-label="View prenup photo 6 of 6: Almost forever">
+            <img src="assets/images/prenup-06.svg" alt="Placeholder for prenup photo 6" loading="lazy" decoding="async">
+            <span class="prenup-photo-overlay"><span>Almost forever</span><span aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+        <p class="prenup-gallery-hint"><span aria-hidden="true">↗</span> Tap a photo to view it · Swipe to explore</p>
+      </section>
     </section>
       </div>
     </section>
 
-    <!-- V8.52: image-to-typography ceremony transition, inspired by the supplied video. -->
-    <section class="ceremony-cinema" id="details" aria-labelledby="ceremony-title">
-      <span id="ceremony" class="section-anchor" aria-hidden="true"></span>
-      <div class="ceremony-cinema-sticky">
-        <div class="ceremony-cinema-backdrop" aria-hidden="true"></div>
-        <div class="ceremony-cinema-hero" aria-hidden="true">
-          <div class="ceremony-cinema-glow"></div>
-          <img src="assets/images/church-watercolor.png" alt="" class="ceremony-cinema-image" decoding="async">
-        </div>
-        <div class="ceremony-cinema-word" aria-hidden="true"><span>OUR VOWS</span></div>
-        <div class="ceremony-cinema-details">
-          <p class="ceremony-cinema-kicker">THE CEREMONY · 03.03.2027</p>
-          <h2 id="ceremony-title">Where our vows<br><em>begin.</em></h2>
-          <p class="ceremony-cinema-church">Hearts of Jesus and Mary Parish Church</p>
-          <p class="ceremony-cinema-place">Mojon, Malolos City, Bulacan</p>
-          <p class="ceremony-cinema-time">Arrival at 2:00 PM <span aria-hidden="true">·</span> Ceremony at 3:00 PM</p>
-          <a class="ceremony-cinema-map" href="https://www.google.com/maps/search/?api=1&amp;query=Hearts+of+Jesus+and+Mary+Parish+Church+Mojon+Malolos+Bulacan" target="_blank" rel="noopener noreferrer">VIEW LOCATION <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="ceremony-cinema-index" aria-hidden="true">01 / CEREMONY</div>
-      </div>
-    </section>
-
-    <section class="venues-section" id="venues">
-      <div class="section-heading reveal-on-scroll"><p class="eyebrow">THE CELEBRATION</p><h2>Where love <em>leads us.</em></h2></div>
+    <section class="venues-section" id="details" aria-labelledby="venues-heading">
+      <div class="section-heading reveal-on-scroll"><p class="eyebrow">THE CELEBRATION</p><h2 id="venues-heading">Where love <em>leads us.</em></h2></div>
       <div class="venue-grid">
-        <article class="venue-card reveal-on-scroll">
+        <article class="venue-card reveal-on-scroll" id="ceremony">
           <span class="venue-number">01 / CEREMONY</span>
           <h3>Hearts of Jesus and Mary<br>Parish Church</h3>
           <p>Mojon, Malolos City, Bulacan</p>
@@ -326,11 +302,28 @@
       </div>
     </section>
   </main>
+  <dialog class="prenup-lightbox" id="prenup-lightbox" aria-label="Prenup photo viewer">
+    <div class="prenup-lightbox-content">
+      <div class="prenup-lightbox-topbar">
+        <span class="prenup-lightbox-label">KENNETH &amp; CATHERINE · PRENUP</span>
+        <button type="button" class="prenup-lightbox-close" aria-label="Close photo viewer">×</button>
+      </div>
+      <div class="prenup-lightbox-stage">
+        <button type="button" class="prenup-lightbox-arrow prenup-lightbox-prev" aria-label="Previous photo">‹</button>
+        <img class="prenup-lightbox-image" src="assets/images/prenup-01.svg" alt="Prenup photo placeholder">
+        <button type="button" class="prenup-lightbox-arrow prenup-lightbox-next" aria-label="Next photo">›</button>
+      </div>
+      <div class="prenup-lightbox-footer">
+        <span class="prenup-lightbox-caption">The beginning</span>
+        <span class="prenup-lightbox-counter">01 / 06</span>
+      </div>
+    </div>
+  </dialog>
   <footer><span class="footer-love">love lots, Kenneth &amp; Catherine</span><small>03.03.2027</small></footer>
   <!-- Three.js r152.2: pinned dependency for the original ring animation.
        To use a local copy later, save the library to assets/js/three.min.js
        and change this script URL back to that local path. -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <script src="script.js?v=8.82.0"></script>
+  <script src="script.js?v=8.88.0"></script>
 </body>
 </html>

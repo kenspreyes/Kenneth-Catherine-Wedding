@@ -6703,3 +6703,632 @@ html {scroll-padding-top:88px!important;}
 @media(prefers-reduced-motion:reduce){
   .video-countdown-transition .save-date-panel .flip-rotor {display:none!important;animation:none!important;}
 }
+
+
+/* ======================================================================
+   V8.83 — Full-width, square-edged editorial navigation (no capsule).
+   All four requested mobile items are visible in one row, including the
+   Details submenu; no hamburger and no separate RSVP shortcut.
+   ====================================================================== */
+.site-header.wedding-nav,
+.site-header.wedding-nav.is-scrolled {
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:none!important;
+  height:57px!important;
+  min-height:57px!important;
+  padding:6px clamp(18px,4vw,70px)!important;
+  margin:0!important;
+  border:0!important;
+  border-bottom:1px solid rgba(98,115,95,.17)!important;
+  border-radius:0!important;
+  background:rgba(249,248,242,.94)!important;
+  box-shadow:0 6px 22px rgba(33,45,33,.07)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(135%)!important;
+  backdrop-filter:blur(22px) saturate(135%)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  z-index:999!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(-13px)!important;
+  transition:opacity .38s ease,transform .38s ease,visibility .38s!important;
+}
+.site-header.wedding-nav.is-visible {
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translateY(0)!important;
+}
+.site-header.wedding-nav .site-brand {
+  flex:0 0 72px!important;
+  width:72px!important;
+  max-width:72px!important;
+  height:44px!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+}
+.site-header.wedding-nav .site-monogram {
+  display:block;
+  width:auto!important;
+  height:41px!important;
+  max-width:65px!important;
+  max-height:41px!important;
+  object-fit:contain!important;
+}
+.site-header.wedding-nav .site-navigation {
+  display:flex!important;
+  flex:0 1 auto!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  width:auto!important;
+  height:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  gap:clamp(3px,1.15vw,15px)!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.site-header.wedding-nav .site-navigation > a,
+.site-header.wedding-nav .nav-details-trigger {
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:38px!important;
+  min-height:38px!important;
+  padding:0 clamp(7px,1.05vw,15px)!important;
+  border:0!important;
+  border-radius:4px!important;
+  background:transparent!important;
+  color:#4d634e!important;
+  font:500 clamp(10px,.86vw,12px)/1 Montserrat,Arial,sans-serif!important;
+  letter-spacing:.015em!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+  cursor:pointer;
+}
+.site-header.wedding-nav .site-navigation > a:hover,
+.site-header.wedding-nav .nav-details-trigger:hover {
+  background:rgba(226,233,222,.55)!important;
+  color:#314b36!important;
+}
+.site-header.wedding-nav .site-navigation > a.is-active,
+.site-header.wedding-nav .nav-details-trigger.is-active {
+  background:rgba(220,231,215,.64)!important;
+  color:#2d4932!important;
+  box-shadow:inset 0 -2px 0 #71876f!important;
+}
+.site-header.wedding-nav .nav-details-group {
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  height:100%!important;
+  flex:0 0 auto!important;
+}
+.site-header.wedding-nav .nav-details-popover {
+  position:absolute!important;
+  top:calc(100% + 9px)!important;
+  left:0!important;
+  width:194px!important;
+  max-width:calc(100vw - 24px)!important;
+  padding:8px!important;
+  border:1px solid #e1e7dc!important;
+  border-radius:8px!important;
+  background:rgba(249,248,243,.98)!important;
+  box-shadow:0 15px 35px rgba(28,44,31,.13)!important;
+  transform:translateY(-6px)!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:opacity .2s ease,transform .2s ease,visibility .2s!important;
+}
+.site-header.wedding-nav .nav-details-group.is-open .nav-details-popover {
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translateY(0)!important;
+}
+.site-header.wedding-nav .nav-details-popover a {
+  display:block!important;
+  padding:12px 13px!important;
+  border-radius:5px!important;
+  color:#445b47!important;
+  font:500 11px/1.25 Montserrat,Arial,sans-serif!important;
+}
+.site-header.wedding-nav .nav-details-popover a:hover,
+.site-header.wedding-nav .nav-details-popover a:focus-visible {
+  background:#e8ede5!important;
+}
+.site-header.wedding-nav .site-menu-toggle,
+.site-header.wedding-nav .site-dropdown,
+.site-header.wedding-nav .mobile-rsvp-shortcut,
+.site-header.wedding-nav .nav-chevron {display:none!important;}
+
+@media(max-width:900px){
+  .site-header.wedding-nav,.site-header.wedding-nav.is-scrolled {
+    height:51px!important;
+    min-height:51px!important;
+    padding:4px clamp(9px,2.6vw,17px)!important;
+    gap:clamp(4px,1.5vw,10px)!important;
+    justify-content:space-between!important;
+  }
+  .site-header.wedding-nav .site-brand {
+    flex:0 0 clamp(38px,10.2vw,50px)!important;
+    width:clamp(38px,10.2vw,50px)!important;
+    max-width:50px!important;
+    height:40px!important;
+  }
+  .site-header.wedding-nav .site-monogram {
+    height:37px!important;
+    max-width:clamp(35px,9.6vw,45px)!important;
+    max-height:37px!important;
+  }
+  .site-header.wedding-nav .site-navigation {
+    flex:1 1 auto!important;
+    justify-content:space-between!important;
+    height:100%!important;
+    gap:0!important;
+    overflow:visible!important;
+  }
+  .site-header.wedding-nav .desktop-home-link {display:none!important;}
+  .site-header.wedding-nav .site-navigation > a,
+  .site-header.wedding-nav .nav-details-trigger {
+    height:38px!important;
+    min-height:38px!important;
+    padding:0 clamp(3px,.8vw,8px)!important;
+    font-size:clamp(9px,2.5vw,11px)!important;
+    letter-spacing:-.015em!important;
+    border-radius:3px!important;
+  }
+  .site-header.wedding-nav .nav-details-popover {
+    top:calc(100% + 7px)!important;
+    left:0!important;
+    width:181px!important;
+    padding:6px!important;
+  }
+  .site-header.wedding-nav .nav-details-popover a {
+    padding:13px 12px!important;
+    font-size:11px!important;
+  }
+}
+@media(max-width:350px){
+  .site-header.wedding-nav,.site-header.wedding-nav.is-scrolled {
+    padding-left:8px!important;
+    padding-right:8px!important;
+    gap:4px!important;
+  }
+  .site-header.wedding-nav .site-brand {
+    flex-basis:35px!important;
+    width:35px!important;
+    max-width:35px!important;
+  }
+  .site-header.wedding-nav .site-monogram {max-width:33px!important;}
+  .site-header.wedding-nav .site-navigation > a,
+  .site-header.wedding-nav .nav-details-trigger {
+    font-size:9px!important;
+    padding:0 2px!important;
+  }
+}
+
+/* Independent, subtle floating return-to-home control. */
+.floating-home-button {
+  position:fixed;
+  right:clamp(13px,2.8vw,30px);
+  bottom:calc(17px + env(safe-area-inset-bottom,0px));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:43px;
+  height:43px;
+  padding:0;
+  color:#496249;
+  background:rgba(250,248,240,.94);
+  border:1px solid rgba(111,134,107,.24);
+  border-radius:50%;
+  box-shadow:0 6px 21px rgba(32,46,33,.16);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+  z-index:997;
+  cursor:pointer;
+  transition:background .2s ease,transform .2s ease,opacity .25s ease;
+}
+.floating-home-button[hidden] {display:none!important;}
+.floating-home-button:hover {background:#edf1e9;transform:translateY(-2px);}
+.floating-home-button:focus-visible {outline:2px solid #71896d;outline-offset:3px;}
+@media(max-width:900px){
+  .floating-home-button {width:39px;height:39px;right:13px;bottom:calc(16px + env(safe-area-inset-bottom,0px));}
+  .floating-home-button svg {width:17px;height:17px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header.wedding-nav,.site-header.wedding-nav.is-scrolled,
+  .floating-home-button {transition:none!important;}
+}
+@media(max-width:900px){
+  .site-header.wedding-nav .site-navigation > a.desktop-home-link {display:none!important;}
+}
+
+
+/* V8.84 — Quiet editorial countdown crossfade.
+   Only a changing value receives .is-flipping; other values and labels
+   never blink. Overrides the previous downward rotation completely. */
+.video-countdown-transition .save-date-panel .flip-card {
+  perspective:none!important;
+  transform-style:flat!important;
+  overflow:visible!important;
+}
+.video-countdown-transition .save-date-panel .flip-rotor {
+  transform:none!important;
+  transform-origin:center!important;
+  backface-visibility:visible!important;
+  -webkit-backface-visibility:visible!important;
+  will-change:opacity;
+  background:transparent!important;
+  filter:none!important;
+  opacity:0;
+  pointer-events:none;
+}
+.video-countdown-transition .save-date-panel .flip-card.is-flipping .flip-display {
+  opacity:0!important;
+}
+.video-countdown-transition .save-date-panel .flip-card.is-flipping .flip-rotor-old {
+  animation:wedding-soft-fade-out .46s ease-in-out both!important;
+}
+.video-countdown-transition .save-date-panel .flip-card.is-flipping .flip-rotor-new {
+  animation:wedding-soft-fade-in .46s ease-in-out both!important;
+}
+@keyframes wedding-soft-fade-out {
+  0% {opacity:1;}
+  42% {opacity:.7;}
+  100% {opacity:0;}
+}
+@keyframes wedding-soft-fade-in {
+  0% {opacity:0;}
+  42% {opacity:.3;}
+  100% {opacity:1;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .save-date-panel .flip-rotor {
+    display:none!important;
+    animation:none!important;
+  }
+}
+
+
+/* =====================================================================
+   V8.85 — Exact digit-only fade, clean countdown, prenup photo gallery.
+   Overrides legacy full-unit fade, flip rotors and divider lines.
+   ===================================================================== */
+.video-countdown-transition .save-date-panel .save-date-countdown-heading {
+  gap:0!important;
+  letter-spacing:.16em!important;
+}
+.video-countdown-transition .save-date-panel .save-date-countdown-heading span,
+.video-countdown-transition .save-date-panel .save-date-countdown-heading::before,
+.video-countdown-transition .save-date-panel .save-date-countdown-heading::after {
+  display:none!important;
+  content:none!important;
+}
+.video-countdown-transition .save-date-panel .timeless-unit,
+.video-countdown-transition .save-date-panel .timeless-unit:last-child {
+  border:0!important;
+  border-left:0!important;
+  border-right:0!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+}
+.video-countdown-transition .save-date-panel .timeless-unit::before,
+.video-countdown-transition .save-date-panel .timeless-unit::after,
+.video-countdown-transition .save-date-panel .timeless-value::before,
+.video-countdown-transition .save-date-panel .timeless-value::after {
+  content:none!important;
+  display:none!important;
+}
+.video-countdown-transition .save-date-panel .timeless-value.countdown-digits {
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  width:auto!important;
+  min-height:1.12em!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+  font-variant-numeric:tabular-nums!important;
+  white-space:nowrap!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.video-countdown-transition .save-date-panel .countdown-digit {
+  display:inline-block;
+  width:.61em;
+  text-align:center;
+  font:inherit;
+  letter-spacing:0;
+  line-height:inherit;
+  opacity:1;
+  transform:none;
+  filter:none;
+  animation:none;
+  backface-visibility:visible;
+  will-change:auto;
+}
+.video-countdown-transition .save-date-panel .countdown-digit.digit-is-changing {
+  animation:prenup-digit-soft-reveal .45s cubic-bezier(.22,.72,.3,1) both!important;
+}
+@keyframes prenup-digit-soft-reveal {
+  0% {opacity:.12}
+  50% {opacity:.72}
+  100% {opacity:1}
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .save-date-panel .countdown-digit.digit-is-changing {
+    animation:none!important;
+  }
+}
+
+/* Gallery is part of the ivory Save the Date page, not a new pinned page. */
+.prenup-gallery {
+  position:relative;
+  z-index:1;
+  width:100%;
+  margin:0 auto;
+  padding:clamp(34px,5.2vw,72px) clamp(16px,3.4vw,50px) clamp(48px,6vw,86px);
+  background:#f8f5ee;
+  color:#435942;
+  overflow:visible;
+}
+.prenup-gallery-intro {
+  max-width:620px;
+  margin:0 auto clamp(22px,3vw,38px);
+  text-align:center;
+}
+.prenup-eyebrow {
+  margin:0 0 10px;
+  font:500 10px/1.5 Montserrat,sans-serif;
+  letter-spacing:.22em;
+  color:#87917d;
+}
+.prenup-gallery-intro h2 {
+  margin:0 0 8px;
+  font:400 clamp(42px,6.2vw,76px)/1 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:-.03em;
+  color:#354d37;
+}
+.prenup-gallery-intro h2 em {color:#8c9b82;}
+.prenup-gallery-intro > p:last-child {
+  margin:0;
+  color:#8a9385;
+  font:400 clamp(11px,1vw,13px)/1.65 Montserrat,sans-serif;
+}
+.prenup-photo-grid {
+  width:min(100%,1050px);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-auto-flow:row dense;
+  gap:clamp(9px,1.5vw,17px);
+}
+.prenup-photo {
+  position:relative;
+  grid-column:span 4;
+  display:block;
+  width:100%;
+  min-width:0;
+  aspect-ratio:4/5;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:4px;
+  background:#e5e5d9;
+  cursor:zoom-in;
+  isolation:isolate;
+}
+.prenup-photo-1,.prenup-photo-4 {grid-column:span 5;}
+.prenup-photo-2,.prenup-photo-5 {grid-column:span 3;}
+.prenup-photo-3,.prenup-photo-6 {grid-column:span 4;}
+.prenup-photo-2,.prenup-photo-5 {aspect-ratio:3/5;}
+.prenup-photo img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .65s cubic-bezier(.2,.75,.2,1),filter .45s ease;
+}
+.prenup-photo:hover img {transform:scale(1.045);filter:saturate(1.1);}
+.prenup-photo-overlay {
+  position:absolute;
+  inset:auto 0 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:30px 15px 14px;
+  background:linear-gradient(transparent,rgba(32,43,32,.55));
+  color:white;
+  font:500 10px/1.3 Montserrat,sans-serif;
+  letter-spacing:.07em;
+  text-align:left;
+  pointer-events:none;
+}
+.prenup-photo-overlay span:last-child {font-size:20px;font-weight:400;}
+.prenup-photo:focus-visible {outline:3px solid #5d785e;outline-offset:4px;}
+.prenup-gallery-hint {
+  margin:clamp(17px,2vw,24px) auto 0;
+  text-align:center;
+  color:#929b8c;
+  font:400 10px/1.5 Montserrat,sans-serif;
+  letter-spacing:.05em;
+}
+.prenup-gallery-hint span {font-size:15px;margin-right:6px;}
+
+/* Native dialog: keyboard arrows, next/previous buttons, touch swipe. */
+.prenup-lightbox {
+  position:fixed;
+  inset:0;
+  width:min(100vw - 24px,960px);
+  max-width:960px;
+  max-height:min(94dvh,950px);
+  margin:auto;
+  padding:0;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:8px;
+  background:#f8f5ee;
+  color:#354b38;
+  box-shadow:0 25px 90px rgba(0,0,0,.34);
+  z-index:10000;
+}
+.prenup-lightbox::backdrop {background:rgba(17,26,19,.87);backdrop-filter:blur(8px);}
+.prenup-lightbox-content {padding:clamp(11px,2vw,22px);}
+.prenup-lightbox-topbar,.prenup-lightbox-footer {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.prenup-lightbox-topbar {padding:0 2px 12px;}
+.prenup-lightbox-label {font:500 9px/1.5 Montserrat,sans-serif;letter-spacing:.17em;color:#899785;}
+.prenup-lightbox-close {
+  width:36px;height:36px;display:grid;place-items:center;
+  padding:0;border:1px solid #d9e0d4;border-radius:50%;
+  background:transparent;color:#526951;font:400 26px/1 Arial,sans-serif;
+  cursor:pointer;
+}
+.prenup-lightbox-stage {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:160px;
+  overflow:hidden;
+  background:#e6e6da;
+}
+.prenup-lightbox-image {
+  display:block;
+  max-width:100%;
+  max-height:min(72dvh,740px);
+  width:auto;height:auto;
+  object-fit:contain;
+  touch-action:pan-y;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.prenup-lightbox-arrow {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  display:grid;
+  place-items:center;
+  width:39px;height:46px;
+  padding:0;border:0;border-radius:3px;
+  background:rgba(250,249,244,.9);
+  color:#405840;font:400 36px/1 Georgia,serif;
+  cursor:pointer;
+  z-index:2;
+}
+.prenup-lightbox-prev {left:8px;}
+.prenup-lightbox-next {right:8px;}
+.prenup-lightbox-footer {padding:14px 2px 1px;}
+.prenup-lightbox-caption {font:400 23px/1.2 'Cormorant Garamond',serif;}
+.prenup-lightbox-counter {font:500 10px/1 Montserrat,sans-serif;letter-spacing:.12em;color:#82917d;}
+@media(max-width:700px) {
+  .prenup-gallery {padding:32px 12px 44px;}
+  .prenup-gallery-intro {margin-bottom:22px;}
+  .prenup-photo-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+  .prenup-photo,.prenup-photo-1,.prenup-photo-2,
+  .prenup-photo-3,.prenup-photo-4,.prenup-photo-5,.prenup-photo-6 {
+    grid-column:span 1;
+    aspect-ratio:4/5;
+  }
+  .prenup-photo-1,.prenup-photo-4 {aspect-ratio:3/4;}
+  .prenup-photo-overlay {padding:24px 9px 10px;font-size:9px;}
+  .prenup-lightbox {width:calc(100vw - 16px);max-height:90dvh;}
+  .prenup-lightbox-content {padding:9px;}
+  .prenup-lightbox-image {max-height:70dvh;}
+  .prenup-lightbox-arrow {width:32px;height:40px;font-size:30px;}
+  .prenup-lightbox-label {font-size:8px;letter-spacing:.09em;}
+}
+@media(prefers-reduced-motion:reduce){
+  .prenup-photo img {transition:none!important;}
+}
+
+
+/* V8.86 — remove leftover separator strokes from legacy countdown styles.
+   Older .countdown-interlude .save-date-countdown span rules put a
+   border-right and padding on EVERY digit span, causing vertical lines
+   inside the numbers (not just between countdown units). */
+.countdown-interlude.countdown-timeless .save-date-countdown.timeless-numbers .countdown-digit,
+.video-countdown-transition .save-date-panel .timeless-value.countdown-digits > .countdown-digit {
+  display:inline-block!important;
+  flex:0 0 .61em!important;
+  width:.61em!important;
+  min-width:0!important;
+  height:auto!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-left:0!important;
+  border-right:0!important;
+  border-top:0!important;
+  border-bottom:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  outline:0!important;
+  text-decoration:none!important;
+}
+.countdown-interlude.countdown-timeless .save-date-countdown.timeless-numbers .countdown-digit::before,
+.countdown-interlude.countdown-timeless .save-date-countdown.timeless-numbers .countdown-digit::after {
+  content:none!important;
+  display:none!important;
+}
+
+
+/* V8.87 — tasteful unit separators, not lines inside individual digits.
+   Each divider belongs to its entire Days/Hours/Minutes unit. */
+.video-countdown-transition .save-date-panel .save-date-countdown.timeless-numbers > .timeless-unit {
+  position:relative!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.video-countdown-transition .save-date-panel .save-date-countdown.timeless-numbers > .timeless-unit:not(:last-child)::after {
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  top:19%!important;
+  bottom:auto!important;
+  right:0!important;
+  left:auto!important;
+  width:1px!important;
+  height:54%!important;
+  background:rgba(123,137,118,.28)!important;
+  opacity:1!important;
+  transform:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  pointer-events:none!important;
+}
+.video-countdown-transition .save-date-panel .save-date-countdown.timeless-numbers > .timeless-unit:last-child::after {
+  content:none!important;
+  display:none!important;
+}
+/* The removed eyebrow leaves the gallery title as the only heading. */
+.prenup-gallery-intro h2 {margin-top:0!important;}
