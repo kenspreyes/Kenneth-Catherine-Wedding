@@ -8082,3 +8082,37 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
   .venue-fine-rule{margin:12px 0}
   .venue-message{font-size:12px;line-height:1.6;margin-bottom:14px;max-width:none}
 }
+
+
+/* V9.05 — venue map overlays, seamless watercolor and no between-card ornament.
+   These overrides are intentionally scoped to Ceremony & Reception. */
+.wedding-day-editorial .venue-editorial-list {
+  overflow: visible;
+}
+.wedding-day-editorial .venue-editorial-card {
+  /* A solid matching canvas makes the white in watercolor art disappear
+     under multiply blending, without changing the illustration itself. */
+  background: #f8f5ee;
+  overflow: visible;
+  z-index: 0;
+}
+.wedding-day-editorial .venue-image-wrap img {
+  mix-blend-mode: multiply;
+}
+/* Raise the entire card's stacking context, not only the dropdown.
+   Scroll-reveal transforms otherwise cause the next card to cover it. */
+.wedding-day-editorial .venue-editorial-card:has(.venue-map-menu[open]),
+.wedding-day-editorial .venue-editorial-card.is-map-open {
+  z-index: 80;
+}
+.wedding-day-editorial .venue-map-menu[open] {
+  z-index: 90;
+}
+.wedding-day-editorial .venue-map-options {
+  z-index: 100;
+}
+/* Remove only the short line between the two venue cards. */
+.wedding-day-editorial .venue-editorial-card + .venue-editorial-card::before {
+  content: none;
+  display: none;
+}
