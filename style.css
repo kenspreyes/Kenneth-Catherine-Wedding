@@ -4134,3 +4134,104 @@ html {scroll-padding-top:76px;}
 @media(prefers-reduced-motion:reduce) {
   .foreword-music.is-playing .foreword-music-note {animation:none!important;}
 }
+
+
+/* V8.66 — Page 2 becomes a personal letter, not a titled foreword.
+   The original spotlight, handwritten signature, rings, film and music stay. */
+.spotlight-invitation-content.personal-letter-page {
+  align-items:center;
+  justify-content:center;
+  padding:clamp(36px,6.2svh,74px) clamp(24px,5.8vw,74px);
+}
+.personal-letter-page .personal-letter-body {
+  width:min(100%,560px);
+  max-width:560px;
+  margin:0;
+  padding:0;
+  font-family:'Libre Baskerville',Georgia,serif;
+  font-size:clamp(13px,1.23vw,16px);
+  line-height:1.85;
+  letter-spacing:0;
+  text-align:left;
+  color:#444d40;
+  overflow:visible;
+}
+.personal-letter-page .personal-letter-body::first-letter {
+  float:none!important;
+  font:inherit!important;
+  font-size:inherit!important;
+  line-height:inherit!important;
+  padding:0!important;
+  margin:0!important;
+  color:inherit!important;
+}
+.personal-letter-page .personal-letter-body p {
+  margin:0 0 clamp(14px,2.5svh,24px);
+  text-indent:0;
+  text-align:left;
+}
+.personal-letter-page .personal-letter-body p:last-child { margin-bottom:0; }
+.personal-letter-page .personal-letter-greeting {
+  font-size:clamp(15px,1.6vw,19px);
+  line-height:1.65;
+  font-weight:400;
+  color:#314633;
+  margin-bottom:clamp(22px,3.8svh,34px)!important;
+}
+.personal-letter-page .spotlight-invitation-signature {
+  max-width:560px;
+  margin-top:clamp(16px,3svh,28px);
+  padding-right:0;
+}
+.personal-letter-page .spotlight-invitation-signature .handwritten-names {
+  width:min(75%,390px)!important;
+}
+.personal-letter-page .foreword-music {
+  margin-top:clamp(12px,2.3svh,19px);
+}
+@media(max-width:700px) {
+  .spotlight-invitation-content.personal-letter-page {
+    padding:clamp(26px,4svh,40px) 27px clamp(24px,3.5svh,34px);
+  }
+  .personal-letter-page .personal-letter-body {
+    max-width:39ch;
+    font-size:clamp(12.5px,3.5vw,15px);
+    line-height:1.75;
+  }
+  .personal-letter-page .personal-letter-body p {
+    margin-bottom:clamp(12px,2.1svh,18px);
+  }
+  .personal-letter-page .personal-letter-greeting {
+    font-size:clamp(14px,3.9vw,17px);
+    margin-bottom:clamp(18px,3svh,24px)!important;
+  }
+  .personal-letter-page .spotlight-invitation-signature {
+    margin-top:clamp(11px,2svh,20px);
+  }
+  .personal-letter-page .spotlight-invitation-signature .handwritten-names {
+    width:min(78%,325px)!important;
+  }
+  .personal-letter-page .foreword-music {
+    margin-top:clamp(10px,1.7svh,15px);
+  }
+}
+@media(max-height:650px) {
+  .spotlight-invitation-content.personal-letter-page {
+    padding-top:20px;
+    padding-bottom:18px;
+  }
+  .personal-letter-page .personal-letter-body {
+    font-size:clamp(11px,2.1svh,14px);
+    line-height:1.53;
+  }
+  .personal-letter-page .personal-letter-body p {margin-bottom:9px;}
+  .personal-letter-page .personal-letter-greeting {
+    font-size:clamp(13px,2.7svh,16px);
+    margin-bottom:11px!important;
+  }
+  .personal-letter-page .spotlight-invitation-signature {margin-top:8px;}
+  .personal-letter-page .spotlight-invitation-signature .handwritten-names {
+    width:min(60%,290px)!important;
+  }
+  .personal-letter-page .foreword-music {margin-top:7px;}
+}
