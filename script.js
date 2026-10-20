@@ -762,14 +762,19 @@
     if (!sheet || reduced.matches) return;
     const rect=section.getBoundingClientRect();
     const travel=Math.max(1,section.offsetHeight-innerHeight);
-    const p=clamp(-rect.top/travel);
+    // V8.77: on mobile, use the ORIGINAL 208svh scene's reveal distance.
+    // Extra height for the music list must not delay the ivory sheet.
+    const originalMobileTravel=Math.max(1,(section.querySelector('.video-countdown-sticky')?.offsetHeight || innerHeight)*1.08);
+    const p=clamp(-rect.top/(mobile.matches ? originalMobileTravel : travel));
     if (mobile.matches) {
       const video=section.querySelector('.wedding-film');
-      const videoHeight=video ? video.getBoundingClientRect().height : innerWidth*.74;
-      // Initially the rounded sheet touches the bottom of the landscape film;
-      // scrolling lifts the ENTIRE page, including its stationary typography.
-      const rise=ease((p-.04)/.72);
-      const initial=Math.max(0,videoHeight-12);
+      const videoBottom = video
+        ? video.getBoundingClientRect().bottom - section.querySelector('.video-countdown-sticky').getBoundingClientRect().top
+        : innerWidth * .87;
+      // Position the ivory panel slightly OVER the video, never below it.
+      // This avoids the blank band on iPhone during the initial reveal.
+      const rise=ease((p-.015)/.69);
+      const initial=Math.max(0,videoBottom-26);
       sheet.style.setProperty('--panel-offset',`${(initial*(1-rise)).toFixed(2)}px`);
       sheet.style.setProperty('--countdown-shadow',`${(.12+.16*rise).toFixed(3)}`);
     } else {
@@ -1032,129 +1037,206 @@
   }
 })();
 
-
-
-/* V8.75 — Spotify player stays embedded on Page 3. Its iframe is created
-   once, never moved or destroyed, so audio can continue as guests scroll.
-   Official Spotify IFrame API supplies pause/play for the tiny floating
-   control when available. Spotify decides song/preview availability. */
+/* V8.76 — Native wedding playlist. No Spotify SDK, iframe or autoplay.
+   Add your own licensed files to assets/audio/ and update TRACKS below.
+   The same HTMLAudioElement stays mounted while guests scroll. */
 (() => {
   'use strict';
-  const PLAYLIST_ID = '6wj5VQjk7lsOiR09ja201V';
-  const PLAYLIST_URI = `spotify:playlist:${PLAYLIST_ID}`;
-  const open = document.getElementById('spotify-mini-open');
-  const area = document.getElementById('spotify-inline-embed');
-  const mount = document.getElementById('spotify-iframe-mount');
-  const quick = document.getElementById('spotify-quick-control');
-  const card = document.getElementById('spotify-playlist');
-  if (!open || !area || !mount || !quick || !card) return;
+  const TRACKS = [
+    { title: 'Song 01', artist: 'Your song goes here', src: 'assets/audio/RUELLE - I Get To Love You.mp3' },
+    { title: 'Song 02', artist: 'Your song goes here', src: 'assets/audio/track-02.mp3' },
+    { title: 'Song 03', artist: 'Your song goes here', src: 'assets/audio/track-03.mp3' }
+  ];
+  const card = document.getElementById('wedding-playlist');
+  const audio = document.getElementById('wedding-music-audio');
+  const playButton = document.getElementById('wedding-music-main-play');
+  const quick = document.getElementById('music-quick-control');
+  const prev = document.getElementById('wedding-music-prev');
+  const next = document.getElementById('wedding-music-next');
+  const seek = document.getElementById('wedding-music-seek');
+  const elapsed = document.getElementById('wedding-music-elapsed');
+  const duration = document.getElementById('wedding-music-duration');
+  const nowPlaying = document.getElementById('wedding-music-now-playing');
+  const status = document.getElementById('wedding-music-status');
+  const trackButtons = [...document.querySelectorAll('#wedding-music-tracks [data-track]')];
+  if (![card,audio,playButton,quick,prev,next,seek,elapsed,duration,nowPlaying,status].every(Boolean)) return;
 
-  let controller = null;
-  let started = false;
-  let isPaused = true;
-  let playerVisible = false;
-  let opened = false;
-  let apiRequested = false;
-  let fallbackLoaded = false;
-
-  const updateQuick = () => {
-    // No floating UI while the inline Spotify player is visible, or before
-    // the listener has actually started playback. The controller is needed
-    // to provide an honest, functional pause/play button.
-    quick.hidden = !started || !controller || playerVisible;
-    quick.classList.toggle('is-paused', isPaused);
-    quick.setAttribute('aria-label', isPaused ? 'Resume wedding playlist' : 'Pause wedding playlist');
-    quick.title = isPaused ? 'Resume wedding playlist' : 'Pause wedding playlist';
-    quick.setAttribute('aria-pressed', String(!isPaused));
+  let selected = -1;
+  let hasStarted = false;
+  let cardVisible = true;
+  let loadRequest = 0;
+  const formatTime = value => {
+    if (!Number.isFinite(value) || value < 0) return '0:00';
+    const n = Math.floor(value);
+    return `${Math.floor(n / 60)}:${String(n % 60).padStart(2,'0')}`;
   };
-
-  // An iframe fallback remains usable if Spotify's control API is blocked.
-  // It is never removed or replaced once mounted.
-  function loadFallback() {
-    if (controller || fallbackLoaded || mount.querySelector('iframe')) return;
-    fallbackLoaded = true;
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0`;
-    iframe.title = 'Our Wedding Playlist — Spotify';
-    iframe.width = '100%';
-    iframe.height = '152';
-    iframe.loading = 'eager';
-    iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    mount.appendChild(iframe);
-  }
-
-  function createPlayer(API) {
-    if (fallbackLoaded || controller || mount.querySelector('iframe')) return;
-    API.createController(mount, {
-      uri: PLAYLIST_URI,
-      width: '100%',
-      height: 152,
-      theme: 0
-    }, embedController => {
-      controller = embedController;
-      controller.addListener('playback_update', event => {
-        const data = event && event.data ? event.data : {};
-        if (typeof data.isPaused === 'boolean') {
-          isPaused = data.isPaused;
-          if (!isPaused) started = true;
-          updateQuick();
-        }
-      });
-      updateQuick();
+  function updateUI() {
+    const playing = !audio.paused && !audio.ended;
+    playButton.querySelector('.wedding-music-play-glyph').textContent = playing ? 'Ⅱ' : '▶';
+    playButton.setAttribute('aria-label', playing ? 'Pause wedding playlist' : 'Play wedding playlist');
+    quick.hidden = !hasStarted || cardVisible;
+    quick.classList.toggle('is-paused', !playing);
+    quick.setAttribute('aria-label', playing ? 'Pause wedding music' : 'Play wedding music');
+    quick.title = playing ? 'Pause wedding music' : 'Play wedding music';
+    quick.setAttribute('aria-pressed', String(playing));
+    trackButtons.forEach((button,index) => {
+      const active = index === selected;
+      button.classList.toggle('is-selected', active);
+      button.setAttribute('aria-current', active ? 'true' : 'false');
+      button.querySelector('.wedding-music-track-action').textContent = active && playing ? 'Ⅱ' : '▶';
     });
+    if (selected >= 0) {
+      nowPlaying.textContent = TRACKS[selected].title;
+    }
+    elapsed.textContent = formatTime(audio.currentTime);
+    duration.textContent = formatTime(audio.duration);
+    const seekable = Number.isFinite(audio.duration) && audio.duration > 0;
+    seek.disabled = !seekable;
+    seek.value = seekable ? String(Math.round(audio.currentTime / audio.duration * 1000)) : '0';
   }
-
-  function requestSpotify() {
-    if (apiRequested) return;
-    apiRequested = true;
-    // Spotify invokes this callback once the official API script is ready.
-    window.onSpotifyIframeApiReady = API => {
-      try { createPlayer(API); }
-      catch (error) { loadFallback(); }
+  function setStatus(message) { status.textContent = message; }
+  function loadTrack(index) {
+    selected = (index + TRACKS.length) % TRACKS.length;
+    loadRequest += 1;
+    audio.pause();
+    audio.src = TRACKS[selected].src;
+    audio.load();
+    nowPlaying.textContent = TRACKS[selected].title;
+    setStatus(`Selected ${TRACKS[selected].title}`);
+    updateUI();
+  }
+  async function startPlayback() {
+    if (selected < 0) loadTrack(0);
+    const request = loadRequest;
+    try {
+      await audio.play();
+      if (request !== loadRequest) return;
+      hasStarted = true;
+      setStatus('Playing');
+      updateUI();
+    } catch (error) {
+      if (request !== loadRequest) return;
+      if (error && error.name === 'AbortError') return;
+      setStatus(`Music not added yet. Add ${TRACKS[selected].src} to your website.`);
+      updateUI();
+    }
+  }
+  function toggle() {
+    if (!audio.paused) {
+      audio.pause();
+      setStatus('Paused');
+      updateUI();
+    } else {
+      void startPlayback();
+    }
+  }
+  playButton.addEventListener('click', toggle);
+  quick.addEventListener('click', toggle);
+  trackButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.track);
+      if (index === selected) toggle();
+      else {loadTrack(index);void startPlayback();}
+    });
+  });
+  prev.addEventListener('click', () => {loadTrack(selected < 0 ? 0 : selected - 1);void startPlayback();});
+  next.addEventListener('click', () => {loadTrack(selected + 1);void startPlayback();});
+  seek.addEventListener('input', () => {
+    if (Number.isFinite(audio.duration) && audio.duration > 0)
+      audio.currentTime = audio.duration * (Number(seek.value) / 1000);
+  });
+  audio.addEventListener('play', () => {hasStarted = true;updateUI();});
+  audio.addEventListener('pause', updateUI);
+  audio.addEventListener('timeupdate', updateUI);
+  audio.addEventListener('loadedmetadata', updateUI);
+  audio.addEventListener('ended', () => {loadTrack(selected + 1);void startPlayback();});
+  audio.addEventListener('error', () => {
+    if (selected >= 0) setStatus(`Song not found: ${TRACKS[selected].src}`);
+    updateUI();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      cardVisible = entries.some(entry => entry.isIntersecting);
+      updateUI();
+    }, {threshold:.2}).observe(card);
+  } else {
+    const check = () => {
+      const r = card.getBoundingClientRect();
+      cardVisible = r.bottom > 0 && r.top < innerHeight;
+      updateUI();
     };
-    const script = document.createElement('script');
-    script.src = 'https://open.spotify.com/embed/iframe-api/v1';
-    script.async = true;
-    script.onerror = loadFallback;
-    document.head.appendChild(script);
-    // Covers network filters that silently block the API script.
-    window.setTimeout(() => { if (!controller && !mount.querySelector('iframe')) loadFallback(); }, 7000);
+    addEventListener('scroll',check,{passive:true});
+    check();
   }
+  updateUI();
+})();
 
-  open.addEventListener('click', () => {
-    if (opened) {
-      area.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+/* V8.77 — Page-driven scrolling through the Save the Date playlist.
+   A nested overflow scroller inside a transformed sticky panel could
+   capture touch gestures on iPhone Safari. We remove that inner scroller.
+   If the page is taller than the screen, extend the film scene by exactly
+   the needed amount and scroll the CONTENT with the normal page scroll.
+   No wheel/touchmove preventDefault handlers; normal swiping works. */
+(() => {
+  'use strict';
+  const scene=document.querySelector('.video-countdown-transition');
+  const stage=scene?.querySelector('.save-date-stage');
+  const content=scene?.querySelector('.save-date-layout');
+  const sticky=scene?.querySelector('.video-countdown-sticky');
+  if (!scene || !stage || !content || !sticky) return;
+
+  const mobile=matchMedia('(max-width:900px)');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp=n=>Math.max(0,Math.min(1,n));
+  let extra=0, originalTravel=0, scheduled=false;
+
+  function measure() {
+    if (!mobile.matches || reduced.matches) {
+      extra=0;
+      scene.style.removeProperty('height');
+      content.style.removeProperty('--playlist-page-shift');
       return;
     }
-    opened = true;
-    area.hidden = false;
-    open.setAttribute('aria-expanded','true');
-    open.innerHTML = '<span aria-hidden="true">♫</span> Playlist open';
-    requestSpotify();
-    updateQuick();
-  });
-
-  quick.addEventListener('click', () => {
-    if (!controller) return;
-    // togglePlay is the official controller method. The playback_update
-    // event will sync the icon after Spotify confirms the change.
-    controller.togglePlay();
-  });
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      playerVisible = entries.some(entry => entry.isIntersecting);
-      updateQuick();
-    }, {threshold:0.25});
-    observer.observe(card);
-  } else {
-    const onScroll = () => {
-      const rect = card.getBoundingClientRect();
-      playerVisible = rect.bottom > 0 && rect.top < innerHeight;
-      updateQuick();
-    };
-    addEventListener('scroll',onScroll,{passive:true});
-    onScroll();
+    const stageStyle=getComputedStyle(stage);
+    const padding=(parseFloat(stageStyle.paddingTop)||0)+(parseFloat(stageStyle.paddingBottom)||0);
+    const viewport=sticky.offsetHeight||innerHeight;
+    originalTravel=viewport*1.08;
+    // offsetHeight is unaffected by our translateY; avoid feedback loops.
+    extra=Math.max(0,Math.ceil(content.offsetHeight+padding-viewport+12));
+    // The original 208svh scene is preserved, with added travel only when
+    // needed for short phones or accessibility font-size adjustments.
+    scene.style.setProperty('height',`calc(208svh + ${extra}px)`,'important');
+    update();
   }
+
+  function update() {
+    scheduled=false;
+    if (!mobile.matches || reduced.matches) return;
+    const traveled=Math.max(0,-scene.getBoundingClientRect().top);
+    const scrollable=Math.max(1,scene.offsetHeight-sticky.offsetHeight);
+    // Begin scrolling the content AFTER the ivory sheet has fully risen.
+    const contentStart=originalTravel*.74;
+    const progress=clamp((traveled-contentStart)/Math.max(1,scrollable-contentStart));
+    content.style.setProperty('--playlist-page-shift',`${(-extra*progress).toFixed(2)}px`);
+  }
+
+  function request() {
+    if (scheduled) return;
+    scheduled=true;
+    requestAnimationFrame(update);
+  }
+  addEventListener('scroll',request,{passive:true});
+  addEventListener('resize',measure,{passive:true});
+  mobile.addEventListener('change',measure);
+  reduced.addEventListener('change',measure);
+  if (document.fonts?.ready) document.fonts.ready.then(measure);
+  addEventListener('load',measure,{once:true});
+  // Layout may be reflowed by user font-size settings or device rotation.
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      if (mobile.matches && !reduced.matches) requestAnimationFrame(measure);
+    }).observe(content);
+  }
+  measure();
 })();
