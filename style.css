@@ -5841,3 +5841,694 @@ html,body {overscroll-behavior-y:auto!important;}
     height:auto!important;min-height:0!important;
   }
 }
+
+
+/* =====================================================================
+   V8.80 — STICKY VIDEO / CURVED IVORY SHEET / FLIP CLOCK / WEDDING NAV
+   The page itself is the ONLY vertical scroller. No fixed-height pinned
+   section, no inner overflow, no touchmove/wheel interception.
+   ===================================================================== */
+html {scroll-padding-top:88px!important;}
+.video-countdown-transition {
+  --film-reveal-height:88svh;
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  background:#f8f5ee!important;
+}
+.video-countdown-transition .video-countdown-sticky {
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+  margin:0!important;
+  padding:0!important;
+  background:#f8f5ee!important;
+  touch-action:auto!important;
+}
+.video-countdown-transition .film-background {
+  grid-column:1!important;
+  grid-row:1!important;
+  align-self:start!important;
+  position:sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:100svh!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  overflow:hidden!important;
+  background:#f8f5ee!important;
+  transform:none!important;
+  z-index:0!important;
+}
+.video-countdown-transition .wedding-film {
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:100%!important;
+  height:var(--film-reveal-height)!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  transform:none!important;
+  z-index:0!important;
+}
+.video-countdown-transition .countdown-interlude.countdown-timeless.save-date-panel {
+  grid-column:1!important;
+  grid-row:1!important;
+  align-self:start!important;
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  inset:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:calc(var(--film-reveal-height) - 38px) 0 0!important;
+  padding:0!important;
+  border-radius:38px 38px 0 0!important;
+  overflow:visible!important;
+  transform:none!important;
+  will-change:auto!important;
+  z-index:2!important;
+  background:#f8f5ee!important;
+  box-shadow:0 -9px 30px rgba(31,45,30,.14)!important;
+  touch-action:auto!important;
+}
+.video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+  border-radius:38px 38px 0 0!important;
+  padding:clamp(38px,5.6svh,62px) 20px clamp(31px,4svh,48px)!important;
+  overflow:visible!important;
+}
+.video-countdown-transition .save-date-panel .save-date-pair {
+  margin:clamp(14px,2.4svh,22px) auto clamp(15px,2.3svh,23px)!important;
+}
+.video-countdown-transition .save-date-panel .save-date-personal-note {
+  margin:clamp(13px,2.1svh,20px) auto 0!important;
+}
+@media(max-width:900px){
+  .video-countdown-transition {--film-reveal-height:clamp(360px,72svh,660px);}
+  .video-countdown-transition .film-background {
+    height:100svh!important;
+    background:#f8f5ee!important;
+  }
+  .video-countdown-transition .wedding-film {
+    width:100%!important;
+    height:var(--film-reveal-height)!important;
+    transform:scale(1.045)!important;
+    transform-origin:top center!important;
+  }
+  .video-countdown-transition .countdown-interlude.countdown-timeless.save-date-panel {
+    margin:calc(var(--film-reveal-height) - 27px) 0 0!important;
+    border-radius:29px 29px 0 0!important;
+  }
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    border-radius:29px 29px 0 0!important;
+    padding:clamp(27px,3.8svh,37px) 10px clamp(22px,3svh,32px)!important;
+  }
+  .video-countdown-transition .save-date-panel .save-date-pair {
+    margin:clamp(9px,1.5svh,14px) auto clamp(11px,1.7svh,16px)!important;
+  }
+  .video-countdown-transition .save-date-panel .save-date-personal-note {
+    margin:clamp(10px,1.6svh,15px) auto 0!important;
+  }
+}
+@media(max-width:360px){
+  .video-countdown-transition {--film-reveal-height:clamp(330px,72svh,470px);}
+  .video-countdown-transition .save-date-panel .timeless-stage.save-date-stage {
+    padding:24px 8px 23px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .video-countdown-transition .film-background {
+    position:relative!important;
+    height:var(--film-reveal-height)!important;
+  }
+  .video-countdown-transition .countdown-interlude.countdown-timeless.save-date-panel {
+    margin-top:calc(var(--film-reveal-height) - 28px)!important;
+  }
+}
+
+/* Subtle, physical split-flap clock. Only changed values flip.
+   No opacity pulse, no animation on labels or the entire timer row. */
+.video-countdown-transition .save-date-panel .timeless-unit {
+  opacity:1!important;
+  transform:none!important;
+  animation:none!important;
+}
+.video-countdown-transition .save-date-panel .timeless-value.flip-number {
+  display:inline-flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  width:auto!important;
+  min-height:1.25em!important;
+  overflow:visible!important;
+  white-space:nowrap!important;
+  animation:none!important;
+  transform:none!important;
+  filter:none!important;
+  perspective:450px;
+  font-variant-numeric:tabular-nums;
+}
+.video-countdown-transition .save-date-panel .flip-card {
+  position:relative;
+  display:inline-block;
+  width:3.2ch;
+  height:1.18em;
+  line-height:1.18;
+  text-align:center;
+  isolation:isolate;
+  transform-style:preserve-3d;
+}
+.video-countdown-transition .save-date-panel #days .flip-card {width:4.1ch;}
+.video-countdown-transition .save-date-panel .flip-display {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:inherit;
+  white-space:nowrap;
+  line-height:1.18;
+  z-index:0;
+}
+.video-countdown-transition .save-date-panel .flip-half {
+  position:absolute;
+  left:0;
+  width:100%;
+  height:50%;
+  display:block;
+  overflow:hidden;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  color:inherit;
+  opacity:0;
+  pointer-events:none;
+  z-index:2;
+}
+.video-countdown-transition .save-date-panel .flip-half > span {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:200%;
+  white-space:nowrap;
+  line-height:1.18;
+}
+.video-countdown-transition .save-date-panel .flip-top {
+  top:0;
+  transform-origin:center bottom;
+  transform:rotateX(0deg);
+  background:#f8f5ee;
+  border-bottom:1px solid rgba(76,92,72,.11);
+}
+.video-countdown-transition .save-date-panel .flip-bottom {
+  top:50%;
+  transform-origin:center top;
+  transform:rotateX(90deg);
+  background:#f8f5ee;
+}
+.video-countdown-transition .save-date-panel .flip-bottom > span {transform:translateY(-50%);}
+.video-countdown-transition .save-date-panel .flip-card.is-flipping .flip-top {
+  opacity:1;
+  animation:wedding-flip-top .29s cubic-bezier(.4,.0,.8,.4) both;
+}
+.video-countdown-transition .save-date-panel .flip-card.is-flipping .flip-bottom {
+  opacity:1;
+  animation:wedding-flip-bottom .29s .29s cubic-bezier(.15,.6,.25,1) both;
+}
+@keyframes wedding-flip-top {
+  0% {transform:rotateX(0);filter:brightness(1)}
+  100% {transform:rotateX(-90deg);filter:brightness(.84)}
+}
+@keyframes wedding-flip-bottom {
+  0% {transform:rotateX(90deg);filter:brightness(.85)}
+  100% {transform:rotateX(0);filter:brightness(1)}
+}
+@media(prefers-reduced-motion:reduce){
+  .video-countdown-transition .save-date-panel .flip-half {display:none!important;}
+}
+
+/* Refined navigation: warm ivory glass, olive ink, champagne accent.
+   Full desktop links + nested Details menu; mobile one-row logo + menu. */
+.site-header.wedding-nav,
+.site-header.wedding-nav.is-scrolled {
+  position:fixed!important;
+  top:clamp(9px,1.6svh,17px)!important;
+  left:50%!important;
+  right:auto!important;
+  width:min(1030px,calc(100% - 34px))!important;
+  height:62px!important;
+  min-height:62px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  padding:7px 13px 7px 20px!important;
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:999px!important;
+  background:rgba(249,247,240,.88)!important;
+  box-shadow:0 9px 34px rgba(28,44,31,.13),0 1px 1px rgba(28,44,31,.05)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(150%)!important;
+  backdrop-filter:blur(26px) saturate(150%)!important;
+  z-index:999!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translate(-50%,-115%)!important;
+  transition:transform .34s cubic-bezier(.22,.75,.28,1),opacity .25s ease,visibility .34s!important;
+}
+.site-header.wedding-nav.is-visible {
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translate(-50%,0)!important;
+}
+.site-header.wedding-nav .site-brand {
+  flex:0 0 83px!important;
+  width:83px!important;
+  max-width:83px!important;
+  height:47px!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+}
+.site-header.wedding-nav .site-brand-fallback {
+  font:500 30px/1 'Cormorant Garamond',Georgia,serif!important;
+  letter-spacing:-.09em!important;
+}
+.site-header.wedding-nav .site-brand-amp {font-size:19px!important;}
+.site-header.wedding-nav .site-monogram {
+  max-width:80px!important;
+  max-height:45px!important;
+  object-fit:contain!important;
+}
+.site-header.wedding-nav .site-navigation {
+  position:relative!important;
+  display:flex!important;
+  flex:0 1 auto!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:3px!important;
+  width:auto!important;
+  height:45px!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:4px!important;
+  overflow:visible!important;
+  border-radius:999px!important;
+  background:rgba(223,230,220,.45)!important;
+  border:1px solid rgba(99,117,98,.07)!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.56)!important;
+}
+.site-header.wedding-nav .site-navigation > a,
+.site-header.wedding-nav .nav-details-trigger {
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  height:35px!important;
+  min-height:35px!important;
+  padding:0 clamp(10px,1.35vw,18px)!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#586b59!important;
+  font:500 clamp(10px,.9vw,11.5px)/1 Montserrat,-apple-system,BlinkMacSystemFont,Arial,sans-serif!important;
+  letter-spacing:-.025em!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease!important;
+}
+.site-header.wedding-nav .site-navigation > a::after {display:none!important;}
+.site-header.wedding-nav .site-navigation > a:hover,
+.site-header.wedding-nav .nav-details-trigger:hover {
+  color:#2e4a32!important;
+  background:rgba(255,255,255,.6)!important;
+}
+.site-header.wedding-nav .site-navigation > a.is-active,
+.site-header.wedding-nav .nav-details-trigger.is-active {
+  background:#fff!important;
+  color:#2b4731!important;
+  box-shadow:0 2px 9px rgba(30,48,34,.12)!important;
+}
+.site-header.wedding-nav .nav-chevron {
+  margin-left:6px;
+  font:500 16px/1 Georgia,serif;
+  transform:translateY(-2px);
+  color:#a2937b;
+}
+.site-header.wedding-nav .nav-details-group {
+  position:relative;
+  display:flex;
+  align-items:center;
+  height:100%;
+  flex:0 0 auto;
+}
+.site-header.wedding-nav .nav-details-popover {
+  position:absolute;
+  top:calc(100% + 12px);
+  left:50%;
+  width:192px;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:17px;
+  background:rgba(249,247,241,.97);
+  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);
+  box-shadow:0 14px 40px rgba(24,37,27,.16);
+  transform:translate(-50%,-7px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;
+}
+.site-header.wedding-nav .nav-details-group.is-open .nav-details-popover,
+.site-header.wedding-nav .nav-details-group:focus-within .nav-details-popover {
+  transform:translate(-50%,0);
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+.site-header.wedding-nav .nav-details-popover a {
+  display:block;
+  padding:11px 12px;
+  border-radius:10px;
+  font:500 11px/1.25 Montserrat,sans-serif;
+  color:#455a48;
+  text-decoration:none;
+}
+.site-header.wedding-nav .nav-details-popover a:hover,
+.site-header.wedding-nav .nav-details-popover a:focus-visible {
+  background:#e8ede5;
+}
+.site-header.wedding-nav .site-menu-toggle {display:none!important;}
+.site-header.wedding-nav .site-dropdown {display:none!important;}
+.site-header.wedding-nav a:focus-visible,
+.site-header.wedding-nav button:focus-visible,
+.site-header.wedding-nav summary:focus-visible {
+  outline:2px solid #8a9d84!important;
+  outline-offset:2px!important;
+}
+@media(max-width:900px){
+  .site-header.wedding-nav,.site-header.wedding-nav.is-scrolled {
+    top:8px!important;
+    width:calc(100% - 24px)!important;
+    height:57px!important;
+    min-height:57px!important;
+    padding:6px 10px 6px 17px!important;
+    gap:0!important;
+    border-radius:19px!important;
+    display:flex!important;
+    justify-content:space-between!important;
+    grid-template-columns:none!important;
+    grid-template-rows:none!important;
+  }
+  .site-header.wedding-nav .site-brand {
+    flex:0 0 76px!important;
+    width:76px!important;
+    max-width:76px!important;
+    height:42px!important;
+    justify-self:auto!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+  }
+  .site-header.wedding-nav .site-brand-fallback {font-size:29px!important;}
+  .site-header.wedding-nav .site-monogram {max-width:72px!important;max-height:42px!important;}
+  .site-header.wedding-nav .site-navigation {display:none!important;}
+  .site-header.wedding-nav .site-menu-toggle {
+    display:flex!important;
+    position:relative!important;
+    flex:0 0 39px!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    width:39px!important;
+    height:39px!important;
+    min-width:39px!important;
+    padding:10px!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-direction:column!important;
+    gap:4px!important;
+    border:0!important;
+    border-radius:13px!important;
+    background:rgba(222,230,219,.75)!important;
+    color:#36513b!important;
+    cursor:pointer;
+  }
+  .site-header.wedding-nav .site-menu-toggle span {
+    display:block!important;
+    width:18px!important;
+    height:1.5px!important;
+    border-radius:2px!important;
+    background:#38503c!important;
+  }
+  .site-header.wedding-nav .site-dropdown {
+    position:absolute!important;
+    display:flex!important;
+    flex-direction:column!important;
+    top:calc(100% + 9px)!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    max-height:min(75svh,570px)!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:9px!important;
+    gap:2px!important;
+    border:1px solid rgba(255,255,255,.84)!important;
+    border-radius:20px!important;
+    background:rgba(250,249,244,.98)!important;
+    box-shadow:0 15px 45px rgba(28,43,30,.17)!important;
+    -webkit-backdrop-filter:blur(22px)!important;
+    backdrop-filter:blur(22px)!important;
+    transform:translateY(-8px)!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    z-index:1001!important;
+    overscroll-behavior:contain;
+  }
+  .site-header.wedding-nav.menu-open .site-dropdown {
+    transform:translateY(0)!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+  }
+  .site-header.wedding-nav .site-dropdown > a,
+  .site-header.wedding-nav .mobile-details-menu > summary {
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    min-height:44px!important;
+    height:auto!important;
+    margin:0!important;
+    padding:11px 14px!important;
+    border:0!important;
+    border-radius:12px!important;
+    background:transparent!important;
+    color:#435b46!important;
+    font:500 12px/1.35 Montserrat,sans-serif!important;
+    text-decoration:none!important;
+    cursor:pointer;
+    list-style:none;
+  }
+  .site-header.wedding-nav .site-dropdown > a.is-active,
+  .site-header.wedding-nav .mobile-details-menu[open] > summary {
+    background:#e8ede5!important;
+    color:#29492f!important;
+  }
+  .site-header.wedding-nav .mobile-details-menu {width:100%;margin:0!important;padding:0!important;}
+  .site-header.wedding-nav .mobile-details-menu > summary::-webkit-details-marker {display:none;}
+  .site-header.wedding-nav .mobile-details-menu > summary span {color:#a18d74;font-size:17px;}
+  .site-header.wedding-nav .mobile-details-links {
+    display:flex;
+    flex-direction:column;
+    margin:0 4px 5px 12px;
+    padding:3px 0 3px 12px;
+    border-left:1px solid #d9e1d5;
+  }
+  .site-header.wedding-nav .mobile-details-links a {
+    display:block;
+    padding:11px 12px;
+    border-radius:9px;
+    font:500 11px/1.25 Montserrat,sans-serif;
+    color:#5e705f;
+    text-decoration:none;
+  }
+  .site-header.wedding-nav .mobile-details-links a:hover {background:#edf1e9;}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header.wedding-nav,
+  .site-header.wedding-nav .nav-details-popover,
+  .site-header.wedding-nav .site-dropdown {transition:none!important;}
+}
+
+/* Timeline + FAQ match the stationery aesthetic. */
+#reception,#day-schedule,#faq,#ceremony,#what-to-wear,#entourage,#rsvp {
+  scroll-margin-top:90px;
+}
+.day-schedule {
+  width:min(100% - 36px,790px);
+  margin:clamp(50px,6vw,86px) auto 0;
+  padding:clamp(28px,4vw,48px) clamp(20px,4vw,48px);
+  border:1px solid rgba(119,139,116,.15);
+  border-radius:23px;
+  background:rgba(248,247,240,.85);
+  box-shadow:0 12px 35px rgba(30,45,30,.035);
+}
+.schedule-eyebrow,.faq-eyebrow {
+  font:500 10px/1.5 Montserrat,sans-serif;
+  letter-spacing:.21em;
+  color:#8e9887;
+  text-align:center;
+}
+.day-schedule h3,.faq-inner h2 {
+  margin:8px 0 24px;
+  color:#3a4d3a;
+  font:400 clamp(36px,5vw,55px)/1.08 'Cormorant Garamond',Georgia,serif;
+  text-align:center;
+}
+.day-schedule h3 em,.faq-inner h2 em {font-style:italic;color:#83927b;}
+.schedule-items {width:min(100%,490px);margin:auto;}
+.schedule-item {
+  display:grid;
+  grid-template-columns:75px 13px minmax(0,1fr);
+  align-items:start;
+  gap:16px;
+  min-height:75px;
+}
+.schedule-item time {
+  padding-top:3px;
+  color:#697b68;
+  font:600 11px/1.5 Montserrat,sans-serif;
+  white-space:nowrap;
+}
+.schedule-dot {
+  width:9px;height:9px;
+  margin:6px auto 0;
+  border-radius:50%;
+  background:#829783;
+  box-shadow:0 0 0 4px #e5ebe2;
+}
+.schedule-item:not(:last-child) .schedule-dot::after {
+  content:"";
+  display:block;
+  position:relative;
+  left:4px;
+  top:11px;
+  width:1px;
+  height:58px;
+  background:#cbd7c9;
+}
+.schedule-item strong {
+  display:block;
+  font:500 13px/1.4 Montserrat,sans-serif;
+  color:#3b503d;
+}
+.schedule-item small {
+  display:block;
+  margin-top:5px;
+  color:#7b8778;
+  font:400 11px/1.5 Montserrat,sans-serif;
+}
+.faq-section {
+  padding:clamp(65px,8vw,105px) 20px;
+  background:#f6f4ed;
+}
+.faq-inner {width:min(100%,750px);margin:auto;}
+.faq-questions {display:flex;flex-direction:column;border-top:1px solid #d9ded4;}
+.faq-questions details {border-bottom:1px solid #d9ded4;}
+.faq-questions summary {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:21px 3px;
+  color:#405543;
+  font:500 clamp(12px,1.1vw,14px)/1.5 Montserrat,sans-serif;
+  cursor:pointer;
+  list-style:none;
+}
+.faq-questions summary::-webkit-details-marker {display:none;}
+.faq-questions summary span {font-size:22px;font-weight:300;color:#a7b3a1;}
+.faq-questions details[open] summary span {transform:rotate(45deg);}
+.faq-questions p {
+  max-width:60ch;
+  padding:0 4px 21px;
+  margin:0;
+  color:#748273;
+  font:400 12px/1.8 Montserrat,sans-serif;
+}
+@media(max-width:600px){
+  .day-schedule {margin-top:42px;padding:28px 16px;}
+  .schedule-item {grid-template-columns:67px 12px minmax(0,1fr);gap:11px;}
+  .schedule-item time {font-size:10px;}
+  .schedule-item strong {font-size:12px;}
+  .schedule-item small {font-size:10px;}
+  .faq-section {padding:56px 18px;}
+}
+/* Keep the Details submenu attached to its trigger for reliable mouse travel. */
+.site-header.wedding-nav .nav-details-popover {top:100%!important;}
+
+/* V8.81 — Original K&C olive monogram, clean transparent PNG. */
+.site-header.wedding-nav .site-brand {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.site-header.wedding-nav .site-monogram {
+  display:block;
+  width:auto!important;
+  height:43px!important;
+  max-width:76px!important;
+  max-height:43px!important;
+  object-fit:contain!important;
+  filter:none!important;
+}
+.site-header.wedding-nav .site-monogram[hidden] {display:none!important;}
+@media(max-width:900px){
+  .site-header.wedding-nav .site-monogram {
+    height:40px!important;
+    max-width:69px!important;
+    max-height:40px!important;
+  }
+}

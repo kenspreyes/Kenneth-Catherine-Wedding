@@ -211,32 +211,65 @@
 
 /* KENNETH & CATHERINE — V8: NATURAL TWO-RING TOSS */
 
-// Countdown: 3 March 2027, 3 PM Philippine time.
+// V8.80 — Wedding countdown: a true split-flap flip only for the unit
+// whose value changed. The labels and the other numbers remain still.
 (() => {
-  const target = new Date("2027-03-03T15:00:00+08:00").getTime();
-  const elements = ["days", "hours", "minutes", "seconds"].map(id => document.getElementById(id));
-  if (elements.some(el => !el)) return;
+  'use strict';
+  const target = new Date('2027-03-03T15:00:00+08:00').getTime();
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const elements = ['days','hours','minutes','seconds'].map(id=>document.getElementById(id));
+  if (elements.some(el=>!el)) return;
+  const animationDuration=610;
+
+  function setNumber(el, next) {
+    const card=el.querySelector('.flip-card');
+    const display=el.querySelector('.flip-display');
+    const top=el.querySelector('.flip-top span');
+    const bottom=el.querySelector('.flip-bottom span');
+    if (!card || !display || !top || !bottom) return;
+    const previous=el.dataset.lastValue;
+    if (previous===next) return;
+    el.dataset.lastValue=next;
+    if (!el.dataset.timerInitialized || reduced.matches) {
+      display.textContent=next;
+      top.textContent=next;
+      bottom.textContent=next;
+      el.dataset.timerInitialized='true';
+      card.classList.remove('is-flipping');
+      return;
+    }
+    // A fast tab-resume can skip several ticks; finish any previous flip
+    // before starting the next one, avoiding stale numbers or double flashes.
+    if (el._flipTimeout) clearTimeout(el._flipTimeout);
+    card.classList.remove('is-flipping');
+    display.textContent=next;
+    top.textContent=previous;
+    bottom.textContent=next;
+    void card.offsetWidth;
+    card.classList.add('is-flipping');
+    el._flipTimeout=setTimeout(()=>{
+      card.classList.remove('is-flipping');
+      top.textContent=next;
+      bottom.textContent=next;
+      el._flipTimeout=null;
+    },animationDuration);
+  }
+
   function update() {
-    const ms = Math.max(0, target - Date.now());
-    const values = [Math.floor(ms / 86400000), Math.floor(ms % 86400000 / 3600000), Math.floor(ms % 3600000 / 60000), Math.floor(ms % 60000 / 1000)];
-    values.forEach((v, i) => {
-      const text = String(v).padStart(i === 0 ? 3 : 2, "0");
-      const element = elements[i];
-      // Only change the DOM when this particular unit has actually ticked.
-      // This prevents all four numbers from blinking every second.
-      if (element.textContent === text) return;
-      const hadValue = element.dataset.timerInitialized === 'true';
-      element.textContent = text;
-      element.dataset.timerInitialized = 'true';
-      if (hadValue && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        element.classList.remove('is-ticking');
-        void element.offsetWidth; // Restart only this changed number's animation.
-        element.classList.add('is-ticking');
-      }
-    });
+    const ms=Math.max(0,target-Date.now());
+    const values=[
+      Math.floor(ms/86400000),
+      Math.floor(ms%86400000/3600000),
+      Math.floor(ms%3600000/60000),
+      Math.floor(ms%60000/1000)
+    ];
+    values.forEach((value,i)=>setNumber(elements[i],String(value).padStart(i===0?3:2,'0')));
   }
   update();
-  setInterval(update, 1000);
+  setInterval(update,1000);
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden)update();
+  });
 })();
 
 // Entrance effects for the sections after the animated hero.
@@ -863,87 +896,136 @@
 
 
 
-/* V8.62 — Four-link, compact persistent navigation.
-   Home = film/countdown. Details = ceremony, save date, venue, attire.
-   The header stays hidden throughout the original ring + Foreword scene. */
+/* V8.80 — Direction-aware wedding navigation.
+   The film stays uninterrupted. Once the ivory page covers the video,
+   the bar shows only while scrolling UP, and hides when scrolling DOWN.
+   Desktop Details uses a dropdown; mobile uses an accessible accordion. */
 (() => {
   'use strict';
-  const header = document.getElementById('site-header');
-  const film = document.getElementById('film');
-  const toggle = document.getElementById('site-menu-toggle');
-  const nav = document.getElementById('site-navigation');
-  const dropdown = document.getElementById('site-dropdown');
-  if (!header || !film || !toggle || !nav || !dropdown) return;
+  const header=document.getElementById('site-header');
+  const sheet=document.getElementById('countdown');
+  const toggle=document.getElementById('site-menu-toggle');
+  const dropdown=document.getElementById('site-dropdown');
+  const detailsButton=document.getElementById('nav-details-trigger');
+  const detailsGroup=document.getElementById('nav-details-group');
+  if (!header || !sheet || !toggle || !dropdown || !detailsButton || !detailsGroup) return;
 
-  const allLinks = [...header.querySelectorAll('a[href^="#"]')];
-  const mobile = matchMedia('(max-width: 900px)');
-  const checkpoints = [
-    ['film','film'],
-    ['ceremony','details'],
+  const mobile=matchMedia('(max-width:900px)');
+  const checkpoints=[
+    ['film','home'],
+    ['countdown','home'],
     ['details','details'],
+    ['ceremony','details'],
     ['venues','details'],
-    ['what-to-wear','details'],
+    ['reception','details'],
+    ['day-schedule','details'],
+    ['what-to-wear','what-to-wear'],
     ['entourage','entourage'],
-    ['rsvp','rsvp']
+    ['rsvp','rsvp'],
+    ['faq','faq']
   ];
-  let menuOpen = false;
-  let raf = 0;
+  const topLinks=[...header.querySelectorAll('[data-nav]')];
+  const submenuLinks=[...header.querySelectorAll('.nav-details-popover a,.mobile-details-links a')];
+  let lastY=window.scrollY;
+  let direction='down';
+  let menuOpen=false;
+  let detailsOpen=false;
+  let raf=0;
+  let hasPassedVideo=false;
 
-  function setMenu(open) {
-    menuOpen = Boolean(open && mobile.matches && header.classList.contains('is-visible'));
-    header.classList.toggle('menu-open', menuOpen);
-    toggle.setAttribute('aria-expanded', String(menuOpen));
-    toggle.setAttribute('aria-label', menuOpen ? 'Close all sections' : 'Open all sections');
-    dropdown.inert = !menuOpen;
+  function setMobileMenu(open) {
+    menuOpen=Boolean(open && mobile.matches && header.classList.contains('is-visible'));
+    header.classList.toggle('menu-open',menuOpen);
+    toggle.setAttribute('aria-expanded',String(menuOpen));
+    toggle.setAttribute('aria-label',menuOpen?'Close navigation':'Open navigation');
+    dropdown.inert=!menuOpen;
   }
-
-  function update() {
-    raf = 0;
-    // Show navigation only after the Save the Date sheet has fully risen.
-    // The film stays distraction-free; the header persists for later pages.
-    const sheet = film.querySelector('.countdown-interlude');
-    const filmTop = film.getBoundingClientRect().top;
-    const sheetTop = sheet ? sheet.getBoundingClientRect().top : Infinity;
-    const visible = filmTop <= 0 && sheetTop <= 3;
-    header.classList.toggle('is-visible', visible);
-    header.classList.toggle('is-scrolled', visible && window.scrollY > film.offsetTop + 40);
-    header.inert = !visible;
-    if (!visible && menuOpen) setMenu(false);
-
-    // Active white pill follows the section currently being viewed.
-    const threshold = Math.max(header.offsetHeight + 12, innerHeight * .36);
-    let current = 'film';
-    for (const [sectionId, navId] of checkpoints) {
-      const target = document.getElementById(sectionId);
-      if (target && target.getBoundingClientRect().top <= threshold) current = navId;
+  function setDetails(open) {
+    detailsOpen=Boolean(open && !mobile.matches);
+    detailsGroup.classList.toggle('is-open',detailsOpen);
+    detailsButton.setAttribute('aria-expanded',String(detailsOpen));
+  }
+  function setVisible(visible) {
+    header.classList.toggle('is-visible',visible);
+    header.inert=!visible;
+    header.setAttribute('aria-hidden',String(!visible));
+    if (!visible) {
+      if(menuOpen)setMobileMenu(false);
+      if(detailsOpen)setDetails(false);
     }
-    for (const link of allLinks) {
-      const active = link.getAttribute('href') === '#' + current;
-      link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'location');
+  }
+  function update() {
+    raf=0;
+    const y=window.scrollY;
+    const delta=y-lastY;
+    // Ignore tiny scroll jitter from Safari's dynamic browser toolbar.
+    if (delta>3)direction='down';
+    else if (delta< -3)direction='up';
+    lastY=y;
+
+    // Wait until the rounded ivory sheet reaches the top: video fully covered.
+    const panelTop=sheet.getBoundingClientRect().top;
+    hasPassedVideo=panelTop<=12;
+    const visible=hasPassedVideo && (direction==='up' || menuOpen || detailsOpen);
+    setVisible(visible);
+    header.classList.toggle('is-scrolled',hasPassedVideo);
+
+    let active='home';
+    const threshold=Math.max(105,innerHeight*.32);
+    for(const [id,key] of checkpoints) {
+      const el=document.getElementById(id);
+      if(el && el.getBoundingClientRect().top<=threshold) active=key;
+    }
+    for(const link of topLinks) {
+      const selected=link.dataset.nav===active;
+      link.classList.toggle('is-active',selected);
+      if(selected)link.setAttribute('aria-current','location');
       else link.removeAttribute('aria-current');
+    }
+    detailsButton.classList.toggle('is-active',active==='details');
+    for(const link of submenuLinks) {
+      const target=document.querySelector(link.getAttribute('href'));
+      const selected=target && target.getBoundingClientRect().top<=threshold;
+      link.classList.toggle('is-passed',Boolean(selected));
     }
   }
   function requestUpdate() {
-    if (!raf) raf = requestAnimationFrame(update);
+    if(!raf)raf=requestAnimationFrame(update);
   }
-  toggle.addEventListener('click', () => setMenu(!menuOpen));
-  header.addEventListener('click', event => {
-    if (event.target.closest('a[href^="#"]')) setMenu(false);
+
+  toggle.addEventListener('click',()=>setMobileMenu(!menuOpen));
+  detailsButton.addEventListener('click',()=>setDetails(!detailsOpen));
+  detailsGroup.addEventListener('mouseenter',()=>{if(!mobile.matches)setDetails(true);});
+  detailsGroup.addEventListener('mouseleave',()=>{if(!mobile.matches)setDetails(false);});
+  detailsGroup.addEventListener('focusout',e=>{
+    if(!detailsGroup.contains(e.relatedTarget))setDetails(false);
   });
-  document.addEventListener('pointerdown', event => {
-    if (menuOpen && !header.contains(event.target)) setMenu(false);
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && menuOpen) {
-      setMenu(false);
-      toggle.focus();
+  header.addEventListener('click',event=>{
+    if(event.target.closest('a[href^="#"]')) {
+      setMobileMenu(false);
+      setDetails(false);
     }
   });
-  mobile.addEventListener('change', () => {setMenu(false);requestUpdate();});
+  document.addEventListener('pointerdown',event=>{
+    if(!header.contains(event.target)) {
+      if(menuOpen)setMobileMenu(false);
+      if(detailsOpen)setDetails(false);
+    }
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape') {
+      if(menuOpen){setMobileMenu(false);toggle.focus();}
+      if(detailsOpen){setDetails(false);detailsButton.focus();}
+    }
+  });
+  mobile.addEventListener('change',()=>{
+    setMobileMenu(false);setDetails(false);requestUpdate();
+  });
   addEventListener('scroll',requestUpdate,{passive:true});
   addEventListener('resize',requestUpdate,{passive:true});
-  setMenu(false);
+  addEventListener('pageshow',requestUpdate);
+  setMobileMenu(false);
+  setDetails(false);
   update();
 })();
 
