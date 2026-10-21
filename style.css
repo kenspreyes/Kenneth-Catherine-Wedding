@@ -8575,11 +8575,3 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 .kc-chat-questions .kc-qa summary::-webkit-details-marker{display:none}.kc-chat-questions .kc-qa summary:hover,.kc-chat-questions .kc-qa summary:focus-visible{background:#e9f0e7;border-color:#637c68}.kc-chat-questions .kc-qa.is-asked summary{border-style:dashed;opacity:.65}.kc-chat-questions .kc-qa-answer{display:none}
 @media(max-width:750px){.kc-faq-layout{grid-template-columns:1fr;gap:20px}.kc-faq-intro{text-align:center}.kc-faq-lede{margin-inline:auto}.kc-chat-thread{height:270px}.kc-chat-questions{max-height:220px}.kc-chat-faq{padding:68px 18px}}
 @media(prefers-reduced-motion:reduce){.kc-bubble-enter,.kc-bubble-typing i{animation:none!important}}
-
-/* FAQ chat: use the wedding monogram already used by the site navigation. */
-.kc-chat-avatar{position:relative;overflow:hidden;background:#f6f0e5;border:1px solid #d7d0bf;}
-.kc-chat-monogram{display:block;width:82%;height:82%;object-fit:contain;position:absolute;inset:9%;z-index:2;}
-.kc-chat-monogram[hidden]{display:none;}
-.kc-chat-avatar-fallback{display:grid;place-items:center;width:100%;height:100%;background:#344b39;color:#fff9ef;}
-.kc-chat-avatar-fallback span{color:#d6c6a6;}
-.kc-chat-avatar:has(.kc-chat-monogram:not([hidden])) .kc-chat-avatar-fallback{visibility:hidden;}
