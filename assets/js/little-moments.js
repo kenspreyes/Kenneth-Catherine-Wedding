@@ -62,15 +62,39 @@
     else anim=false;
   }
   function setSpread(on){
-    if(anim)return;
+    if(anim || spread===on)return;
+    // Cancel lingering photo tweens before measuring the FLIP transition.
+    if(gsap)gsap.killTweensOf(items);
     const state=(Flip&&!reduced&&gsap)?Flip.getState(items):null;
-    spread=on;stack.classList.toggle('is-spread',on);
-    if(on)items.forEach(el=>set(el,{clearProps:'transform,opacity'}));
-    else layout(true);
-    if(state)Flip.from(state,{duration:.9,ease:'power3.inOut',stagger:.025,absolute:false,scale:false});
+    spread=on;
+    stack.classList.toggle('is-spread',on);
+    if(on){
+      items.forEach(el=>set(el,{clearProps:'transform,opacity'}));
+    }else{
+      // Restore the first photo to the front and rebuild the original stack.
+      order=items.map((_,i)=>i);
+      layout(true);
+    }
     spreadBtn.setAttribute('aria-pressed',String(on));
     spreadLabel.textContent=on?'Stack them up':'Spread them out';
+    const icon=spreadBtn.querySelector('.stack__toggle-icon');
+    if(icon){
+      icon.innerHTML=on
+        ? '<rect x="5" y="4" width="15" height="15" rx="1"/><path d="M2 8v12a2 2 0 0 0 2 2h12"/>'
+        : '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>';
+    }
     layout(true);
+    if(state)Flip.from(state,{duration:.7,ease:'power3.inOut',stagger:.015,absolute:false,scale:false});
+    // When the expanded gallery is long, collapsing leaves the visitor far below it.
+    // Bring the actual Polaroid stack back into view after layout has settled.
+    if(!on){
+      const goBack=()=>{
+        const y=section.getBoundingClientRect().top+window.scrollY;
+        const offset=Math.min(90,window.innerHeight*.1);
+        window.scrollTo({top:Math.max(0,y-offset),behavior:reduced?'instant':'smooth'});
+      };
+      requestAnimationFrame(()=>requestAnimationFrame(goBack));
+    }
   }
   function show(i){
     active=(i+items.length)%items.length;

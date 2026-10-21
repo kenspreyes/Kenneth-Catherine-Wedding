@@ -8549,3 +8549,6 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 @media(min-width:1050px){.kc-moments .stack.is-spread .stack__list{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:600px){.kc-moments{padding:60px 12px 70px}.kc-moments .stack__list{min-height:350px}.kc-moments .polaroid{width:min(300px,76vw)}.kc-moments .polaroid__cap{font-size:20px}.kc-moments-lightbox{padding:30px 40px}.kc-moments-lightbox__fig{max-width:100%}.kc-moments-lightbox__prev{left:3px}.kc-moments-lightbox__next{right:3px}}
 @media(prefers-reduced-motion:reduce){.kc-moments .polaroid,.kc-moments .stack{transition:none!important;animation:none!important}}
+
+/* Little Moments v1.1 — consistent icon sizing for grid/stack control */
+.kc-moments .stack__toggle-icon{display:block;flex:none;width:18px;height:18px;stroke:currentColor;overflow:visible}

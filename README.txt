@@ -9,3 +9,5 @@ This package only includes the three uploaded website files plus the new gallery
 GSAP and Flip load from jsDelivr CDN. The gallery has a functional non-GSAP fallback if offline.
 
 The old horizontal prenup gallery is replaced in its exact location below the countdown. No changes to ring toss, invitation, countdown or route code.
+
+V1.1: Fixed spread/stack toggle icon; collapsing restores first photo and scrolls to gallery; updated subtitle.
