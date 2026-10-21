@@ -6,9 +6,9 @@
 @media(max-width:600px){.kc-cast-section{padding:65px 14px 40px}.kc-cast-heading h2{font-size:clamp(60px,16vw,90px)}.kc-cast-heading>p:last-child{font-size:12px;padding:0 14px}.kc-cast-credits{height:52svh}.kc-cast-roll{gap:34px}.kc-credit-duo{gap:10px}.kc-credit-duo .kc-credit-names p{font-size:19px}.kc-credit-sponsor-grid .kc-credit-names p{font-size:17px;overflow-wrap:anywhere}.kc-credit-role{font-size:9px;letter-spacing:.18em}}
 @media(prefers-reduced-motion:reduce){.kc-cast-credits{scroll-behavior:auto}}
 
-/* iOS Safari: isolate the canvas from masked, independently scrolling credits. */
-.kc-cast-particles{transform:translateZ(0);backface-visibility:hidden;contain:paint}
-.kc-cast-credits{-webkit-overflow-scrolling:touch}
-@supports (-webkit-touch-callout:none){
-  .kc-cast-particles{image-rendering:auto}
-}
+/* V1.1: manual page scrolling, no rolling credits or nested scroll panel */
+.kc-cast-section{overflow:hidden;}
+.kc-cast-credits{height:auto!important;max-height:none!important;overflow:visible!important;overscroll-behavior:auto;scrollbar-width:auto;mask-image:none!important;-webkit-mask-image:none!important;outline:none;}
+.kc-cast-roll{padding:clamp(30px,5vw,65px) 0 clamp(35px,6vw,80px)!important;gap:clamp(35px,5vw,58px);}
+.kc-cast-controls{display:none!important;}
+@media(max-width:600px){.kc-cast-credits{height:auto!important}.kc-cast-roll{padding:25px 0 45px!important;gap:38px;}}
