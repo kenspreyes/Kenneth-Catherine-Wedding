@@ -8575,3 +8575,19 @@ body > #butterfly-3d-container.butterfly-flight-viewport .butterfly-3d-dust {
 .kc-chat-questions .kc-qa summary::-webkit-details-marker{display:none}.kc-chat-questions .kc-qa summary:hover,.kc-chat-questions .kc-qa summary:focus-visible{background:#e9f0e7;border-color:#637c68}.kc-chat-questions .kc-qa.is-asked summary{border-style:dashed;opacity:.65}.kc-chat-questions .kc-qa-answer{display:none}
 @media(max-width:750px){.kc-faq-layout{grid-template-columns:1fr;gap:20px}.kc-faq-intro{text-align:center}.kc-faq-lede{margin-inline:auto}.kc-chat-thread{height:270px}.kc-chat-questions{max-height:220px}.kc-chat-faq{padding:68px 18px}}
 @media(prefers-reduced-motion:reduce){.kc-bubble-enter,.kc-bubble-typing i{animation:none!important}}
+
+/* FAQ — original Forever garden palette */
+.kc-chat-faq{background:#F3EEE2;color:#1F3326}
+.kc-faq-intro h2 em{color:#4F6B54}
+.kc-faq-lede{color:#4A5C4F}
+.kc-chat{background:#FBF8F0;border-color:rgba(31,51,38,.14);box-shadow:0 28px 70px -50px rgba(31,51,38,.5)}
+.kc-chat-head{border-bottom-color:rgba(31,51,38,.14)}
+.kc-chat-avatar{background:#5E7A62;color:#FBF8F0;font-size:13px;letter-spacing:-.065em;font-style:normal;font-weight:600;line-height:1}
+.kc-chat-avatar span{color:#E9D9AE}
+.kc-chat-who small{color:#4A5C4F}
+.kc-bubble-them{background:#F0EADC;color:#1F3326}
+.kc-bubble-me{background:#4F6B54;color:#FBF8F0}
+.kc-chat-questions{border-top-color:rgba(31,51,38,.14)}
+.kc-chat-questions .kc-qa summary{border-color:rgba(31,51,38,.28);color:#44604A}
+.kc-chat-questions .kc-qa summary:hover,.kc-chat-questions .kc-qa summary:focus-visible{background:#E9E2D0;border-color:#4F6B54}
+.kc-chat-reset{display:none!important}

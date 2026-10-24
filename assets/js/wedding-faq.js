@@ -12,5 +12,5 @@ const answer=()=>{if(token!==generation)return;const typing=document.createEleme
 later(()=>{if(token!==generation)return;typing.remove();addBubble(item.querySelector('.kc-qa-answer').textContent.trim(),'them');busy=false;},reduce?0:850);};
 if(reduce)answer();else later(answer,280);}
 questions.forEach(item=>item.querySelector('summary').addEventListener('click',e=>{e.preventDefault();ask(item);}));
-reset.addEventListener('click',()=>{generation++;timers.forEach(clearTimeout);timers=[];busy=false;thread.replaceChildren();addBubble('Hi! Ask us anything.','them');questions.forEach(item=>{item.classList.remove('is-asked');item.open=false;});});
+if(reset)reset.addEventListener('click',()=>{generation++;timers.forEach(clearTimeout);timers=[];busy=false;thread.replaceChildren();addBubble('Hi! Ask us anything.','them');questions.forEach(item=>{item.classList.remove('is-asked');item.open=false;});});
 })();
