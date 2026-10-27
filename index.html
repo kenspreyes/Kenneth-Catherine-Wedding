@@ -14,7 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
-<link href="style.css?v=9.13.0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&amp;family=Jost:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=9.16.0" rel="stylesheet"/>
 <!-- Separate ES-module Three.js r152.2 for the Blender butterfly.
        Original non-module Three.js for the rings remains untouched. -->
 <script type="importmap">
@@ -25,7 +27,7 @@
     }
   }
   </script>
-<link href="assets/css/cinematic-entourage.css?v=2.4" rel="stylesheet"/>
+<link href="assets/css/cinematic-entourage.css?v=2.7" rel="stylesheet"/>
 </head>
 <body>
 <!-- V8.83 — full-width editorial navigation. On mobile all four requested
@@ -72,6 +74,36 @@
 <a data-nav="faq" href="#faq">FAQ</a>
 </nav>
 </header>
+<!-- Minimal invitation controls inspired by the original reference HUD. -->
+<div class="kc-reference-controls" role="group" aria-label="Invitation controls">
+  <button class="kc-reference-control kc-reference-music" type="button" aria-label="Turn on background music" aria-pressed="false" title="Music">
+    <svg class="kc-ref-sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5l4.5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
+    <svg class="kc-ref-sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5l4.5 4V5Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg>
+  </button>
+  <button class="kc-reference-control kc-reference-info" type="button" aria-label="Wedding information" aria-haspopup="dialog" aria-controls="kc-info-sheet" title="Information">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M12 10.8v5.6"/><circle cx="12" cy="7.7" r=".7" fill="currentColor" stroke="none"/></svg><span>Info</span>
+  </button>
+</div>
+<dialog class="kc-reference-sheet" id="kc-info-sheet" aria-labelledby="kc-info-title">
+  <div class="kc-reference-sheet-inner">
+    <header class="kc-reference-sheet-head"><h2 id="kc-info-title" class="kc-reference-visually-hidden">Wedding information</h2>
+      <button type="button" class="kc-reference-close" aria-label="Close information">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"/></svg>
+      </button>
+    </header>
+    <dl class="kc-reference-essentials">
+      <div><dt>When</dt><dd>Wednesday, March 3, 2027<br>Ceremony at 3:00 PM</dd></div>
+      <div><dt>Ceremony</dt><dd>Hearts of Jesus and Mary Parish Church<br><small>Mojon, Malolos City, Bulacan</small></dd></div>
+      <div><dt>Reception</dt><dd>The Alfredos Events Place<br><small>Pulilan, Bulacan</small></dd></div>
+      <div><dt>Dress code</dt><dd>Semi-formal mixed pastel attire<br><small>No whites or blacks</small></dd></div>
+      <div><dt>RSVP</dt><dd>Kindly respond by January 31, 2027.</dd></div>
+    </dl>
+    <nav aria-label="Jump to wedding section" class="kc-reference-jumps">
+      
+      <div><a href="#home">Home</a><a href="#ceremony">Ceremony</a><a href="#reception">Reception</a><a href="#day-schedule">Schedule</a><a href="#what-to-wear">What to Wear</a><a href="#entourage">Entourage</a><a href="#rsvp">RSVP</a><a href="#faq">Questions</a></div>
+    </nav>
+  </div>
+</dialog>
 <!-- Independent of the navigation; remains available while scrolling down. -->
 <button aria-label="Back to the beginning of our wedding website" class="floating-home-button" hidden="" id="floating-home-button" title="Back to Home" type="button">
 <svg aria-hidden="true" fill="none" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="19">
@@ -193,6 +225,180 @@
 </div>
 </div>
 <!-- Little Moments: Very Online Studio-inspired Polaroid gallery, adapted for normal scrolling. -->
+
+<section class="kc-proposal kc-proposal--reference" id="proposal" aria-labelledby="kc-proposal-heading">
+ <div class="kc-proposal-photo" aria-hidden="true"></div>
+ <div class="kc-proposal-twilight" aria-hidden="true"></div>
+ <div class="kc-proposal-lightwash" aria-hidden="true"></div>
+ <div class="kc-proposal-layout">
+  <header class="kc-proposal-header">
+   <h2 id="kc-proposal-heading">The Proposal</h2>
+  </header>
+  <div class="kc-paris-vista">
+   <div class="kc-paris-architecture" aria-hidden="true"><svg class="kc-paris-tower" viewBox="0 0 300 370" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g class="kc-tower-proportions" transform="translate(18 -14.6) scale(0.88 1.04)">
+<g class="kc-tower-iron" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+ <path class="kc-tower-silhouette" d="M146 13h8l5 19-5 8 7 34 11 48 13 56 16 60 22 60 34 58H43l34-58 22-60 16-60 13-56 11-48 7-34-5-8z"/>
+ <path class="kc-tower-spine" d="M150 40V293M140 74h20M128 122h44M115 178h70M99 238h102M77 298h146"/>
+ <path class="kc-tower-lattice" d="M144 42l17 32-33 48 57 56-86 60 124 60M156 42l-17 32 33 48-57 56 86 60-124 60M139 74l33 48-57 56 86 60-124 60M161 74l-33 48 57 56-86 60 124 60"/>
+ <path class="kc-tower-lattice" d="M133 100h34M121 150h58M107 209h86M88 269h124M66 327h168"/>
+ <path class="kc-tower-platform" d="M134 35h32M127 122h46M112 177h76M96 237h108M75 298h150M50 355h200M46 365h208"/>
+ <path class="kc-tower-arch" d="M56 355h43c1-38 21-63 51-63s50 25 51 63h43"/>
+ <path class="kc-tower-foot" d="M46 365h208M53 359h194"/>
+ <path class="kc-tower-detail" d="M146 13V5h8v8M141 31h18M138 39h24M119 173h62M97 233h106M75 293h150"/>
+</g><g class="kc-tower-sparkles"><circle class="kc-tower-spark" cx="159.7" cy="120.8" r="0.50"/><circle class="kc-tower-spark" cx="70.2" cy="344.3" r="0.56"/><circle class="kc-tower-spark" cx="149.2" cy="91.7" r="0.51"/><circle class="kc-tower-spark" cx="133.0" cy="250.6" r="0.85"/><circle class="kc-tower-spark" cx="162.0" cy="191.4" r="0.60"/><circle class="kc-tower-spark" cx="136.0" cy="275.5" r="0.85"/><circle class="kc-tower-spark" cx="157.1" cy="135.7" r="0.57"/><circle class="kc-tower-spark" cx="190.2" cy="332.2" r="0.65"/><circle class="kc-tower-spark" cx="221.1" cy="330.1" r="0.50"/><circle class="kc-tower-spark" cx="134.1" cy="118.1" r="0.56"/><circle class="kc-tower-spark" cx="121.1" cy="150.2" r="0.74"/><circle class="kc-tower-spark" cx="165.1" cy="231.2" r="0.76"/><circle class="kc-tower-spark" cx="145.0" cy="201.4" r="0.53"/><circle class="kc-tower-spark" cx="170.1" cy="240.2" r="0.68"/><circle class="kc-tower-spark" cx="150.5" cy="34.6" r="0.67"/><circle class="kc-tower-spark" cx="157.7" cy="112.2" r="0.80"/><circle class="kc-tower-spark" cx="144.4" cy="180.5" r="0.56"/><circle class="kc-tower-spark" cx="143.4" cy="38.5" r="0.63"/><circle class="kc-tower-spark" cx="113.6" cy="198.0" r="0.54"/><circle class="kc-tower-spark" cx="171.2" cy="278.5" r="0.69"/><circle class="kc-tower-spark" cx="149.4" cy="217.0" r="0.63"/><circle class="kc-tower-spark" cx="154.9" cy="74.4" r="0.71"/><circle class="kc-tower-spark" cx="168.1" cy="119.9" r="0.68"/><circle class="kc-tower-spark" cx="156.9" cy="82.0" r="0.58"/><circle class="kc-tower-spark" cx="103.2" cy="257.9" r="0.67"/><circle class="kc-tower-spark" cx="144.6" cy="91.1" r="0.72"/><circle class="kc-tower-spark" cx="149.3" cy="172.2" r="0.65"/><circle class="kc-tower-spark" cx="86.1" cy="268.5" r="0.75"/><circle class="kc-tower-spark" cx="143.4" cy="61.9" r="0.58"/><circle class="kc-tower-spark" cx="155.5" cy="185.9" r="0.55"/><circle class="kc-tower-spark" cx="149.8" cy="162.0" r="0.86"/><circle class="kc-tower-spark" cx="207.6" cy="340.6" r="0.66"/><circle class="kc-tower-spark" cx="154.2" cy="36.9" r="0.84"/><circle class="kc-tower-spark" cx="133.7" cy="221.6" r="0.50"/><circle class="kc-tower-spark" cx="111.5" cy="197.6" r="0.82"/><circle class="kc-tower-spark" cx="142.4" cy="127.5" r="0.87"/><circle class="kc-tower-spark" cx="100.7" cy="239.5" r="0.85"/><circle class="kc-tower-spark" cx="154.2" cy="156.3" r="0.78"/><circle class="kc-tower-spark" cx="76.2" cy="302.5" r="0.60"/><circle class="kc-tower-spark" cx="145.6" cy="46.8" r="0.77"/><circle class="kc-tower-spark" cx="132.4" cy="127.3" r="0.72"/><circle class="kc-tower-spark" cx="156.1" cy="60.8" r="0.57"/><circle class="kc-tower-spark" cx="107.2" cy="325.6" r="0.53"/><circle class="kc-tower-spark" cx="101.4" cy="294.3" r="0.53"/><circle class="kc-tower-spark" cx="138.9" cy="92.1" r="0.57"/><circle class="kc-tower-spark" cx="141.8" cy="211.7" r="0.55"/><circle class="kc-tower-spark" cx="173.9" cy="207.9" r="0.71"/><circle class="kc-tower-spark" cx="149.6" cy="101.2" r="0.82"/><circle class="kc-tower-spark" cx="150.0" cy="79.2" r="0.64"/><circle class="kc-tower-spark" cx="198.8" cy="249.3" r="0.60"/><circle class="kc-tower-spark" cx="187.5" cy="320.0" r="0.61"/><circle class="kc-tower-spark" cx="116.8" cy="331.9" r="0.80"/><circle class="kc-tower-spark" cx="139.3" cy="125.1" r="0.74"/><circle class="kc-tower-spark" cx="197.3" cy="228.1" r="0.51"/><circle class="kc-tower-spark" cx="170.5" cy="140.8" r="0.63"/><circle class="kc-tower-spark" cx="86.0" cy="267.7" r="0.62"/><circle class="kc-tower-spark" cx="109.1" cy="287.6" r="0.71"/><circle class="kc-tower-spark" cx="196.1" cy="259.5" r="0.75"/><circle class="kc-tower-spark" cx="122.3" cy="318.8" r="0.85"/><circle class="kc-tower-spark" cx="175.0" cy="178.1" r="0.58"/><circle class="kc-tower-spark" cx="168.4" cy="266.4" r="0.78"/><circle class="kc-tower-spark" cx="155.7" cy="36.6" r="0.69"/><circle class="kc-tower-spark" cx="168.6" cy="117.5" r="0.75"/><circle class="kc-tower-spark" cx="148.4" cy="140.2" r="0.80"/><circle class="kc-tower-spark" cx="141.6" cy="62.0" r="0.65"/><circle class="kc-tower-spark" cx="159.9" cy="55.3" r="0.70"/><circle class="kc-tower-spark" cx="179.3" cy="332.7" r="0.77"/><circle class="kc-tower-spark" cx="113.9" cy="176.6" r="0.53"/><circle class="kc-tower-spark" cx="143.3" cy="56.1" r="0.52"/><circle class="kc-tower-spark" cx="126.2" cy="266.7" r="0.52"/><circle class="kc-tower-spark" cx="147.5" cy="84.5" r="0.83"/><circle class="kc-tower-spark" cx="141.5" cy="73.1" r="0.68"/><circle class="kc-tower-spark" cx="151.3" cy="85.9" r="0.60"/><circle class="kc-tower-spark" cx="129.6" cy="317.7" r="0.59"/><circle class="kc-tower-spark" cx="166.2" cy="235.4" r="0.66"/><circle class="kc-tower-spark" cx="90.7" cy="337.5" r="0.69"/><circle class="kc-tower-spark" cx="144.9" cy="89.8" r="0.52"/><circle class="kc-tower-spark" cx="128.6" cy="150.3" r="0.63"/><circle class="kc-tower-spark" cx="152.9" cy="37.9" r="0.75"/><circle class="kc-tower-spark" cx="149.0" cy="214.4" r="0.54"/><circle class="kc-tower-spark" cx="87.4" cy="322.9" r="0.51"/><circle class="kc-tower-spark" cx="191.6" cy="321.7" r="0.81"/><circle class="kc-tower-spark" cx="140.9" cy="73.7" r="0.68"/><circle class="kc-tower-spark" cx="114.1" cy="245.7" r="0.71"/><circle class="kc-tower-spark" cx="163.6" cy="123.9" r="0.77"/><circle class="kc-tower-spark" cx="128.6" cy="336.2" r="0.76"/><circle class="kc-tower-spark" cx="152.6" cy="141.5" r="0.59"/><circle class="kc-tower-spark" cx="135.6" cy="120.6" r="0.63"/><circle class="kc-tower-spark" cx="142.7" cy="43.1" r="0.82"/><circle class="kc-tower-spark" cx="134.8" cy="296.7" r="0.71"/><circle class="kc-tower-spark" cx="169.2" cy="140.7" r="0.61"/><circle class="kc-tower-spark" cx="136.5" cy="223.6" r="0.78"/><circle class="kc-tower-spark" cx="163.5" cy="140.6" r="0.53"/><circle class="kc-tower-spark" cx="162.6" cy="253.7" r="0.85"/><circle class="kc-tower-spark" cx="65.1" cy="335.3" r="0.57"/><circle class="kc-tower-spark" cx="172.8" cy="190.2" r="0.60"/><circle class="kc-tower-spark" cx="85.9" cy="297.0" r="0.55"/><circle class="kc-tower-spark" cx="178.4" cy="145.6" r="0.70"/><circle class="kc-tower-spark" cx="197.0" cy="254.0" r="0.72"/><circle class="kc-tower-spark" cx="174.1" cy="296.8" r="0.56"/><circle class="kc-tower-spark" cx="111.9" cy="225.5" r="0.48"/><circle class="kc-tower-spark" cx="91.2" cy="281.2" r="0.82"/><circle class="kc-tower-spark" cx="172.6" cy="332.5" r="0.73"/><circle class="kc-tower-spark" cx="156.8" cy="54.8" r="0.58"/><circle class="kc-tower-spark" cx="185.1" cy="339.2" r="0.58"/><circle class="kc-tower-spark" cx="110.6" cy="238.9" r="0.70"/><circle class="kc-tower-spark" cx="103.7" cy="241.0" r="0.49"/><circle class="kc-tower-spark" cx="172.6" cy="282.7" r="0.88"/><circle class="kc-tower-spark" cx="127.8" cy="234.8" r="0.76"/><circle class="kc-tower-spark" cx="147.0" cy="95.9" r="0.52"/><circle class="kc-tower-spark" cx="166.0" cy="233.8" r="0.82"/><circle class="kc-tower-spark" cx="196.9" cy="241.6" r="0.85"/><circle class="kc-tower-spark" cx="238.8" cy="314.6" r="0.65"/><circle class="kc-tower-spark" cx="166.5" cy="176.4" r="0.61"/><circle class="kc-tower-spark" cx="78.3" cy="301.1" r="0.66"/><circle class="kc-tower-spark" cx="136.4" cy="151.4" r="0.61"/><circle class="kc-tower-spark" cx="101.9" cy="263.7" r="0.75"/><circle class="kc-tower-spark" cx="133.4" cy="167.7" r="0.81"/><circle class="kc-tower-spark" cx="170.8" cy="317.7" r="0.77"/><circle class="kc-tower-spark" cx="119.8" cy="207.3" r="0.83"/><circle class="kc-tower-spark" cx="191.0" cy="303.6" r="0.72"/><circle class="kc-tower-spark" cx="198.8" cy="293.1" r="0.76"/><circle class="kc-tower-spark" cx="143.0" cy="83.6" r="0.69"/><circle class="kc-tower-spark" cx="224.5" cy="293.3" r="0.82"/><circle class="kc-tower-spark" cx="136.4" cy="149.0" r="0.58"/><circle class="kc-tower-spark" cx="77.5" cy="311.9" r="0.59"/><circle class="kc-tower-spark" cx="176.1" cy="327.1" r="0.67"/><circle class="kc-tower-spark" cx="115.5" cy="305.7" r="0.53"/><circle class="kc-tower-spark" cx="81.1" cy="313.9" r="0.61"/><circle class="kc-tower-spark" cx="155.6" cy="41.7" r="0.76"/><circle class="kc-tower-spark" cx="181.6" cy="300.9" r="0.83"/><circle class="kc-tower-spark" cx="198.0" cy="285.6" r="0.64"/><circle class="kc-tower-spark" cx="160.7" cy="168.0" r="0.79"/><circle class="kc-tower-spark" cx="137.0" cy="169.7" r="0.63"/><circle class="kc-tower-spark" cx="189.8" cy="211.2" r="0.58"/><circle class="kc-tower-spark" cx="191.2" cy="253.2" r="0.49"/><circle class="kc-tower-spark" cx="151.4" cy="226.3" r="0.80"/><circle class="kc-tower-spark" cx="109.8" cy="244.9" r="0.51"/><circle class="kc-tower-spark" cx="135.9" cy="76.9" r="0.56"/><circle class="kc-tower-spark" cx="132.6" cy="341.9" r="0.55"/><circle class="kc-tower-spark" cx="177.8" cy="245.1" r="0.53"/><circle class="kc-tower-spark" cx="173.8" cy="184.6" r="0.66"/><circle class="kc-tower-spark" cx="157.1" cy="90.7" r="0.65"/><circle class="kc-tower-spark" cx="177.6" cy="228.0" r="0.60"/><circle class="kc-tower-spark" cx="154.9" cy="107.0" r="0.63"/><circle class="kc-tower-spark" cx="54.2" cy="343.6" r="0.86"/><circle class="kc-tower-spark" cx="145.4" cy="95.5" r="0.61"/><circle class="kc-tower-spark" cx="150.6" cy="42.0" r="0.58"/><circle class="kc-tower-spark" cx="169.4" cy="318.4" r="0.65"/><circle class="kc-tower-spark" cx="133.2" cy="338.2" r="0.66"/><circle class="kc-tower-spark" cx="164.0" cy="333.4" r="0.75"/><circle class="kc-tower-spark" cx="153.7" cy="268.2" r="0.81"/><circle class="kc-tower-spark" cx="127.8" cy="194.4" r="0.66"/><circle class="kc-tower-spark" cx="112.4" cy="191.2" r="0.65"/><circle class="kc-tower-spark" cx="233.6" cy="339.7" r="0.59"/><circle class="kc-tower-spark" cx="153.6" cy="51.6" r="0.69"/><circle class="kc-tower-spark" cx="169.2" cy="125.8" r="0.78"/><circle class="kc-tower-spark" cx="152.8" cy="66.3" r="0.67"/><circle class="kc-tower-spark" cx="144.6" cy="163.4" r="0.70"/><circle class="kc-tower-spark" cx="133.0" cy="158.2" r="0.59"/><circle class="kc-tower-spark" cx="192.9" cy="249.1" r="0.82"/><circle class="kc-tower-spark" cx="151.9" cy="326.6" r="0.82"/><circle class="kc-tower-spark" cx="188.8" cy="222.3" r="0.48"/><circle class="kc-tower-spark" cx="109.8" cy="296.0" r="0.83"/><circle class="kc-tower-spark" cx="153.1" cy="60.9" r="0.82"/><circle class="kc-tower-spark" cx="121.7" cy="163.6" r="0.82"/><circle class="kc-tower-spark" cx="107.6" cy="280.4" r="0.56"/><circle class="kc-tower-spark" cx="200.9" cy="337.6" r="0.80"/><circle class="kc-tower-spark" cx="142.5" cy="263.5" r="0.48"/><circle class="kc-tower-spark" cx="157.7" cy="100.7" r="0.73"/><circle class="kc-tower-spark" cx="104.5" cy="237.7" r="0.65"/><circle class="kc-tower-spark" cx="120.4" cy="190.4" r="0.70"/><circle class="kc-tower-spark" cx="156.5" cy="48.7" r="0.71"/><circle class="kc-tower-spark" cx="185.9" cy="203.0" r="0.65"/><circle class="kc-tower-spark" cx="146.5" cy="242.6" r="0.64"/><circle class="kc-tower-spark" cx="150.0" cy="199.7" r="0.73"/><circle class="kc-tower-spark" cx="167.7" cy="130.5" r="0.70"/><circle class="kc-tower-spark" cx="167.8" cy="158.6" r="0.48"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/><path class="kc-tower-glint" d="M-2.8 0H2.8M0-2.8V2.8" transform="translate(150 175)"/></g></g></svg></div>
+   <canvas class="kc-proposal-magic" aria-hidden="true"></canvas>
+   <div class="kc-paris-scene" role="group" aria-label="Light four Parisian lanterns">
+     <div class="kc-paris-light kc-paris-light--left"><button type="button" class="kc-lantern kc-lantern--illustrated" aria-label="Light lantern 1" aria-pressed="false" data-lantern="1">
+ <span class="kc-lantern-softglow" aria-hidden="true"></span>
+ <svg class="kc-lantern-drawing" viewBox="0 0 76 300" aria-hidden="true">
+ <g class="kc-victorian-iron">
+  <path class="kc-lamp-finial" d="M38 10l-6 7 6 5 6-5zM38 6v5"/>
+  <path class="kc-lamp-roof" d="M15 58 22 34 38 23 54 34 61 58z"/>
+  <path class="kc-lamp-rim" d="M13 58H63L59 64H17z"/>
+  <path class="kc-lamp-glass" d="M19 64H57L51 111H25z"/>
+  <path class="kc-lamp-side" d="M19 64 25 111M57 64 51 111M38 64V111"/>
+  <path class="kc-lamp-bottom" d="M24 111H52L46 120H30zM30 120h16l-8 9z"/>
+  <path class="kc-lamp-post" d="M35 129h6v111h-6zM31 152h14v5H31zM32 215h12v5H32z"/>
+  <path class="kc-lamp-collar" d="M32 240h12l4 13H28z"/>
+  <path class="kc-lamp-foot" d="M29 253h18l6 28H23zM20 281h36l7 10H13z"/>
+ </g>
+ <g class="kc-lamp-bulb">
+ <path class="kc-bulb-neck" d="M34 91h8v7h-8z"/>
+ <circle class="kc-bulb-halo" cx="38" cy="81" r="13"/>
+ <circle class="kc-bulb-glass" cx="38" cy="80" r="8.5"/>
+ <path class="kc-bulb-filament" d="M34 81l3-4 2 6 3-5"/>
+ <circle class="kc-bulb-core" cx="38" cy="80" r="3.3"/>
+ <path class="kc-bulb-cap" d="M34 88h8v4h-8z"/>
+ </g>
+</svg>
+ </button></div>
+     <div class="kc-paris-light kc-paris-light--middle"><button type="button" class="kc-lantern kc-lantern--illustrated" aria-label="Light lantern 2" aria-pressed="false" data-lantern="2">
+ <span class="kc-lantern-softglow" aria-hidden="true"></span>
+ <svg class="kc-lantern-drawing" viewBox="0 0 76 300" aria-hidden="true">
+ <g class="kc-victorian-iron">
+  <path class="kc-lamp-finial" d="M38 10l-6 7 6 5 6-5zM38 6v5"/>
+  <path class="kc-lamp-roof" d="M15 58 22 34 38 23 54 34 61 58z"/>
+  <path class="kc-lamp-rim" d="M13 58H63L59 64H17z"/>
+  <path class="kc-lamp-glass" d="M19 64H57L51 111H25z"/>
+  <path class="kc-lamp-side" d="M19 64 25 111M57 64 51 111M38 64V111"/>
+  <path class="kc-lamp-bottom" d="M24 111H52L46 120H30zM30 120h16l-8 9z"/>
+  <path class="kc-lamp-post" d="M35 129h6v111h-6zM31 152h14v5H31zM32 215h12v5H32z"/>
+  <path class="kc-lamp-collar" d="M32 240h12l4 13H28z"/>
+  <path class="kc-lamp-foot" d="M29 253h18l6 28H23zM20 281h36l7 10H13z"/>
+ </g>
+ <g class="kc-lamp-bulb">
+ <path class="kc-bulb-neck" d="M34 91h8v7h-8z"/>
+ <circle class="kc-bulb-halo" cx="38" cy="81" r="13"/>
+ <circle class="kc-bulb-glass" cx="38" cy="80" r="8.5"/>
+ <path class="kc-bulb-filament" d="M34 81l3-4 2 6 3-5"/>
+ <circle class="kc-bulb-core" cx="38" cy="80" r="3.3"/>
+ <path class="kc-bulb-cap" d="M34 88h8v4h-8z"/>
+ </g>
+</svg>
+ </button></div>
+     <div class="kc-paris-box">
+       <div class="kc-proposal-ring-stage" aria-live="polite">
+       <div class="ringbox" aria-hidden="true">
+              <svg viewBox="0 0 120 110">
+                <g class="ringbox__lid-open"><path d="M20 58V22a8 8 0 0 1 8-8h64a8 8 0 0 1 8 8v36z" class="ringbox__shell"/><path d="M27 54V26a5 5 0 0 1 5-5h56a5 5 0 0 1 5 5v28z" class="ringbox__satin"/></g>
+                <g class="ringbox__ring"><circle cx="60" cy="56" r="11" class="ringbox__band"/><circle cx="60" cy="42" r="4.8" class="ringbox__gem"/>
+<path d="M55.2 42h9.6M60 37.2l-2.4 4.8 2.4 4.8 2.4-4.8z" class="ringbox__gem-facets"/></g>
+                <path d="M16 60h88v34a8 8 0 0 1-8 8H24a8 8 0 0 1-8-8z" class="ringbox__shell"/>
+                <path d="M16 60h88v8H16z" class="ringbox__slot"/>
+                <g class="ringbox__lid-closed"><path d="M14 62V48a8 8 0 0 1 8-8h76a8 8 0 0 1 8 8v14z" class="ringbox__shell ringbox__shell--lid"/><path d="M14 56h92" class="ringbox__seam"/></g>
+              </svg>
+            </div>
+       
+       </div>
+     </div>
+     <div class="kc-paris-light kc-paris-light--inner-right"><button type="button" class="kc-lantern kc-lantern--illustrated" aria-label="Light lantern 3" aria-pressed="false" data-lantern="3">
+ <span class="kc-lantern-softglow" aria-hidden="true"></span>
+ <svg class="kc-lantern-drawing" viewBox="0 0 76 300" aria-hidden="true">
+ <g class="kc-victorian-iron">
+  <path class="kc-lamp-finial" d="M38 10l-6 7 6 5 6-5zM38 6v5"/>
+  <path class="kc-lamp-roof" d="M15 58 22 34 38 23 54 34 61 58z"/>
+  <path class="kc-lamp-rim" d="M13 58H63L59 64H17z"/>
+  <path class="kc-lamp-glass" d="M19 64H57L51 111H25z"/>
+  <path class="kc-lamp-side" d="M19 64 25 111M57 64 51 111M38 64V111"/>
+  <path class="kc-lamp-bottom" d="M24 111H52L46 120H30zM30 120h16l-8 9z"/>
+  <path class="kc-lamp-post" d="M35 129h6v111h-6zM31 152h14v5H31zM32 215h12v5H32z"/>
+  <path class="kc-lamp-collar" d="M32 240h12l4 13H28z"/>
+  <path class="kc-lamp-foot" d="M29 253h18l6 28H23zM20 281h36l7 10H13z"/>
+ </g>
+ <g class="kc-lamp-bulb">
+ <path class="kc-bulb-neck" d="M34 91h8v7h-8z"/>
+ <circle class="kc-bulb-halo" cx="38" cy="81" r="13"/>
+ <circle class="kc-bulb-glass" cx="38" cy="80" r="8.5"/>
+ <path class="kc-bulb-filament" d="M34 81l3-4 2 6 3-5"/>
+ <circle class="kc-bulb-core" cx="38" cy="80" r="3.3"/>
+ <path class="kc-bulb-cap" d="M34 88h8v4h-8z"/>
+ </g>
+</svg>
+ </button></div>
+     <div class="kc-paris-light kc-paris-light--right"><button type="button" class="kc-lantern kc-lantern--illustrated" aria-label="Light lantern 4" aria-pressed="false" data-lantern="4">
+ <span class="kc-lantern-softglow" aria-hidden="true"></span>
+ <svg class="kc-lantern-drawing" viewBox="0 0 76 300" aria-hidden="true">
+ <g class="kc-victorian-iron">
+  <path class="kc-lamp-finial" d="M38 10l-6 7 6 5 6-5zM38 6v5"/>
+  <path class="kc-lamp-roof" d="M15 58 22 34 38 23 54 34 61 58z"/>
+  <path class="kc-lamp-rim" d="M13 58H63L59 64H17z"/>
+  <path class="kc-lamp-glass" d="M19 64H57L51 111H25z"/>
+  <path class="kc-lamp-side" d="M19 64 25 111M57 64 51 111M38 64V111"/>
+  <path class="kc-lamp-bottom" d="M24 111H52L46 120H30zM30 120h16l-8 9z"/>
+  <path class="kc-lamp-post" d="M35 129h6v111h-6zM31 152h14v5H31zM32 215h12v5H32z"/>
+  <path class="kc-lamp-collar" d="M32 240h12l4 13H28z"/>
+  <path class="kc-lamp-foot" d="M29 253h18l6 28H23zM20 281h36l7 10H13z"/>
+ </g>
+ <g class="kc-lamp-bulb">
+ <path class="kc-bulb-neck" d="M34 91h8v7h-8z"/>
+ <circle class="kc-bulb-halo" cx="38" cy="81" r="13"/>
+ <circle class="kc-bulb-glass" cx="38" cy="80" r="8.5"/>
+ <path class="kc-bulb-filament" d="M34 81l3-4 2 6 3-5"/>
+ <circle class="kc-bulb-core" cx="38" cy="80" r="3.3"/>
+ <path class="kc-bulb-cap" d="M34 88h8v4h-8z"/>
+ </g>
+</svg>
+ </button></div>
+   </div>
+  </div>
+ </div>
+ <div class="kc-proposal-animation-hint">
+   <div class="kc-proposal-before" aria-live="polite">
+    <p class="kc-proposal-tap">TAP A LAMP POST TO LIGHT THEM</p>
+
+   </div>
+ </div>
+<div class="kc-proposal-story-page" id="proposal-story" aria-label="The proposal story">
+ <div class="kc-proposal-story-inner">
+  <div class="kc-paris-story">
+   <div class="kc-proposal-after" aria-live="polite">
+    <div class="kc-proposal-yes-slot"><p class="kc-proposal-yes kc-proposal-yes--story">She said yes.</p></div>
+    <div class="kc-proposal-narrative">
+     <p class="kc-proposal-narrative-intro">September 8, 2025, around 8:00 PM, under the shimmering lights of the Eiffel Tower, in a little corner of Macau that felt just like Paris.</p>
+    <figure class="kc-proposal-video">
+     <video controls playsinline preload="metadata" aria-label="Actual proposal video at the Parisian Macau Eiffel Tower">
+      <source src="assets/video/proposal-actual.mp4" type="video/mp4">
+      Your browser does not support HTML video.
+     </video>
+     <figcaption>OUR PROPOSAL · MACAU, SEPTEMBER 8, 2025</figcaption>
+    </figure>
+
+
+     <p class="kc-proposal-narrative-body">They were simply taking pictures, capturing memories beneath the warm glow of a Parisian street lantern.</p>
+     <p class="kc-proposal-narrative-body">As Cathy turned her back to pose for another photo, little did she know that behind her, Kenneth was preparing for a moment he had been planning for.</p>
+     <p class="kc-proposal-narrative-body">With a ring in his hand and a heart full of love, he waited for her to turn around.</p>
+     <p class="kc-proposal-narrative-body">A look of surprise, a moment of disbelief, and then came the sweetest answer he could ever hope for.</p>
+     <p class="kc-proposal-narrative-body">Beneath the Eiffel Tower, under the golden light of a Parisian lantern, they made a promise that would last a lifetime.</p>
+    </div>
+
+   </div>
+  </div>
+ </div>
+</div>
+</section>
+
+
+
 <section aria-labelledby="moments-title" class="kc-moments" id="moments">
 <header class="kc-moments__heading"><p class="kc-moments__eyebrow">OUR STORY IN PHOTOGRAPHS</p><h2 id="moments-title">Little moments</h2><p>From our prenup shoot, and the camera rolls in between.</p></header>
 <div aria-label="Interactive photo stack" class="stack"><ul class="stack__list"><li class="polaroid" style="--r:-3deg"><button aria-label="View photo 1" class="polaroid__btn" type="button"><img alt="Placeholder photo 1 for Kenneth and Catherine" decoding="async" draggable="false" height="640" loading="lazy" src="assets/images/moments/moment-01.svg" width="640"/></button><p class="polaroid__cap">A moment to remember.</p></li>
@@ -403,7 +609,7 @@
 <div aria-hidden="true" class="kc-cast-vignette"></div>
 <div class="kc-cast-content">
 <header class="kc-cast-heading"><p class="kc-cast-kicker">THE PEOPLE BY OUR SIDE</p><h2 id="entourage-heading">The <em>Entourage</em></h2></header>
-<div aria-label="Wedding entourage" class="kc-cast-credits" tabindex="0"><div class="kc-cast-roll"><div class="kc-credit kc-credit-star"><p class="kc-credit-role">STARRING</p><p class="kc-credit-feature">Kenneth <i>&amp;</i> Catherine</p></div><div class="kc-credit kc-credit-parents"><section class="kc-credit"><h3 class="kc-credit-role">Groom’s Parents</h3><div class="kc-credit-names"><p>Percival &amp; Elvira Reyes</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Bride’s Parents</h3><div class="kc-credit-names"><p>Enrico &amp; Corazon Eustaquio</p></div></section></div><div class="kc-credit kc-credit-sponsors"><h3 class="kc-credit-role">Principal sponsors · our ninongs &amp; ninangs</h3><div class="kc-credit-sponsor-grid"><div class="kc-credit-names kc-credit-ninongs"><p>Engr. Jesus Dizor</p><p>Indong Dorico</p><p>Tito ni Nat</p><p>Cezal Del Rosario</p><p>Elmer Zara</p><p>Eduardo Sta. Maria</p><p>Michelle Navarro</p><p>Robert Cruz</p><p>Hon. Ronald Mercado</p><p>Ervin Carlo Agapito</p></div><div class="kc-credit-names kc-credit-ninangs"><p>Cecilia Dizor</p><p>Karen Claire Reyes</p><p>Josephine Datario</p><p>Felicidad Ballocanag</p><p>Rhea Rowena Zara</p><p>Marilou Dela Roma</p><p>Kgwd. Rorielou Cando</p><p>Valentina Espirida</p><p>Arsenia Ramos</p><p>Jelica Agapito</p></div></div></div><div class="kc-credit kc-credit-secondary"><h3 class="kc-credit-role">Secondary Sponsors</h3><div class="kc-credit-secondary-list"><p><span>Cord</span><span class="kc-credit-person">Cyron Eustaquio</span><span class="kc-credit-person">Kerisha Rae Santiago</span></p><p><span>Veil</span><span class="kc-credit-person">Anthony Charlee Tubig</span><span class="kc-credit-person">Renziel Cedee Alejandrino</span></p><p><span>Candle</span><span class="kc-credit-person">Jayvee Ramos</span><span class="kc-credit-person">Daniela Nica Dorico</span></p></div></div><div class="kc-credit kc-credit-duo kc-credit-honor" data-align="center"><section class="kc-credit"><h3 class="kc-credit-role">Best Man</h3><div class="kc-credit-names"><p>Jan Karl Reyes</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Maid of Honor</h3><div class="kc-credit-names"><p>Erica Eustaquio</p></div></section></div><div class="kc-credit kc-credit-duo kc-credit-party" data-align="sides"><section class="kc-credit"><h3 class="kc-credit-role">Groomsmen</h3><div class="kc-credit-names"><p>Carlo Belizario</p><p>Marc Joseph Datario</p><p>Nathanael Laxa</p><p>Anthony Reyes</p><p>Renz Joshua Nicolas</p><p>Juliane Chrysler Eustaquio</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Bridesmaids</h3><div class="kc-credit-names"><p>Canny Reyes</p><p>Mabel Agravante</p><p>Yssa Mari Santos</p><p>Lyka Maris Gaudiel</p><p>Kline Cheelzea Lopez</p><p>Justine Paguia</p></div></section></div><div class="kc-credit kc-credit-bearers"><section class="kc-credit"><h3 class="kc-credit-role">Bible Bearer</h3><div class="kc-credit-names"><p>Primo Leone Dorico</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Coin Bearer</h3><div class="kc-credit-names"><p>Chase Gabriel</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Ring Bearer</h3><div class="kc-credit-names"><p>Lucas Skyler Eustaquio</p></div></section></div><div class="kc-credit kc-credit-flowers"><h3 class="kc-credit-role">Flower Girls</h3><div class="kc-credit-names"><p>Aloha Therese Santos</p><p>Erine Santos</p></div></div><div class="kc-credit kc-credit-star"><p class="kc-credit-role">AND INTRODUCING</p><p class="kc-credit-feature"><a href="#rsvp">You</a></p></div></div></div>
+<div aria-label="Wedding entourage" class="kc-cast-credits" tabindex="0"><div class="kc-cast-roll"><div class="kc-credit kc-credit-parents"><section class="kc-credit"><h3 class="kc-credit-role">Groom’s Parents</h3><div class="kc-credit-names"><p>Percival &amp; Elvira Reyes</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Bride’s Parents</h3><div class="kc-credit-names"><p>Enrico &amp; Corazon Eustaquio</p></div></section></div><div class="kc-credit kc-credit-sponsors"><h3 class="kc-credit-role">Principal sponsors · our ninongs &amp; ninangs</h3><div class="kc-credit-sponsor-grid"><div class="kc-credit-names kc-credit-ninongs"><p>Engr. Jesus Dizor</p><p>Indong Dorico</p><p>Tito ni Nat</p><p>Cezal Del Rosario</p><p>Elmer Zara</p><p>Eduardo Sta. Maria</p><p>Michelle Navarro</p><p>Robert Cruz</p><p>Hon. Ronald Mercado</p><p>Ervin Carlo Agapito</p></div><div class="kc-credit-names kc-credit-ninangs"><p>Cecilia Dizor</p><p>Karen Claire Reyes</p><p>Josephine Datario</p><p>Felicidad Ballocanag</p><p>Rhea Rowena Zara</p><p>Marilou Dela Roma</p><p>Kgwd. Rorielou Cando</p><p>Valentina Espirida</p><p>Arsenia Ramos</p><p>Jelica Agapito</p></div></div></div><div class="kc-credit kc-credit-secondary"><h3 class="kc-credit-role">Secondary Sponsors</h3><div class="kc-credit-secondary-list"><p><span>Cord</span><span class="kc-credit-person">Cyron Eustaquio</span><span class="kc-credit-person">Kerisha Rae Santiago</span></p><p><span>Veil</span><span class="kc-credit-person">Anthony Charlee Tubig</span><span class="kc-credit-person">Renziel Cedee Alejandrino</span></p><p><span>Candle</span><span class="kc-credit-person">Jayvee Ramos</span><span class="kc-credit-person">Daniela Nica Dorico</span></p></div></div><div class="kc-credit kc-credit-duo kc-credit-honor" data-align="center"><section class="kc-credit"><h3 class="kc-credit-role">Best Man</h3><div class="kc-credit-names"><p>Jan Karl Reyes</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Maid of Honor</h3><div class="kc-credit-names"><p>Erica Eustaquio</p></div></section></div><div class="kc-credit kc-credit-duo kc-credit-party" data-align="sides"><section class="kc-credit"><h3 class="kc-credit-role">Groomsmen</h3><div class="kc-credit-names"><p>Carlo Belizario</p><p>Marc Joseph Datario</p><p>Nathanael Laxa</p><p>Anthony Reyes</p><p>Renz Joshua Nicolas</p><p>Juliane Chrysler Eustaquio</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Bridesmaids</h3><div class="kc-credit-names"><p>Canny Reyes</p><p>Mabel Agravante</p><p>Yssa Mari Santos</p><p>Lyka Maris Gaudiel</p><p>Kline Cheelzea Lopez</p><p>Justine Paguia</p></div></section></div><div class="kc-credit kc-credit-bearers"><section class="kc-credit"><h3 class="kc-credit-role">Bible Bearer</h3><div class="kc-credit-names"><p>Primo Leone Dorico</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Coin Bearer</h3><div class="kc-credit-names"><p>Chase Gabriel</p></div></section><section class="kc-credit"><h3 class="kc-credit-role">Ring Bearer</h3><div class="kc-credit-names"><p>Lucas Skyler Eustaquio</p></div></section></div><div class="kc-credit kc-credit-flowers"><h3 class="kc-credit-role">Flower Girls</h3><div class="kc-credit-names"><p>Aloha Therese Santos</p><p>Erine Santos</p></div></div></div></div>
 </div></section>
 <section class="rsvp-section" id="rsvp">
 <div class="reveal-on-scroll">
@@ -428,8 +634,16 @@
 <details class="kc-qa"><summary>Is there a dress code?</summary><div class="kc-qa-answer"><p>Yes! Please see the What to Wear section for the attire guide and wedding colors.</p></div></details>
 <details class="kc-qa"><summary>How do I get directions?</summary><div class="kc-qa-answer"><p>You can find directions to both venues in the Ceremony &amp; Reception section, with Google Maps, Apple Maps, and Waze options.</p></div></details></div>
 </div></div></section>
-</main>
-<footer><span class="footer-love">love lots, Kenneth &amp; Catherine</span><small>03.03.2027</small></footer>
+<section class="kc-finale" id="forever" aria-labelledby="kc-finale-title">
+<canvas class="kc-night-sky" aria-hidden="true"></canvas>
+<canvas class="kc-finale-canvas" aria-hidden="true"></canvas>
+<div class="kc-finale-wish-layer" aria-live="polite" aria-atomic="true"></div><div class="kc-finale-content">
+
+<h2 class="kc-finale-title" id="kc-finale-title"><span>See you on</span><strong>March 3, 2027</strong></h2>
+<p class="kc-finale-subtitle">We can't wait to celebrate with you.</p>
+<form class="kc-finale-wish-form" id="kc-finale-wish-form"><label for="kc-finale-wish">Send a wish up with a firework</label><div class="kc-finale-wish-row"><input id="kc-finale-wish" type="text" maxlength="90" placeholder="Write your message here..." autocomplete="off"><button type="submit" id="kc-finale-celebrate">Light It Up!</button></div></form>
+<p class="kc-finale-hint">TAP THE SKY TO LAUNCH A FIREWORK</p>
+</div><div class="kc-finale-dedication" aria-label="Invitation credit"><p class="kc-footer-love-note">INVITATION MADE WITH LOVE BY <a href="https://facebook.com/kenspreyes" target="_blank" rel="noopener noreferrer" aria-label="Kenneth on Facebook">KENNETH</a>, THE GROOM</p></div></section></main>
 <!-- Three.js r152.2: pinned dependency for the original ring animation.
        To use a local copy later, save the library to assets/js/three.min.js
        and change this script URL back to that local path. -->
@@ -442,6 +656,10 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
 <script src="assets/js/little-moments.js?v=1.1.0"></script>
 <script defer="" src="assets/js/wedding-faq.js?v=1.1.0"></script>
-<script defer="" src="assets/js/cinematic-entourage.js?v=2.4"></script>
+<script defer="" src="assets/js/cinematic-entourage.js?v=mist2"></script>
+<script defer src="assets/js/wedding-night-sky.js?v=2.2"></script>
+<script defer src="assets/js/wedding-epilogue.js?v=6"></script>
+<script defer src="assets/js/reference-controls.js?v=1"></script>
+<script defer src="assets/js/wedding-proposal.js?v=1"></script>
 </body>
 </html>
