@@ -9,7 +9,7 @@ if(lamps.length!==4||!box||!canvas||!stage)return;
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const ctx=canvas.getContext('2d',{alpha:true});let width=1,height=1,dpr=1,lit=0,done=false;
 let particles=[],raf=0,visible=true,active=true,last=0;
-const low=matchMedia('(max-width:650px)').matches,limit=low?72:100;
+const low=matchMedia('(max-width:650px)').matches,limit=low?150:210;
 const rand=(a,b)=>a+Math.random()*(b-a);
 /* Randomly relocate a few illuminated pinlights inside the tower silhouette.
    This creates genuinely new sparkle positions rather than repeatedly pulsing
@@ -49,7 +49,7 @@ function size(){const r=stage.getBoundingClientRect();width=Math.max(1,r.width);
 function pos(el){const a=el.getBoundingClientRect(),b=stage.getBoundingClientRect();return{x:a.left+a.width/2-b.left,y:a.top+a.height*.32-b.top}}
 function emit(x,y,n,type){if(reduce||!ctx)return;for(let i=0;i<n&&particles.length<limit;i++){
  const angle=rand(0,Math.PI*2),speed=type==='ring'?rand(.8,3.2):rand(.55,2.35);
- particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,decay:rand(.012,.025),r:rand(.85,2.05),star:false,h:Math.random()<.27?'#FFF4DA':'#F4CD8B',type});}
+ particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,decay:rand(.007,.016),r:rand(1.3,3.0),star:false,h:Math.random()<.27?'#FFF4DA':'#F4CD8B',type});}
  start()}
 function start(){if(!raf&&!reduce&&visible&&active)raf=requestAnimationFrame(frame)}
 function frame(t){raf=0;if(!visible||!active)return;if(t-last<32){start();return}const dt=Math.min((t-last||16)/16,2);last=t;ctx.clearRect(0,0,width,height);
@@ -69,32 +69,26 @@ function revealYes(){
  const yes=scene.querySelector('#proposal-story .kc-proposal-yes--story');
  if(!yes||yes.dataset.revealed)return;
  yes.dataset.revealed='1';
- const original=yes.textContent;
- yes.setAttribute('aria-label',original);
- yes.textContent='';
- const letters=[];
- for(const ch of original){const span=document.createElement('span');span.className='kc-yes-letter';span.textContent=ch===' '? '\u00a0':ch;span.setAttribute('aria-hidden','true');yes.appendChild(span);letters.push(span)}
- yes.classList.add('kc-yes-animated');
- const G=window.gsap;
- if(!reduce&&G){G.fromTo(letters,{opacity:0,y:30,scale:.6},{opacity:1,y:0,scale:1,duration:.7,ease:'back.out(2)',stagger:.04,clearProps:'transform,opacity'});}
- else {letters.forEach(x=>x.classList.add('kc-yes-visible'))}
+ yes.classList.add('kc-yes-fade-in');
 }
-function openBox(){scene.classList.add('is-ring');scene.querySelector('#proposal-story')?.classList.add('is-ring');setTimeout(revealYes,reduce?0:600);const lid=box.querySelector('.ringbox__lid-open'),closed=box.querySelector('.ringbox__lid-closed'),ring=box.querySelector('.ringbox__ring'),rays=box.querySelector('.ringbox__rays');
+function openBox(){scene.classList.add('is-ring');scene.querySelector('#proposal-story')?.classList.add('is-ring');const lid=box.querySelector('.ringbox__lid-open'),closed=box.querySelector('.ringbox__lid-closed'),ring=box.querySelector('.ringbox__ring'),rays=box.querySelector('.ringbox__rays');
  if(!lid||!closed||!ring)return;
  // Animate before toggling visibility; avoids the earlier instantaneous pop.
  const G=window.gsap;
- if(reduce||!G){box.classList.add('is-open');box.classList.add('kc-ring-css-open');return}
+ if(reduce||!G){box.classList.add('is-open');box.classList.add('kc-ring-css-open');ringSparkle();return}
  G.set(lid,{opacity:0,scaleY:.08,transformOrigin:'50% 100%'});G.set(ring,{opacity:0,y:18});
  const tl=G.timeline({onStart:()=>{box.classList.add('is-open');G.set(lid,{opacity:0});G.set(ring,{opacity:0})}});
  tl.to(closed,{opacity:0,duration:.25,ease:'power2.out'},0)
  .to(lid,{opacity:1,scaleY:1,duration:.75,ease:'back.out(2)'},.14)
  .to(ring,{opacity:1,y:0,duration:.85,ease:'back.out(2)'},.45)
+ .call(()=>{ringSparkle()},null,.62)
  ;
  // No ring-box canvas particles: prevents floating dots at the tower base.
 }
-function complete(){if(done)return;done=true;if(count)count.textContent='All four lanterns are lit';scene.classList.add('is-tower-lit','kc-leds-active');lamps.forEach(l=>l.disabled=true);
+function ringSparkle(){if(!box)return;const b=box.getBoundingClientRect(),s=stage.getBoundingClientRect();emit(b.left+b.width/2-s.left,b.top+b.height*.38-s.top,low?85:125,'ring');}
+ function complete(){if(done)return;done=true;if(count)count.textContent='All four lanterns are lit';scene.classList.add('is-tower-lit','kc-leds-active');lamps.forEach(l=>l.disabled=true);
  // Tower uses only blinking pink pinlights; no canvas particle burst.
- setTimeout(openBox,reduce?0:950)}
+ setTimeout(openBox,reduce?0:950);setTimeout(revealYes,reduce?0:1950)}
 
 // Create a new non-overlapping garden arrangement on every page load.
 // Plants are only revealed by .is-tower-lit, after all four lanterns are lit.
@@ -144,4 +138,13 @@ lamps.forEach((lamp,i)=>lamp.addEventListener('click',()=>{
 if(ctx){size();sparkleClock=window.setInterval(shuffleSparkleSpots,340);window.addEventListener('resize',size,{passive:true});
 const io=new IntersectionObserver(e=>{visible=e[0].isIntersecting;if(visible)start();else{cancelAnimationFrame(raf);raf=0}}, {threshold:0});io.observe(scene);
 document.addEventListener('visibilitychange',()=>{active=!document.hidden;if(active)start();else{cancelAnimationFrame(raf);raf=0}})}
+})();
+
+/* Proposal video poster play cue: user initiated playback, native controls remain enabled. */
+(function(){const fig=document.querySelector('#proposal-story .kc-proposal-video');if(!fig)return;
+ const video=fig.querySelector('video'),play=fig.querySelector('.kc-proposal-play-overlay');if(!video||!play)return;
+ play.addEventListener('click',()=>{video.play().catch(()=>{});});
+ video.addEventListener('play',()=>fig.classList.add('kc-video-playing'));
+ video.addEventListener('pause',()=>fig.classList.remove('kc-video-playing'));
+ video.addEventListener('ended',()=>fig.classList.remove('kc-video-playing'));
 })();

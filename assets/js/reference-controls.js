@@ -10,6 +10,39 @@ info.addEventListener('click',()=>{if(!sheet.open){try{sheet.showModal()}catch(_
 close.addEventListener('click',()=>sheet.close());
 sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.close()});
 sheet.querySelectorAll('.kc-reference-jumps a').forEach(a=>a.addEventListener('click',()=>sheet.close()));
+
+// Swipe down from the header (or from the top of the scrollable panel) to dismiss.
+// Keep normal vertical scrolling available when the information extends below the screen.
+const inner=sheet.querySelector('.kc-reference-sheet-inner');
+const head=sheet.querySelector('.kc-reference-sheet-head');
+let startY=0,dragY=0,tracking=false,dragging=false,startInHeader=false;
+function resetSheetDrag(){tracking=false;dragging=false;dragY=0;sheet.classList.remove('kc-sheet-dragging');sheet.classList.add('kc-sheet-settling');sheet.style.transform='';setTimeout(()=>sheet.classList.remove('kc-sheet-settling'),240)}
+sheet.addEventListener('touchstart',e=>{
+ if(!sheet.open||e.touches.length!==1)return;
+ startInHeader=!!e.target.closest('.kc-reference-sheet-head');
+ if(!startInHeader&&inner.scrollTop>2)return;
+ startY=e.touches[0].clientY;dragY=0;tracking=true;dragging=false;
+},{passive:true});
+sheet.addEventListener('touchmove',e=>{
+ if(!tracking||e.touches.length!==1)return;
+ const delta=e.touches[0].clientY-startY;
+ if(delta<0){if(!dragging)tracking=false;return;}
+ if(!startInHeader&&inner.scrollTop>2){resetSheetDrag();return;}
+ if(delta<8&&!dragging)return;
+ dragging=true;dragY=Math.min(delta,window.innerHeight*.65);
+ sheet.classList.remove('kc-sheet-settling');sheet.classList.add('kc-sheet-dragging');
+ sheet.style.transform=`translate3d(0,${dragY}px,0)`;
+ if(e.cancelable)e.preventDefault();
+},{passive:false});
+sheet.addEventListener('touchend',()=>{
+ if(!tracking)return;
+ const dismiss=dragging&&dragY>85;
+ resetSheetDrag();
+ if(dismiss)sheet.close();
+},{passive:true});
+sheet.addEventListener('touchcancel',resetSheetDrag,{passive:true});
+sheet.addEventListener('close',resetSheetDrag);
+
 let ctx=null,master=null,playing=false,timer=null,next=0,index=0;
 const melody=[[69,1],[72,1],[77,1],[76,2],[74,1],[72,1],[69,1],[67,1],[69,3],[70,1],[74,1],[79,1],[77,2],[76,1],[74,1],[76,1],[79,1],[77,3],[72,1],[77,1],[81,1],[79,2],[77,1],[76,1],[74,1],[72,1],[74,3]];
 const freq=n=>440*Math.pow(2,(n-69)/12);
