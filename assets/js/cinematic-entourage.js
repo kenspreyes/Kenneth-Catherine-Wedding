@@ -13,19 +13,21 @@ let w=0,h=0,visible=false,raf=0,last=0,skyLast=0,flies=[];
 let gl=null,uniforms=null;
 const vertex='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
 const fragment=`precision mediump float;uniform vec2 r;uniform float t;uniform vec3 a,b,c;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),u.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),u.x),u.y);}
-float fbm(vec2 p){float v=0.,s=.5;for(int i=0;i<4;i++){v+=s*n(p);p*=2.03;s*=.5;}return v;}
-void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.5;
-float q=fbm(p+vec2(t*.018,-t*.012));float w=fbm(p*1.25+q*1.7+vec2(-t*.011,t*.016));
-float clouds=fbm(p*1.9+vec2(-t*.015,t*.012)+w*.65);
-float mist=smoothstep(.32,.69,clouds*.72+w*.45);
-vec3 col=mix(a,b,smoothstep(.24,.68,w));
-col=mix(col,c,mist*.90);
-float highlights=smoothstep(.54,.80,clouds);
-col+=vec3(.085,.105,.082)*highlights*.95;
-float glow=smoothstep(.9,.0,length(uv-vec2(.5,.62)));col+=(c-a)*glow*.08;
-gl_FragColor=vec4(col,1.);}`;
+      float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+      float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),u.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),u.x),u.y);}
+      float fbm(vec2 p){float v=0.,s=.5;for(int i=0;i<4;i++){v+=s*n(p);p*=2.03;s*=.5;}return v;}
+      void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.5;
+        float q=fbm(p+vec2(t*.018,-t*.012));float w=fbm(p*1.25+q*1.7+vec2(-t*.011,t*.016));
+        vec3 col=mix(a,b,smoothstep(.24,.76,w));col=mix(col,c,smoothstep(.35,.86,q)*.78);
+        // Visible translucent green mist bands, strongest at the sides and lower half.
+        float mist=fbm(p*vec2(1.35,2.25)+vec2(t*.031,-t*.006));
+        float mist2=fbm(p*vec2(2.0,3.1)+vec2(-t*.019,t*.009));
+        float edge=smoothstep(.10,.44,abs(uv.x-.5));
+        float low=smoothstep(.18,.72,1.-uv.y);
+        float veil=(smoothstep(.39,.68,mist)*.66+smoothstep(.46,.75,mist2)*.34)*(.33+.67*max(edge,low*.72));
+        col=mix(col,vec3(.34,.43,.34),veil*.31);
+        float glow=smoothstep(.9,.0,length(uv-vec2(.5,.62)));col+=(c-a)*glow*.08;
+        gl_FragColor=vec4(col,1.);}`;
 function initSky(){
  try{
   gl=sky.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,powerPreference:'low-power'});
@@ -48,9 +50,9 @@ function drawSky(now){
  if(!gl)return;
  gl.uniform2f(uniforms.r,sky.width,sky.height);
  gl.uniform1f(uniforms.t,reduced?12:now*.001);
- gl.uniform3fv(uniforms.a,new Float32Array([.038,.075,.055]));
- gl.uniform3fv(uniforms.b,new Float32Array([.145,.245,.184]));
- gl.uniform3fv(uniforms.c,new Float32Array([.255,.354,.275]));
+ gl.uniform3fv(uniforms.a,new Float32Array([15/255,28/255,21/255]));
+ gl.uniform3fv(uniforms.b,new Float32Array([26/255,45/255,33/255]));
+ gl.uniform3fv(uniforms.c,new Float32Array([39/255,57/255,43/255]));
  gl.drawArrays(gl.TRIANGLES,0,3);
 }
 function resize(force=false){
